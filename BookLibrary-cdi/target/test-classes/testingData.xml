@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<author author_id="a1" first_name="Raul" second_name="Garsia" created_date="2015-11-10 11:30:15"/>
+<author author_id="a2" first_name="Cristian" second_name="Ronaldo" created_date="2015-12-14 11:55:15"/>
+<author author_id="a3" first_name="Oliver" second_name="Kahn" created_date="2015-12-14 11:22:15"/>
+<author author_id="a4" first_name="Greg" second_name="Blou" created_date="2015-10-29 10:28:15"/>
+
+
+<book book_id="b1" book_name="Java Core" year_published='2010' isbn="111-111-111-1" publisher="England" created_date="2015-11-10 11:30:15"/>
+<book book_id="b2" book_name="Hibernate" year_published="2009" isbn="111-111-111-2" publisher="USA" created_date="2015-12-14 11:55:15"/>
+<book book_id="b3" book_name="JPA" year_published="2014" isbn="111-111-111-3" publisher="Ukraine" created_date="2015-12-14 11:22:15"/>
+<book book_id="b4" book_name="EJB" year_published="2014" isbn="111-111-111-4" publisher="SoftServe" created_date="2015-10-29 10:28:15"/>
+<book book_id="b5" book_name="Spring" year_published="2015" isbn="111-111-111-5" publisher="England" created_date="2015-10-29 10:28:15"/>
+<book book_id="b6" book_name="DataBase MySQL" year_published="2013" isbn="111-111-111-6" publisher="USA" created_date="2015-10-29 10:28:15"/>
+<book book_id="b7" book_name="Java Core" year_published='2012' isbn="111-111-111-7" publisher="SoftServe" created_date="2015-11-10 11:30:15"/>
+
+
+<book_author book_id="b1" author_id="a1"/>
+<book_author book_id="b1" author_id="a2"/>
+<book_author book_id="b1" author_id="a4"/>
+<book_author book_id="b2" author_id="a1"/>
+<book_author book_id="b2" author_id="a4"/>
+<book_author book_id="b3" author_id="a1"/>
+<book_author book_id="b3" author_id="a2"/>
+<book_author book_id="b4" author_id="a4"/>
+<book_author book_id="b5" author_id="a1"/>
+<book_author book_id="b6" author_id="a2"/>
+<book_author book_id="b7" author_id="a2"/>
+
+<review review_id="r1" book_id="b1" commenter_name="Sasha" comment_="This book for beginners" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r2" book_id="b1" commenter_name="BobiBoBa" comment_="Agree with Sasha" rating="3" created_date="2015-11-10 11:30:15"/>
+<review review_id="r3" book_id="b2" commenter_name="Sasha" comment_="Hibernate" rating="2" created_date="2015-11-10 11:30:15"/>
+<review review_id="r4" book_id="b3" commenter_name="Lesia" comment_="JPA" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r5" book_id="b4" commenter_name="Masha" comment_="EJB" rating="5" created_date="2015-11-10 11:30:15"/>
+<review review_id="r6" book_id="b5" commenter_name="Roma" comment_="Spring" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r7" book_id="b6" commenter_name="Kyzia" comment_="DataBase MySQL" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r8" book_id="b6" commenter_name="Funn" comment_="DataBase MySQL helfull!!" rating="5" created_date="2015-11-10 11:30:15"/>
+<review review_id="r9" book_id="b1" commenter_name="Kyzia" comment_="Rush" rating="5" created_date="2015-11-10 11:30:15"/>
+</dataset>

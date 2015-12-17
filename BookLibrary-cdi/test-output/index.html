@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite, 4 failed tests</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-BookLibrary-cdiTest">
+              <span class="suite-name border-failed">BookLibrary-cdiTest</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-BookLibrary-cdiTest">
+                    <span>C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\test\resources\testing.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-BookLibrary-cdiTest">
+                    <span class="test-stats">2 tests</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-BookLibrary-cdiTest">
+                    <span>3 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-BookLibrary-cdiTest">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-BookLibrary-cdiTest">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-BookLibrary-cdiTest">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-BookLibrary-cdiTest">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">21 methods, 4 failed,   17 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-BookLibrary-cdiTest" class="hide-methods failed suite-BookLibrary-cdiTest"> (hide)</a> <!-- hide-methods failed suite-BookLibrary-cdiTest -->
+                      <a href="#" panel-name="suite-BookLibrary-cdiTest" class="show-methods failed suite-BookLibrary-cdiTest"> (show)</a> <!-- show-methods failed suite-BookLibrary-cdiTest -->
+                    </span>
+                    <div class="method-list-content failed suite-BookLibrary-cdiTest">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.AuthorHomeTest" hash-for-method="testFindAllAuthors">testFindAllAuthors</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.BookHomeTest" hash-for-method="testFindAllBooks">testFindAllBooks</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.ReviewHomeTest" hash-for-method="testFindAllReviews">testFindAllReviews</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.AuthorHomeTest" hash-for-method="testFindByIdAuthor">testFindByIdAuthor</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-BookLibrary-cdiTest -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-BookLibrary-cdiTest" class="hide-methods passed suite-BookLibrary-cdiTest"> (hide)</a> <!-- hide-methods passed suite-BookLibrary-cdiTest -->
+                      <a href="#" panel-name="suite-BookLibrary-cdiTest" class="show-methods passed suite-BookLibrary-cdiTest"> (show)</a> <!-- show-methods passed suite-BookLibrary-cdiTest -->
+                    </span>
+                    <div class="method-list-content passed suite-BookLibrary-cdiTest">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.AuthorHomeTest" hash-for-method="testCreateAuthor">testCreateAuthor</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.ReviewHomeTest" hash-for-method="testCreateBook">testCreateBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.BookHomeTest" hash-for-method="testCreateBook">testCreateBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.BookHomeTest" hash-for-method="testCreateBookWithAuthors">testCreateBookWithAuthors</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.AuthorFacadeTest" hash-for-method="testFindAllAuthorsByBook">testFindAllAuthorsByBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.ReviewFacadeTest" hash-for-method="testFindAllReviewsByCommenter">testFindAllReviewsByCommenter</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.AuthorFacadeTest" hash-for-method="testFindAuthorByFullName">testFindAuthorByFullName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.ReviewFacadeTest" hash-for-method="testFindAverageRatingForBook">testFindAverageRatingForBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.BookFacadeTest" hash-for-method="testFindBookByISNBN">testFindBookByISNBN</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.BookFacadeTest" hash-for-method="testFindBookByName">testFindBookByName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.BookFacadeTest" hash-for-method="testFindBooksByAuthor">testFindBooksByAuthor</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.facade.BookFacadeTest" hash-for-method="testFindBooksByPublisher">testFindBooksByPublisher</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.ReviewHomeTest" hash-for-method="testFindByIdBook">testFindByIdBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.BookHomeTest" hash-for-method="testFindByIdBook">testFindByIdBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.AuthorHomeTest" hash-for-method="testUpdateAuthor">testUpdateAuthor</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.BookHomeTest" hash-for-method="testUpdateBook">testUpdateBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-BookLibrary-cdiTest" title="com.softserveinc.model.persist.home.ReviewHomeTest" hash-for-method="testUpdateReview">testUpdateReview</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-BookLibrary-cdiTest -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-BookLibrary-cdiTest" class="panel BookLibrary-cdiTest">
+          <div class="suite-BookLibrary-cdiTest-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.ReviewHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllReviews">
+                  </a> <!-- testFindAllReviews -->
+                  <span class="method-name">testFindAllReviews</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected:&lt;8&gt; but was:&lt;0&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at com.softserveinc.model.persist.home.ReviewHomeTest.testFindAllReviews(ReviewHomeTest.java:87)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-failed -->
+          <div class="suite-BookLibrary-cdiTest-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.AuthorHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllAuthors">
+                  </a> <!-- testFindAllAuthors -->
+                  <span class="method-name">testFindAllAuthors</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected:&lt;5&gt; but was:&lt;0&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at com.softserveinc.model.persist.home.AuthorHomeTest.testFindAllAuthors(AuthorHomeTest.java:63)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByIdAuthor">
+                  </a> <!-- testFindByIdAuthor -->
+                  <span class="method-name">testFindByIdAuthor</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at com.softserveinc.model.persist.home.AuthorHomeTest.testFindByIdAuthor(AuthorHomeTest.java:54)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-failed -->
+          <div class="suite-BookLibrary-cdiTest-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.BookHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllBooks">
+                  </a> <!-- testFindAllBooks -->
+                  <span class="method-name">testFindAllBooks</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected:&lt;8&gt; but was:&lt;7&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at com.softserveinc.model.persist.home.BookHomeTest.testFindAllBooks(BookHomeTest.java:127)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-failed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.facade.ReviewFacadeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllReviewsByCommenter">
+                  </a> <!-- testFindAllReviewsByCommenter -->
+                  <span class="method-name">testFindAllReviewsByCommenter</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAverageRatingForBook">
+                  </a> <!-- testFindAverageRatingForBook -->
+                  <span class="method-name">testFindAverageRatingForBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.ReviewHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateBook">
+                  </a> <!-- testCreateBook -->
+                  <span class="method-name">testCreateBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByIdBook">
+                  </a> <!-- testFindByIdBook -->
+                  <span class="method-name">testFindByIdBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateReview">
+                  </a> <!-- testUpdateReview -->
+                  <span class="method-name">testUpdateReview</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.facade.AuthorFacadeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllAuthorsByBook">
+                  </a> <!-- testFindAllAuthorsByBook -->
+                  <span class="method-name">testFindAllAuthorsByBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAuthorByFullName">
+                  </a> <!-- testFindAuthorByFullName -->
+                  <span class="method-name">testFindAuthorByFullName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.AuthorHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateAuthor">
+                  </a> <!-- testCreateAuthor -->
+                  <span class="method-name">testCreateAuthor</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateAuthor">
+                  </a> <!-- testUpdateAuthor -->
+                  <span class="method-name">testUpdateAuthor</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.facade.BookFacadeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindBookByISNBN">
+                  </a> <!-- testFindBookByISNBN -->
+                  <span class="method-name">testFindBookByISNBN</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindBookByName">
+                  </a> <!-- testFindBookByName -->
+                  <span class="method-name">testFindBookByName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindBooksByAuthor">
+                  </a> <!-- testFindBooksByAuthor -->
+                  <span class="method-name">testFindBooksByAuthor</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindBooksByPublisher">
+                  </a> <!-- testFindBooksByPublisher -->
+                  <span class="method-name">testFindBooksByPublisher</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+          <div class="suite-BookLibrary-cdiTest-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.softserveinc.model.persist.home.BookHomeTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateBook">
+                  </a> <!-- testCreateBook -->
+                  <span class="method-name">testCreateBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreateBookWithAuthors">
+                  </a> <!-- testCreateBookWithAuthors -->
+                  <span class="method-name">testCreateBookWithAuthors</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByIdBook">
+                  </a> <!-- testFindByIdBook -->
+                  <span class="method-name">testFindByIdBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateBook">
+                  </a> <!-- testUpdateBook -->
+                  <span class="method-name">testUpdateBook</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-BookLibrary-cdiTest-class-passed -->
+        </div> <!-- panel BookLibrary-cdiTest -->
+        <div panel-name="test-xml-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\test\resources\testing.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;BookLibrary-cdiTest&quot;&gt;
+  &lt;test name=&quot;homes&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.home.BookHomeTest&quot;/&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.home.ReviewHomeTest&quot;/&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.home.AuthorHomeTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- homes --&gt;
+  &lt;test name=&quot;facades&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.facade.AuthorFacadeTest&quot;/&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.facade.BookFacadeTest&quot;/&gt;
+      &lt;class name=&quot;com.softserveinc.model.persist.facade.ReviewFacadeTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- facades --&gt;
+&lt;/suite&gt; &lt;!-- BookLibrary-cdiTest --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for BookLibrary-cdiTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">homes (3 classes)</span>
+              </li>
+              <li>
+                <span class="test-name">facades (3 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for BookLibrary-cdiTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">AuthorHome</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">testCreateAuthor</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">testUpdateAuthor</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">ReviewHome</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">testCreateBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">testUpdateReview</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">bookHome</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">testCreateBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">testCreateBookWithAuthors</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">testUpdateBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for BookLibrary-cdiTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_BookLibrary-cdiTest');
+function tableData_BookLibrary-cdiTest() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(21);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'testCreateBook')
+data.setCell(0, 2, 'com.softserveinc.model.persist.home.BookHomeTest')
+data.setCell(0, 3, 150);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'testUpdateReview')
+data.setCell(1, 2, 'com.softserveinc.model.persist.home.ReviewHomeTest')
+data.setCell(1, 3, 60);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'testCreateBookWithAuthors')
+data.setCell(2, 2, 'com.softserveinc.model.persist.home.BookHomeTest')
+data.setCell(2, 3, 60);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testCreateBook')
+data.setCell(3, 2, 'com.softserveinc.model.persist.home.ReviewHomeTest')
+data.setCell(3, 3, 50);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testUpdateBook')
+data.setCell(4, 2, 'com.softserveinc.model.persist.home.BookHomeTest')
+data.setCell(4, 3, 50);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testFindBooksByAuthor')
+data.setCell(5, 2, 'com.softserveinc.model.persist.facade.BookFacadeTest')
+data.setCell(5, 3, 30);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testUpdateAuthor')
+data.setCell(6, 2, 'com.softserveinc.model.persist.home.AuthorHomeTest')
+data.setCell(6, 3, 20);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'testFindAllBooks')
+data.setCell(7, 2, 'com.softserveinc.model.persist.home.BookHomeTest')
+data.setCell(7, 3, 20);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'testFindAllAuthorsByBook')
+data.setCell(8, 2, 'com.softserveinc.model.persist.facade.AuthorFacadeTest')
+data.setCell(8, 3, 20);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'testCreateAuthor')
+data.setCell(9, 2, 'com.softserveinc.model.persist.home.AuthorHomeTest')
+data.setCell(9, 3, 10);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'testFindByIdBook')
+data.setCell(10, 2, 'com.softserveinc.model.persist.home.ReviewHomeTest')
+data.setCell(10, 3, 10);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'testFindByIdBook')
+data.setCell(11, 2, 'com.softserveinc.model.persist.home.BookHomeTest')
+data.setCell(11, 3, 10);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'testFindAuthorByFullName')
+data.setCell(12, 2, 'com.softserveinc.model.persist.facade.AuthorFacadeTest')
+data.setCell(12, 3, 10);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'testFindAllReviewsByCommenter')
+data.setCell(13, 2, 'com.softserveinc.model.persist.facade.ReviewFacadeTest')
+data.setCell(13, 3, 10);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'testFindBookByISNBN')
+data.setCell(14, 2, 'com.softserveinc.model.persist.facade.BookFacadeTest')
+data.setCell(14, 3, 10);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'testFindAverageRatingForBook')
+data.setCell(15, 2, 'com.softserveinc.model.persist.facade.ReviewFacadeTest')
+data.setCell(15, 3, 10);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'testFindBookByName')
+data.setCell(16, 2, 'com.softserveinc.model.persist.facade.BookFacadeTest')
+data.setCell(16, 3, 10);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'testFindByIdAuthor')
+data.setCell(17, 2, 'com.softserveinc.model.persist.home.AuthorHomeTest')
+data.setCell(17, 3, 0);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'testFindAllAuthors')
+data.setCell(18, 2, 'com.softserveinc.model.persist.home.AuthorHomeTest')
+data.setCell(18, 3, 0);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'testFindAllReviews')
+data.setCell(19, 2, 'com.softserveinc.model.persist.home.ReviewHomeTest')
+data.setCell(19, 3, 0);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'testFindBooksByPublisher')
+data.setCell(20, 2, 'com.softserveinc.model.persist.facade.BookFacadeTest')
+data.setCell(20, 3, 0);
+window.suiteTableData['BookLibrary-cdiTest']= { tableData: data, tableDiv: 'times-div-BookLibrary-cdiTest'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 540 ms</span>
+              <div id="times-div-BookLibrary-cdiTest">
+              </div> <!-- times-div-BookLibrary-cdiTest -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for BookLibrary-cdiTest</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">8 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.softserveinc.model.persist.facade.ReviewFacadeTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">closeEJBSession</span>
+                <br/>
+                <span class="ignored-method-name">getRemoteBeans</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.softserveinc.model.persist.home.ReviewHomeTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">closeEJBSession</span>
+                <br/>
+                <span class="ignored-method-name">getRemoteBeans</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.softserveinc.model.persist.home.AuthorHomeTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">closeEJBSession</span>
+                <br/>
+                <span class="ignored-method-name">getRemoteBeans</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.softserveinc.model.persist.facade.BookFacadeTest</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">closeEJBSession</span>
+                <br/>
+                <span class="ignored-method-name">getRemoteBeans</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-BookLibrary-cdiTest" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.facade.AuthorFacadeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-suite before">
+                <span class="method-name">getRemoteBeans</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-suite before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.BookHomeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">2782 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testCreateBook</span>
+                <span class="method-start">3339 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreateBookWithAuthors</span>
+                <span class="method-start">3489 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateBook</span>
+                <span class="method-start">3549 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.ReviewHomeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">3599 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testCreateBook</span>
+                <span class="method-start">4071 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateReview</span>
+                <span class="method-start">4121 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.AuthorHomeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">4181 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testCreateAuthor</span>
+                <span class="method-start">4691 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateAuthor</span>
+                <span class="method-start">4701 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.BookHomeTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testFindAllBooks</span>
+                <span class="method-start">4731 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindByIdBook</span>
+                <span class="method-start">4751 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">4761 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.ReviewHomeTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testFindAllReviews</span>
+                <span class="method-start">4811 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindByIdBook</span>
+                <span class="method-start">4811 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">4821 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.home.AuthorHomeTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testFindAllAuthors</span>
+                <span class="method-start">4841 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">4851 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testFindByIdAuthor</span>
+                <span class="method-start">4851 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.facade.AuthorFacadeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">4891 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testFindAllAuthorsByBook</span>
+                <span class="method-start">5312 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindAuthorByFullName</span>
+                <span class="method-start">5332 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">5342 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.facade.BookFacadeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">5412 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testFindBookByISNBN</span>
+                <span class="method-start">5872 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindBookByName</span>
+                <span class="method-start">5882 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindBooksByAuthor</span>
+                <span class="method-start">5892 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">5922 ms</span>
+              </div> <!-- configuration-class after -->
+              <div class="test-method">
+                <span class="method-name">testFindBooksByPublisher</span>
+                <span class="method-start">5922 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.facade.ReviewFacadeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">5982 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">testFindAllReviewsByCommenter</span>
+                <span class="method-start">6423 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindAverageRatingForBook</span>
+                <span class="method-start">6443 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">6453 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.softserveinc.model.persist.facade.AuthorFacadeTest</div> <!-- chronological-class-name -->
+              <div class="configuration-suite after">
+                <span class="method-name">closeEJBSession</span>
+                <span class="method-start">6523 ms</span>
+              </div> <!-- configuration-suite after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

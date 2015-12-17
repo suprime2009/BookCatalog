@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [BookLibrary-cdiTest]">
+  <test name="homes(failed)">
+    <classes>
+      <class name="com.softserveinc.model.persist.facade.ReviewFacadeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.ReviewFacadeTest -->
+      <class name="com.softserveinc.model.persist.home.ReviewHomeTest">
+        <methods>
+          <include name="testFindAllReviews"/>
+          <include name="tearDown"/>
+          <include name="testUpdateReview"/>
+          <include name="testCreateBook"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.ReviewHomeTest -->
+      <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
+        <methods>
+          <include name="closeEJBSession"/>
+          <include name="getRemoteBeans"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
+      <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
+        <methods>
+          <include name="testUpdateAuthor"/>
+          <include name="testFindByIdAuthor"/>
+          <include name="testFindAllAuthors"/>
+          <include name="tearDown"/>
+          <include name="testCreateAuthor"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
+      <class name="com.softserveinc.model.persist.facade.BookFacadeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.BookFacadeTest -->
+      <class name="com.softserveinc.model.persist.home.BookHomeTest">
+        <methods>
+          <include name="testCreateBookWithAuthors"/>
+          <include name="testFindAllBooks"/>
+          <include name="testCreateBook"/>
+          <include name="testUpdateBook"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
+    </classes>
+  </test> <!-- homes(failed) -->
+</suite> <!-- Failed suite [BookLibrary-cdiTest] -->

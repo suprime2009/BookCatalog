@@ -1,19 +1,61 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-      <h:head>
+<h:head>
 
-      </h:head>
-      
-      <h:body>
-    <h:dataTable value="#{allBooks.list}" var="book">
-     <h:column>
-               <h:outputText value="Author Id = #{book.bookName} " />
-            </h:column>    
-    </h:dataTable>
-    
-      
-      </h:body>
-      
-      </html>
+</h:head>
+<title>#{msgs.windowTitle}</title>
+<h:body>
+	<h:dataTable value="#{listBookAction.books}" var="book" bgcolor="red"
+		border="1" width="90%">
+		<h:column>
+			<f:facet name="header">
+				<h:selectBooleanCheckbox value="#{listBookAction.selectAll}" />
+			</f:facet>
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">book Name</f:facet>
+			<h:link value="#{book.bookName}" outcome="bookDetails">
+				<f:param name="id" value="#{book.idbook}"></f:param>
+			</h:link>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">average rating</f:facet>
+			<h:outputText value="#{ratingBookAction.rating}"></h:outputText>
+
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">year</f:facet>
+			<h:outputText value=" #{book.yearPublished} " />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">publisher</f:facet>
+			<h:column>Publisher: <h:outputText
+					value=" #{book.publisher} " />
+			</h:column>
+			<br></br>
+			<h:column>ISBN number: <h:outputText
+					value=" #{book.isbn} " />
+			</h:column>
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">authors</f:facet>
+			<h:dataTable value="#{book.bookAuthors}" var="author">
+				<h:column>
+					<h:outputText value=" #{author.firstName} #{author.secondName} " />
+				</h:column>
+			</h:dataTable>
+		</h:column>
+
+	</h:dataTable>
+
+
+</h:body>
+</html>

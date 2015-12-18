@@ -74,7 +74,7 @@ public class Book implements Serializable {
 	}
 	
 	@PrePersist
-	public void generateId() {
+	private void generateId() {
 		this.idBook = UUID.randomUUID().toString();
 		this.createdDate = new Date();
 	}

@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+    <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
+    <f:viewAction action="#{bookDetail.loadBook}"/>
+</f:metadata>
+
+<h:head>
+
+</h:head>
+<title>#{bookDetail.book.bookName}</title>
+<h:body>
+<h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
+
+<h:form>
+<h:commandButton action="#{navigationController.moveToManageBooks}" value="Back"></h:commandButton>
+</h:form>
+</h:body>
+
+</html>

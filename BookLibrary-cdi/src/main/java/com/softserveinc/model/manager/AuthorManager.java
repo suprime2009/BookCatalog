@@ -43,8 +43,7 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 
 	@Override
 	public List<Author> getAllAuthors() {
-		// TODO Auto-generated method stub
-		return null;
+		return authorHomeLocal.findAll();
 	}
 
 	@Override

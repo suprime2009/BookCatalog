@@ -10,5 +10,7 @@ import com.softserveinc.model.persist.entity.Book;
 public interface BookManagerLocal {
 	
 	List<Book> getAllBooks() ;
+	
+	Book getBookByID(String id);
 
 }

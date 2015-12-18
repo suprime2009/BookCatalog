@@ -1,6 +1,8 @@
+C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\NavigationController.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Book.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\AuthorFacade.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\AuthorFacadeRemote.java
+C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\RatingBookAction.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\manager\BookManagerLocal.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\backing\HelloWorldBean.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\manager\ReviewManagerRemote.java
@@ -41,5 +43,6 @@ C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\manager\IManagerBook.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\IHome.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\manager\AuthorManager.java
+C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookDetail.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\manager\IManagerAuthor.java
 C:\Users\pkrav\Desktop\BookLibrary\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\ReviewFacadeLocal.java

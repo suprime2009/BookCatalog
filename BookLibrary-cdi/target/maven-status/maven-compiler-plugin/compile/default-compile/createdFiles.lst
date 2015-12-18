@@ -26,10 +26,13 @@ com\softserveinc\model\persist\home\BookHomeLocal.class
 com\softserveinc\model\persist\home\BookHome.class
 com\softserveinc\model\persist\home\ReviewHome.class
 com\softserveinc\model\persist\entity\Book_.class
+com\softserveinc\action\managebook\RatingBookAction.class
 com\softserveinc\model\manager\IManagerAuthor.class
+com\softserveinc\action\managebook\NavigationController.class
 com\softserveinc\model\persist\entity\Author_.class
 com\softserveinc\model\persist\facade\AuthorFacade.class
 com\softserveinc\model\persist\entity\Review.class
+com\softserveinc\action\managebook\BookDetail.class
 com\softserveinc\model\manager\AuthorManager.class
 com\softserveinc\action\managebook\ListBookAction.class
 com\softserveinc\model\persist\home\AuthorHomeRemote.class

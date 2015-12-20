@@ -13,6 +13,10 @@
 <title>#{bookDetail.book.bookName}</title>
 <h:body>
 <h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
+<h:outputText value="#{bookDetail.book.publisher}"></h:outputText>
+<h:outputText value="#{bookDetail.book.isbn}"></h:outputText>
+<h:outputText value="#{bookDetail.book.yearPublished}"></h:outputText>
+
 
 <h:form>
 <h:commandButton action="#{navigationController.moveToManageBooks}" value="Back"></h:commandButton>

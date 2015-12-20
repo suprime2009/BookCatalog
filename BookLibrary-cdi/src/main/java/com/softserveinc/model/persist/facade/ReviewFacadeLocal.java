@@ -1,12 +1,12 @@
 package com.softserveinc.model.persist.facade;
 
-import java.util.List;
-
 import javax.ejb.Local;
 
-import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.Review;
-
+/**
+ * ReviewFacadeLocal an interface extended from IReviewFacade interface and describes facade operations
+ * for Review entity. This interface is local and used in application as main.
+ *
+ */
 @Local
 public interface ReviewFacadeLocal extends IReviewFacade {
 	

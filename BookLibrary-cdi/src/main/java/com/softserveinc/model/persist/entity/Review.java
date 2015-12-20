@@ -19,7 +19,7 @@ import java.util.UUID;
 @NamedQueries({
 @NamedQuery(name = Review.FIND_ALL_REVIEWS, query="SELECT r FROM Review r"),
 @NamedQuery(name = Review.FIND_ALL_REVIEWS_BY_COMMENTER_NAME, query="SELECT r FROM Review r WHERE r.commenterName like :par"),
-@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT AVG(r.rating) FROM Review r WHERE r.book LIKE :par ")
+@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT AVG(r.rating) FROM Review r WHERE  r.book LIKE :par ")
 })
 public class Review implements Serializable {
 	

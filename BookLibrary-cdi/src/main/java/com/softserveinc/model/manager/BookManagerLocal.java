@@ -9,8 +9,12 @@ import com.softserveinc.model.persist.entity.Book;
 @Local
 public interface BookManagerLocal {
 	
-	List<Book> getAllBooks() ;
-	
 	Book getBookByID(String id);
+	
+	List<Book> getBooks();
+	
+	void sortByBookNameAsk(List<Book> list);
+	
+	void sortByBookNameDesk(List<Book> list);
 
 }

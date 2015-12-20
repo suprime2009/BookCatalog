@@ -28,37 +28,38 @@ public class ListBookAction implements Serializable{
 	 */
 	private static final long serialVersionUID = -308609312926617997L;
 
-	@EJB
+	@Inject
 	private BookManagerLocal bookManager;
 	
-	@EJB
+	@Inject
 	private ReviewManagerLocal reviewManager;
 	
 
+	private List<Book> booksList;
 	
-
-
-//	@EJB
-//	public void setBookManager(BookManager bookManager) {
-//		this.bookManager = bookManager;
-//		System.out.println("EJB ACTION DONE");
-//		System.out.println("EJB ACTION DONE");
-//		System.out.println("EJB ACTION DONE");
-//		System.out.println("EJB ACTION DONE");
-//		System.out.println("EJB ACTION DONE");
-//	}
+	public List<Book> getBooksList() {
+		return booksList;
+	}
 	
-	private List<Book> books;
+	public void sortByBookNameAsk() {
+		bookManager.sortByBookNameAsk(booksList);
+	}
+	
+	public void sortByBookNameDesk() {
+		bookManager.sortByBookNameDesk(booksList);
+	}
+	
+	@PostConstruct
+	public void init() {
+		System.out.println("Post Construct ACTION");
+		booksList = bookManager.getBooks();
+	}
+	
+	
 	private double rating;
 	private boolean selected;
 	private boolean selectAll;
 	private Book book;
-	
-	
-	@PostConstruct
-	public void init() {
-		books = bookManager.getAllBooks();
-	}
 	
 //	public void setAverageRatingFoRBook(Book book) {
 //		this.averageRatingFoRBook = bookManager.getAverageRatingFoRBook(book);
@@ -66,9 +67,7 @@ public class ListBookAction implements Serializable{
 	
 
 
-	public List<Book> getBooks() {
-		return books;
-	}
+
 
 	public double getRating() {
 		return rating;
@@ -78,9 +77,6 @@ public class ListBookAction implements Serializable{
 		this.rating = rating;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
-	}
 
 	public boolean isSelected() {
 		return selected;
@@ -90,16 +86,7 @@ public class ListBookAction implements Serializable{
 		this.selected = selected;
 	}
 	
-	public double stars(String bookId) {
-		Book book = bookManager.getBookByID(bookId);
-		return reviewManager.getAverageRating(book);
-	}
 	
-	 public String getCurrentTime() {
-
-	      return new SimpleDateFormat("dd MMM yyyy:HH:mm:SS").format(new java.util.Date().getTime()); // Older version, SimpleDateFormat is not thread safe
-	      //return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM-yyyy HH:mm:ss"));  // Requires Java 8
-	  }
 
 	public Book getBook() {
 		return book;

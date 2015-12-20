@@ -1,15 +1,13 @@
 package com.softserveinc.model.persist.facade;
 
-import java.util.List;
-
 import javax.ejb.Local;
-import javax.ejb.Remote;
 
-import com.softserveinc.model.persist.entity.Author;
-import com.softserveinc.model.persist.entity.Book;
-
-
-@Local(AuthorFacadeLocal.class)
+/**
+ * AuthorFacadeLocal an interface extended from IAuthorFacade interface and describes facade operations
+ * for Author entity. This interface is local and used in application as main.
+ *
+ */
+@Local
 public interface AuthorFacadeLocal extends IAuthorFacade {
 	
 }

@@ -16,43 +16,45 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.model.persist.entity.Author;
 
+/**
+ * AuthorHome class is an implementation of CRUD operations for Author entity.
+ * This class is @Stateless.
+ *
+ */
 @Stateless
 public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 
-	private EntityManager entityManager;
 	private static Logger log = LoggerFactory.getLogger(AuthorHome.class);
-
+	
 	@PersistenceContext(unitName = "primary")
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+	private EntityManager entityManager;
 
 	public Author create(Author object) {
 		entityManager.persist(object);
-		log.info("Entity " + object + "was successfully created");
+		log.info("Entity {} has been successfully created", object);
 		return object;
 	}
 
 	public void update(Author object) {
 		entityManager.merge(object);
-		log.info("Entity " + object + "was successfully updated");
+		log.info("Entity {} has been successfully updated", object);
 	}
 
 	public void delete(Author object) {
 		entityManager.remove(object);
-		log.info("Entity {} was successfully deleted", object);
+		log.info("Entity {} has been successfully deleted", object);
 	}
 
 	public List<Author> findAll() {
 		TypedQuery<Author> query = entityManager.createNamedQuery(Author.FIND_ALL_AUTHORS, Author.class);
 		List<Author> results = query.getResultList();
-		log.info("List<Author> was successfully created. Method findAll() finished");
+		log.info("List<Author> has been successfully created. Method findAll() finished");
 		return results;
 	}
 
 	public Author findByID(String id) {
 		Author object = (Author) entityManager.find(Author.class, id);
-		log.info("Entity " + object + "was successfully found by id = " + id);
+		log.info("Entity {} has been successfully found by id = {}", object, id);
 		return object;
 	}
 

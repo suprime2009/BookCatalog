@@ -1,32 +1,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/core">
 
 <h:head>
 
 </h:head>
 <title>#{msgs.windowTitle}</title>
 <h:body>
-	<h:dataTable value="#{listBookAction.books}" var="book" bgcolor="red"
+	<h:dataTable value="#{listBookAction.booksList}" var="book" bgcolor="red"
 		border="1" width="90%">
 		<h:column>
 			<f:facet name="header">
 				<h:selectBooleanCheckbox value="#{listBookAction.selectAll}" />
 			</f:facet>
+			<!--  <h:selectBooleanCheckbox value="#{book.idbook}" />-->
 
 		</h:column>
 
 		<h:column>
-			<f:facet name="header">book Name</f:facet>
+			<f:facet name="header">
+			<h:form>
+			 <h:commandLink action="#{listBookAction.sortByBookNameAsk()}"> Sort Column</h:commandLink>
+			 </h:form>
+			BookName
+			</f:facet>
 			<h:link value="#{book.bookName}" outcome="bookDetails">
 				<f:param name="id" value="#{book.idbook}"></f:param>
 			</h:link>
+			
 		</h:column>
 
 		<h:column>
 			<f:facet name="header">average rating</f:facet>
-			<h:outputText value="#{ratingBookAction.rating}"></h:outputText>
-
+			<h:outputText value="#{ratingBookAction.getRating(book)}"></h:outputText>
 		</h:column>
 
 		<h:column>
@@ -55,7 +62,6 @@
 		</h:column>
 
 	</h:dataTable>
-
 
 </h:body>
 </html>

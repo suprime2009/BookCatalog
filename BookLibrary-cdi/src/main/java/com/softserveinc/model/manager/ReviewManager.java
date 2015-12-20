@@ -14,8 +14,8 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote{
 	
 	@Override
 	public double getAverageRating(Book book) {
-		// TODO Auto-generated method stub
-		return reviewFacade.findAverageRatingForBook(book);
+		double result = reviewFacade.findAverageRatingForBook(book);
+		return result;
 	}
 
 }

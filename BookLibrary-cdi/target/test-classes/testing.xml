@@ -5,11 +5,11 @@
 		
 		<class name="com.softserveinc.model.persist.home.BookHomeTest" />
 		<class name="com.softserveinc.model.persist.home.ReviewHomeTest" />
-		<class name="com.softserveinc.model.persist.home.AuthorHomeTest" />
+		 <class name="com.softserveinc.model.persist.home.AuthorHomeTest" />
 	  </classes>
 	</test>
 
-	<test name="facades">
+	  <test name="facades">
 	  <classes>
 		<class name="com.softserveinc.model.persist.facade.AuthorFacadeTest" />
 		<class name="com.softserveinc.model.persist.facade.BookFacadeTest" />

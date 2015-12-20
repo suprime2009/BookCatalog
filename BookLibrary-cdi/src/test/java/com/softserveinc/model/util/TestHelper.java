@@ -74,7 +74,7 @@ public class TestHelper {
 		try {
 			object = (T) context
 					.lookup("java:global/BookLibrary-cdi/" + clazz.getSimpleName() + "!" + clazz.getName() + "Remote");
-			log.debug("Remote bean {} successfully found", object.getClass().getSimpleName());
+			log.debug("Remote bean {} has been successfully found", object.getClass().getSimpleName());
 		} catch (NamingException e) {
 			log.error("Remote bean {} could not found", object.getClass().getSimpleName(), e);
 		}

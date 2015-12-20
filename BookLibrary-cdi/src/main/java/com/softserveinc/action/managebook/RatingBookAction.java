@@ -1,26 +1,23 @@
 package com.softserveinc.action.managebook;
 
-import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
+import com.softserveinc.model.manager.ReviewManager;
+import com.softserveinc.model.manager.ReviewManagerLocal;
+import com.softserveinc.model.persist.entity.Book;
+
 
 @ManagedBean
 @SessionScoped
 public class RatingBookAction {
 	
-	private double rating;
+	@EJB
+	private ReviewManagerLocal reviewManager;
 	
-	@PostConstruct
-	public void init() {
-		rating = 2.0;
-	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
+	public double getRating(Book book) {
+		return reviewManager.getAverageRating(book);
 	}
 
 }

@@ -45,7 +45,4 @@ public class AuthorFacadeTest extends BaseTest{
 		assertEquals("Garsia", author.getSecondName());
 		assertEquals("a1", author.getIdauthor());
 	}
-	
-	
-
 }

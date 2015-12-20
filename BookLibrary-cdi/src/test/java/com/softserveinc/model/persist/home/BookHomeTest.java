@@ -15,7 +15,11 @@ import com.softserveinc.model.util.BaseTest;
 
 public class BookHomeTest extends BaseTest{
 	
-	@Test(groups= "bookHome")
+	public static final String CREATE_BOOK = "testCreateBook";
+	public static final String CREATE_BOOK_WITH_AUTHORS = "testCreateBookWithAuthors";
+	
+
+	@Test
 	public void testCreateBook() {
 		Book book = new Book("Windows", "111-111-112-1", "Japan", 2015, null);
 		book = bookHomeRemote.create(book);
@@ -29,7 +33,7 @@ public class BookHomeTest extends BaseTest{
 		assertEquals(bookExpected.getYearPublished(), book.getYearPublished());
 	}
 	
-	@Test(groups= "bookHome")
+	@Test
 	public void testCreateBookWithAuthors() {
 		Author author1 = authorHomeRemote.findByID("a1");
 		Author author2 = authorHomeRemote.findByID("a4");
@@ -63,7 +67,7 @@ public class BookHomeTest extends BaseTest{
 //		book = bookHomeRemote.create(book);
 //	}
 	
-	@Test(groups= "bookHome")
+	@Test
 	public void testUpdateBook() {
 		Author author1 = authorHomeRemote.findByID("a1");
 		Author author2 = authorHomeRemote.findByID("a4");
@@ -92,7 +96,8 @@ public class BookHomeTest extends BaseTest{
 
 	}
 
-	@Test(expectedExceptions=NullPointerException.class, dependsOnGroups = "bookHome")
+	@Test(expectedExceptions=NullPointerException.class, 
+			dependsOnMethods= {CREATE_BOOK_WITH_AUTHORS, CREATE_BOOK})
 	public void testFindByIdBook() {
 		Author author1 = authorHomeRemote.findByID("a1");
 		Author author2 = authorHomeRemote.findByID("a4");
@@ -120,11 +125,11 @@ public class BookHomeTest extends BaseTest{
 //		assertEquals(listBefore.size(), listAfter.size() + 1);
 //	}
 	
-	@Test(dependsOnGroups = "bookHome")
+	@Test(dependsOnMethods= {CREATE_BOOK_WITH_AUTHORS, CREATE_BOOK})
 	public void testFindAllBooks() {
 		List<Book> listBook = bookHomeRemote.findAll();
 		assertNotNull(listBook);
-		assertEquals(8, listBook.size());
+		assertEquals(9, listBook.size());
 	}
 
 }

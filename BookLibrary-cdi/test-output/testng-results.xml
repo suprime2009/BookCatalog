@@ -1,189 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="4" total="21" passed="17">
+<testng-results skipped="0" failed="0" total="21" passed="21">
   <reporter-output>
   </reporter-output>
-  <suite name="BookLibrary-cdiTest" duration-ms="4235" started-at="2015-12-18T14:42:33Z" finished-at="2015-12-18T14:42:37Z">
+  <suite name="BookLibrary-cdiTest" duration-ms="12138" started-at="2015-12-20T22:20:42Z" finished-at="2015-12-20T22:20:55Z">
     <groups>
-      <group name="ReviewHome">
-        <method signature="ReviewHomeTest.testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testCreateBook" class="com.softserveinc.model.persist.home.ReviewHomeTest"/>
-        <method signature="ReviewHomeTest.testUpdateReview()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testUpdateReview" class="com.softserveinc.model.persist.home.ReviewHomeTest"/>
-      </group> <!-- ReviewHome -->
-      <group name="AuthorHome">
-        <method signature="AuthorHomeTest.testCreateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testCreateAuthor" class="com.softserveinc.model.persist.home.AuthorHomeTest"/>
-        <method signature="AuthorHomeTest.testUpdateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testUpdateAuthor" class="com.softserveinc.model.persist.home.AuthorHomeTest"/>
-      </group> <!-- AuthorHome -->
-      <group name="bookHome">
-        <method signature="BookHomeTest.testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testCreateBook" class="com.softserveinc.model.persist.home.BookHomeTest"/>
-        <method signature="BookHomeTest.testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testCreateBookWithAuthors" class="com.softserveinc.model.persist.home.BookHomeTest"/>
-        <method signature="BookHomeTest.testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testUpdateBook" class="com.softserveinc.model.persist.home.BookHomeTest"/>
-      </group> <!-- bookHome -->
     </groups>
-    <test name="homes" duration-ms="2510" started-at="2015-12-18T14:42:33Z" finished-at="2015-12-18T14:42:35Z">
+    <test name="homes" duration-ms="7657" started-at="2015-12-20T22:20:42Z" finished-at="2015-12-20T22:20:50Z">
       <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="setUp" is-config="true" duration-ms="571" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="setUp" is-config="true" duration-ms="1353" started-at="2015-12-21T00:20:48Z" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCreateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testCreateAuthor" duration-ms="28" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="testCreateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="testCreateAuthor" duration-ms="31" started-at="2015-12-21T00:20:50Z" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateAuthor -->
-        <test-method status="PASS" signature="testUpdateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testUpdateAuthor" duration-ms="62" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="testUpdateAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="testUpdateAuthor" duration-ms="38" started-at="2015-12-21T00:20:50Z" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateAuthor -->
-        <test-method status="FAIL" signature="testFindAllAuthors()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testFindAllAuthors" duration-ms="3" depends-on-groups="AuthorHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected:<5> but was:<0>]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected:<5> but was:<0>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at com.softserveinc.model.persist.home.AuthorHomeTest.testFindAllAuthors(AuthorHomeTest.java:63)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="testFindAllAuthors()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="testFindAllAuthors" duration-ms="5" started-at="2015-12-21T00:20:50Z" depends-on-methods="com.softserveinc.model.persist.home.AuthorHomeTest.testCreateAuthor" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllAuthors -->
-        <test-method status="FAIL" signature="testFindByIdAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="testFindByIdAuthor" duration-ms="3" depends-on-groups="AuthorHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at com.softserveinc.model.persist.home.AuthorHomeTest.testFindByIdAuthor(AuthorHomeTest.java:54)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        <test-method status="PASS" signature="testFindByIdAuthor()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="testFindByIdAuthor" duration-ms="5" started-at="2015-12-21T00:20:50Z" depends-on-methods="com.softserveinc.model.persist.home.AuthorHomeTest.testCreateAuthor" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdAuthor -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@5bc79255]" name="tearDown" is-config="true" duration-ms="12" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.AuthorHomeTest@47ef968d]" name="tearDown" is-config="true" duration-ms="166" started-at="2015-12-21T00:20:50Z" finished-at="2015-12-21T00:20:50Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
       <class name="com.softserveinc.model.persist.home.BookHomeTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="setUp" is-config="true" duration-ms="594" started-at="2015-12-18T16:42:33Z" finished-at="2015-12-18T16:42:33Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="setUp" is-config="true" duration-ms="3306" started-at="2015-12-21T00:20:42Z" finished-at="2015-12-21T00:20:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testCreateBook" duration-ms="163" started-at="2015-12-18T16:42:33Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="testCreateBook" duration-ms="368" started-at="2015-12-21T00:20:46Z" finished-at="2015-12-21T00:20:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBook -->
-        <test-method status="PASS" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testCreateBookWithAuthors" duration-ms="56" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="testCreateBookWithAuthors" duration-ms="214" started-at="2015-12-21T00:20:46Z" finished-at="2015-12-21T00:20:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBookWithAuthors -->
-        <test-method status="PASS" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testUpdateBook" duration-ms="58" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="testUpdateBook" duration-ms="170" started-at="2015-12-21T00:20:46Z" finished-at="2015-12-21T00:20:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateBook -->
-        <test-method status="FAIL" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testFindAllBooks" duration-ms="29" depends-on-groups="bookHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected:<8> but was:<7>]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected:<8> but was:<7>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at com.softserveinc.model.persist.home.BookHomeTest.testFindAllBooks(BookHomeTest.java:127)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="testFindAllBooks" duration-ms="44" started-at="2015-12-21T00:20:46Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2015-12-21T00:20:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllBooks -->
-        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="testFindByIdBook" duration-ms="12" depends-on-groups="bookHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="testFindByIdBook" duration-ms="25" started-at="2015-12-21T00:20:47Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2015-12-21T00:20:47Z">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException
-	at com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook(BookHomeTest.java:111)
+	at com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook(BookHomeTest.java:116)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
+	at java.lang.reflect.Method.invoke(Method.java:483)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
 	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
@@ -210,76 +88,37 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdBook -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@4f970963]" name="tearDown" is-config="true" duration-ms="85" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@887af79]" name="tearDown" is-config="true" duration-ms="208" started-at="2015-12-21T00:20:47Z" finished-at="2015-12-21T00:20:47Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
       <class name="com.softserveinc.model.persist.home.ReviewHomeTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="setUp" is-config="true" duration-ms="604" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="setUp" is-config="true" duration-ms="1213" started-at="2015-12-21T00:20:47Z" finished-at="2015-12-21T00:20:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testCreateBook" duration-ms="51" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="testCreateBook" duration-ms="67" started-at="2015-12-21T00:20:48Z" finished-at="2015-12-21T00:20:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBook -->
-        <test-method status="PASS" signature="testUpdateReview()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testUpdateReview" duration-ms="48" started-at="2015-12-18T16:42:34Z" finished-at="2015-12-18T16:42:34Z">
+        <test-method status="PASS" signature="testUpdateReview()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="testUpdateReview" duration-ms="102" started-at="2015-12-21T00:20:48Z" finished-at="2015-12-21T00:20:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateReview -->
-        <test-method status="FAIL" signature="testFindAllReviews()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testFindAllReviews" duration-ms="2" depends-on-groups="ReviewHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected:<8> but was:<0>]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected:<8> but was:<0>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:743)
-	at org.junit.Assert.assertEquals(Assert.java:118)
-	at org.junit.Assert.assertEquals(Assert.java:555)
-	at org.junit.Assert.assertEquals(Assert.java:542)
-	at com.softserveinc.model.persist.home.ReviewHomeTest.testFindAllReviews(ReviewHomeTest.java:87)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method status="PASS" signature="testFindAllReviews()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="testFindAllReviews" duration-ms="20" started-at="2015-12-21T00:20:48Z" depends-on-methods="com.softserveinc.model.persist.home.ReviewHomeTest.testCreateBook" finished-at="2015-12-21T00:20:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllReviews -->
-        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="testFindByIdBook" duration-ms="4" depends-on-groups="ReviewHome" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="testFindByIdBook" duration-ms="17" started-at="2015-12-21T00:20:48Z" depends-on-methods="com.softserveinc.model.persist.home.ReviewHomeTest.testCreateBook" finished-at="2015-12-21T00:20:48Z">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException
-	at com.softserveinc.model.persist.home.ReviewHomeTest.testFindByIdBook(ReviewHomeTest.java:65)
+	at com.softserveinc.model.persist.home.ReviewHomeTest.testFindByIdBook(ReviewHomeTest.java:73)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
+	at java.lang.reflect.Method.invoke(Method.java:483)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
 	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
@@ -306,79 +145,79 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdBook -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@7fac631b]" name="tearDown" is-config="true" duration-ms="27" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:35Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.ReviewHomeTest@6e0e048a]" name="tearDown" is-config="true" duration-ms="274" started-at="2015-12-21T00:20:48Z" finished-at="2015-12-21T00:20:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.softserveinc.model.persist.home.ReviewHomeTest -->
     </test> <!-- homes -->
-    <test name="facades" duration-ms="1707" started-at="2015-12-18T14:42:35Z" finished-at="2015-12-18T14:42:37Z">
+    <test name="facades" duration-ms="4449" started-at="2015-12-20T22:20:50Z" finished-at="2015-12-20T22:20:55Z">
       <class name="com.softserveinc.model.persist.facade.ReviewFacadeTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="setUp" is-config="true" duration-ms="449" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:37Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="setUp" is-config="true" duration-ms="1198" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testFindAllReviewsByCommenter()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="testFindAllReviewsByCommenter" duration-ms="11" started-at="2015-12-18T16:42:37Z" finished-at="2015-12-18T16:42:37Z">
+        <test-method status="PASS" signature="testFindAllReviewsByCommenter()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="testFindAllReviewsByCommenter" duration-ms="10" started-at="2015-12-21T00:20:54Z" finished-at="2015-12-21T00:20:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllReviewsByCommenter -->
-        <test-method status="PASS" signature="testFindAverageRatingForBook()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="testFindAverageRatingForBook" duration-ms="11" started-at="2015-12-18T16:42:37Z" finished-at="2015-12-18T16:42:37Z">
+        <test-method status="PASS" signature="testFindAverageRatingForBook()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="testFindAverageRatingForBook" duration-ms="12" started-at="2015-12-21T00:20:54Z" finished-at="2015-12-21T00:20:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAverageRatingForBook -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="tearDown" is-config="true" duration-ms="85" started-at="2015-12-18T16:42:37Z" finished-at="2015-12-18T16:42:37Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.ReviewFacadeTest@63e2203c]" name="tearDown" is-config="true" duration-ms="203" started-at="2015-12-21T00:20:54Z" finished-at="2015-12-21T00:20:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.softserveinc.model.persist.facade.ReviewFacadeTest -->
       <class name="com.softserveinc.model.persist.facade.BookFacadeTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="setUp" is-config="true" duration-ms="443" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="setUp" is-config="true" duration-ms="1227" started-at="2015-12-21T00:20:52Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testFindBookByISNBN()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBookByISNBN" duration-ms="9" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindBookByISNBN()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBookByISNBN" duration-ms="7" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindBookByISNBN -->
-        <test-method status="PASS" signature="testFindBookByName()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBookByName" duration-ms="10" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindBookByName()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBookByName" duration-ms="9" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindBookByName -->
-        <test-method status="PASS" signature="testFindBooksByAuthor()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBooksByAuthor" duration-ms="32" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindBooksByAuthor()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBooksByAuthor" duration-ms="42" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindBooksByAuthor -->
-        <test-method status="PASS" signature="testFindBooksByPublisher()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBooksByPublisher" duration-ms="5" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindBooksByPublisher()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="testFindBooksByPublisher" duration-ms="7" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindBooksByPublisher -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="tearDown" is-config="true" duration-ms="84" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.BookFacadeTest@3224f60b]" name="tearDown" is-config="true" duration-ms="265" started-at="2015-12-21T00:20:53Z" finished-at="2015-12-21T00:20:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- com.softserveinc.model.persist.facade.BookFacadeTest -->
       <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
-        <test-method status="PASS" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="getRemoteBeans" is-config="true" duration-ms="2792" started-at="2015-12-18T16:42:30Z" finished-at="2015-12-18T16:42:33Z">
+        <test-method status="PASS" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="getRemoteBeans" is-config="true" duration-ms="4176" started-at="2015-12-21T00:20:38Z" finished-at="2015-12-21T00:20:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getRemoteBeans -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="setUp" is-config="true" duration-ms="473" started-at="2015-12-18T16:42:35Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="setUp" is-config="true" duration-ms="1293" started-at="2015-12-21T00:20:50Z" finished-at="2015-12-21T00:20:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testFindAllAuthorsByBook()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="testFindAllAuthorsByBook" duration-ms="26" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindAllAuthorsByBook()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="testFindAllAuthorsByBook" duration-ms="20" started-at="2015-12-21T00:20:51Z" finished-at="2015-12-21T00:20:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllAuthorsByBook -->
-        <test-method status="PASS" signature="testFindAuthorByFullName()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="testFindAuthorByFullName" duration-ms="6" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="testFindAuthorByFullName()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="testFindAuthorByFullName" duration-ms="5" started-at="2015-12-21T00:20:51Z" finished-at="2015-12-21T00:20:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAuthorByFullName -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="tearDown" is-config="true" duration-ms="59" started-at="2015-12-18T16:42:36Z" finished-at="2015-12-18T16:42:36Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="tearDown" is-config="true" duration-ms="144" started-at="2015-12-21T00:20:51Z" finished-at="2015-12-21T00:20:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2015-12-18T16:42:37Z" finished-at="2015-12-18T16:42:37Z">
+        <test-method status="PASS" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.facade.AuthorFacadeTest@3b084709]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2015-12-21T00:20:55Z" finished-at="2015-12-21T00:20:55Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeEJBSession -->

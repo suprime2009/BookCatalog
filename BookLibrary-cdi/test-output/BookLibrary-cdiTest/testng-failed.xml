@@ -7,31 +7,25 @@
         <methods>
           <include name="testFindAllReviews"/>
           <include name="tearDown"/>
-          <include name="testUpdateReview"/>
           <include name="testCreateBook"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- com.softserveinc.model.persist.home.ReviewHomeTest -->
-      <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
-        <methods>
-          <include name="testUpdateAuthor"/>
-          <include name="testFindByIdAuthor"/>
-          <include name="testFindAllAuthors"/>
-          <include name="tearDown"/>
-          <include name="testCreateAuthor"/>
-          <include name="setUp"/>
-        </methods>
-      </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
       <class name="com.softserveinc.model.persist.home.BookHomeTest">
         <methods>
           <include name="testCreateBookWithAuthors"/>
           <include name="testFindAllBooks"/>
           <include name="testCreateBook"/>
-          <include name="testUpdateBook"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>
       </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
+      <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
       <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
         <methods>
           <include name="closeEJBSession"/>

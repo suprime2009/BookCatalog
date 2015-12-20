@@ -13,7 +13,9 @@ import com.softserveinc.model.util.BaseTest;
 
 public class ReviewHomeTest extends BaseTest{
 	
-	@Test(groups= "ReviewHome")
+	public static final String CREATE_REVIEW = "testCreateBook";
+	
+	@Test
 	public void testCreateBook() {
 		Book book = bookHomeRemote.findByID("b4");
 		Review review = new Review("This book wonderfull!", "Fred12", 5, book);
@@ -34,7 +36,7 @@ public class ReviewHomeTest extends BaseTest{
 		assertEquals(4, review.getRating());
 	}
 	
-	@Test(groups= "ReviewHome")
+	@Test
 	public void testUpdateReview() {
 		
 		Review reviewBefore = reviewHomeRemote.findByID("r7");
@@ -57,7 +59,7 @@ public class ReviewHomeTest extends BaseTest{
 		assertEquals(reviewBefore.getIdreview(), reviewAfter.getIdreview());
 	}
 
-	@Test(expectedExceptions=NullPointerException.class, dependsOnGroups = "ReviewHome")
+	@Test(expectedExceptions=NullPointerException.class,dependsOnMethods={CREATE_REVIEW})
 	public void testFindByIdBook() {
 		Review review = reviewHomeRemote.findByID("r4");
 		Book book = bookHomeRemote.findByID("b3");
@@ -80,11 +82,11 @@ public class ReviewHomeTest extends BaseTest{
 //		assertEquals(listBefore.size(), listAfter.size() + 1);
 //	}
 	
-	@Test(dependsOnGroups = "ReviewHome")
+	@Test(dependsOnMethods={CREATE_REVIEW})
 	public void testFindAllReviews() {
 		List<Review> listReview = reviewHomeRemote.findAll();
 		assertNotNull(listReview);
-		assertEquals(8, listReview.size());
+		assertEquals(11, listReview.size());
 	}
 
 }

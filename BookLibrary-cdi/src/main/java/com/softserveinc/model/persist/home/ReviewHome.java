@@ -13,10 +13,16 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.model.persist.entity.Review;
 
+/**
+ * ReviewHome class is an implementation of CRUD operations for Review entity.
+ * This class is @Stateless.
+ *
+ */
 @Stateless
 public class ReviewHome implements ReviewHomeLocal, ReviewHomeRemote {
 	
 	private static Logger log = LoggerFactory.getLogger(ReviewHome.class);
+	
 	@PersistenceContext(unitName = "primary")
 	EntityManager entityManager;
 
@@ -25,30 +31,30 @@ public class ReviewHome implements ReviewHomeLocal, ReviewHomeRemote {
 
 	public Review create(Review object) {
 		entityManager.persist(object);
-		log.info("Entity " + object + "was successfully created");
+		log.info("Entity {} has been successfully created", object);
 		return object;
 	}
 
 	public void update(Review object) {
 		entityManager.merge(object);
-		log.info("Entity " + object + "was successfully updated");
+		log.info("Entity {} has been successfully updated", object);
 	}
 
 	public void delete(Review object) {
 		entityManager.remove(object);
-		log.info("Entity " + object + "was successfully deleted");
+		log.info("Entity {} has been successfully deleted", object);
+	}
+	
+	public Review findByID(String id) {
+		Review object = (Review) entityManager.find(Review.class, id);
+		log.info("Entity {} has been successfully found by id ={} ", object, id);
+		return object;
 	}
 
 	public List<Review> findAll() {
 		TypedQuery<Review> query = entityManager.createNamedQuery(Review.FIND_ALL_REVIEWS, Review.class);
 		List<Review> results = query.getResultList();
-		log.info("List<Review> was successfully created. Method findAll() finished");
+		log.info("List<Review> has been successfully created. Method findAll() finished");
 		return results;
-	}
-
-	public Review findByID(String id) {
-		Review object = (Review) entityManager.find(Review.class, id);
-		log.info("Entity " + object + "was successfully found by id = " + id);
-		return object;
 	}
 }

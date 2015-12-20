@@ -17,6 +17,11 @@ import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.home.BookHome;
 import com.softserveinc.model.persist.home.BookHomeLocal;
 
+/**
+ * BookFacade class is an implementation facade operations for Book entity.
+ * This class is @Stateless.
+ *
+ */
 @Stateless
 public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 
@@ -28,60 +33,62 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 	@EJB
 	BookHomeLocal bookHomeLocal;
 	
-	public BookFacade() {}
-
-	public List<Book> findBooksWithRating(String rating) {
-		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_WITH_RATING);
-		query.setParameter("rat", rating);
-		List<Book> list = (List<Book>) query.getResultList();
-		log.info("By rating= " + rating + " were found List<Book>. Count books= " + list.size());
-		return list;
+	public BookFacade() {
+		
 	}
 
+//	public List<Book> findBooksWithRating(int rating) {
+//		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_WITH_RATING);
+//		query.setParameter("rat", rating);
+//		List<Book> list = (List<Book>) query.getResultList();
+//		log.info("Method findBooksWithRating: by rating={} has been found {} books.");
+//		return list;
+//	}
+
+	@Override
 	public List<Book> findBookByName(String name) {
 		Query query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME);
 		query.setParameter("nam", name);
 		List<Book> list = (List<Book>) query.getResultList();
-		log.info("By book name= {} has been found Book= {}", name, list);
+		log.info("By book name= {} has been found books. Count books= {}", name, list.size());
 		return list;
 	}
 
+	@Override
 	public Book findBookByISNBN(String isbn) {
 		Query query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_ISNBN);
 		query.setParameter("isb", isbn);
 		Book object = (Book) query.getSingleResult();
-		log.info("By isbn book number= " + isbn + "was found Book= " + object);
+		log.info("Method findBookByISNBN: By findBookByISNBN: isbn book number= {} has been found Book= {}", isbn, object);
 		return object;
 	}
 
+	@Override
 	public List<Book> findBooksByPublisher(String publisher) {
 		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_PUBLISHER);
 		query.setParameter("pub", publisher);
 		List<Book> list = (List<Book>) query.getResultList();
-		log.info("By book publisher name= " + publisher + "were found List<Book>. Count books= " + list.size());
+		log.info("Method findBooksByPublisher: By book publisher name= {} has been found books."
+				+ " Count books={} ", publisher, list.size());
 		return list;
 	}
 
+	@Override
 	public List<Book> findBooksByAuthor(Author author) {
 		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_AUTHOR);
 		query.setParameter("auth", author);
 		List<Book> list = (List<Book>) query.getResultList();
-
+		log.info("Method findBooksByAuthor: By author={} has been found {} books", author, list.size());
 		return list;
 	}
 	
+	@Override
 	public Book findById(String id) {
 		return bookHomeLocal.findByID(id);
 	}
 	
+	@Override
 	public List<Book> findAll() {
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
-		System.out.println("Book FACADE");
 		return bookHomeLocal.findAll();
 	}
 }

@@ -12,7 +12,10 @@ import com.softserveinc.model.util.BaseTest;
 
 public class AuthorHomeTest extends BaseTest{
 	
-	@Test(groups= "AuthorHome")
+	public static final String CREATE_AUTHOR = "testCreateAuthor";
+	public static final String DELETE_AUTHOR = "testDeleteAuthor";
+	
+	@Test
 	public void testCreateAuthor() {
 		Author author = new Author("black", "jack");
 		author = authorHomeRemote.create(author);
@@ -24,7 +27,7 @@ public class AuthorHomeTest extends BaseTest{
 		assertEquals(authorExpected.getSecondName(), author.getSecondName());
 	}
 
-	@Test(groups= "AuthorHome")
+	@Test
 	public void testUpdateAuthor() {
 		Author authorBefore = authorHomeRemote.findByID("a2");
 		authorBefore.setFirstName("John");
@@ -39,7 +42,7 @@ public class AuthorHomeTest extends BaseTest{
 		assertEquals(authorBefore.getIdauthor(), authorAfter.getIdauthor());
 	}
 	
-//	 @Test(groups= "AuthorHome", dependsOnMethods = { "testCreateAuthor", "testUpdateAuthor" } })
+//	 @Test(dependsOnMethods = {CREATE_AUTHOR})
 //	 public void testDeleteAuthor() {
 //	 List<Author> listBefore = authorHomeRemote.findAll();
 //	 Author author = authorHomeRemote.findByID("a3");
@@ -48,7 +51,7 @@ public class AuthorHomeTest extends BaseTest{
 //	 assertEquals(listBefore.size(), listAfter.size() + 1);
 //	 }
 
-	@Test(dependsOnGroups = "AuthorHome")
+	@Test(dependsOnMethods={CREATE_AUTHOR})
 	public void testFindByIdAuthor() {
 		Author author = authorHomeRemote.findByID("a4");
 		assertEquals("a4", author.getIdauthor());
@@ -56,7 +59,7 @@ public class AuthorHomeTest extends BaseTest{
 		assertEquals("Blou", author.getSecondName());
 	}
 
-	@Test(dependsOnGroups = "AuthorHome")
+	@Test(dependsOnMethods={CREATE_AUTHOR})
 	public void testFindAllAuthors() {
 		List<Author> listAuthors = authorHomeRemote.findAll();
 		assertNotNull(listAuthors);

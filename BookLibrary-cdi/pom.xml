@@ -269,9 +269,21 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<groupId>org.richfaces.core</groupId>
+			<artifactId>richfaces-core-api</artifactId>
+			<version>4.3.7.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-components-api</artifactId>
+			<version>4.2.2.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-components-ui</artifactId>
+			<version>4.2.2.Final</version>
 		</dependency>
 
 

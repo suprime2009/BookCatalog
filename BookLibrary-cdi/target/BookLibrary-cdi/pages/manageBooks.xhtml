@@ -1,27 +1,94 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/core">
+	xmlns:ui="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 
 <h:head>
 
 </h:head>
 <title>#{msgs.windowTitle}</title>
 <h:body>
-	<h:dataTable value="#{listBookAction.booksList}" var="book" bgcolor="red"
+	<h:form>
+		<rich:dataTable value="#{listBookAction.booksList}" var="book"
+			id="table" rows="20" binding="#{table}">
+
+			<rich:column>
+				<f:facet name="header">
+NUMBER
+</f:facet>
+				<rich:column>#{table.rowIndex + 1}</rich:column>
+			</rich:column>
+			<rich:column sortBy="#{book.bookName}" id="bookName"
+				sortType="custom">
+				<f:facet name="header">
+					<h:commandLink action="#{listBookAction.sortByBookName()}"> BOOK NAME  </h:commandLink>
+				</f:facet>
+				<h:link value="#{book.bookName}" outcome="bookDetails">
+					<f:param name="id" value="#{book.idbook}"></f:param>
+				</h:link>
+			</rich:column>
+
+
+			<rich:column sortBy="#{book.rating}" id="averageRating"
+				sortType="custom">
+				<f:facet name="header">
+					<h:commandLink action="#{listBookAction.sortByRating()}"> AVERAGE_RATING</h:commandLink>
+				</f:facet>
+				<h:outputText value="#{book.rating}"></h:outputText>
+			</rich:column>
+
+			<rich:column sortBy="#{book.yearPublished}" id="yearOfPublished"
+				sortType="custom">
+				<f:facet name="header">
+					<h:commandLink action="#{listBookAction.sortByYearPublished()}">YEAR</h:commandLink>
+				</f:facet>
+				<h:outputText value=" #{book.yearPublished} " />
+			</rich:column>
+
+			<rich:column sortBy="#{book.publisher}" id="publisher"
+				sortType="custom">
+				<f:facet name="header">
+					<h:commandLink action="#{listBookAction.sortByPublisher()}">PUBLISHER</h:commandLink>
+				</f:facet>
+				<rich:column> Publisher: <h:outputText
+						value=" #{book.publisher} " />
+				</rich:column>
+				<br></br>
+				<rich:column>ISBN number: <h:outputText
+						value=" #{book.isbn} " />
+				</rich:column>
+			</rich:column>
+
+			<rich:column>
+				<f:facet name="header">authors</f:facet>
+				<h:dataTable value="#{book.bookAuthors}" var="author">
+					<h:column>
+						<h:outputText value=" #{author.firstName} #{author.secondName} " />
+					</h:column>
+				</h:dataTable>
+			</rich:column> -->
+		</rich:dataTable>
+	</h:form>
+
+	<!--  <h:dataTable value="#{listBookAction.booksList}" var="book" bgcolor="red"
 		border="1" width="90%">
 		<h:column>
 			<f:facet name="header">
-				<h:selectBooleanCheckbox value="#{listBookAction.selectAll}" />
-			</f:facet>
-			<!--  <h:selectBooleanCheckbox value="#{book.idbook}" />-->
 
+				</f:facet>
+				<h:link value="#{book.bookName}" outcome="bookDetails">
+					<f:param name="id" value="#{book.idbook}"></f:param>
+				</h:link>
 		</h:column>
 
 		<h:column>
 			<f:facet name="header">
 			<h:form>
 			 <h:commandLink action="#{listBookAction.sortByBookNameAsk()}"> Sort Column</h:commandLink>
+			 <p></p>
+			  <h:commandLink action="#{listBookAction.sortByBookNameDesk()}"> Sort desk</h:commandLink>
 			 </h:form>
 			BookName
 			</f:facet>
@@ -61,7 +128,8 @@
 			</h:dataTable>
 		</h:column>
 
-	</h:dataTable>
+	</h:dataTable>-->
+
 
 </h:body>
 </html>

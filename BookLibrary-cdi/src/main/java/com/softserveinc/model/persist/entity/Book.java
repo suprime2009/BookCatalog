@@ -60,6 +60,8 @@ public class Book implements Serializable {
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
+	
+	private transient Double rating;
 
 	public Book() {
 	}
@@ -77,6 +79,14 @@ public class Book implements Serializable {
 	private void generateId() {
 		this.idBook = UUID.randomUUID().toString();
 		this.createdDate = new Date();
+	}
+	
+	public Double getRating() {
+		return rating;
+	}
+	
+	public void setRating(Double rating) {
+		this.rating = rating;
 	}
 
 	public String getIdbook() {

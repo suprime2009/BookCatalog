@@ -12,8 +12,9 @@ import org.testng.annotations.Test;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.util.BaseTest;
+import com.softserveinc.model.util.DataBaseConstants;
 
-public class BookHomeTest extends BaseTest{
+public class BookHomeTest extends BaseTest implements DataBaseConstants{ 
 	
 	public static final String CREATE_BOOK = "testCreateBook";
 	public static final String CREATE_BOOK_WITH_AUTHORS = "testCreateBookWithAuthors";
@@ -21,7 +22,7 @@ public class BookHomeTest extends BaseTest{
 
 	@Test
 	public void testCreateBook() {
-		Book book = new Book("Windows", "111-111-112-1", "Japan", 2015, null);
+		Book book = new Book(WINDOWS, ISBN, JAPAN, 2015, null);
 		book = bookHomeRemote.create(book);
 		String id = book.getIdbook();
 		Book bookExpected = bookHomeRemote.findByID(id);
@@ -35,13 +36,13 @@ public class BookHomeTest extends BaseTest{
 	
 	@Test
 	public void testCreateBookWithAuthors() {
-		Author author1 = authorHomeRemote.findByID("a1");
-		Author author2 = authorHomeRemote.findByID("a4");
+		Author author1 = authorHomeRemote.findByID(A1);
+		Author author2 = authorHomeRemote.findByID(A4);
 		Set<Author> set = new HashSet<Author>();
 		set.add(author1);
 		set.add(author2);
 		
-		Book book = new Book("Windows 8.1 New", "111-111-122-2", "Japan", 2015, set);
+		Book book = new Book("Windows 8.1 New", "111-111-122-2", JAPAN, 2015, set);
 		book = bookHomeRemote.create(book);
 		String id = book.getIdbook();
 		Book bookExpected = bookHomeRemote.findByID(id);
@@ -69,26 +70,26 @@ public class BookHomeTest extends BaseTest{
 	
 	@Test
 	public void testUpdateBook() {
-		Author author1 = authorHomeRemote.findByID("a1");
-		Author author2 = authorHomeRemote.findByID("a4");
+		Author author1 = authorHomeRemote.findByID(A1);
+		Author author2 = authorHomeRemote.findByID(A4);
 		Set<Author> set = new HashSet<Author>();
 		set.add(author1);
 		set.add(author2);
 		
-		Book bookBefore = bookHomeRemote.findByID("b5");
-		bookBefore.setBookName("New Name");
-		bookBefore.setIsbn("777-777-777-7");
-		bookBefore.setPublisher("publisher");
+		Book bookBefore = bookHomeRemote.findByID(B5);
+		bookBefore.setBookName(NEW_NEW);
+		bookBefore.setIsbn(SEVEN);
+		bookBefore.setPublisher(PUBLISHER);
 		bookBefore.setYearPublished(1990);
 		bookBefore.setBookAuthors(set);
 
 		bookHomeRemote.update(bookBefore);
-		Book bookAfter = bookHomeRemote.findByID("b5");
+		Book bookAfter = bookHomeRemote.findByID(B5);
 		assertNotNull(bookAfter);
 		assertNotNull(bookBefore);
-		assertEquals("New Name", bookAfter.getBookName());
-		assertEquals("777-777-777-7", bookAfter.getIsbn());
-		assertEquals("publisher", bookAfter.getPublisher());
+		assertEquals(NEW_NEW, bookAfter.getBookName());
+		assertEquals(SEVEN, bookAfter.getIsbn());
+		assertEquals(PUBLISHER, bookAfter.getPublisher());
 		assertEquals(set, bookAfter.getBookAuthors());
 		assertEquals(new Integer(1990), bookAfter.getYearPublished());
 		assertEquals(bookBefore.getCreatedDate(), bookAfter.getCreatedDate());
@@ -99,8 +100,8 @@ public class BookHomeTest extends BaseTest{
 	@Test(expectedExceptions=NullPointerException.class, 
 			dependsOnMethods= {CREATE_BOOK_WITH_AUTHORS, CREATE_BOOK})
 	public void testFindByIdBook() {
-		Author author1 = authorHomeRemote.findByID("a1");
-		Author author2 = authorHomeRemote.findByID("a4");
+		Author author1 = authorHomeRemote.findByID(A1);
+		Author author2 = authorHomeRemote.findByID(A4);
 		Set<Author> set = new HashSet<Author>();
 		set.add(author1);
 		set.add(author2);

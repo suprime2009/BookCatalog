@@ -24,7 +24,7 @@ public interface IReviewFacade {
 	 * @param book.
 	 * @return double averageRating.
 	 */
-	double findAverageRatingForBook(Book book);
+	Double findAverageRatingForBook(Book book);
 	
 	/**
 	 * Method gets review by id number from database.

@@ -44,16 +44,16 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
 	}
 
 	@Override
-	public double findAverageRatingForBook(Book book) {
+	public Double findAverageRatingForBook(Book book) {
 		Query query = entityManager.createNamedQuery(Review.FIND_AVERAGE_RATING_FOR_BOOK);
 		query.setParameter("par", book);
 		if (query.getSingleResult() == null) {
 			log.info("Method findAverageRatingForBook: book={} has no one review, returned 0", book);
-			return 0;
+			return new Double(0);
 		} else {
 			log.info("Method findAverageRatingForBook: found average rating "
 					+ "for book={}", book);
-			return (double) query.getSingleResult();
+			return (Double) query.getSingleResult();
 		}
 	}
 

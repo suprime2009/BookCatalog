@@ -58,5 +58,7 @@ public interface IBookFacade {
 	 * @return List<Book>.
 	 */
 	List<Book> findAll();
+	
+	int findCountBooks();
 
 }

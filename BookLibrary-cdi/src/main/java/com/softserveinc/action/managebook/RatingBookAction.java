@@ -4,10 +4,10 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.softserveinc.model.manager.BookManagerLocal;
-import com.softserveinc.model.manager.ReviewManager;
-import com.softserveinc.model.manager.ReviewManagerLocal;
 import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.model.session.manager.BookManagerLocal;
+import com.softserveinc.model.session.manager.ReviewManagerLocal;
+import com.softserveinc.model.session.managerImpl.ReviewManager;
 
 
 @ManagedBean

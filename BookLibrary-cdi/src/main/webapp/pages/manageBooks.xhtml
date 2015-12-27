@@ -10,7 +10,7 @@
 </h:head>
 <title>#{msgs.windowTitle}</title>
 <h:body>
-	<h:form>
+<h:form>
 		<rich:dataTable value="#{listBookAction.booksList}" var="book"
 			id="table" rows="20" binding="#{table}">
 
@@ -68,67 +68,12 @@ NUMBER
 						<h:outputText value=" #{author.firstName} #{author.secondName} " />
 					</h:column>
 				</h:dataTable>
-			</rich:column> -->
+			</rich:column> 
 		</rich:dataTable>
 	</h:form>
+	
 
-	<!--  <h:dataTable value="#{listBookAction.booksList}" var="book" bgcolor="red"
-		border="1" width="90%">
-		<h:column>
-			<f:facet name="header">
 
-				</f:facet>
-				<h:link value="#{book.bookName}" outcome="bookDetails">
-					<f:param name="id" value="#{book.idbook}"></f:param>
-				</h:link>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">
-			<h:form>
-			 <h:commandLink action="#{listBookAction.sortByBookNameAsk()}"> Sort Column</h:commandLink>
-			 <p></p>
-			  <h:commandLink action="#{listBookAction.sortByBookNameDesk()}"> Sort desk</h:commandLink>
-			 </h:form>
-			BookName
-			</f:facet>
-			<h:link value="#{book.bookName}" outcome="bookDetails">
-				<f:param name="id" value="#{book.idbook}"></f:param>
-			</h:link>
-			
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">average rating</f:facet>
-			<h:outputText value="#{ratingBookAction.getRating(book)}"></h:outputText>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">year</f:facet>
-			<h:outputText value=" #{book.yearPublished} " />
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">publisher</f:facet>
-			<h:column>Publisher: <h:outputText
-					value=" #{book.publisher} " />
-			</h:column>
-			<br></br>
-			<h:column>ISBN number: <h:outputText
-					value=" #{book.isbn} " />
-			</h:column>
-		</h:column>
-
-		<h:column>
-			<f:facet name="header">authors</f:facet>
-			<h:dataTable value="#{book.bookAuthors}" var="author">
-				<h:column>
-					<h:outputText value=" #{author.firstName} #{author.secondName} " />
-				</h:column>
-			</h:dataTable>
-		</h:column>
-
-	</h:dataTable>-->
 
 
 </h:body>

@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 	private static Logger log = LoggerFactory.getLogger(BookFacade.class);
 	
 	@PersistenceContext(unitName = "primary")
-	EntityManager entityManager;
+	public EntityManager entityManager;
 	
 	@EJB
 	BookHomeLocal bookHomeLocal;
@@ -90,5 +93,26 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 	@Override
 	public List<Book> findAll() {
 		return bookHomeLocal.findAll();
+	}
+
+	@Override
+	public int findCountBooks() {
+		log.info("start");
+		Query query = entityManager.createNamedQuery(Book.FIND_COUNT_BOOKS);
+		long count = (long) query.getSingleResult();
+		log.info("Has been found {} books", count);
+        return (int) count;
+	}
+
+	@Override
+	public EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return entityManager;
+	}
+	
+	public List<Book> findBooksForDataTable(CriteriaQuery<Book> criteriaQuery) {
+		
+		
+		return null;
 	}
 }

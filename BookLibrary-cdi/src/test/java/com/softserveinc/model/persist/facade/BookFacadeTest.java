@@ -61,6 +61,13 @@ public class BookFacadeTest extends BaseTest {
 		assertEquals(list.size(), 2);
 	}
 	
+	@Test
+	public void testFindCountBooks() {
+		int count = bookFacadeRemote.findCountBooks();
+		assertEquals(7, count);
+		
+	}
+	
 	
 	
 

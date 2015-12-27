@@ -6,8 +6,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import com.softserveinc.model.manager.BookManagerLocal;
 import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.model.session.manager.BookManagerLocal;
 
 @ManagedBean
 @RequestScoped

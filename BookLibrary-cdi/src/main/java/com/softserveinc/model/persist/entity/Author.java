@@ -3,7 +3,6 @@ package com.softserveinc.model.persist.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.google.common.base.MoreObjects;
 
 import java.util.Date;
 import java.util.List;
@@ -109,9 +108,9 @@ public class Author implements Serializable {
 				&& Objects.equals(firstName, author.firstName) && Objects.equals(secondName, author.secondName);
 	}
 
-	@Override
-	public String toString() {
-		return MoreObjects.toStringHelper(this).omitNullValues().add("idAuthor", idAuthor)
-				.add("createdDate", createdDate).add("firstName", firstName).add("secondName", secondName).toString();
-	}
+//	@Override
+//	public String toString() {
+//		return MoreObjects.toStringHelper(this).omitNullValues().add("idAuthor", idAuthor)
+//				.add("createdDate", createdDate).add("firstName", firstName).add("secondName", secondName).toString();
+//	}
 }

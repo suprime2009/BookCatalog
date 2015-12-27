@@ -3,7 +3,6 @@ package com.softserveinc.model.persist.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -24,7 +23,8 @@ import java.util.UUID;
 @NamedQuery(name = Book.FIND_BOOK_BY_NAME, query = "SELECT b FROM Book b WHERE b.bookName LIKE :nam"),
 @NamedQuery(name = Book.FIND_BOOK_BY_ISNBN, query = "SELECT b FROM Book b WHERE b.isbn LIKE :isb "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_PUBLISHER, query = "SELECT b FROM Book b WHERE b.publisher LIKE :pub "),
-@NamedQuery(name = Book.FIND_BOOKS_BY_AUTHOR, query = "SELECT b FROM Book b JOIN b.authors a WHERE a = :auth ")
+@NamedQuery(name = Book.FIND_BOOKS_BY_AUTHOR, query = "SELECT b FROM Book b JOIN b.authors a WHERE a = :auth "),
+@NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ")
 })
 public class Book implements Serializable {
 	
@@ -35,6 +35,7 @@ public class Book implements Serializable {
 	public static final String FIND_BOOK_BY_ISNBN ="Book.findBookByISNBN";
 	public static final String FIND_BOOKS_BY_PUBLISHER = "Book.findBooksByPublisher";
 	public static final String FIND_BOOKS_BY_AUTHOR = "Book.findBooksByAuthor";
+	public static final String FIND_COUNT_BOOKS = "Book.findCountBooks";
 
 	@Id
 	@Column(name = "book_id")

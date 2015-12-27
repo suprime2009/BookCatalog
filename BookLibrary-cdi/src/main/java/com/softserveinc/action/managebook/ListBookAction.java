@@ -11,10 +11,9 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.model.manager.BookManagerLocal;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.OrderBy;
-import com.softserveinc.model.util.SortableDataModel;
+import com.softserveinc.model.session.manager.BookManagerLocal;
 
 @ManagedBean(name = "listBookAction")
 @SessionScoped
@@ -121,10 +120,6 @@ public class ListBookAction implements Serializable {
 		this.selectAll = selectAll;
 	}
 	
-	private SortableDataModel<Book> sortableDataModel;
-	
-	public SortableDataModel<Book> getSortableDataModelBook() {
-		return sortableDataModel;
-	}
+
 
 }

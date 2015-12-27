@@ -1,6 +1,7 @@
 package com.softserveinc.model.persist.facade;
 
 import javax.ejb.Local;
+import javax.persistence.EntityManager;
 
 /**
  * BookFacadeLocal an interface extended from IBookFacade interface and describes facade operations
@@ -9,5 +10,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface BookFacadeLocal extends IBookFacade{
+	
+	EntityManager getEntityManager();
 	
 }

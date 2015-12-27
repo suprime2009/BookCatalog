@@ -3,23 +3,6 @@
 <suite name="Failed suite [BookLibrary-cdiTest]">
   <test name="homes(failed)">
     <classes>
-      <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
-        <methods>
-          <include name="testUpdateAuthor"/>
-          <include name="testFindByIdAuthor"/>
-          <include name="testFindAllAuthors"/>
-          <include name="testCreateAuthor"/>
-        </methods>
-      </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
-      <class name="com.softserveinc.model.persist.home.BookHomeTest">
-        <methods>
-          <include name="testCreateBookWithAuthors"/>
-          <include name="testFindAllBooks"/>
-          <include name="testCreateBook"/>
-          <include name="testFindByIdBook"/>
-          <include name="testUpdateBook"/>
-        </methods>
-      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
       <class name="com.softserveinc.model.persist.home.ReviewHomeTest">
         <methods>
           <include name="testFindAllReviews"/>
@@ -33,6 +16,23 @@
           <include name="getRemoteBeans"/>
         </methods>
       </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
+      <class name="com.softserveinc.model.persist.home.BookHomeTest">
+        <methods>
+          <include name="testCreateBookWithAuthors"/>
+          <include name="testFindAllBooks"/>
+          <include name="testCreateBook"/>
+          <include name="testFindByIdBook"/>
+          <include name="testUpdateBook"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
+      <class name="com.softserveinc.model.persist.home.AuthorHomeTest">
+        <methods>
+          <include name="testUpdateAuthor"/>
+          <include name="testFindByIdAuthor"/>
+          <include name="testFindAllAuthors"/>
+          <include name="testCreateAuthor"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.home.AuthorHomeTest -->
     </classes>
   </test> <!-- homes(failed) -->
   <test name="facades(failed)">

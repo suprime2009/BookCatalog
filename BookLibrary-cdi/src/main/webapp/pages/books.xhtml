@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h:head>
+		<title>Books</title>
+	</h:head>
+	<h:body>
+
+
+		<h:form id="form">
+			<h:selectOneRadio value="#{booksBean.pageSize}" size="3">
+				<f:selectItem itemValue='3' itemLabel='3' />
+				<f:selectItem itemValue='5' itemLabel='5' />
+				<f:selectItem itemValue='15' itemLabel='15' />
+				<a4j:ajax immediate="true" render="booksTable" />
+			</h:selectOneRadio>
+
+			<rich:dataTable keepSaved="true" id="booksTable" var="book"
+				value="#{booksBean.dataModel}" rows="#{booksBean.pageSize}">
+
+				<rich:column sortBy="#{booksBean.columnName}"
+					sortOrder="#{booksBean.sortOrders['bookName']}"
+					filterValue="#{booksBean.filterValues['bookName']}"
+					filterExpression="#{booksBean.columnName}" filterType="custom"
+					sortType="custom">
+
+					<f:facet name="header">
+						<h:outputLabel value="Sorting:" />
+						<h:commandLink action="#{booksBean.toggleSort}">
+                #{booksBean.sortOrders['bookName']}
+                <f:setPropertyActionListener
+								target="#{booksBean.sortProperty}" value="#{booksBean.columnName}" />
+							<a4j:ajax immediate="true" render="richTable" />
+						</h:commandLink>
+						<br />
+						<h:inputText value="#{booksBean.filterValues['bookName']}">
+							<a4j:ajax render="booksTable@body scroller" event="keyup" />
+						</h:inputText>
+					</f:facet>
+					<h:outputText value="#{book.bookName}" />
+				</rich:column>
+
+				
+
+
+				<f:facet name="footer">
+					<rich:dataScroller id="scrollera" fastStep="3" />
+
+				</f:facet>
+			</rich:dataTable>
+		</h:form>
+	</h:body>
+</ui:composition>

@@ -2,6 +2,9 @@ package com.softserveinc.model.persist.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
 
 
 import java.util.Date;

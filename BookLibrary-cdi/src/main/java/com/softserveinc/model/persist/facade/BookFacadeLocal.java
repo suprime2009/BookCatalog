@@ -11,6 +11,5 @@ import javax.persistence.EntityManager;
 @Local
 public interface BookFacadeLocal extends IBookFacade{
 	
-	EntityManager getEntityManager();
 	
 }

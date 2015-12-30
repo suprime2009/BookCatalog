@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>5/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Dec 24 13:26:15 EET 2015</td>
+<td>Started on:</td><td>Wed Dec 30 17:34:46 EET 2015</td>
 </tr>
-<tr><td>Total time:</td><td>2 seconds (2682 ms)</td>
+<tr><td>Total time:</td><td>0 seconds (840 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,130 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.softserveinc.model.persist.facade.AuthorFacadeTest.testFindAllAuthorsByBook()'><b>testFindAllAuthorsByBook</b><br>Test class: com.softserveinc.model.persist.facade.AuthorFacadeTest</td>
+<td><div><pre>javax.ejb.EJBException: The bean encountered a non-application exception; nested exception is: 
+	java.lang.IllegalArgumentException: Passed id is not present in database.
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.convertException(BaseEjbProxyHandler.java:422)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:326)
+	at com.sun.proxy.$Proxy76.findById(Unknown Source)
+	at com.softserveinc.model.persist.facade.AuthorFacadeTest.testFindAllAuthorsByBook(AuthorFacadeTest.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: java.lang.IllegalArgumentException: Passed id is not present in database.
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:122)
+	at com.softserveinc.model.persist.facade.BookFacade.findById(BookFacade.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext$Invocation.invoke(ReflectionInvocationContext.java:192)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext.proceed(ReflectionInvocationContext.java:173)
+	at org.apache.openejb.monitoring.StatsInterceptor.record(StatsInterceptor.java:181)
+	at org.apache.openejb.monitoring.StatsInterceptor.invoke(StatsInterceptor.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext$Invocation.invoke(ReflectionInvocationContext.java:192)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext.proceed(ReflectionInvocationContext.java:173)
+	at org.apache.openejb.core.interceptor.InterceptorStack.invoke(InterceptorStack.java:85)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:227)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	... 26 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace1400132053", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1400132053'><pre>javax.ejb.EJBException: The bean encountered a non-application exception; nested exception is: 
+	java.lang.IllegalArgumentException: Passed id is not present in database.
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.convertException(BaseEjbProxyHandler.java:422)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:326)
+	at com.sun.proxy.$Proxy76.findById(Unknown Source)
+	at com.softserveinc.model.persist.facade.AuthorFacadeTest.testFindAllAuthorsByBook(AuthorFacadeTest.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: java.lang.IllegalArgumentException: Passed id is not present in database.
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:122)
+	at com.softserveinc.model.persist.facade.BookFacade.findById(BookFacade.java:98)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext$Invocation.invoke(ReflectionInvocationContext.java:192)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext.proceed(ReflectionInvocationContext.java:173)
+	at org.apache.openejb.monitoring.StatsInterceptor.record(StatsInterceptor.java:181)
+	at org.apache.openejb.monitoring.StatsInterceptor.invoke(StatsInterceptor.java:100)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext$Invocation.invoke(ReflectionInvocationContext.java:192)
+	at org.apache.openejb.core.interceptor.ReflectionInvocationContext.proceed(ReflectionInvocationContext.java:173)
+	at org.apache.openejb.core.interceptor.InterceptorStack.invoke(InterceptorStack.java:85)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:227)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	... 26 more
+</pre></div></td>
+<td>0</td>
+<td>com.softserveinc.model.persist.facade.AuthorFacadeTest@527740a2</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,30 +199,10 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.softserveinc.model.persist.facade.BookFacadeTest.testFindBookByISNBN()'><b>testFindBookByISNBN</b><br>Test class: com.softserveinc.model.persist.facade.BookFacadeTest</td>
+<td title='com.softserveinc.model.persist.facade.AuthorFacadeTest.testFindAuthorByFullName()'><b>testFindAuthorByFullName</b><br>Test class: com.softserveinc.model.persist.facade.AuthorFacadeTest</td>
 <td></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest@527740a2</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.facade.BookFacadeTest.testFindBookByName()'><b>testFindBookByName</b><br>Test class: com.softserveinc.model.persist.facade.BookFacadeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest@527740a2</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.facade.BookFacadeTest.testFindBooksByAuthor()'><b>testFindBooksByAuthor</b><br>Test class: com.softserveinc.model.persist.facade.BookFacadeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest@527740a2</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.facade.BookFacadeTest.testFindBooksByPublisher()'><b>testFindBooksByPublisher</b><br>Test class: com.softserveinc.model.persist.facade.BookFacadeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest@527740a2</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.facade.BookFacadeTest.testFindCountBooks()'><b>testFindCountBooks</b><br>Test class: com.softserveinc.model.persist.facade.BookFacadeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest@527740a2</td></tr>
+<td>com.softserveinc.model.persist.facade.AuthorFacadeTest@527740a2</td></tr>
 </table><p>
 </body>
 </html>

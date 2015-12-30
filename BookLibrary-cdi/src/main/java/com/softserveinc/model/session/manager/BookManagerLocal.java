@@ -11,31 +11,14 @@ import org.richfaces.model.ArrangeableState;
 
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.OrderBy;
-import com.softserveinc.model.session.util.DataTableHelper;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
+/**
+ * BookManagerLocal an interface extended from IBookManager interface and describes business operations
+ * for Book entity. This interface is local and used in application as main.
+ *
+ */
 @Local
-public interface BookManagerLocal {
+public interface BookManagerLocal extends IManagerBook{
 	
-	Book getBookByID(String id);
-	
-	List<Book> getAllBooks();
-	
-	void setRatingForBooks(List<Book> list);
-	
-	void sortByRating(List<Book> list, final OrderBy order);
-	
-	void sortByBookName(List<Book> list, final OrderBy order);
-	
-	void sortByYearPublished(List<Book> list, final OrderBy order);
-	
-	void sortByPublisher(List<Book> list, final OrderBy order);
-	
-	void sortByCreatedDate(List<Book> list);
-	
-	List<Book> getBooksForDataTable( SequenceRange sequenceRange, ArrangeableState arrangeableState, 
-			Map<String, SortOrder> sortOrders, Map<String, String> filterValues );
-	
-	List<Book> getBookForDataTable(DataTableHelper dataTableHelper);
-	
-
 }

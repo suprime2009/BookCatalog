@@ -1,6 +1,7 @@
 package com.softserveinc.action.managebook;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -8,35 +9,78 @@ import java.util.Map.Entry;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UICommand;
-import javax.faces.event.ActionEvent;
 
 import org.richfaces.component.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
+import com.softserveinc.action.util.PaginationHelper;
+import com.softserveinc.model.persist.entity.AuthorWrapper;
 import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.model.persist.entity.BookWrapper;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
-import com.softserveinc.model.session.util.DataTableHelper;
+import com.softserveinc.model.session.util.ConstantsUtil;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 @ManagedBean(name = "manageBookBean")
 @SessionScoped
-public class ManageBookBean implements Serializable {
+public class ManageBookBean extends PaginationHelper<Book> implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -512489312362273643L;
 
 	private static Logger log = LoggerFactory.getLogger(ManageBookBean.class);
 
-	private int totalRows;
-	private int firstRow;
-	private Integer rowsPerPage;
-	private int totalPages;
-	private int pageRange;
-	private Integer[] pages;
-	private int currentPage;
-
+	private List<Book> books;
 	private Map<String, SortOrder> sortOrders = Maps.newHashMapWithExpectedSize(1);
+	private Map<String, String> filterValues = Maps.newHashMap();
 	private String sortProperty;
+	
+	private BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
+
+	@EJB
+	BookManagerLocal bookManager;
+
+	@EJB
+	BookFacadeLocal bookFacade;
+
+	public ManageBookBean() {
+
+		sortOrders.put(bookWrapperUI.bookName, SortOrder.unsorted);
+		sortOrders.put(bookWrapperUI.publisher, SortOrder.unsorted);
+		sortOrders.put(bookWrapperUI.yearPublished, SortOrder.unsorted);
+		sortOrders.put(bookWrapperUI.isbn, SortOrder.unsorted);
+		sortOrders.put(bookWrapperUI.rating, SortOrder.unsorted);
+		sortOrders.put(bookWrapperUI.authors, SortOrder.unsorted);
+
+		rowsPerPage = 5; // Default rows per page (max amount of rows to be
+							// displayed at once).
+		pageRange = 4; // Default page range (max amount of page links to be
+						// displayed at once).
+	}
+	
+	public List<Book> getBooks() {
+		if (books == null) {
+			load();
+		}
+		return books;
+	}
+	
+	public BookWrapper getBookWrapperUI() {
+		return bookWrapperUI;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	public BookManagerLocal getBookManager() {
+		return bookManager;
+	}
 
 	public String getSortProperty() {
 		return sortProperty;
@@ -47,7 +91,27 @@ public class ManageBookBean implements Serializable {
 	}
 
 	public Map<String, SortOrder> getSortOrders() {
+		log.info("getSortOrders");
 		return sortOrders;
+	}
+
+	public Map<String, String> getFilterValues() {
+		log.info("Current values for filtering = {}", filterValues.size());
+		return filterValues;
+	}
+
+	public void onChangeInputFields() {
+		log.info("method onChangeInputFields");
+		load();
+	}
+
+	private void deleteValueEmptyMapsPairs() {
+		for (Iterator<Map.Entry<String, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
+			Map.Entry<String, String> entry = it.next();
+			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
+				it.remove();
+			}
+		}
 	}
 
 	public void toggleSort(String column) {
@@ -70,172 +134,31 @@ public class ManageBookBean implements Serializable {
 		load();
 	}
 
-	public List<Book> getBooks() {
-		if (books == null) {
-			load();
-		}
-		return books;
+	public DataTableSearchHolder getCurrentRequirementsForDataTable() {
+		
+		DataTableSearchHolder datatableSearchHolder = new DataTableSearchHolder();
+		datatableSearchHolder.setFirstRow(firstRow);
+		datatableSearchHolder.setRowsPerPage(rowsPerPage);
+		datatableSearchHolder.setSortColumn(sortProperty);
+		datatableSearchHolder.setSortOrder(sortOrders.get(sortProperty));
+		datatableSearchHolder.setFilterValues(filterValues);
+
+		return datatableSearchHolder;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	@Override
+	public void getEntitiesForCurrentPage() {
+
+		deleteValueEmptyMapsPairs();
+		books = bookFacade.findBooksForDataTable(getCurrentRequirementsForDataTable());
+		log.info("Meyhod finished.");
 	}
 
-	private List<Book> books;
+	@Override
+	public int getCountEntitiesForCurrentRequirements() {
 
-	public ManageBookBean() {
-		sortOrders.put("bookName", SortOrder.unsorted);
-		sortOrders.put("publisher", SortOrder.unsorted);
-		sortOrders.put("isbn", SortOrder.unsorted);
-		sortOrders.put("yearPublished", SortOrder.unsorted);
-		sortOrders.put("rating", SortOrder.unsorted);
-		rowsPerPage = 5; // Default rows per page (max amount of rows to be
-							// displayed at once).
-		pageRange = 4; // Default page range (max amount of page links to be
-						// displayed at once).
+		int count = bookFacade.findCountBooksForDataTable(getCurrentRequirementsForDataTable());
+		log.info("Method finished.");
+		return count;
 	}
-
-	@EJB
-	BookManagerLocal bookManager;
-
-	@EJB
-	BookFacadeLocal bookFacade;
-
-	public int getTotalRows() {
-		return totalRows;
-	}
-
-	public void setTotalRows(int totalRows) {
-		this.totalRows = totalRows;
-	}
-
-	public int getFirstRow() {
-		return firstRow;
-	}
-
-	public void setFirstRow(int firstRow) {
-		this.firstRow = firstRow;
-	}
-
-	public Integer getRowsPerPage() {
-		return rowsPerPage;
-	}
-
-	public void setRowsPerPage(Integer rowsPerPage) {
-		this.rowsPerPage = rowsPerPage;
-	}
-
-	public int getTotalPages() {
-		return totalPages;
-	}
-
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
-	}
-
-	public int getPageRange() {
-		return pageRange;
-	}
-
-	public void setPageRange(int pageRange) {
-		this.pageRange = pageRange;
-	}
-
-	public Integer[] getPages() {
-		return pages;
-	}
-
-	public void setPages(Integer[] pages) {
-		this.pages = pages;
-	}
-
-	public int getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
-
-	public void load() {
-		System.out.println("start load");
-		DataTableHelper dataTableHeler = new DataTableHelper();
-		dataTableHeler.setFirstRow(firstRow);
-		dataTableHeler.setRowsPerPage(rowsPerPage);
-		dataTableHeler.setSortColumn(sortProperty);
-		dataTableHeler.setSortOrder(sortOrders.get(sortProperty));
-		books = bookManager.getBookForDataTable(dataTableHeler);
-		totalRows = bookFacade.findCountBooks();
-		// Set currentPage, totalPages and pages.
-		currentPage = (totalRows / rowsPerPage) - ((totalRows - firstRow) / rowsPerPage) + 1;
-		totalPages = (totalRows / rowsPerPage) + ((totalRows % rowsPerPage != 0) ? 1 : 0);
-		int pagesLength = Math.min(pageRange, totalPages);
-		pages = new Integer[pagesLength];
-
-		// firstPage must be greater than 0 and lesser than
-		// totalPages-pageLength.
-		int firstPage = Math.min(Math.max(0, currentPage - (pageRange / 2)), totalPages - pagesLength);
-
-		// Create pages (page numbers for page links).
-		for (int i = 0; i < pagesLength; i++) {
-			pages[i] = ++firstPage;
-		}
-	}
-
-	// Paging actions
-	// -----------------------------------------------------------------------------
-	public void pageFirst() {
-		System.out.println("pageFirst method");
-		page(0);
-	}
-
-	public void pageNext() {
-		page(firstRow + rowsPerPage);
-	}
-
-	public void pagePrevious() {
-		page(firstRow - rowsPerPage);
-	}
-
-	public void pageLast() {
-		page(totalRows - ((totalRows % rowsPerPage != 0) ? totalRows % rowsPerPage : rowsPerPage));
-	}
-
-	public void page(ActionEvent event) {
-		page(((Integer) ((UICommand) event.getComponent()).getValue() - 1) * rowsPerPage);
-	}
-
-	private void page(int firstRow) {
-		this.firstRow = firstRow;
-		load();
-	}
-
-	public boolean isDisabledNext() {
-		if ((firstRow + rowsPerPage) >= totalRows) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isDisabledLast() {
-		if (currentPage == totalPages) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isDisabledFirst() {
-		if (firstRow == 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean isDisabledPrevious() {
-		if (firstRow == 0) {
-			return true;
-		}
-		return false;
-	}
-
 }

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.activation.DataHandler;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -42,15 +45,21 @@ import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.persist.home.BookHomeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 import com.softserveinc.model.session.manager.BookManagerRemote;
-import com.softserveinc.model.session.util.DataTableHelper;
+import com.softserveinc.model.session.util.ConstantsUtil;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
+/**
+ * BookManager class is an implementation business operations for Book entity.
+ * This class is @Stateless.
+ */
 @Stateless
-public class BookManager implements BookManagerLocal, BookManagerRemote {
+public class BookManager implements BookManagerLocal, BookManagerRemote, ConstantsUtil {
 
 	private static Logger log = LoggerFactory.getLogger(BookManager.class);
-	
-	@PersistenceContext(unitName = "primary")
-	public EntityManager entityManager;
+	public static final String RATING = "rating";
+
+	private StringBuilder sbForDataTable;
+	private DataTableSearchHolder dataTableHelper;
 
 	@EJB
 	private BookHomeLocal bookHomeLocal;
@@ -108,17 +117,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 			}
 		});
 		log.info("Books has been successfully sorted by bookName");
-		// list.sortBy(new Comparator<Book>() {
-		// public int compare(Book b1, Book b2) {
-		// if (order.equals(OrderBy.ASC)) {
-		// System.out.println("ask");
-		// return b1.getBookName().compareToIgnoreCase(b2.getBookName());
-		// } else {
-		// System.out.println("desc");
-		// return b2.getBookName().compareToIgnoreCase(b1.getBookName());
-		// }
-		// }
-		// });
 	}
 
 	@Override
@@ -172,79 +170,72 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		});
 		log.info("Books has been successfully sorted by Rating");
 	}
-	
-	
-	
 
-	
-	private List<Order> checkSortOrder(CriteriaBuilder criteriaBuilder, Root<Book> root, DataTableHelper dataTableHelper) {
-		System.out.println("checkSortOrder start" );
+	private List<Order> checkSortOrder(CriteriaBuilder criteriaBuilder, Root<Book> root,
+			DataTableSearchHolder dataTableHelper) {
+		System.out.println("checkSortOrder start");
 		List<Order> list = new ArrayList<Order>();
-		 Path<Object> expression = null;
+		Path<Object> expression = null;
 		if (dataTableHelper.getSortColumn() != null) {
 
-			 
-			 expression = root.get(dataTableHelper.getSortColumn());
-			 if (dataTableHelper.getSortOrder() == SortOrder.ascending) {
-				 System.out.println("ASKENDING");
-                list.add(criteriaBuilder.asc(expression));
-             } else if (dataTableHelper.getSortOrder() == SortOrder.descending) {
-            	 System.out.println("DESCENDING");
-            	 list.add(criteriaBuilder.desc(expression));
-             }
+			expression = root.get(dataTableHelper.getSortColumn());
+			if (dataTableHelper.getSortOrder() == SortOrder.ascending) {
+				System.out.println("ASKENDING");
+				list.add(criteriaBuilder.asc(expression));
+			} else if (dataTableHelper.getSortOrder() == SortOrder.descending) {
+				System.out.println("DESCENDING");
+				list.add(criteriaBuilder.desc(expression));
+			}
 		}
 
-		System.out.println("checkSortOrder done" );
+		System.out.println("checkSortOrder done");
 		return list;
 	}
-	
+
 	@Override
-	public List<Book> getBooksForDataTable(SequenceRange sequenceRange, ArrangeableState arrangeableState, 
-		Map<String, SortOrder> sortOrders, Map<String, String> filterValues ) {
-//		System.out.println("getBooksForDataTable start");
-//		
-//		
-//		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-//        CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
-//        Root<Book> root = criteriaQuery.from(Book.class);
-//        List<Order> orders = checkSortOrder(criteriaBuilder, root,  sortOrders);
-//        if (!orders.isEmpty()) {
-//            criteriaQuery.orderBy(orders);
-//        }
-//        
-//        TypedQuery<Book> query = entityManager.createQuery(criteriaQuery);
-//        
-//        if (sequenceRange.getFirstRow() >= 0 && sequenceRange.getRows() > 0) {
-//        	
-//            query.setFirstResult(sequenceRange.getFirstRow());
-//            query.setMaxResults(sequenceRange.getRows());
-//        }
-// 
-//        List<Book> books = query.getResultList();
+	public List<Book> getBooksForDataTable(SequenceRange sequenceRange, ArrangeableState arrangeableState,
+			Map<String, SortOrder> sortOrders, Map<String, String> filterValues) {
+		// System.out.println("getBooksForDataTable start");
+		//
+		//
+		// CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		// CriteriaQuery<Book> criteriaQuery =
+		// criteriaBuilder.createQuery(Book.class);
+		// Root<Book> root = criteriaQuery.from(Book.class);
+		// List<Order> orders = checkSortOrder(criteriaBuilder, root,
+		// sortOrders);
+		// if (!orders.isEmpty()) {
+		// criteriaQuery.orderBy(orders);
+		// }
+		//
+		// TypedQuery<Book> query = entityManager.createQuery(criteriaQuery);
+		//
+		// if (sequenceRange.getFirstRow() >= 0 && sequenceRange.getRows() > 0)
+		// {
+		//
+		// query.setFirstResult(sequenceRange.getFirstRow());
+		// query.setMaxResults(sequenceRange.getRows());
+		// }
+		//
+		// List<Book> books = query.getResultList();
 
 		return null;
 	}
 
+
+
+
+
+
+
+	@Transactional
 	@Override
-	public List<Book> getBookForDataTable(DataTableHelper dataTableHelper) {
-//		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-//        CriteriaQuery criteriaQuery = criteriaBuilder.createQuery();
-//        Root<Review> root = criteriaQuery.from(Review.class);
-//        criteriaQuery.distinct(true);
-//        Join<Review, Book> book = root.join("book");
-//        List<Order> orders = checkSortOrder(criteriaBuilder, root,  dataTableHelper);
-//        if (!orders.isEmpty()) {
-//            criteriaQuery.orderBy(orders);
-//        }
-//        TypedQuery<Book> query = entityManager.createQuery(criteriaQuery);
-//		query.setFirstResult(dataTableHelper.getFirstRow());
-//		query.setMaxResults(dataTableHelper.getRowsPerPage());
+	public List<Object> getBookForDataTable(DataTableSearchHolder dataTableHelper) {
 		
-		Query query = entityManager.createQuery("select b, AVG(rating)")
-
-
-		List<Book> list = (List<Book>) query.getResultList();
-		log.info("method done! size=={}", list.size());
-		return list;
+	
+		return null;
 	}
+	
+	
+	
 }

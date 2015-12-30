@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 /**
  * IBookFacade is an interface that describes all facade methods for Book entity.
@@ -59,6 +60,24 @@ public interface IBookFacade {
 	 */
 	List<Book> findAll();
 	
-	int findCountBooks();
+	/**
+	 * Method gets count of all books from database.
+	 * @return int count of all books.
+	 */
+	int findCountAllBooks();
+	
+	/**
+	 * Method gets List<Book> from database based on current dataTable requirements.
+	 * @param DataTableSearchHolder dataTableSearchHolder describe current dataTable requirements. 
+ 	 * @return  List<Book>
+	 */
+	List<Book> findBooksForDataTable(DataTableSearchHolder dataTableSearchHolder);
+	
+	/**
+	 * Method gets count of books from database based on current dataTable requirements.
+	 * @param DataTableSearchHolder dataTableSearchHolder describe current dataTable requirements. 
+	 * @return int count of books  based on current dataTable requirements..
+	 */
+	int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder);
 
 }

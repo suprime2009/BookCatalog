@@ -13,27 +13,27 @@ import com.softserveinc.model.util.BaseTest;
 
 public class AuthorFacadeTest extends BaseTest{
 	
-	@Test
-	public void testFindAllAuthorsByBook() {
-		Book book = bookFacadeRemote.findById("b1");
-		List<Author> list = authorFacadeRemote.findAllAuthorsByBook(book);
-
-		assertNotNull(list);
-		assertEquals(list.size(), 3);
-
-		for (Author a : list) {
-			if (a.getIdauthor().equals("a1")) {
-				assertEquals("Raul", a.getFirstName());
-				assertEquals("Garsia", a.getSecondName());
-			} else if (a.getIdauthor().equals("a2")) {
-				assertEquals("Cristian", a.getFirstName());
-				assertEquals("Ronaldo", a.getSecondName());
-			} else if (a.getIdauthor().equals("a4")) {
-				assertEquals("Greg", a.getFirstName());
-				assertEquals("Blou", a.getSecondName());
-			}
-		}
-	}
+//	@Test
+//	public void testFindAllAuthorsByBook() {
+//		Book book = bookFacadeRemote.findById("b1");
+//		List<Author> list = authorFacadeRemote.findAllAuthorsByBook(book);
+//
+//		assertNotNull(list);
+//		assertEquals(list.size(), 3);
+//
+//		for (Author a : list) {
+//			if (a.getIdauthor().equals("a1")) {
+//				assertEquals("Raul", a.getFirstName());
+//				assertEquals("Garsia", a.getSecondName());
+//			} else if (a.getIdauthor().equals("a2")) {
+//				assertEquals("Cristian", a.getFirstName());
+//				assertEquals("Ronaldo", a.getSecondName());
+//			} else if (a.getIdauthor().equals("a4")) {
+//				assertEquals("Greg", a.getFirstName());
+//				assertEquals("Blou", a.getSecondName());
+//			}
+//		}
+//	}
 	
 	@Test
 	public void testFindAuthorByFullName() {

@@ -2,6 +2,7 @@ package com.softserveinc.model.persist.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.persistence.OrderBy;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -27,6 +28,13 @@ import java.util.UUID;
 @NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ")
 })
 public class Book implements Serializable {
+	
+	//@SqlResultSetMapping(name="findBooksForDataTable",
+	//entities={
+//	        @EntityResult(entityClass=com.softserveinc.model.persist.entity.Book.class, fields={
+//	            @FieldResult(name="rating", column="rat")})}, 
+	//columns={
+//	        @ColumnResult(name="rat")})
 	
 	private static final long serialVersionUID = -7250506880391204120L;
 	public static final String FIND_ALL_BOOKS = "Book.findAll";
@@ -57,10 +65,13 @@ public class Book implements Serializable {
 	@Column(name = "year_published")
 	private Integer yearPublished;
 
+//	@ElementCollection
+//	@OrderColumn(name="author.secondName")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
+	
 	
 	private transient Double rating;
 

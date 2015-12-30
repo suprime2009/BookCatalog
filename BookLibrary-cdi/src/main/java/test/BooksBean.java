@@ -98,7 +98,7 @@ public class BooksBean {
 
 		@Override
 		public int getRowCount() {
-			return bookFacade.findCountBooks();
+			return 0;
 		}
 
 		@Override

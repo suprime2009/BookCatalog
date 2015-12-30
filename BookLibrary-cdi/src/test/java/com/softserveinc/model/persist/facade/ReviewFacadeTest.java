@@ -19,12 +19,12 @@ public class ReviewFacadeTest extends BaseTest {
 		assertEquals(2, list.size());
 	}
 	
-	@Test
-	public void testFindAverageRatingForBook() {
-		Book book = bookFacadeRemote.findById("b1");
-		double averageRating = reviewFacadeRemote.findAverageRatingForBook(book);
-	
-		assertEquals(4.0, averageRating, 0);
-	}
+//	@Test
+//	public void testFindAverageRatingForBook() {
+//		Book book = bookFacadeRemote.findById("b1");
+//		double averageRating = reviewFacadeRemote.findAverageRatingForBook(book);
+//	
+//		assertEquals(4.0, averageRating, 0);
+//	}
 
 }

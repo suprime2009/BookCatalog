@@ -24,6 +24,7 @@ D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\mana
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ListBookAction.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\IAuthorFacade.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\OrderBy.java
+D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\BookUIWrapper.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookDetail.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\AuthorHomeRemote.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\AuthorHome.java

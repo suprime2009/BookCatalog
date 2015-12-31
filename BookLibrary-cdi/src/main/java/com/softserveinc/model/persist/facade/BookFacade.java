@@ -43,13 +43,12 @@ import com.softserveinc.model.session.util.SQLCommandConstants;
  *
  */
 @Stateless
-public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsUtil, SQLCommandConstants{
-	
+public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommandConstants {
+
 	private static Logger log = LoggerFactory.getLogger(BookFacade.class);
-	private static BookWrapper bookWrapper = BookWrapper.BOOK_BUSINESS_WRAPPER; 
-	private static BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER; 
+	private static BookWrapper bookWrapper = BookWrapper.BOOK_BUSINESS_WRAPPER;
+	private static BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
 	private static AuthorWrapper authorWrapper = AuthorWrapper.AUTHOR_BUSINESS_WRAPPER;
-	private static AuthorWrapper authorWrapperUI = AuthorWrapper.AUTHOR_UI_WRAPPER;
 
 	@PersistenceContext(unitName = "primary")
 	public EntityManager entityManager;
@@ -136,16 +135,17 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsU
 			throw new IllegalArgumentException();
 		}
 
-		if (!dataTableSearchHolder.getSortColumn().equals(CREATED_DATE)) {
+		if (!dataTableSearchHolder.getSortColumn().equals(bookWrapper.createdDate)) {
 			sbForDataTable.append(", ");
 		}
 	}
 
 	private void appendQueryPartFrom(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
-		sbForDataTable.append(FROM).append(Review.class.getName()).append(R + ' ').append(RIGHT_JOIN)
-				.append(R + '.').append("book ").append(B + ' ');
-		if ((dataTableSearchHolder.getSortColumn() != null) && (dataTableSearchHolder.getSortColumn().equals(bookWrapperUI.authors))) {
+		sbForDataTable.append(FROM).append(Review.class.getName()).append(R + ' ').append(RIGHT_JOIN).append(R + '.')
+				.append("book ").append(B + ' ');
+		if ((dataTableSearchHolder.getSortColumn() != null)
+				&& (dataTableSearchHolder.getSortColumn().equals(bookWrapperUI.authors))) {
 			sbForDataTable.append(LEFT_JOIN).append(B + '.').append(bookWrapper.authors).append(A);
 		}
 		if (dataTableSearchHolder.getFilterValues().containsKey(bookWrapperUI.authors)) {
@@ -177,7 +177,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsU
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			default:
-				sbForDataTable.append(B + '.').append(BookWrapper.convertFromWrapperUIToWrapper(dataTableSearchHolder.getSortColumn()));
+				sbForDataTable.append(B + '.')
+						.append(BookWrapper.convertFromWrapperUIToWrapper(dataTableSearchHolder.getSortColumn()));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 			}
 		}
@@ -193,22 +194,25 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsU
 	private void appendQueryPartWhere(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
 		Map<String, String> map = dataTableSearchHolder.getFilterValues();
+		if (dataTableSearchHolder.getFilterValues().size() > 1 || !dataTableSearchHolder.getFilterValues().containsKey(bookWrapperUI.rating)) {
 		sbForDataTable.append(WHERE);
+		}
 		int count = 0;
+		boolean isRating = false;
 		for (Map.Entry<String, String> pair : map.entrySet()) {
-			if (count > 0) {
+			if (count > 0 && isRating == false) {
 				sbForDataTable.append(AND);
 			}
+			isRating = false;
 			switch (pair.getKey()) {
 			case "Authors":
 				sbForDataTable.append(" (" + A + '.').append(authorWrapper.secondName + ' ').append(LIKE + "'")
-						.append(pair.getValue()).append("%' ").append(OR).append(A +'.').append(authorWrapper.firstName + ' ')
-						.append(LIKE + "'").append(pair.getValue()).append("%') ");
+						.append(pair.getValue()).append("%' ").append(OR).append(A + '.')
+						.append(authorWrapper.firstName + ' ').append(LIKE + "'").append(pair.getValue())
+						.append("%') ");
 				break;
 			case "Average rating":
-				sbForDataTable.append(RAT + ' ')
-				.append(LIKE + "'").append(pair.getValue()).append("%' ");
-
+				isRating = true;
 				break;
 
 			default:
@@ -219,20 +223,34 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsU
 		}
 	}
 
+	public void appendQueryPartHaving(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
+
+		if (dataTableSearchHolder.getFilterValues().containsKey(bookWrapperUI.rating)) {
+			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(bookWrapperUI.rating));
+			sbForDataTable.append(HAVING).append(FLOOR).append("(AVG(r.rating)) = ").append(value)
+					.append(" ");
+		}
+	}
+
 	@Override
 	public List<Book> findBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
 
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.').append(bookWrapper.rating + ") ").append(AS).append(RAT);
+		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.')
+				.append(bookWrapper.rating + ") ").append(AS).append(RAT);
 
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
 		}
+		
 		sbForDataTable.append(GROUP_BY).append(B);
+		appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);
+
 		appendQueryPartOrderBy(sbForDataTable, dataTableSearchHolder);
+
 		log.info("Query for getting Books for dataTable created == {}", sbForDataTable.toString());
 
 		Query query = entityManager.createQuery(sbForDataTable.toString());
@@ -261,7 +279,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, ConstantsU
 	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append("SELECT COUNT(b.isbn) ");
+		sbForDataTable.append(SELECT).append(COUNT + '(').append(DISTINCT).append(B + '.').append("isbn) ");
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);

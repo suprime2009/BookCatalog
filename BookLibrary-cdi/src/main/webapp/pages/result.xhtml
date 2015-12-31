@@ -28,6 +28,20 @@
    
    
 <h:form id="form" prependId="false">
+<rich:toolbar height="40" itemSeparator="grid" width="100%">
+ <rich:toolbarGroup >
+ <h:outputText value="MANAGE BOOK DATA TABLE" />
+</rich:toolbarGroup>
+<rich:toolbarGroup location="right">
+<h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Create New Book" />
+<h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Delete selected" />
+</rich:toolbarGroup>
+<rich:toolbarGroup location="right">
+<h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Clean filters" />
+<h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Search" />
+</rich:toolbarGroup>
+</rich:toolbar>
+
 	
 		<ui:param name="bean" value="#{manageBookBean}" />
 
@@ -36,8 +50,10 @@
 		rowClasses="odd-row, even-row" style="width:100%" binding="#{table}" styleClass="stable">
 <!-- checkBox column -->	
 	<rich:column>
-		<f:facet name="header">Select</f:facet>
-			<h:selectBooleanCheckbox value="true" />
+		<f:facet name="header"><h:selectBooleanCheckbox value="true" /></f:facet>
+			<h:selectBooleanCheckbox id="bool" value="#{manageBookBean.selected}" onselect="#{manageBookBean.selectBook(book)}"> 
+			<f:ajax execute="bool"></f:ajax>
+			</h:selectBooleanCheckbox>
 	</rich:column>
 			
 <!-- bookName Column -->		
@@ -88,7 +104,7 @@
    </ui:include>
    		
  <!-- Author Column -->
-	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{bean.filterValues[property]}"
+	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
                  filterExpression="#{property}" filterType="custom" sortType="custom">
 	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.authors}" />
         <f:facet name="header">
@@ -108,6 +124,14 @@
         	<f:param name="id" value="#{author.idauthor}"></f:param>
 		</h:link>
     	</rich:list>
+    </rich:column>
+    
+    <rich:column>
+    <f:facet name="header">
+        	<h:outputText value="Edit / delete row" />
+     </f:facet>
+    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Edit" />
+    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Delete" />
     </rich:column>
     
     

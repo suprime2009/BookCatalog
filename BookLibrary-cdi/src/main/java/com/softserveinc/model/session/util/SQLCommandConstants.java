@@ -16,8 +16,12 @@ public interface SQLCommandConstants {
 	public static final String LIKE =" LIKE ";
 	public static final String DESC =" DESC ";
 	public static final String ASC =" ASC ";
-	public static final String AVG =" AVG ";
-	public static final String COUNT =" COUNT ";
+	public static final String AVG =" AVG";
+	public static final String COUNT =" COUNT";
+	public static final String HAVING =" HAVING ";
+	public static final String FLOOR =" FLOOR";
+	public static final String FORMAT =" FORMAT";
+	public static final String DISTINCT =" DISTINCT ";
 	
 	
 	//Personal alias for Book, Author, Review and rating

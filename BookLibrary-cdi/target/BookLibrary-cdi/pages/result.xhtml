@@ -28,6 +28,8 @@
    
    
 <h:form id="form" prependId="false">
+
+
 	
 		<ui:param name="bean" value="#{manageBookBean}" />
 
@@ -36,8 +38,8 @@
 		rowClasses="odd-row, even-row" style="width:100%" binding="#{table}" styleClass="stable">
 <!-- checkBox column -->	
 	<rich:column>
-		<f:facet name="header">Select</f:facet>
-			<h:selectBooleanCheckbox value="true" />
+		<f:facet name="header"><h:selectBooleanCheckbox value="true" /></f:facet>
+			<h:selectBooleanCheckbox value="#{manageBookBean.selected}" onselect="#{manageBookBean.selectBook(book)}"/>
 	</rich:column>
 			
 <!-- bookName Column -->		
@@ -88,7 +90,7 @@
    </ui:include>
    		
  <!-- Author Column -->
-	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{bean.filterValues[property]}"
+	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
                  filterExpression="#{property}" filterType="custom" sortType="custom">
 	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.authors}" />
         <f:facet name="header">
@@ -108,6 +110,14 @@
         	<f:param name="id" value="#{author.idauthor}"></f:param>
 		</h:link>
     	</rich:list>
+    </rich:column>
+    
+    <rich:column>
+    <f:facet name="header">
+        	<h:outputText value="Edit / delete row" />
+     </f:facet>
+    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Edit" />
+    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Delete" />
     </rich:column>
     
     

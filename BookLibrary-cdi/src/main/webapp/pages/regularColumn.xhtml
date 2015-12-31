@@ -14,8 +14,8 @@
                 <f:ajax event="click" listener="#{bean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
             </h:commandLink>
             <br />
-            <h:inputText onchange="#{bean.onChangeInputFields()}" value="#{bean.filterValues[columnName]}" >
-             <f:ajax event="change"  listener="#{bean.onChangeInputFields()}" render="@form"></f:ajax>
+            <h:inputText value="#{bean.filterValues[columnName]}" >
+    <f:ajax event="change" listener="#{manageBookBean.onChangeInputFields()}" render="@form"></f:ajax>
             </h:inputText>
         </f:facet>
         <h:outputText value="#{property}" />

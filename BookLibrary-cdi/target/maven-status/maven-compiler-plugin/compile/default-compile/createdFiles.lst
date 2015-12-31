@@ -17,6 +17,7 @@ com\softserveinc\model\persist\facade\BookFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHome.class
 com\softserveinc\model\persist\facade\IAuthorFacade.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
+com\softserveinc\model\session\util\BookUIWrapper.class
 com\softserveinc\model\persist\backing\HelloWorldBean.class
 com\softserveinc\model\session\managerImpl\BookManager$1.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class

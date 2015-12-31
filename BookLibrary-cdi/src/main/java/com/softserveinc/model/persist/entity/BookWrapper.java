@@ -4,7 +4,8 @@ import javax.ejb.Stateful;
 
 public enum BookWrapper {
 	BOOK_BUSINESS_WRAPPER("idBook", "bookName", "createdDate", "isbn", "publisher", "yearPublished", "authors",
-			"rating"), BOOK_UI_WRAPPER("idBook", "Book name", "Created date", "ISBN Number", "Publisher",
+			"rating"), 
+	BOOK_UI_WRAPPER("idBook", "Book name", "Created date", "ISBN Number", "Publisher",
 					"Year of published", "Authors", "Average rating");
 
 	public final String id;
@@ -33,7 +34,7 @@ public enum BookWrapper {
 		switch (value) {
 		case "idBook":
 			return BOOK_BUSINESS_WRAPPER.id;
-		case "Book Name":
+		case "Book name":
 			return BOOK_BUSINESS_WRAPPER.bookName;
 		case "Created date":
 			return BOOK_BUSINESS_WRAPPER.createdDate;

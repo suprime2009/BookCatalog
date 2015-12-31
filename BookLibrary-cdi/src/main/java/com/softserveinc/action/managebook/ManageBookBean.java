@@ -1,6 +1,7 @@
 package com.softserveinc.action.managebook;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +17,11 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.softserveinc.action.util.PaginationHelper;
-import com.softserveinc.model.persist.entity.AuthorWrapper;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookWrapper;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
-import com.softserveinc.model.session.util.ConstantsUtil;
+import com.softserveinc.model.session.util.BookUIWrapper;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 @ManagedBean(name = "manageBookBean")
@@ -40,6 +40,9 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	private Map<String, String> filterValues = Maps.newHashMap();
 	private String sortProperty;
 	
+
+	private boolean selected;
+	
 	private BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
 
 	@EJB
@@ -49,7 +52,6 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	BookFacadeLocal bookFacade;
 
 	public ManageBookBean() {
-
 		sortOrders.put(bookWrapperUI.bookName, SortOrder.unsorted);
 		sortOrders.put(bookWrapperUI.publisher, SortOrder.unsorted);
 		sortOrders.put(bookWrapperUI.yearPublished, SortOrder.unsorted);
@@ -63,7 +65,28 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 						// displayed at once).
 	}
 	
+	public void selectBook(Book book) {
+		if (selected == true) {
+		
+			System.out.println("added to list");
+		} else {
+			System.out.println("else");
+		}
+	
+	}
+	
+
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
+
 	public List<Book> getBooks() {
+		log.error("getBooks");
 		if (books == null) {
 			load();
 		}
@@ -83,6 +106,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public String getSortProperty() {
+		log.error("getSortProperty");
 		return sortProperty;
 	}
 
@@ -91,7 +115,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public Map<String, SortOrder> getSortOrders() {
-		log.info("getSortOrders");
+		log.error("getSortOrders");
 		return sortOrders;
 	}
 
@@ -101,7 +125,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public void onChangeInputFields() {
-		log.info("method onChangeInputFields");
+		log.error("onChangeInputFields");
 		load();
 	}
 
@@ -115,6 +139,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public void toggleSort(String column) {
+		log.error("toggleSort");
 		sortProperty = column;
 		for (Entry<String, SortOrder> entry : sortOrders.entrySet()) {
 			SortOrder newOrder;

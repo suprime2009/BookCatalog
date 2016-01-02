@@ -105,134 +105,17 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 		log.info("Method has been successfully finished.");
 	}
 
-	@Override
-	public void sortByBookName(List<Book> list, final OrderBy order) {
-		Collections.sort(list, new Comparator<Book>() {
-			public int compare(Book b1, Book b2) {
-				if (order.equals(OrderBy.ASC)) {
-					return b1.getBookName().compareToIgnoreCase(b2.getBookName());
-				} else {
-					return b2.getBookName().compareToIgnoreCase(b1.getBookName());
-				}
-			}
-		});
-		log.info("Books has been successfully sorted by bookName");
-	}
-
-	@Override
-	public void sortByYearPublished(List<Book> list, final OrderBy order) {
-		Collections.sort(list, new Comparator<Book>() {
-			public int compare(Book b1, Book b2) {
-				if (order.equals(OrderBy.ASC)) {
-					return b1.getYearPublished().compareTo(b2.getYearPublished());
-				} else {
-					return b2.getYearPublished().compareTo(b1.getYearPublished());
-				}
-			}
-		});
-		log.info("Books has been successfully sorted by yearPublished");
-	}
-
-	@Override
-	public void sortByPublisher(List<Book> list, final OrderBy order) {
-		Collections.sort(list, new Comparator<Book>() {
-			public int compare(Book b1, Book b2) {
-				if (order.equals(OrderBy.ASC)) {
-					return b1.getPublisher().compareTo(b2.getPublisher());
-				} else {
-					return b2.getPublisher().compareTo(b1.getPublisher());
-				}
-			}
-		});
-		log.info("Books has been successfully sorted by Publisher");
-	}
-
-	@Override
-	public void sortByCreatedDate(List<Book> list) {
-		Collections.sort(list, new Comparator<Book>() {
-			public int compare(Book b1, Book b2) {
-				return b1.getCreatedDate().compareTo(b2.getCreatedDate());
-			}
-		});
-		log.info("Books has been successfully sorted by createdDate");
-	}
-
-	@Override
-	public void sortByRating(List<Book> list, final OrderBy order) {
-		Collections.sort(list, new Comparator<Book>() {
-			public int compare(Book b1, Book b2) {
-				if (order.equals(OrderBy.ASC)) {
-					return b1.getRating().compareTo(b2.getRating());
-				} else {
-					return b2.getRating().compareTo(b1.getRating());
-				}
-			}
-		});
-		log.info("Books has been successfully sorted by Rating");
-	}
-
-	private List<Order> checkSortOrder(CriteriaBuilder criteriaBuilder, Root<Book> root,
-			DataTableSearchHolder dataTableHelper) {
-		System.out.println("checkSortOrder start");
-		List<Order> list = new ArrayList<Order>();
-		Path<Object> expression = null;
-		if (dataTableHelper.getSortColumn() != null) {
-
-			expression = root.get(dataTableHelper.getSortColumn());
-			if (dataTableHelper.getSortOrder() == SortOrder.ascending) {
-				System.out.println("ASKENDING");
-				list.add(criteriaBuilder.asc(expression));
-			} else if (dataTableHelper.getSortOrder() == SortOrder.descending) {
-				System.out.println("DESCENDING");
-				list.add(criteriaBuilder.desc(expression));
-			}
-		}
-
-		System.out.println("checkSortOrder done");
-		return list;
-	}
-
-	@Override
-	public List<Book> getBooksForDataTable(SequenceRange sequenceRange, ArrangeableState arrangeableState,
-			Map<String, SortOrder> sortOrders, Map<String, String> filterValues) {
-		// System.out.println("getBooksForDataTable start");
-		//
-		//
-		// CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		// CriteriaQuery<Book> criteriaQuery =
-		// criteriaBuilder.createQuery(Book.class);
-		// Root<Book> root = criteriaQuery.from(Book.class);
-		// List<Order> orders = checkSortOrder(criteriaBuilder, root,
-		// sortOrders);
-		// if (!orders.isEmpty()) {
-		// criteriaQuery.orderBy(orders);
-		// }
-		//
-		// TypedQuery<Book> query = entityManager.createQuery(criteriaQuery);
-		//
-		// if (sequenceRange.getFirstRow() >= 0 && sequenceRange.getRows() > 0)
-		// {
-		//
-		// query.setFirstResult(sequenceRange.getFirstRow());
-		// query.setMaxResults(sequenceRange.getRows());
-		// }
-		//
-		// List<Book> books = query.getResultList();
-
-		return null;
-	}
-
-
-
-
-
-
 
 	@Transactional
 	@Override
+	public void deleteBook(Book book) {
+		bookHomeLocal.delete(book);
+		log.info("Book {} has been deleted from database", book);
+	}
+
+	@Override
 	public List<Object> getBookForDataTable(DataTableSearchHolder dataTableHelper) {
-		
-	
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

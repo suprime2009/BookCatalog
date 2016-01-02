@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +40,12 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 		log.info("Entity {} has been successfully updated", object);
 	}
 
+	@Transactional
 	public void delete(Book object) {
+		object = entityManager.getReference(Book.class, object.getIdBook());
 		entityManager.remove(object);
+
+
 		log.info("Entity {} has been successfully deleted", object);
 
 	}

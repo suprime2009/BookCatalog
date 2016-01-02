@@ -72,6 +72,9 @@ public class Book implements Serializable {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
 	
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval=true, mappedBy="book")
+	private Set<Review> reviews;
+	
 	
 	private transient Double rating;
 
@@ -93,16 +96,42 @@ public class Book implements Serializable {
 		this.createdDate = new Date();
 	}
 	
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+	
+	
+	
+	public String getIdBook() {
+		return idBook;
+	}
+
+	public void setIdBook(String idBook) {
+		this.idBook = idBook;
+	}
+
+	public Set<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
+
 	public Double getRating() {
 		return rating;
 	}
 	
 	public void setRating(Double rating) {
 		this.rating = rating;
-	}
-
-	public String getIdbook() {
-		return this.idBook;
 	}
 
 	public String getBookName() {

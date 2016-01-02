@@ -88,11 +88,11 @@ public class BooksBean {
 //	        }
 //	 
 //	        books = query.getResultList();
-			books = bookManager.getBooksForDataTable(sequenceRange, arrangeableState, sortOrders, filterValues);
-	        for (Book t : books) {
-	            visitor.process(context, t.getIdbook(), argument);
-	        }
-	        System.out.println("walk finished");
+//			books = bookManager.getBooksForDataTable(sequenceRange, arrangeableState, sortOrders, filterValues);
+//	        for (Book t : books) {
+//	            visitor.process(context, t.getIdbook(), argument);
+//	        }
+//	        System.out.println("walk finished");
 
 		}
 

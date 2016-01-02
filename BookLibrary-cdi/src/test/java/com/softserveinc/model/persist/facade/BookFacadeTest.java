@@ -43,7 +43,7 @@ public class BookFacadeTest extends BaseTest {
 		assertEquals("Java Core", book.getBookName());
 		assertEquals(new Integer(2010), book.getYearPublished());
 		assertEquals("England", book.getPublisher());
-		assertEquals("b1", book.getIdbook());
+		assertEquals("b1", book.getIdBook());
 	}
 	
 	@Test

@@ -21,7 +21,6 @@ import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookWrapper;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
-import com.softserveinc.model.session.util.BookUIWrapper;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 @ManagedBean(name = "manageBookBean")
@@ -35,14 +34,12 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 
 	private static Logger log = LoggerFactory.getLogger(ManageBookBean.class);
 
-	private List<Book> books;
+	private List<BookUIWrapper> books;
 	private Map<String, SortOrder> sortOrders = Maps.newHashMapWithExpectedSize(1);
 	private Map<String, String> filterValues = Maps.newHashMap();
 	private String sortProperty;
-	
+	private boolean selectAll;
 
-	private boolean selected;
-	
 	private BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
 
 	@EJB
@@ -64,40 +61,28 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 		pageRange = 4; // Default page range (max amount of page links to be
 						// displayed at once).
 	}
-	
-	public void selectBook(Book book) {
-		if (selected == true) {
-		
-			System.out.println("added to list");
-		} else {
-			System.out.println("else");
-		}
-	
-	}
-	
 
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-
-	public List<Book> getBooks() {
+	public List<BookUIWrapper> getBooks() {
 		log.error("getBooks");
 		if (books == null) {
 			load();
 		}
 		return books;
 	}
-	
+
+	public boolean getSelectAll() {
+		return selectAll;
+	}
+
+	public void setSelectAll(boolean selectAll) {
+		this.selectAll = selectAll;
+	}
+
 	public BookWrapper getBookWrapperUI() {
 		return bookWrapperUI;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookUIWrapper> books) {
 		this.books = books;
 	}
 
@@ -119,14 +104,34 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 		return sortOrders;
 	}
 
+	public void selectAllAction() {
+		for (BookUIWrapper b : books) {
+			if (selectAll) {
+				b.setSelected(true);
+			} else {
+				b.setSelected(false);
+			}
+
+		}
+
+	}
+
 	public Map<String, String> getFilterValues() {
 		log.info("Current values for filtering = {}", filterValues.size());
 		return filterValues;
 	}
 
-	public void onChangeInputFields() {
-		log.error("onChangeInputFields");
-		load();
+	public void deleteRow(String bookId) {
+		System.out.println("Method DELETE ROW");
+		Book book = bookFacade.findById(bookId);
+		bookManager.deleteBook(book);
+		books.remove(book);
+		log.info("done");
+
+	}
+
+	public void cleanFilters() {
+		filterValues.clear();
 	}
 
 	private void deleteValueEmptyMapsPairs() {
@@ -136,6 +141,11 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 				it.remove();
 			}
 		}
+	}
+
+	public void searchAction() {
+		deleteValueEmptyMapsPairs();
+		load();
 	}
 
 	public void toggleSort(String column) {
@@ -160,7 +170,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public DataTableSearchHolder getCurrentRequirementsForDataTable() {
-		
+
 		DataTableSearchHolder datatableSearchHolder = new DataTableSearchHolder();
 		datatableSearchHolder.setFirstRow(firstRow);
 		datatableSearchHolder.setRowsPerPage(rowsPerPage);
@@ -175,7 +185,13 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	public void getEntitiesForCurrentPage() {
 
 		deleteValueEmptyMapsPairs();
-		books = bookFacade.findBooksForDataTable(getCurrentRequirementsForDataTable());
+		List<Book> booksList = bookFacade.findBooksForDataTable(getCurrentRequirementsForDataTable());
+		books = new ArrayList<BookUIWrapper>();
+		this.books.clear();
+		for (Book b : booksList) {
+			books.add(new BookUIWrapper(b));
+		}
+		
 		log.info("Meyhod finished.");
 	}
 

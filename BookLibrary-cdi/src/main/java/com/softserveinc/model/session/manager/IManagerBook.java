@@ -23,18 +23,8 @@ public interface IManagerBook {
 	
 	void setRatingForBooks(List<Book> list);
 	
-	void sortByRating(List<Book> list, final OrderBy order);
 	
-	void sortByBookName(List<Book> list, final OrderBy order);
-	
-	void sortByYearPublished(List<Book> list, final OrderBy order);
-	
-	void sortByPublisher(List<Book> list, final OrderBy order);
-	
-	void sortByCreatedDate(List<Book> list);
-	
-	List<Book> getBooksForDataTable( SequenceRange sequenceRange, ArrangeableState arrangeableState, 
-			Map<String, SortOrder> sortOrders, Map<String, String> filterValues );
+
 	
 	/**
 	 * This method starts on load and on change Book DataTable. Method gets in argument instance of 
@@ -46,6 +36,8 @@ public interface IManagerBook {
 	 * @return List<Object>
 	 */
 	List<Object> getBookForDataTable(DataTableSearchHolder dataTableHelper);
+	
+	void deleteBook(Book book);
 	
 	
 

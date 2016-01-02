@@ -28,7 +28,17 @@
    
    
 <h:form id="form" prependId="false">
+<rich:toolbar height="40" itemSeparator="grid" width="100%">
+  <rich:toolbarGroup >
 
+<h:commandButton value="Filter" >
+<f:ajax event="click" listener="#{manageBookBean.searchAction()}"  execute="@form" render="@form"></f:ajax>
+</h:commandButton>
+<h:commandButton value="Clean filters" > 
+<f:ajax event="click" listener="#{manageBookBean.cleanFilters()}" render="@form"></f:ajax>
+</h:commandButton>
+</rich:toolbarGroup>
+</rich:toolbar>
 
 	
 		<ui:param name="bean" value="#{manageBookBean}" />
@@ -38,13 +48,18 @@
 		rowClasses="odd-row, even-row" style="width:100%" binding="#{table}" styleClass="stable">
 <!-- checkBox column -->	
 	<rich:column>
-		<f:facet name="header"><h:selectBooleanCheckbox value="true" /></f:facet>
-			<h:selectBooleanCheckbox value="#{manageBookBean.selected}" onselect="#{manageBookBean.selectBook(book)}"/>
+		<f:facet name="header">
+		<h:selectBooleanCheckbox value="#{manageBookBean.selectAll}" onchange="#{manageBookBean.selectAllAction()}"/></f:facet>
+			<h:selectBooleanCheckbox id="bool" value="#{book.selected}"> 
+			<f:ajax ></f:ajax>
+			</h:selectBooleanCheckbox>
 	</rich:column>
 			
 <!-- bookName Column -->		
- 	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" sortType="custom">
+
+ 	<rich:column id="bookName" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" sortType="custom">
  	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.bookName}" />
+ 	
         <f:facet name="header">
             <h:outputLabel value="#{columnName}" />
             <h:commandLink >
@@ -52,24 +67,26 @@
                 <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
             </h:commandLink>
              <br />
-            <h:inputText onchange="#{manageBookBean.onChangeInputFields()}" value="#{manageBookBean.filterValues[columnName]}" >
-             <f:ajax event="change" listener="#{manageBookBean.onChangeInputFields()}" render="@form"></f:ajax>
+            <h:inputText  value="#{manageBookBean.filterValues[columnName]}" >
+            <f:ajax event="change" ></f:ajax>
             </h:inputText>
         </f:facet>
 		<h:link value="#{book.bookName}" outcome="bookDetails">
-			<f:param name="id" value="#{book.idbook}"></f:param>
+			<f:param name="id" value="#{book.idBook}"></f:param>
 		</h:link>
 	</rich:column>
 	
 <!-- Publisher column -->    
    <ui:include src="regularColumn.xhtml">
 		<ui:param name="bean" value="#{manageBookBean}" />
+		<ui:param name="id" value="publisher" />
 		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.publisher}" />
 		<ui:param name="property" value="#{book.publisher}" />
    </ui:include>
    
  <!-- ISBN Column --> 
  	<ui:include src="regularColumn.xhtml">
+ 	<ui:param name="id" value="isbn" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.isbn}" />
 		<ui:param name="property" value="#{book.isbn}" />
@@ -77,6 +94,7 @@
 
 <!-- yearPublished column -->
    <ui:include src="regularColumn.xhtml">
+   <ui:param name="id" value="yearPublished" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.yearPublished}" />
 		<ui:param name="property" value="#{book.yearPublished}" />
@@ -84,13 +102,14 @@
    
  <!-- Rating Column -->
  	<ui:include src="regularColumn.xhtml">
+ 	<ui:param name="id" value="rating" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.rating}" />
 	<ui:param name="property" value="#{book.rating}" />
    </ui:include>
    		
  <!-- Author Column -->
-	<rich:column sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
+	<rich:column id="authors" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
                  filterExpression="#{property}" filterType="custom" sortType="custom">
 	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.authors}" />
         <f:facet name="header">
@@ -100,8 +119,8 @@
                 <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
             </h:commandLink>
             <br />
-            <h:inputText onchange="#{manageBookBean.onChangeInputFields()}" value="#{manageBookBean.filterValues[columnName]}" >
-            	<f:ajax event="change" listener="#{manageBookBean.onChangeInputFields()}" render="@form"></f:ajax>
+            <h:inputText value="#{manageBookBean.filterValues[columnName]}" >
+             <f:ajax event="change"></f:ajax>
             </h:inputText>
         </f:facet>
         
@@ -115,9 +134,10 @@
     <rich:column>
     <f:facet name="header">
         	<h:outputText value="Edit / delete row" />
-     </f:facet>
-    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Edit" />
-    <h:commandButton action="#{manageBookBean.onChangeInputFields()}" value="Delete" />
+</f:facet>
+    <h:commandButton value="Delete" >
+     <f:ajax event="click" listener="#{manageBookBean.deleteRow(book.idbook)}" render="@form" ></f:ajax>
+     </h:commandButton>
     </rich:column>
     
     

@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
+import com.softserveinc.action.managebook.BookUIWrapper;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookWrapper;
@@ -98,7 +99,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	@Override
 	public Book findById(String id) {
 		Book book = bookHomeLocal.findByID(id);
-		Preconditions.checkArgument(book == null, "Passed id is not present in database.");
+		//Preconditions.checkArgument(book == null, "Passed id is not present in database.");
 		log.info("By id={} has been found Book=={}", id, book);
 		return book;
 	}

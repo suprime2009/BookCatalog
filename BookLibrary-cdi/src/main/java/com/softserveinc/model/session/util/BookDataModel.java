@@ -196,7 +196,7 @@ public class BookDataModel extends ExtendedDataModel<Book> implements Arrangeabl
         System.out.println("DATA SIZE !!!! " + data.size());
         System.out.println("DATA SIZE !!!! " + data.size());
         for (Book t : data) {
-            visitor.process(context, t.getIdbook(), argument);
+            visitor.process(context, t.getIdBook(), argument);
         }
     }
 

@@ -45,7 +45,7 @@ public class Review implements Serializable {
 
 	private int rating;
 
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name="book_id")
 	private Book book;
 

@@ -3,15 +3,18 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
+      <class name="com.softserveinc.model.persist.home.BookHomeTest">
         <methods>
+          <include name="testCreateBookWithAuthors"/>
+          <include name="testFindAllBooks"/>
           <include name="closeEJBSession"/>
+          <include name="testCreateBook"/>
+          <include name="testDeleteBook"/>
           <include name="getRemoteBeans"/>
           <include name="tearDown"/>
-          <include name="testFindAllAuthorsByBook"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
+      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

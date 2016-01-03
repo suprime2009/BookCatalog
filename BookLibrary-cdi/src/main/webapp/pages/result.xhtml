@@ -37,6 +37,9 @@
 <h:commandButton value="Clean filters" > 
 <f:ajax event="click" listener="#{manageBookBean.cleanFilters()}" render="@form"></f:ajax>
 </h:commandButton>
+<h:commandButton value="Delete selected" > 
+<f:ajax event="click" listener="#{manageBookBean.deleteListBooks()}" render="@form"></f:ajax>
+</h:commandButton>
 </rich:toolbarGroup>
 </rich:toolbar>
 
@@ -49,8 +52,11 @@
 <!-- checkBox column -->	
 	<rich:column>
 		<f:facet name="header">
-		<h:selectBooleanCheckbox value="#{manageBookBean.selectAll}" onchange="#{manageBookBean.selectAllAction()}"/></f:facet>
-			<h:selectBooleanCheckbox id="bool" value="#{book.selected}"> 
+		<h:selectBooleanCheckbox value="#{manageBookBean.selectAll}" >
+		<f:ajax  event="change" listener="#{manageBookBean.selectAllAction()}" render="@form"></f:ajax>
+		</h:selectBooleanCheckbox>
+		</f:facet>
+			<h:selectBooleanCheckbox  value="#{book.selected}"> 
 			<f:ajax ></f:ajax>
 			</h:selectBooleanCheckbox>
 	</rich:column>
@@ -135,8 +141,12 @@
     <f:facet name="header">
         	<h:outputText value="Edit / delete row" />
 </f:facet>
+<a4j:commandButton value="DEL" styleClass="no-decor" execute="@this" render="@none"
+                    oncomplete="#{rich:component('confirmPane')}.show()">
+                    <a4j:param value="#{book.idBook}" assignTo="#{manageBookBean.bookIdToDelete}" />
+                </a4j:commandButton>
     <h:commandButton value="Delete" >
-     <f:ajax event="click" listener="#{manageBookBean.deleteRow(book.idbook)}" render="@form" ></f:ajax>
+     <f:ajax event="click" listener="#{manageBookBean.deleteRow(book.idBook)}" render="@form" ></f:ajax>
      </h:commandButton>
     </rich:column>
     
@@ -148,6 +158,14 @@
 	</ui:include>
     </f:facet>	 
 </rich:dataTable>
+
+<rich:popupPanel id="confirmPane" autosized="true">
+	Are you sure you want to delete the row?
+	<a4j:commandButton value="Cancel" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+	<h:commandButton  value="Delete" > 
+	<f:ajax event="click" listener="#{manageBookBean.deleteBook()}" onevent="#{rich:component('confirmPane')}.hide()" render="@form"></f:ajax>
+	</h:commandButton>
+</rich:popupPanel>
  			
         </h:form>
     </h:body>

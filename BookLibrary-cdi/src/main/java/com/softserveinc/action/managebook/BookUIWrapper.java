@@ -15,7 +15,6 @@ public class BookUIWrapper extends Book{
 		setIdBook(book.getIdBook());
 		setBookName(book.getBookName());
 		setPublisher(book.getPublisher());
-		setIdBook(book.getIsbn());
 		setIsbn(book.getIsbn());
 		setAuthors(book.getAuthors());
 		setCreatedDate(book.getCreatedDate());

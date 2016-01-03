@@ -118,6 +118,15 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Transactional
+	@Override
+	public void deleteListBooks(List<Book> list) {
+		for (Book book : list) {
+			bookHomeLocal.delete(book);
+		}
+		
+	}
 	
 	
 	

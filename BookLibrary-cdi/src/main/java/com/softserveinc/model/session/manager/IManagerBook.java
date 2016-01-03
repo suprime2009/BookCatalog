@@ -23,6 +23,8 @@ public interface IManagerBook {
 	
 	void setRatingForBooks(List<Book> list);
 	
+	void deleteListBooks(List<Book> list);
+	
 	
 
 	

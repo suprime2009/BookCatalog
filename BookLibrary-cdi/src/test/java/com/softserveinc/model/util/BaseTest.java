@@ -71,7 +71,7 @@ public abstract class BaseTest {
 	 * This method runs after test class. Method deletes all records from
 	 * testing database.
 	 */
-	@AfterClass
+	//@AfterClass
 	public static void tearDown() {
 		dbUnitHelper.clearTestingDatabase();
 	}

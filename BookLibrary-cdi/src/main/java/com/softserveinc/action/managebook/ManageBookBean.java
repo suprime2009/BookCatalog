@@ -39,6 +39,19 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	private Map<String, String> filterValues = Maps.newHashMap();
 	private String sortProperty;
 	private boolean selectAll;
+	
+	private String bookIdToDelete;
+	
+	
+
+	public String getBookIdToDelete() {
+		return bookIdToDelete;
+	}
+
+	public void setBookIdToDelete(String bookIdToDelete) {
+		System.out.println("bookIdToDelete SETTER" + bookIdToDelete);
+		this.bookIdToDelete = bookIdToDelete;
+	}
 
 	private BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
 
@@ -47,6 +60,8 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 
 	@EJB
 	BookFacadeLocal bookFacade;
+	
+
 
 	public ManageBookBean() {
 		sortOrders.put(bookWrapperUI.bookName, SortOrder.unsorted);
@@ -105,6 +120,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 	}
 
 	public void selectAllAction() {
+		System.out.println("select all action");
 		for (BookUIWrapper b : books) {
 			if (selectAll) {
 				b.setSelected(true);
@@ -120,14 +136,34 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 		log.info("Current values for filtering = {}", filterValues.size());
 		return filterValues;
 	}
+	
+	public void deleteBook() {
+		System.out.println("deleteBook");
+		Book book = bookFacade.findById(bookIdToDelete);
+		bookManager.deleteBook(book);
+		books.remove(new BookUIWrapper(book));
+	}
 
 	public void deleteRow(String bookId) {
 		System.out.println("Method DELETE ROW");
 		Book book = bookFacade.findById(bookId);
 		bookManager.deleteBook(book);
-		books.remove(book);
+		books.remove(new BookUIWrapper(book));
 		log.info("done");
 
+	}
+	
+	public void deleteListBooks() {
+		List<Book> list = new ArrayList<Book>();
+		Iterator it =books.iterator();
+		while(it.hasNext()) {
+			BookUIWrapper bookUI = (BookUIWrapper) it.next();
+			if (bookUI.isSelected()) {
+				list.add((Book) bookUI);
+				it.remove();
+			}
+		}
+		bookManager.deleteListBooks(list);
 	}
 
 	public void cleanFilters() {

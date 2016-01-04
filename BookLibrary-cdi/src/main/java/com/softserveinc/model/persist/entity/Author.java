@@ -17,7 +17,8 @@ import java.util.UUID;
 @Table(name = "author")
 @NamedQueries({ @NamedQuery(name = Author.FIND_ALL_AUTHORS, query = "SELECT a FROM Author a"),
 		@NamedQuery(name = Author.FIND_AUTHOR_BY_FULL_NAME, query = "SELECT DISTINCT a FROM Author a WHERE a.firstName LIKE :fn AND a.secondName LIKE :sn"),
-		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"), })
+		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"),
+		@NamedQuery(name = Author.FIND_AUTHORS_BY_SECOND_NAME, query = "SELECT a FROM Author a WHERE a.secondName LIKE :sn")})
 public class Author implements Serializable {
 
 	private static final long serialVersionUID = -4647534114628862508L;
@@ -25,6 +26,7 @@ public class Author implements Serializable {
 	public static final String FIND_ALL_AUTHORS = "Author.findAll";
 	public static final String FIND_AUTHOR_BY_FULL_NAME = "Author.findAuthorByFullName";
 	public static final String FIND_ALL_AUTHORS_BY_BOOK = "Author.findAllAuthorsByBook";
+	public static final String FIND_AUTHORS_BY_SECOND_NAME = "Author.findAuthorsBySecondName";
 
 	@Id
 	@Column(name = "author_id")

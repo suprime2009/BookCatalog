@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.Maps;
 import com.softserveinc.action.util.PaginationHelper;
 import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.BookWrapper;
+import com.softserveinc.model.persist.entity.BookColumnsEnum;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
@@ -53,7 +54,7 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 		this.bookIdToDelete = bookIdToDelete;
 	}
 
-	private BookWrapper bookWrapperUI = BookWrapper.BOOK_UI_WRAPPER;
+	private BookColumnsEnum bookEnum = BookColumnsEnum.BOOK_BUSINESS_VIEW;
 
 	@EJB
 	BookManagerLocal bookManager;
@@ -64,17 +65,20 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 
 
 	public ManageBookBean() {
-		sortOrders.put(bookWrapperUI.bookName, SortOrder.unsorted);
-		sortOrders.put(bookWrapperUI.publisher, SortOrder.unsorted);
-		sortOrders.put(bookWrapperUI.yearPublished, SortOrder.unsorted);
-		sortOrders.put(bookWrapperUI.isbn, SortOrder.unsorted);
-		sortOrders.put(bookWrapperUI.rating, SortOrder.unsorted);
-		sortOrders.put(bookWrapperUI.authors, SortOrder.unsorted);
+		super();
+		
+	}
+	
+	@PostConstruct
+	public void init() {
+		sortOrders.put(bookEnum.bookName, SortOrder.unsorted);
+		sortOrders.put(bookEnum.publisher, SortOrder.unsorted);
+		sortOrders.put(bookEnum.yearPublished, SortOrder.unsorted);
+		sortOrders.put(bookEnum.isbn, SortOrder.unsorted);
+		sortOrders.put(bookEnum.rating, SortOrder.unsorted);
+		sortOrders.put(bookEnum.authors, SortOrder.unsorted);
 
-		rowsPerPage = 5; // Default rows per page (max amount of rows to be
-							// displayed at once).
-		pageRange = 4; // Default page range (max amount of page links to be
-						// displayed at once).
+
 	}
 
 	public List<BookUIWrapper> getBooks() {
@@ -93,8 +97,8 @@ public class ManageBookBean extends PaginationHelper<Book> implements Serializab
 		this.selectAll = selectAll;
 	}
 
-	public BookWrapper getBookWrapperUI() {
-		return bookWrapperUI;
+	public BookColumnsEnum getBookEnum() {
+		return bookEnum;
 	}
 
 	public void setBooks(List<BookUIWrapper> books) {

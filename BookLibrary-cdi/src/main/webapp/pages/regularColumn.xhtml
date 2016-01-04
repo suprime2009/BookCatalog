@@ -8,7 +8,7 @@
     <rich:column id="#{id}" sortBy="#{columnName}" sortOrder="#{bean.sortOrders[columnName]}" sortType="custom">
  
         <f:facet name="header">
-            <h:outputLabel value="#{columnName}" />
+            <h:outputLabel value="#{bean.bookEnum.convertToUIView(columnName)}" />
             <h:commandLink  action="#{bean.toggleSort(columnName)}">
                 #{bean.sortOrders[columnName]}
                 <f:ajax event="click" listener="#{bean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>

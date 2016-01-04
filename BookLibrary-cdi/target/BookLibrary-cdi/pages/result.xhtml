@@ -28,27 +28,21 @@
    
    
 <h:form id="form" prependId="false">
-<rich:toolbar height="40" itemSeparator="grid" width="100%">
-  <rich:toolbarGroup >
 
-<h:commandButton value="Filter" >
-<f:ajax event="click" listener="#{manageBookBean.searchAction()}"  execute="@form" render="@form"></f:ajax>
-</h:commandButton>
-<h:commandButton value="Clean filters" > 
-<f:ajax event="click" listener="#{manageBookBean.cleanFilters()}" render="@form"></f:ajax>
-</h:commandButton>
-<h:commandButton value="Delete selected" > 
-<f:ajax event="click" listener="#{manageBookBean.deleteListBooks()}" render="@form"></f:ajax>
-</h:commandButton>
-</rich:toolbarGroup>
-</rich:toolbar>
-
-	
 		<ui:param name="bean" value="#{manageBookBean}" />
 
  <!--The sortable datatable-->
 		<rich:dataTable  keepSaved="true" id="booksTable1" value="#{manageBookBean.books}" var="book" rows="#{manageBookBean.rowsPerPage}" 
-		rowClasses="odd-row, even-row" style="width:100%" binding="#{table}" styleClass="stable">
+		rowClasses="odd-row, even-row" style="width:1000" binding="#{table}" styleClass="stable">
+		
+		<f:facet name="header">
+		
+			<ui:include src="toolbar.xhtml" >
+				<ui:param name="Name" value="MANAGE BOOK TABLE" />
+				<ui:param name="bean" value="#{manageBookBean}" />
+			</ui:include>
+		</f:facet>
+		
 <!-- checkBox column -->	
 	<rich:column>
 		<f:facet name="header">
@@ -64,10 +58,10 @@
 <!-- bookName Column -->		
 
  	<rich:column id="bookName" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" sortType="custom">
- 	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.bookName}" />
+ 	<ui:param name="columnName" value="#{manageBookBean.bookEnum.bookName}" />
  	
         <f:facet name="header">
-            <h:outputLabel value="#{columnName}" />
+            <h:outputLabel value="#{manageBookBean.bookEnum.convertToUIView(columnName)}" />
             <h:commandLink >
                 #{manageBookBean.sortOrders[columnName]}
                 <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
@@ -86,7 +80,7 @@
    <ui:include src="regularColumn.xhtml">
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="id" value="publisher" />
-		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.publisher}" />
+		<ui:param name="columnName" value="#{manageBookBean.bookEnum.publisher}" />
 		<ui:param name="property" value="#{book.publisher}" />
    </ui:include>
    
@@ -94,7 +88,7 @@
  	<ui:include src="regularColumn.xhtml">
  	<ui:param name="id" value="isbn" />
 		<ui:param name="bean" value="#{manageBookBean}" />
-		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.isbn}" />
+		<ui:param name="columnName" value="#{manageBookBean.bookEnum.isbn}" />
 		<ui:param name="property" value="#{book.isbn}" />
    </ui:include>
 
@@ -102,7 +96,7 @@
    <ui:include src="regularColumn.xhtml">
    <ui:param name="id" value="yearPublished" />
 		<ui:param name="bean" value="#{manageBookBean}" />
-		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.yearPublished}" />
+		<ui:param name="columnName" value="#{manageBookBean.bookEnum.yearPublished}" />
 		<ui:param name="property" value="#{book.yearPublished}" />
    </ui:include>
    
@@ -110,16 +104,16 @@
  	<ui:include src="regularColumn.xhtml">
  	<ui:param name="id" value="rating" />
 		<ui:param name="bean" value="#{manageBookBean}" />
-		<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.rating}" />
+		<ui:param name="columnName" value="#{manageBookBean.bookEnum.rating}" />
 	<ui:param name="property" value="#{book.rating}" />
    </ui:include>
    		
  <!-- Author Column -->
 	<rich:column id="authors" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
                  filterExpression="#{property}" filterType="custom" sortType="custom">
-	<ui:param name="columnName" value="#{manageBookBean.bookWrapperUI.authors}" />
+	<ui:param name="columnName" value="#{manageBookBean.bookEnum.authors}" />
         <f:facet name="header">
-        	<h:outputText value="#{columnName}" />
+        	<h:outputText value="#{manageBookBean.bookEnum.convertToUIView(columnName)}" />
             <h:commandLink >
                 #{manageBookBean.sortOrders[columnName]}
                 <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
@@ -137,15 +131,16 @@
     	</rich:list>
     </rich:column>
     
+    <!-- DEL / EDIT -->
     <rich:column>
     <f:facet name="header">
         	<h:outputText value="Edit / delete row" />
 </f:facet>
 <a4j:commandButton value="DEL" styleClass="no-decor" execute="@this" render="@none"
-                    oncomplete="#{rich:component('confirmPane')}.show()">
+                    oncomplete="#{rich:component('confirmDelete')}.show()">
                     <a4j:param value="#{book.idBook}" assignTo="#{manageBookBean.bookIdToDelete}" />
                 </a4j:commandButton>
-    <h:commandButton value="Delete" >
+    <h:commandButton value="EDIT" >
      <f:ajax event="click" listener="#{manageBookBean.deleteRow(book.idBook)}" render="@form" ></f:ajax>
      </h:commandButton>
     </rich:column>
@@ -157,15 +152,18 @@
 		<ui:param name="bean" value="#{manageBookBean}" />
 	</ui:include>
     </f:facet>	 
+    
 </rich:dataTable>
 
-<rich:popupPanel id="confirmPane" autosized="true">
+<rich:popupPanel id="confirmDelete" autosized="true">
 	Are you sure you want to delete the row?
-	<a4j:commandButton value="Cancel" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
-	<f:ajax event="click" listener="#{manageBookBean.deleteBook()}" onevent="#{rich:component('confirmPane')}.hide()"></f:ajax>
+	<a4j:commandButton value="Cancel" onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
+	<h:commandButton  value="Delete" > 
+	<f:ajax event="click" listener="#{manageBookBean.deleteBook()}" onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
 	</h:commandButton>
 </rich:popupPanel>
- 			
+
+	
         </h:form>
     </h:body>
 </html>

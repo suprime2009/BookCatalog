@@ -10,6 +10,15 @@
         <title>default</title>
     </h:head>
 <ui:composition>
+
+<h:outputStylesheet>
+.page {
+ 	font-size: medium;
+}   
+
+
+</h:outputStylesheet>
+
 <rich:panel id="scrollPanel">
 
 	<!--The paging buttons-->
@@ -31,18 +40,28 @@
 
     <!--The paging links-->
     <ui:repeat value="#{bean.pages}" var="page">
-    	<h:commandLink value="#{page}" actionListener="#{bean.page}" rendered="#{page != bean.currentPage}">
+    	<h:commandLink styleClass="page" value="#{page}" actionListener="#{bean.page}" rendered="#{page != bean.currentPage}">
     	</h:commandLink>
-        <h:outputText value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
+        <h:outputText styleClass="page" value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
     </ui:repeat>
         <br />
-            
-	<h:selectOneRadio value="#{bean.rowsPerPage}" size="3">
-		<f:selectItem itemValue='3' itemLabel='3' />
-		<f:selectItem itemValue='5' itemLabel='5' />
-		<f:selectItem itemValue='15' itemLabel='15' />				
+    
+    <h:panelGrid columns="2">
+    <h:outputLabel value="Page size:" />
+    <h:selectOneRadio value="#{bean.rowsPerPage}" size="3">
+		<f:selectItem itemValue='20' itemLabel='20' />
+		<f:selectItem itemValue='50' itemLabel='50' />
+		<f:selectItem itemValue='100' itemLabel='100' />				
 		<f:ajax event="change" listener="#{bean.pageFirst()}" execute="@form" render="@form"></f:ajax>
 	</h:selectOneRadio>
+	
+	<h:outputLabel value="Books on page:" />
+	<h:outputText value="#{bean.books.size()}" />
+	
+	<h:outputLabel value="Total count books:" />
+	<h:outputText value="#{bean.totalRows}" />
+    </h:panelGrid>      
+  	  	
 </rich:panel>  
 </ui:composition>
     </html>

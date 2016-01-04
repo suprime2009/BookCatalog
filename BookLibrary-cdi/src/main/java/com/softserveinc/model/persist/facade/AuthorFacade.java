@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -49,10 +50,15 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote{
 
 	@Override
 	public Author findAuthorByFullName(String firstName, String secondName) {
+		Author object = null;
 		Query query = entityManager.createNamedQuery(Author.FIND_AUTHOR_BY_FULL_NAME);
 		query.setParameter("fn", firstName);
 		query.setParameter("sn", secondName);
-		Author object = (Author) query.getSingleResult();
+		try {
+		object = (Author) query.getSingleResult();
+		} catch(NoResultException e) {
+			return null;
+		}
 		log.info("Method findAuthorByFullName finished. By firstName={} and lastName={}"
 				+ "has been found author={}",firstName, secondName, object);
 		return object;
@@ -71,6 +77,15 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote{
 	@Override
 	public List<Author> findAll() {
 		return authorHomeLocal.findAll();
+	}
+
+	@Override
+	public List<Author> findAuthorsBySecondName(String secondname) {
+		Query query = entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_SECOND_NAME);
+		query.setParameter("sn", secondname + '%');
+		List<Author> list = (List<Author>) query.getResultList();
+		System.out.println("findAuthorsBySecondName");
+		return list;
 	}
 
 }

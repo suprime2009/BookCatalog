@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>Manage Books</title>
+    </h:head>
+    <h:body>
+    
+ <rich:toolbar height="40" itemSeparator="grid" width="100%">
+  <rich:toolbarGroup >
+ <h:outputText value="#{Name}" />
+ </rich:toolbarGroup>
+ 
+<rich:toolbarGroup location="right">
+<h:commandButton value="Filter" >
+<f:ajax event="click" listener="#{bean.searchAction()}"  execute="@form" render="@form"></f:ajax>
+</h:commandButton>
+
+<h:commandButton value="Clean filters" > 
+<f:ajax event="click" listener="#{bean.cleanFilters()}" render="@form"></f:ajax>
+</h:commandButton>
+
+<h:link value="Create" outcome="createBook">
+</h:link>
+
+<h:commandButton value="Delete selected" > 
+<f:ajax event="click" listener="#{bean.deleteListBooks()}" render="@form"></f:ajax>
+</h:commandButton>
+</rich:toolbarGroup>
+</rich:toolbar>
+
+</h:body>
+</html>

@@ -9,7 +9,75 @@
     <h:head>
         <title>Create Book</title>
     </h:head>
-    <h:body>
+<h:body>
+<h:form id="createBookForm" >
+
+ 
+    <h:panelGrid columns="3" >
     
-    </h:body>
-    </html>
+    	<h:outputLabel value="Name:" />
+   		<h:inputText label="Name" value="#{createBookAction.bookName}" id="name" required="true" requiredMessage="Book name is required" >
+    		<f:validateLength minimum="3"  />
+    	</h:inputText>
+    	<rich:message for="name" ajaxRendered="true" />
+    
+    	<h:outputLabel value="Publisher:" />
+    	<h:inputText label="Publisher" value="#{createBookAction.publisher}" />
+    	<rich:message for="publisher" ajaxRendered="true" />
+    
+    	<h:outputLabel value="Year:" />
+    	<h:inputText label="Year" id="year" value="#{createBookAction.yearPublished}" >
+    		<f:validateLength minimum="4" maximum="4"  />
+    		<f:validateLongRange minimum="1700"></f:validateLongRange>
+    	</h:inputText>
+    	<rich:message for="year" ajaxRendered="true" />
+    
+    	<h:outputLabel value="ISBN number:" />
+   			<h:inputText label="ISBN" id="isbn" value="#{createBookAction.isbn}" validator="#{createBookAction.validateISBN}">
+    	</h:inputText>
+    	<rich:message for="isbn" ajaxRendered="true" />
+    	
+    	<h:outputLabel value="Authors:" />
+    <rich:list  id="listAuthors" value="#{createBookAction.authors}" var="author">
+    	<h:panelGrid columns="2">
+   			<h:outputText value="#{author.firstName}" />
+     		<h:outputText value="#{author.secondName}" />
+    	</h:panelGrid>
+   	</rich:list>
+       
+    </h:panelGrid>
+    
+    
+    
+<rich:collapsiblePanel id="panel" header="Add Authors" switchType="ajax" >
+<h:panelGrid columns="2">
+    <h:outputLabel value="Author:" />
+     <h:commandButton  actionListener="#{createBookAction.checkIfAuthorExist}"  value="add Author" >
+    <f:ajax execute="panel" render="listAuthors"></f:ajax>
+     <f:ajax render="messages"/>
+     </h:commandButton>
+
+
+	 <h:outputLabel value="Second name" />
+	 <rich:autocomplete mode="cachedAjax" tokens=", " minChars="2" value="#{createBookAction.secondName}" autofill="false"
+            autocompleteMethod="#{createBookAction.autocompleteSecondName}" ></rich:autocomplete>
+    <h:outputLabel value="First name" />
+    <h:inputText label="First" value="#{createBookAction.firstName}" />
+    
+</h:panelGrid>
+   <h:messages id="messages"/>
+</rich:collapsiblePanel>
+
+
+    <h:commandButton type="submit" action="#{createBookAction.submit()}" value="Submit" >
+    <f:ajax execute="createBookForm" onevent="result"></f:ajax>
+    </h:commandButton>
+    <h:commandButton type="reset" action="#{createBookAction.reset()}" value="Reset" >
+        <f:ajax execute="createBookForm" ></f:ajax>
+    </h:commandButton>
+
+
+
+</h:form>    
+</h:body>
+</html>

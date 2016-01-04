@@ -25,6 +25,8 @@ public interface IManagerBook {
 	
 	void deleteListBooks(List<Book> list);
 	
+	void createBook(Book book);
+	
 	
 
 	

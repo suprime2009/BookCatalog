@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+    <f:viewParam name="id" value="#{authorDetailAction.selectedId}"/>
+    <f:viewAction action="#{authorDetailAction.loadAuthor()}"/>
+</f:metadata>
+
+<h:head>
+
+</h:head>
+<title>default</title>
+<h:body>
+<h:outputText value="#{authorDetailAction.author.firstName}"></h:outputText>
+
+
+
+
+
+</h:body>
+
+</html>

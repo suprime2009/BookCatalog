@@ -11,6 +11,7 @@ com\softserveinc\model\persist\service\AuthorService.class
 com\softserveinc\model\session\managerImpl\AuthorManager.class
 com\softserveinc\model\persist\backing\HomeManagedBean.class
 com\softserveinc\model\persist\facade\ReviewFacade.class
+com\softserveinc\action\managebook\CreateBookAction.class
 com\softserveinc\model\session\util\SQLCommandConstants.class
 com\softserveinc\model\persist\facade\BookFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHome.class
@@ -20,11 +21,12 @@ com\softserveinc\model\persist\backing\HelloWorldBean.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class
 com\softserveinc\model\persist\entity\Author.class
 com\softserveinc\model\persist\home\ReviewHomeRemote.class
+com\softserveinc\action\managebook\AuthorDetailAction.class
+com\softserveinc\action\managebook\CreateAuthorAction.class
 com\softserveinc\model\session\manager\ReviewManagerLocal.class
 com\softserveinc\model\persist\facade\AuthorFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHomeLocal.class
 com\softserveinc\model\persist\home\IHome.class
-com\softserveinc\action\managebook\DataTableConstants.class
 com\softserveinc\model\persist\facade\AuthorFacadeLocal.class
 test\BooksBean$1.class
 com\softserveinc\model\persist\home\BookHomeLocal.class
@@ -40,6 +42,7 @@ com\softserveinc\model\persist\home\ReviewHome.class
 com\softserveinc\model\session\util\DataTableSearchHolder.class
 test\BooksBean.class
 com\softserveinc\action\managebook\NavigationController.class
+com\softserveinc\model\persist\entity\BookColumnsEnum.class
 com\softserveinc\model\persist\facade\AuthorFacade.class
 com\softserveinc\model\persist\entity\Review.class
 com\softserveinc\action\managebook\BookDetail.class
@@ -49,7 +52,6 @@ com\softserveinc\model\persist\home\AuthorHomeRemote.class
 com\softserveinc\action\managebook\ManageBookBean.class
 com\softserveinc\model\persist\service\AuthorServiceImpl.class
 com\softserveinc\model\persist\backing\UserBean.class
-com\softserveinc\model\persist\entity\BookWrapper.class
 com\softserveinc\model\persist\facade\ReviewFacadeLocal.class
 com\softserveinc\model\persist\entity\OrderBy.class
 com\softserveinc\model\persist\facade\IBookFacade.class

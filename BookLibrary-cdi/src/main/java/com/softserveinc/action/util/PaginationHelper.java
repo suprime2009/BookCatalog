@@ -1,9 +1,11 @@
 package com.softserveinc.action.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.component.UICommand;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,20 @@ public abstract class PaginationHelper<T> {
 	protected int pageRange;
 	protected Integer[] pages;
 	protected int currentPage;
+	
+	protected List<Integer> pageSizeValues;
+	
+	public PaginationHelper() {
+		pageSizeValues = new ArrayList<Integer>();
+		pageSizeValues.add(new Integer(20));
+		pageSizeValues.add(new Integer(50));
+		pageSizeValues.add(new Integer(100));
+		
+		rowsPerPage = 20; // Default rows per page (max amount of rows to be
+		// displayed at once).
+		pageRange = 5; // Default page range (max amount of page links to be
+	// displayed at once).
+	}
 
 	public int getTotalRows() {
 		return totalRows;
@@ -51,6 +67,10 @@ public abstract class PaginationHelper<T> {
 
 	public void setRowsPerPage(Integer rowsPerPage) {
 		this.rowsPerPage = rowsPerPage;
+	}
+	
+	public List<Integer> getPageSizeValues() {
+		return pageSizeValues;
 	}
 
 	public int getTotalPages() {

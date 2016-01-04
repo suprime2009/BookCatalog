@@ -45,5 +45,7 @@ public interface IAuthorFacade {
 	 * @return List<Author>.
 	 */
 	List<Author> findAll();
+	
+	List<Author> findAuthorsBySecondName(String secondName);
 
 }

@@ -33,7 +33,7 @@
     	<rich:message for="year" ajaxRendered="true" />
     
     	<h:outputLabel value="ISBN number:" />
-   			<h:inputText label="ISBN" id="isbn" value="#{createBookAction.isbn}" validator="#{createBookAction.validateISBN}">
+   			<h:inputText required="true" label="ISBN" id="isbn" value="#{createBookAction.isbn}" validator="#{createBookAction.validateISBN}">
     	</h:inputText>
     	<rich:message for="isbn" ajaxRendered="true" />
     	
@@ -61,20 +61,24 @@
 	 <h:outputLabel value="Second name" />
 	 <rich:autocomplete mode="cachedAjax" tokens=", " minChars="2" value="#{createBookAction.secondName}" autofill="false"
             autocompleteMethod="#{createBookAction.autocompleteSecondName}" ></rich:autocomplete>
-    <h:outputLabel value="First name" />
-    <h:inputText label="First" value="#{createBookAction.firstName}" />
+      
+      <h:outputLabel value="First name" />
+      <rich:autocomplete mode="cachedAjax" tokens=", " minChars="1" value="#{createBookAction.firstName}" autofill="false"
+            autocompleteMethod="#{createBookAction.autocompleteFirstName}" ></rich:autocomplete>
+           
     
 </h:panelGrid>
    <h:messages id="messages"/>
 </rich:collapsiblePanel>
 
 
-    <h:commandButton type="submit" action="#{createBookAction.submit()}" value="Submit" >
-    <f:ajax execute="createBookForm" onevent="result"></f:ajax>
+    <h:commandButton   value="Submit"  >
+    <a4j:ajax execute="@form" listener="#{createBookAction.submit()}" oncomplete="form"></a4j:ajax>
     </h:commandButton>
-    <h:commandButton type="reset" action="#{createBookAction.reset()}" value="Reset" >
-        <f:ajax execute="createBookForm" ></f:ajax>
+    <h:commandButton type="reset" action="#{createBookAction.reset}" value="Reset" >
+        <f:ajax  execute="@this" render="createBookForm" ></f:ajax>
     </h:commandButton>
+    
 
 
 

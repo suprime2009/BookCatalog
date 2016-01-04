@@ -37,6 +37,8 @@ public class CreateBookAction {
 	private String secondName;
 	private Author author;
 	
+	private Book bookAfterCreate = null;
+	
 	private List<Author> authorAutocomplete;
 	
 	@EJB
@@ -75,6 +77,30 @@ public class CreateBookAction {
  
         return result;
     }
+	
+	public List<String> autocompleteFirstName(String prefix) { 
+	    List<String> result = new ArrayList<String>();
+        if ((prefix == null) || (prefix.length() == 0)) {
+            for (int i = 0; i < 10; i++) {
+                result.add(authorAutocomplete.get(i).getFirstName());
+            }
+        } else {
+            Iterator<Author> iterator = authorAutocomplete.iterator();
+            while (iterator.hasNext()) {
+                Author elem = ((Author) iterator.next());
+                if ((elem.getFirstName() != null && elem.getFirstName().toLowerCase().indexOf(prefix.toLowerCase()) == 0)
+                    || "".equals(prefix)) {
+                    result.add(elem.getFirstName());
+                }
+            }
+        }
+ 
+        return result;
+	}
+	
+	public Book getBookAfterCreate() {
+		return bookAfterCreate;
+	}
 		
 	public void checkIfAuthorExist(ActionEvent event) throws AbortProcessingException  {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -120,9 +146,10 @@ public class CreateBookAction {
 		System.out.println(yearPublished);
 		System.out.println(isbn);
 		Book book = new Book(bookName, isbn, publisher, yearPublished, authors);
-		bookManager.createBook(book);
+		bookAfterCreate = bookManager.createBook(book);
 		
 	}
+
 	
 	public void reset() {
 		bookName = null;

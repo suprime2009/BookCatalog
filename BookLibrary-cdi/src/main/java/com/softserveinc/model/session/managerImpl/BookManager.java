@@ -130,9 +130,10 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 
 	@Transactional
 	@Override
-	public void createBook(Book book) {
+	public Book createBook(Book book) {
 		System.out.println("createBook");
-		bookHomeLocal.create(book);
+		Book bookCreated = bookHomeLocal.create(book);
+		return bookCreated;
 		
 	}
 	

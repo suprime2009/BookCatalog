@@ -25,8 +25,9 @@
 <f:ajax event="click" listener="#{bean.cleanFilters()}" render="@form"></f:ajax>
 </h:commandButton>
 
-<h:link value="Create" outcome="createBook">
-</h:link>
+<h:commandButton value="Create">
+        <rich:componentControl target="createBook" operation="show" />
+    </h:commandButton>
 
 <h:commandButton value="Delete selected" > 
 <f:ajax event="click" listener="#{bean.deleteListBooks()}" render="@form"></f:ajax>

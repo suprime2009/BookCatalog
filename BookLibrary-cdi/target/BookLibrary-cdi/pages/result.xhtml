@@ -162,8 +162,17 @@
 	<f:ajax event="click" listener="#{manageBookBean.deleteBook()}" onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
 	</h:commandButton>
 </rich:popupPanel>
+</h:form>
+        
+        
+        <rich:popupPanel id="createBook" autosized="true" modal="true" style="width:600px; height:300px;">
+ <f:facet name="controls">
+            <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
+                X
+            </h:outputLink>
+        </f:facet>
+     <ui:include src="createBook.xhtml" />  
 
-	
-        </h:form>
+</rich:popupPanel>
     </h:body>
 </html>

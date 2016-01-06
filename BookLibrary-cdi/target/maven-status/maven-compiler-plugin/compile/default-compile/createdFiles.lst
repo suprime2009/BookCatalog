@@ -18,9 +18,11 @@ com\softserveinc\model\persist\home\AuthorHome.class
 com\softserveinc\model\persist\facade\IAuthorFacade.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
 com\softserveinc\model\persist\backing\HelloWorldBean.class
+com\softserveinc\action\util\DataTableHelper.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class
 com\softserveinc\model\persist\entity\Author.class
 com\softserveinc\model\persist\home\ReviewHomeRemote.class
+com\softserveinc\model\persist\entity\BookConstantsHolder$1.class
 com\softserveinc\action\managebook\AuthorDetailAction.class
 com\softserveinc\action\managebook\CreateAuthorAction.class
 com\softserveinc\model\session\manager\ReviewManagerLocal.class
@@ -57,6 +59,7 @@ com\softserveinc\model\persist\entity\OrderBy.class
 com\softserveinc\model\persist\facade\IBookFacade.class
 com\softserveinc\model\persist\facade\ReviewFacadeRemote.class
 com\softserveinc\model\persist\home\ReviewHomeLocal.class
+com\softserveinc\model\persist\entity\BookConstantsHolder.class
 com\softserveinc\model\persist\facade\BookFacadeLocal.class
 com\softserveinc\model\persist\home\BookHomeRemote.class
 com\softserveinc\action\util\PaginationHelper.class

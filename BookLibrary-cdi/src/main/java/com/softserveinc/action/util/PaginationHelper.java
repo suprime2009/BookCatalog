@@ -1,5 +1,6 @@
 package com.softserveinc.action.util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,22 +19,24 @@ import org.slf4j.LoggerFactory;
  *
  * @param <T> Entity
  */
-public abstract class PaginationHelper<T> {
+public abstract class PaginationHelper implements Serializable{
 	
+	private static final long serialVersionUID = -5368444911902570386L;
+
 	private static Logger log = LoggerFactory.getLogger(PaginationHelper.class);
 
 	
-	protected int totalRows;
-	protected int firstRow;
-	protected Integer rowsPerPage;
-	protected int totalPages;
-	protected int pageRange;
-	protected Integer[] pages;
-	protected int currentPage;
+	private int totalRows;
+	private int firstRow;
+	private Integer rowsPerPage;
+	private int totalPages;
+	private int pageRange;
+	private Integer[] pages;
+	private int currentPage;
 	
-	protected List<Integer> pageSizeValues;
+	private List<Integer> pageSizeValues;
 	
-	public PaginationHelper() {
+	protected PaginationHelper() {
 		pageSizeValues = new ArrayList<Integer>();
 		pageSizeValues.add(new Integer(20));
 		pageSizeValues.add(new Integer(50));
@@ -131,6 +134,9 @@ public abstract class PaginationHelper<T> {
 
 		// Set currentPage, totalPages and pages.
 		currentPage = (totalRows / rowsPerPage) - ((totalRows - firstRow) / rowsPerPage) + 1;
+		if (totalRows == 0) {
+			currentPage = 0;
+		}
 		totalPages = (totalRows / rowsPerPage) + ((totalRows % rowsPerPage != 0) ? 1 : 0);
 		int pagesLength = Math.min(pageRange, totalPages);
 		pages = new Integer[pagesLength];
@@ -187,7 +193,7 @@ public abstract class PaginationHelper<T> {
 	}
 
 	public boolean isDisabledLast() {
-		if (currentPage == totalPages) {
+		if ( totalPages == 0 || currentPage == totalPages) {
 			return true;
 		}
 		return false;

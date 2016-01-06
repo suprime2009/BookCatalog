@@ -86,5 +86,7 @@ public enum BookColumnsEnum {
 	public String getRating() {
 		return rating;
 	}
+	
+	
 
 }

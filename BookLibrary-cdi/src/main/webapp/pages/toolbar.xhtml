@@ -21,16 +21,17 @@
 <f:ajax event="click" listener="#{bean.searchAction()}"  execute="@form" render="@form"></f:ajax>
 </h:commandButton>
 
-<h:commandButton value="Clean filters" > 
-<f:ajax event="click" listener="#{bean.cleanFilters()}" render="@form"></f:ajax>
-</h:commandButton>
+<h:commandButton value="Clean filters" >
+				<f:ajax event="click" listener="#{bean.cleanFilters()}"
+					render="@form"></f:ajax>
+			</h:commandButton>
 
 <h:commandButton value="Create">
         <rich:componentControl target="createBook" operation="show" />
     </h:commandButton>
 
 <h:commandButton value="Delete selected" > 
-<f:ajax event="click" listener="#{bean.deleteListBooks()}" render="@form"></f:ajax>
+<f:ajax event="click" listener="#{bean.deleteListEntities()}" render="@form"></f:ajax>
 </h:commandButton>
 </rich:toolbarGroup>
 </rich:toolbar>

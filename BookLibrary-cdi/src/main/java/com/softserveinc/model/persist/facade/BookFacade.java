@@ -75,7 +75,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		query.setParameter("isb", isbn);
 		Book object = null;
 		try {
-		 object = (Book) query.getSingleResult();
+			object = (Book) query.getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
@@ -104,7 +104,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	@Override
 	public Book findById(String id) {
 		Book book = bookHomeLocal.findByID(id);
-		//Preconditions.checkArgument(book == null, "Passed id is not present in database.");
+		// Preconditions.checkArgument(book == null, "Passed id is not present
+		// in database.");
 		log.info("By id={} has been found Book=={}", id, book);
 		return book;
 	}
@@ -151,10 +152,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		sbForDataTable.append(FROM).append(Review.class.getName()).append(R + ' ').append(RIGHT_JOIN).append(R + '.')
 				.append("book ").append(B + ' ');
 		if ((dataTableSearchHolder.getSortColumn() != null)
-				&& (dataTableSearchHolder.getSortColumn().equals(bookEnum.authors))) {
-			sbForDataTable.append(LEFT_JOIN).append(B + '.').append(bookEnum.authors).append(A);
-		}
-		if (dataTableSearchHolder.getFilterValues().containsKey(bookEnum.authors)) {
+				&& (dataTableSearchHolder.getSortColumn().equals(bookEnum.authors))
+				|| (dataTableSearchHolder.getFilterValues().containsKey(bookEnum.authors)) ) {
 			sbForDataTable.append(LEFT_JOIN).append(B + '.').append(bookEnum.authors).append(A);
 		}
 	}
@@ -183,8 +182,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			default:
-				sbForDataTable.append(B + '.')
-						.append(dataTableSearchHolder.getSortColumn());
+				sbForDataTable.append(B + '.').append(dataTableSearchHolder.getSortColumn());
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 			}
 		}
@@ -200,8 +198,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	private void appendQueryPartWhere(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
 		Map<String, String> map = dataTableSearchHolder.getFilterValues();
-		if (dataTableSearchHolder.getFilterValues().size() > 1 || !dataTableSearchHolder.getFilterValues().containsKey(bookEnum.rating)) {
-		sbForDataTable.append(WHERE);
+		if (dataTableSearchHolder.getFilterValues().size() > 1
+				|| !dataTableSearchHolder.getFilterValues().containsKey(bookEnum.rating)) {
+			sbForDataTable.append(WHERE);
 		}
 		int count = 0;
 		boolean isRating = false;
@@ -222,8 +221,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 				break;
 
 			default:
-				sbForDataTable.append(B + '.').append(pair.getKey())
-						.append(LIKE + "'").append(pair.getValue()).append("%' ");
+				sbForDataTable.append(B + '.').append(pair.getKey()).append(LIKE + "'").append(pair.getValue())
+						.append("%' ");
 			}
 			++count;
 		}
@@ -233,8 +232,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 
 		if (dataTableSearchHolder.getFilterValues().containsKey(bookEnum.rating)) {
 			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(bookEnum.rating));
-			sbForDataTable.append(HAVING).append(FLOOR).append("(AVG(r.rating)) = ").append(value)
-					.append(" ");
+			sbForDataTable.append(HAVING).append(FLOOR).append("(AVG(r.rating)) = ").append(value).append(" ");
 		}
 	}
 
@@ -243,15 +241,15 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		long start = System.currentTimeMillis();
 
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.')
-				.append(bookEnum.rating + ") ").append(AS).append(RAT);
+		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.').append(bookEnum.rating + ") ")
+				.append(AS).append(RAT);
 
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
 		}
-		
+
 		sbForDataTable.append(GROUP_BY).append(B);
 		appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);
 
@@ -284,16 +282,30 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	@Override
 	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
+
+		boolean containsRating = false;
+
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(COUNT + '(').append(DISTINCT).append(B + '.').append("isbn) ");
+		sbForDataTable.append(SELECT).append(COUNT + '(').append(DISTINCT).append(B + ')');
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
 		}
-		log.info("Query for getting count Books for dataTable created {}", sbForDataTable.toString());
+		containsRating = dataTableSearchHolder.getFilterValues().containsKey(bookEnum.rating);
+		if (containsRating) {
+			sbForDataTable.append(GROUP_BY).append(B);
+			appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);
+		}
 
+		log.info("Query for getting count Books for dataTable created {}", sbForDataTable.toString());
 		Query query = entityManager.createQuery(sbForDataTable.toString());
-		long count = (long) query.getSingleResult();
+		long count;
+		if (containsRating) {
+			List<Long> findedValues = query.getResultList();
+			count = findedValues.size();
+		} else {
+			count = (long) query.getSingleResult();
+		}
 		long end = System.currentTimeMillis();
 		log.info("Method done, that took {} milliseconds. Has been found {} books.", (end - start), count);
 		return (int) count;

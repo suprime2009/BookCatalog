@@ -45,22 +45,11 @@
         <h:outputText styleClass="page" value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
     </ui:repeat>
         <br />
-    
-    <h:panelGrid columns="2">
-    <h:outputLabel value="Page size:" />
-    <h:selectOneRadio value="#{bean.rowsPerPage}" size="3">
-		<f:selectItem itemValue='20' itemLabel='20' />
-		<f:selectItem itemValue='50' itemLabel='50' />
-		<f:selectItem itemValue='100' itemLabel='100' />				
-		<f:ajax event="change" listener="#{bean.pageFirst()}" execute="@form" render="@form"></f:ajax>
-	</h:selectOneRadio>
-	
-	<h:outputLabel value="Books on page:" />
-	<h:outputText value="#{bean.books.size()}" />
-	
-	<h:outputLabel value="Total count books:" />
-	<h:outputText value="#{bean.totalRows}" />
-    </h:panelGrid>      
+
+<ui:include src="pageSize.xhtml" >
+
+</ui:include>    
+   
   	  	
 </rich:panel>  
 </ui:composition>

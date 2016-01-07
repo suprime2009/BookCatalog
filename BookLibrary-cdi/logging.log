@@ -1801,3 +1801,161 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 16:20:56 06.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
 16:20:56 06.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
 16:20:56 06.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+21:40:02 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:02 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:02 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:02 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:40:02 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:40:02 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:40:02 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:40:02 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:40:02 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:40:02 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:40:02 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:40:02 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:40:02 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:40:39 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:39 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:39 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:40:40 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:40:40 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:40:40 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:40:40 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:40:40 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:40:40 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:40:40 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:40:40 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:40:40 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:40:40 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:40:40 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:40:40 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:40:40 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:40:41 06.01.2016 ERROR ErrorCounter  reportError:78 - line 1:186: unexpected token: t
+21:40:41 06.01.2016 ERROR ErrorCounter  reportError:73 - line 1:186: unexpected token: t
+line 1:186: unexpected token: t
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.queryRule(HqlBaseParser.java:772)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectStatement(HqlBaseParser.java:323)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:186)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:295)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:203)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:158)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:126)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:88)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:167)
+	at org.hibernate.internal.AbstractSessionImpl.getHQLQueryPlan(AbstractSessionImpl.java:301)
+	at org.hibernate.internal.AbstractSessionImpl.createQuery(AbstractSessionImpl.java:236)
+	at org.hibernate.internal.SessionImpl.createQuery(SessionImpl.java:1800)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.createQuery(AbstractEntityManagerImpl.java:328)
+	at test.Main.main(Main.java:18)
+21:41:08 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:08 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:08 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:08 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:41:08 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:41:08 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:41:08 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:41:09 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:41:09 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:41:09 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:41:09 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:41:09 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:41:09 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:41:09 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:41:09 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:41:09 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:41:58 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:58 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:58 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:41:58 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:41:58 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:41:58 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:41:58 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:41:58 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:41:58 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:41:58 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:41:58 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:41:58 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:41:58 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:41:58 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:41:58 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:41:59 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:42:49 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:42:49 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:42:49 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:42:49 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:42:49 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:42:49 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:42:49 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:42:50 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:42:50 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:42:50 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:42:50 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:42:50 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:42:50 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:42:50 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:42:50 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:42:50 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:46:35 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:46:35 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:46:35 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:46:35 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:46:35 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:46:35 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:46:35 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:46:36 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:46:36 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:46:36 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:46:36 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:46:36 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:46:36 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:46:36 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:46:36 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:46:36 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:47:23 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:47:23 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:47:23 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:47:23 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:47:23 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:47:23 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:47:23 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:47:24 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:47:24 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:47:24 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:47:24 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:47:24 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:47:24 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:47:24 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:47:24 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:47:24 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+21:49:38 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:49:38 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:49:38 06.01.2016 WARN  HibernatePersistence  logDeprecation:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+21:49:39 06.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: maintest
+	...]
+21:49:39 06.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+21:49:39 06.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+21:49:39 06.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+21:49:39 06.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+21:49:39 06.01.2016 WARN  DriverManagerConnectionProviderImpl  configure:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+21:49:39 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:166 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/bookcatalog]
+21:49:39 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:175 - HHH000046: Connection properties: {user=root, password=****}
+21:49:39 06.01.2016 INFO  DriverManagerConnectionProviderImpl  buildCreator:180 - HHH000006: Autocommit mode: false
+21:49:39 06.01.2016 INFO  DriverManagerConnectionProviderImpl  configure:102 - HHH000115: Hibernate connection pool size: 20 (min=1)
+21:49:39 06.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+21:49:39 06.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+21:49:39 06.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory

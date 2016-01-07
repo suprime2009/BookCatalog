@@ -243,6 +243,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		StringBuilder sbForDataTable = new StringBuilder();
 		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.').append(bookEnum.rating + ") ")
 				.append(AS).append(RAT);
+		sbForDataTable.append(String.format("%s(%s."));
+		String select = String.format( %s.%s ", args)
 
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 

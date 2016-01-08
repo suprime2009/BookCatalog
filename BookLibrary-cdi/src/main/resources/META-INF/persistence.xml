@@ -19,6 +19,7 @@
 
 	</persistence-unit>
 	
+
 	<!--   <persistence-unit name="maintest" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.softserveinc.model.persist.entity.Author</class>
@@ -33,6 +34,9 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
         </properties>
+<<<<<<< HEAD
     </persistence-unit>  -->   
+
+
 	
 </persistence>

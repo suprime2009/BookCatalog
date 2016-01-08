@@ -27,7 +27,7 @@
     
    
    
-<h:form id="formManageBooks" prependId="false">
+<h:form id="form" prependId="false">
 
 		<ui:param name="bean" value="#{manageBookBean}" />
 
@@ -37,7 +37,7 @@
 		
 		<f:facet name="header">
 		
-			<ui:include src="dataTableHeader.xhtml" >
+			<ui:include src="toolbar.xhtml" >
 				<ui:param name="Name" value="MANAGE BOOK TABLE" />
 				<ui:param name="bean" value="#{manageBookBean}" />
 			</ui:include>
@@ -56,26 +56,37 @@
 	</rich:column>
 			
 <!-- bookName Column -->		
- 	<ui:include src="template/columnWithLink.xhtml" >
- 	<ui:param name="bean" value="#{manageBookBean}" />
- 	<ui:param name="id" value="bookNameColumn" />
- 	<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
- 	<ui:param name="property" value="#{bookWrapper.book.bookName}" />
- 	<ui:param name="outcomePage" value="bookDetails" />
- 	<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
- 	</ui:include>
+
+ 	<rich:column id="bookName" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" sortType="custom">
+		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
+ 	
+        <f:facet name="header">
+            <h:outputLabel value="#{columnName.UIView}" />
+            <h:commandLink >
+                #{manageBookBean.sortOrders[columnName]}
+                <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
+            </h:commandLink>
+             <br />
+            <h:inputText  value="#{manageBookBean.filterValues[columnName]}" >
+            <f:ajax event="change" ></f:ajax>
+            </h:inputText>
+        </f:facet>
+		<h:link value="#{bookWrapper.book.bookName}" outcome="bookDetails">
+			<f:param name="id" value="#{bookWrapper.book.idBook}"></f:param>
+		</h:link>
+	</rich:column>
 	
 <!-- Publisher column -->    
    <ui:include src="template/regularColumn.xhtml">
 		<ui:param name="bean" value="#{manageBookBean}" />
-		<ui:param name="id" value="publisherColumn" />
+		<ui:param name="id" value="publisher" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('publisher')}" />
 		<ui:param name="property" value="#{bookWrapper.book.publisher}" />
    </ui:include>
    
  <!-- ISBN Column --> 
  	<ui:include src="template/regularColumn.xhtml">
- 	<ui:param name="id" value="isbnColumn" />
+ 	<ui:param name="id" value="isbn" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('isbn')}" />
 		<ui:param name="property" value="#{bookWrapper.book.isbn}" />
@@ -83,7 +94,7 @@
 
 <!-- yearPublished column -->
    <ui:include src="template/regularColumn.xhtml">
-   <ui:param name="id" value="yearPublishedColumn" />
+   <ui:param name="id" value="yearPublished" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('yearPublished')}" />
 		<ui:param name="property" value="#{bookWrapper.book.yearPublished}" />
@@ -91,18 +102,18 @@
    
  <!-- Rating Column -->
  	<ui:include src="template/regularColumn.xhtml">
- 	<ui:param name="id" value="ratingColumn" />
+ 	<ui:param name="id" value="rating" />
 		<ui:param name="bean" value="#{manageBookBean}" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('rating')}" />
 	<ui:param name="property" value="#{bookWrapper.book.rating}" />
    </ui:include>
    		
  <!-- Author Column -->
-	<rich:column id="authorsColumn" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
+	<rich:column id="authors" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
                  filterExpression="#{property}" filterType="custom" sortType="custom">
-	<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('authors')}" />
+		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('authors')}" />
         <f:facet name="header">
-        	<h:outputText value="#{columnName.UIView}" />
+   <h:outputLabel value="#{columnName.UIView}" />
             <h:commandLink >
                 #{manageBookBean.sortOrders[columnName]}
                 <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
@@ -122,6 +133,7 @@
         	<f:param name="id" value="#{author.idauthor}"></f:param>
 		</h:link>
     	</rich:list>
+      
     </rich:column>
     
     <!-- DEL / EDIT -->
@@ -141,7 +153,7 @@
     
     <!-- SCROLLER -->
     <f:facet name="footer">
- 	<ui:include src="dataTableFooter.xhtml">
+ 	<ui:include src="scrollPage.xhtml">
 		<ui:param name="bean" value="#{manageBookBean}" />
 	</ui:include>
     </f:facet>	 

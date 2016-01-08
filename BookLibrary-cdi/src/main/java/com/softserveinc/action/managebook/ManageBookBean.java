@@ -15,6 +15,7 @@ import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookColumnsEnum;
 import com.softserveinc.model.persist.entity.BookConstantsHolder;
+import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 
@@ -26,10 +27,6 @@ public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Se
 
 	public static BookColumnsEnum bookEnum = BookColumnsEnum.BOOK_BUSINESS_VIEW;
 	
-	public BookConstantsHolder getConstant(String column) {
-		return BookConstantsHolder.getConsant(column);
-	}
-
 	@EJB
 	BookManagerLocal bookManager;
 
@@ -42,6 +39,11 @@ public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Se
 
 	public BookColumnsEnum getBookEnum() {
 		return bookEnum;
+	}
+	
+	@Override
+	public EntityConstant getEntityConstantInstance() {
+		return BookConstantsHolder.INSTANCE;
 	}
 
 	@Override
@@ -109,4 +111,5 @@ public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Se
 		refreshPage();
 
 	}
+
 }

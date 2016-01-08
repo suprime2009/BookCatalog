@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
+import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 public abstract class DataTableHelper<T> extends PaginationHelper implements Serializable{
@@ -95,6 +96,8 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 
 		return datatableSearchHolder;
 	}
+	
+	public abstract EntityConstant getEntityConstantInstance();
 	
 	public abstract List<String> getColumns();
 

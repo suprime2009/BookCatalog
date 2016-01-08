@@ -58,7 +58,7 @@
 <!-- bookName Column -->		
 
  	<rich:column id="bookName" sortBy="#{columnName.businessView}" sortOrder="#{manageBookBean.sortOrders[columnName.businessView]}" sortType="custom">
- 	<ui:param name="columnName" value="#{manageBookBean.getConstant('bookName')}" />
+ 	<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
  	
         <f:facet name="header">
             <h:outputLabel value="#{columnName.businessView}" />

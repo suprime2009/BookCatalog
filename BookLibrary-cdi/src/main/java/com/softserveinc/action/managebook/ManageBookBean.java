@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookColumnsEnum;
+import com.softserveinc.model.persist.entity.BookConstantsHolder;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 
@@ -24,6 +25,10 @@ public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Se
 	private static Logger log = LoggerFactory.getLogger(ManageBookBean.class);
 
 	public static BookColumnsEnum bookEnum = BookColumnsEnum.BOOK_BUSINESS_VIEW;
+	
+	public BookConstantsHolder getConstant(String column) {
+		return BookConstantsHolder.getConsant(column);
+	}
 
 	@EJB
 	BookManagerLocal bookManager;

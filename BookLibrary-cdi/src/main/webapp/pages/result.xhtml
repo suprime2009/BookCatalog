@@ -32,7 +32,7 @@
 		<ui:param name="bean" value="#{manageBookBean}" />
 
  <!--The sortable datatable-->
-		<rich:dataTable  keepSaved="true" id="booksTable1" value="#{manageBookBean.entities}" var="bookWrapper" rows="#{manageBookBean.rowsPerPage}" 
+		<rich:dataTable   id="booksTable1" value="#{manageBookBean.entities}" var="bookWrapper" rows="#{manageBookBean.rowsPerPage}" 
 		rowClasses="odd-row, even-row" style="width:1000" binding="#{table}" styleClass="stable">
 		
 		<f:facet name="header">
@@ -57,17 +57,17 @@
 			
 <!-- bookName Column -->		
 
- 	<rich:column id="bookName" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" sortType="custom">
- 	<ui:param name="columnName" value="#{manageBookBean.bookEnum.bookName}" />
+ 	<rich:column id="bookName" sortBy="#{columnName.businessView}" sortOrder="#{manageBookBean.sortOrders[columnName.businessView]}" sortType="custom">
+ 	<ui:param name="columnName" value="#{manageBookBean.getConstant('bookName')}" />
  	
         <f:facet name="header">
-            <h:outputLabel value="#{manageBookBean.bookEnum.convertToUIView(columnName)}" />
+            <h:outputLabel value="#{columnName.businessView}" />
             <h:commandLink >
-                #{manageBookBean.sortOrders[columnName]}
-                <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
+                #{manageBookBean.sortOrders[columnName.businessView]}
+                <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName.businessView)}" execute="@form" render="@form"></f:ajax>
             </h:commandLink>
              <br />
-            <h:inputText  value="#{manageBookBean.filterValues[columnName]}" >
+            <h:inputText  value="#{manageBookBean.filterValues[columnName.businessView]}" >
             <f:ajax event="change" ></f:ajax>
             </h:inputText>
         </f:facet>
@@ -123,7 +123,12 @@
              <f:ajax event="change"></f:ajax>
             </h:inputText>
         </f:facet>
-          <rich:list value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" type="#{listBean.listType}">
+        <h:dataTable  value="#{bookWrapper.book.bookAuthors}" var="author">
+         <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
+        	<f:param name="id" value="#{author.idauthor}"></f:param>
+		</h:link>
+        </h:dataTable>
+          <rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
         <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
         	<f:param name="id" value="#{author.idauthor}"></f:param>
 		</h:link>

@@ -143,18 +143,18 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		}
 
 		if (!dataTableSearchHolder.getSortColumn().equals(bookEnum.createdDate)) {
-			sbForDataTable.append(", ");
+			sbForDataTable.append(COMMA);
 		}
 	}
 
 	private void appendQueryPartFrom(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
-		sbForDataTable.append(FROM).append(Review.class.getName()).append(R + ' ').append(RIGHT_JOIN).append(R + '.')
-				.append("book ").append(B + ' ');
+		sbForDataTable.append(String.format("%s %s %s", FROM, Review.class.getName(), R));
+		sbForDataTable.append(String.format("%s %s.%s %s", RIGHT_JOIN, R, "book", B));
 		if ((dataTableSearchHolder.getSortColumn() != null)
 				&& (dataTableSearchHolder.getSortColumn().equals(bookEnum.authors))
 				|| (dataTableSearchHolder.getFilterValues().containsKey(bookEnum.authors)) ) {
-			sbForDataTable.append(LEFT_JOIN).append(B + '.').append(bookEnum.authors).append(A);
+			sbForDataTable.append(String.format("%s %s.%s %s", LEFT_JOIN, B, bookEnum.authors, A));
 		}
 	}
 
@@ -168,7 +168,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		sbForDataTable.append(ORDER_BY);
 
 		if (dataTableSearchHolder.getSortColumn() == null) {
-			sbForDataTable.append(RAT).append(DESC).append(", ");
+			sbForDataTable.append(String.format("%s %s, ", RAT, DESC));
 		} else {
 			switch (dataTableSearchHolder.getSortColumn()) {
 			case "rating":
@@ -176,17 +176,17 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			case "authors":
-				sbForDataTable.append(A + '.').append(authorWrapper.secondName);
+				sbForDataTable.append(String.format("%s.%s ", A, authorWrapper.secondName));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-				sbForDataTable.append(A + '.').append(authorWrapper.firstName + ' ');
+				sbForDataTable.append(String.format("%s.%s ", A, authorWrapper.firstName));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			default:
-				sbForDataTable.append(B + '.').append(dataTableSearchHolder.getSortColumn());
+				sbForDataTable.append(String.format("%s.%s ", B, dataTableSearchHolder.getSortColumn()));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 			}
 		}
-		sbForDataTable.append(B + '.').append(bookEnum.createdDate + ' ').append(DESC + ' ');
+		sbForDataTable.append(String.format("%s.%s %s ", B, bookEnum.createdDate, DESC));
 
 	}
 
@@ -211,18 +211,16 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 			isRating = false;
 			switch (pair.getKey()) {
 			case "authors":
-				sbForDataTable.append(" (" + A + '.').append(authorWrapper.secondName + ' ').append(LIKE + "'")
-						.append(pair.getValue()).append("%' ").append(OR).append(A + '.')
-						.append(authorWrapper.firstName + ' ').append(LIKE + "'").append(pair.getValue())
-						.append("%') ");
+				sbForDataTable.append(String.format("(%s.%s %s '%s%%' ", A, authorWrapper.secondName, LIKE, pair.getValue()));
+				sbForDataTable.append(OR);
+				sbForDataTable.append(String.format(" %s.%s %s '%s%%') ", A, authorWrapper.getFirstName(), LIKE, pair.getValue()));
 				break;
 			case "rating":
 				isRating = true;
 				break;
 
 			default:
-				sbForDataTable.append(B + '.').append(pair.getKey()).append(LIKE + "'").append(pair.getValue())
-						.append("%' ");
+				sbForDataTable.append(String.format("%s.%s %s '%s%%' ", B, pair.getKey(), LIKE, pair.getValue()));
 			}
 			++count;
 		}
@@ -232,7 +230,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 
 		if (dataTableSearchHolder.getFilterValues().containsKey(bookEnum.rating)) {
 			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(bookEnum.rating));
-			sbForDataTable.append(HAVING).append(FLOOR).append("(AVG(r.rating)) = ").append(value).append(" ");
+			sbForDataTable.append(String.format("%s %s(%s(%s.%s)) = %s ", HAVING, FLOOR, AVG, R, bookEnum.rating, value));
 		}
 	}
 
@@ -241,8 +239,8 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		long start = System.currentTimeMillis();
 
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(B + ", ").append(AVG).append("(" + R + '.').append(bookEnum.rating + ") ")
-				.append(AS).append(RAT);
+		sbForDataTable.append(SELECT).append(B).append(COMMA);
+		sbForDataTable.append(String.format("%s(%s.%s) %s %s", AVG, R, bookEnum.rating, AS, RAT));
 
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 
@@ -286,7 +284,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		boolean containsRating = false;
 
 		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(COUNT + '(').append(DISTINCT).append(B + ')');
+		sbForDataTable.append(String.format("%s %s(%s %s)", SELECT, COUNT, DISTINCT, B));
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);

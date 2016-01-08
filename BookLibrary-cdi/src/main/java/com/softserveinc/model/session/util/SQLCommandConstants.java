@@ -29,5 +29,8 @@ public interface SQLCommandConstants {
 	public static final String A =" a";
 	public static final String R =" r";
 	public static final String RAT =" rat ";
+	public static final String COMMA = ", ";
+	
+	
 
 }

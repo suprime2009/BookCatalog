@@ -12,6 +12,16 @@ INSTANCE,
 	public String businessView;
 	public String UIView;
 	
+	
+	
+	public String getBusinessView() {
+		return businessView;
+	}
+
+	public String getUIView() {
+		return UIView;
+	}
+
 	public static List<BookConstantsHolder> getListConstants() {
 		List<BookConstantsHolder> list = new ArrayList<BookConstantsHolder>();
 		list.add(ID);
@@ -24,6 +34,37 @@ INSTANCE,
 		list.add(RATING);
 		
 		return list;
+	}
+	
+	public static BookConstantsHolder getConsant(String constant) {
+		switch (constant) {
+		case "idBook":
+			return ID;
+
+		case "bookName":
+			return BOOK_NAME;
+
+		case "createdDate":
+			return CREATED_DATE;
+
+		case "isbn":
+			return ISBN;
+
+		case "yearPublished":
+			return YEAR_PUBLISHED;
+
+		case "publisher":
+			return PUBLISHER;
+
+		case "authors":
+			return AUTHORS;
+
+		case "rating":
+			return RATING;
+		default:
+			throw new IllegalArgumentException();
+		}
+
 	}
 
 	public String businessView(BookConstantsHolder object) {
@@ -58,6 +99,8 @@ INSTANCE,
 
 	}
 
+
+	
 	public String uiView(BookConstantsHolder object) {
 		switch (object) {
 		case ID:

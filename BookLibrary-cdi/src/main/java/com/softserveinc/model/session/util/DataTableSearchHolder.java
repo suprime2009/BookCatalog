@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.richfaces.component.SortOrder;
 
+import com.softserveinc.model.persist.entity.EntityConstant;
+
 /**
  * Class DataTableHelper used for group dataTable requirements like firstRow, rowsPerPage, sortColumn,
  * sortOrder, filterValues in one case. 
@@ -13,9 +15,9 @@ public class DataTableSearchHolder {
 	
 	private int firstRow;
 	private int rowsPerPage;
-	private String sortColumn;
+	private EntityConstant sortColumn;
 	private SortOrder sortOrder;
-	private Map<String, String> filterValues;
+	private Map<EntityConstant, String> filterValues;
 	
 	public DataTableSearchHolder(){}
 	
@@ -25,7 +27,7 @@ public class DataTableSearchHolder {
 		this.rowsPerPage = rowsPerPage;
 	}
 	
-	public DataTableSearchHolder(int firstRow, int rowsPerPage, String sortColumn, SortOrder sortOrder) {
+	public DataTableSearchHolder(int firstRow, int rowsPerPage, EntityConstant sortColumn, SortOrder sortOrder) {
 		super();
 		this.firstRow = firstRow;
 		this.rowsPerPage = rowsPerPage;
@@ -49,11 +51,11 @@ public class DataTableSearchHolder {
 		this.rowsPerPage = rowsPerPage;
 	}
 
-	public String getSortColumn() {
+	public EntityConstant getSortColumn() {
 		return sortColumn;
 	}
 
-	public void setSortColumn(String sortColumn) {
+	public void setSortColumn(EntityConstant sortColumn) {
 		this.sortColumn = sortColumn;
 	}
 
@@ -65,11 +67,11 @@ public class DataTableSearchHolder {
 		this.sortOrder = sortOrder;
 	}
 
-	public Map<String, String> getFilterValues() {
+	public Map<EntityConstant, String> getFilterValues() {
 		return filterValues;
 	}
 
-	public void setFilterValues(Map<String, String> filterValues) {
+	public void setFilterValues(Map<EntityConstant, String> filterValues) {
 		this.filterValues = filterValues;
 	}
 	

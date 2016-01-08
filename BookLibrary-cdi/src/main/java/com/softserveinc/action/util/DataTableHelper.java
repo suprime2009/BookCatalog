@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
+import com.softserveinc.action.managebook.UIWrapper;
 import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
@@ -23,15 +24,15 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	private static Logger log = LoggerFactory.getLogger(DataTableHelper.class);
 
 	private List<T> entities;
-	private Map<String, SortOrder> sortOrders = Maps.newHashMapWithExpectedSize(1);
-	private Map<String, String> filterValues = Maps.newHashMap();
-	private String sortProperty;
+	private Map<EntityConstant, SortOrder> sortOrders = Maps.newHashMap();
+	private Map<EntityConstant, String> filterValues = Maps.newHashMap();
+	private EntityConstant sortProperty;
 	private boolean selectAll;
 	private String idEntityToDelete;
 
 	protected DataTableHelper() {
-		for (String s : getColumns()) {
-			sortOrders.put(s, SortOrder.unsorted);
+		for (EntityConstant constant : getEntityConstantInstance().getListConstants()) {
+			sortOrders.put(constant, SortOrder.unsorted);
 		}
 	}
 	
@@ -46,8 +47,8 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	private void deleteEmptyFilterValues() {
-		for (Iterator<Map.Entry<String, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
-			Map.Entry<String, String> entry = it.next();
+		for (Iterator<Map.Entry<EntityConstant, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
+			Map.Entry<EntityConstant, String> entry = it.next();
 			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
 				it.remove();
 			}
@@ -62,10 +63,10 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		entities.clear();
 	}
 
-	public void toggleSort(String column) {
+	public void toggleSort(EntityConstant constant) {
 		log.error("toggleSort");
-		sortProperty = column;
-		for (Entry<String, SortOrder> entry : sortOrders.entrySet()) {
+		sortProperty = constant;
+		for (Entry<EntityConstant, SortOrder> entry : sortOrders.entrySet()) {
 			SortOrder newOrder;
 
 			if (entry.getKey().equals(sortProperty)) {
@@ -98,10 +99,20 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 	
 	public abstract EntityConstant getEntityConstantInstance();
-	
-	public abstract List<String> getColumns();
 
-	public abstract void selectAllAction();
+	public void selectAllAction() {
+		System.out.println("select all action");
+		
+		for (T b :  getEntities()) {
+			UIWrapper wrapp = (UIWrapper) b;
+			if (getSelectAll()) {
+				wrapp.setSelected(true);
+			} else {
+				wrapp.setSelected(false);
+			}
+
+		}
+	};
 
 	public abstract void deleteEntity();
 
@@ -124,7 +135,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		this.selectAll = selectAll;
 	}
 
-	public String getSortProperty() {
+	public EntityConstant getSortProperty() {
 		log.error("getSortProperty");
 		return sortProperty;
 	}
@@ -138,16 +149,16 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		this.idEntityToDelete = idEntityToDelete;
 	}
 
-	public void setSortProperty(String sortPropety) {
+	public void setSortProperty(EntityConstant sortPropety) {
 		this.sortProperty = sortPropety;
 	}
 
-	public Map<String, SortOrder> getSortOrders() {
+	public Map<EntityConstant, SortOrder> getSortOrders() {
 		log.error("getSortOrders");
 		return sortOrders;
 	}
 
-	public Map<String, String> getFilterValues() {
+	public Map<EntityConstant, String> getFilterValues() {
 		log.info("Current values for filtering = {}", filterValues.size());
 		return filterValues;
 	}

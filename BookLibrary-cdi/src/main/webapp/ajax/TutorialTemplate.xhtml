@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <h1>
+        <h:outputText value="JavaBeat JSF 2.2 Examples" />
+    </h1>
+    <h2>
+        <h:outputText value="JSF2 Template Example" />
+    </h2>
+<h:panelGrid columns="3" border="1">
+    <h:panelGroup columns="1">
+        <ui:insert name="left" />
+    </h:panelGroup>
+    <h:panelGroup columns="1">
+        <ui:insert name="center" />
+    </h:panelGroup>
+    <h:panelGroup columns="1">
+        <ui:insert name="right" />
+    </h:panelGroup>
+</h:panelGrid>
+</html>

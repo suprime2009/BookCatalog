@@ -11,10 +11,10 @@ public enum BookConstantsHolder implements EntityConstant {
 			"isbn", "ISBN Number"), YEAR_PUBLISHED("yearPublished", "Year of published"), PUBLISHER("publisher",
 					"Publisher"), AUTHORS("authors", "Authors"), RATING("rating", "Average rating");
 	
-	public String BUSINESS_VIEW;
-	public String UI_VIEW;
+	private String BUSINESS_VIEW;
+	private String UI_VIEW;
 	
-	public static BookConstantsHolder getInstance() {
+	public static EntityConstant getInstance() {
 		return INSTANCE;
 	}
 	

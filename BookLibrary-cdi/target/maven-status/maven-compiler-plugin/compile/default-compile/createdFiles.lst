@@ -10,6 +10,7 @@ com\softserveinc\model\session\util\BookDataModel.class
 com\softserveinc\model\persist\service\AuthorService.class
 com\softserveinc\model\session\managerImpl\AuthorManager.class
 com\softserveinc\model\persist\backing\HomeManagedBean.class
+com\softserveinc\action\managebook\UIWrapper.class
 com\softserveinc\model\persist\facade\ReviewFacade.class
 com\softserveinc\action\managebook\CreateBookAction.class
 com\softserveinc\model\session\util\SQLCommandConstants.class
@@ -17,6 +18,7 @@ com\softserveinc\model\persist\facade\BookFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHome.class
 com\softserveinc\model\persist\facade\IAuthorFacade.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
+com\softserveinc\model\persist\entity\AuthorConstantsHolder.class
 com\softserveinc\model\persist\backing\HelloWorldBean.class
 com\softserveinc\action\util\DataTableHelper.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class
@@ -44,14 +46,13 @@ com\softserveinc\model\persist\home\ReviewHome.class
 com\softserveinc\model\session\util\DataTableSearchHolder.class
 test\BooksBean.class
 com\softserveinc\action\managebook\NavigationController.class
-com\softserveinc\model\persist\entity\BookColumnsEnum.class
 com\softserveinc\model\persist\facade\AuthorFacade.class
 com\softserveinc\model\persist\entity\Review.class
 com\softserveinc\action\managebook\BookDetail.class
-com\softserveinc\model\persist\entity\AuthorWrapper.class
 com\softserveinc\model\session\util\ConstantsUtil.class
 com\softserveinc\model\persist\home\AuthorHomeRemote.class
 com\softserveinc\action\managebook\ManageBookBean.class
+com\softserveinc\model\persist\facade\BookFacade$1.class
 com\softserveinc\model\persist\service\AuthorServiceImpl.class
 com\softserveinc\model\persist\backing\UserBean.class
 com\softserveinc\model\persist\facade\ReviewFacadeLocal.class

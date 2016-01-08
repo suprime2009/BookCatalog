@@ -2,7 +2,6 @@ package com.softserveinc.model.persist.facade;
 
 import java.util.List;
 
-import com.softserveinc.action.managebook.BookUIWrapper;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.session.util.DataTableSearchHolder;

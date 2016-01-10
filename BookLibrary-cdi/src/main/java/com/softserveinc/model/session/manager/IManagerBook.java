@@ -27,6 +27,8 @@ public interface IManagerBook {
 	
 	Book createBook(Book book);
 	
+	void updateBook(Book book);
+	
 	
 
 	

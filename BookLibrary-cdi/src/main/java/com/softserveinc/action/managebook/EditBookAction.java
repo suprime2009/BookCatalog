@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
@@ -19,9 +20,10 @@ import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
+import com.softserveinc.model.session.manager.BookManagerLocal;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class EditBookAction {
 	
 	private String idBook;
@@ -38,10 +40,12 @@ public class EditBookAction {
 	private BookFacadeLocal bookFacade;
 	
 	@EJB
+	private BookManagerLocal bookManager;
+	
+	@EJB
 	AuthorFacadeLocal authorFacade;
 	
 	public EditBookAction(){
-		authors = new HashSet<Author>();
 	}
 	
 	public List<String> autocompleteSecondName(String prefix) {
@@ -111,6 +115,16 @@ public class EditBookAction {
 	
 	public void loadBook() {
 		book = bookFacade.findById(idBook);
+		if (book.getAuthors() != null) {
+			authors = book.getAuthors();
+		} else {
+			authors = new HashSet<Author>();
+		}
+	}
+	
+	public void submit() {
+		bookManager.updateBook(book);
+		System.out.println("sumbit");
 	}
 
 	public Book getBook() {

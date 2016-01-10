@@ -15,11 +15,12 @@
     <f:viewParam name="id" value="#{editBookAction.idBook}"/>
     <f:viewAction action="#{editBookAction.loadBook}"/>
 </f:metadata>
-<f:facet name="header">
-<h:outputLabel value="Create new book" />
-</f:facet>
+
 <h:form id="editBookForm" >
 <h:panelGrid columns="3" >
+<f:facet name="header">
+<h:outputLabel value="Edit book" />
+</f:facet>
     
     	<h:outputLabel value="Name:" />
    		<h:inputText label="Name" value="#{editBookAction.book.bookName}" id="name" required="true" requiredMessage="Book name is required" >
@@ -42,7 +43,20 @@
    			<h:inputText required="true" label="ISBN" id="isbn" value="#{editBookAction.book.isbn}" validator="#{createBookAction.validateISBN}">
     	</h:inputText>
     	<rich:message for="isbn" ajaxRendered="true" />
+    	
+    	<h:outputLabel value="Authors:" />
+    <rich:list  id="listAuthors" value="#{editBookAction.authors}" var="author">
+    	<h:panelGrid columns="3">
+   			<h:outputText value="#{author.firstName}" />
+     		<h:outputText value="#{author.secondName}" />
+     		<h:commandButton action="#{editBookAction}" value="Remove" />
+    	</h:panelGrid>
+   	</rich:list>
+       
     </h:panelGrid>
+   
+    
+    
     
 <rich:collapsiblePanel id="panel" header="Add Authors" switchType="ajax" >
 <h:panelGrid columns="2">
@@ -58,14 +72,26 @@
             autocompleteMethod="#{editBookAction.autocompleteSecondName}" ></rich:autocomplete>
       
       <h:outputLabel value="First name" />
-      <rich:autocomplete mode="cachedAjax" tokens=", " minChars="1" value="#{editBookAction.firstName}" autofill="false"
-            autocompleteMethod="#{editBookAction.autocompleteFirstName}" ></rich:autocomplete>
+      <rich:autocomplete  mode="cachedAjax" tokens=", " minChars="1" value="#{editBookAction.firstName}" autofill="false"
+            autocompleteMethod="#{editBookAction.autocompleteFirstName}" >
+
+            </rich:autocomplete>
            
     
 </h:panelGrid>
    <h:messages id="messages"/>
 </rich:collapsiblePanel>
 
+<a4j:commandButton id="editBook" value="Edit" action="#{editBookAction.submit()}" 
+	oncomplete="if (#{createBookAction.createDone} == true) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}"/>
+	
+    <h:commandButton type="reset"  value="Clear" >
+        <f:ajax  execute="@this" listener="#{editBookAction.loadBook()}" render="editBookForm" ></f:ajax>
+    </h:commandButton>
+    
+    <h:commandButton type="button" value="Cancel" >
+        <f:ajax  event="click" onevent="#{rich:component('createBook')}.hide()"></f:ajax>
+    </h:commandButton>
 
 
     

@@ -5,14 +5,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <title>Create Book</title>
     </h:head>
 <h:body>
+<rich:popupPanel id="createBook"  autosized="true" style="width:600px; height:300px">
+<f:facet name="header">
+<h:outputLabel value="Create new book" />
+</f:facet>
 <h:form id="createBookForm" >
 
- 
     <h:panelGrid columns="3" >
     
     	<h:outputLabel value="Name:" />
@@ -36,52 +40,33 @@
    			<h:inputText required="true" label="ISBN" id="isbn" value="#{createBookAction.isbn}" validator="#{createBookAction.validateISBN}">
     	</h:inputText>
     	<rich:message for="isbn" ajaxRendered="true" />
-    	
-    	<h:outputLabel value="Authors:" />
-    <rich:list  id="listAuthors" value="#{createBookAction.authors}" var="author">
-    	<h:panelGrid columns="2">
-   			<h:outputText value="#{author.firstName}" />
-     		<h:outputText value="#{author.secondName}" />
-    	</h:panelGrid>
-   	</rich:list>
-       
     </h:panelGrid>
     
+
+	<a4j:commandButton id="addBook" value="Add" action="#{createBookAction.submit()}" 
+	oncomplete="if (#{createBookAction.createDone} == true) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}"/>
     
-    
-<rich:collapsiblePanel id="panel" header="Add Authors" switchType="ajax" >
-<h:panelGrid columns="2">
-    <h:outputLabel value="Author:" />
-     <h:commandButton  actionListener="#{createBookAction.checkIfAuthorExist}"  value="add Author" >
-    <f:ajax execute="panel" render="listAuthors"></f:ajax>
-     <f:ajax render="messages"/>
-     </h:commandButton>
-
-
-	 <h:outputLabel value="Second name" />
-	 <rich:autocomplete mode="cachedAjax" tokens=", " minChars="2" value="#{createBookAction.secondName}" autofill="false"
-            autocompleteMethod="#{createBookAction.autocompleteSecondName}" ></rich:autocomplete>
-      
-      <h:outputLabel value="First name" />
-      <rich:autocomplete mode="cachedAjax" tokens=", " minChars="1" value="#{createBookAction.firstName}" autofill="false"
-            autocompleteMethod="#{createBookAction.autocompleteFirstName}" ></rich:autocomplete>
-           
-    
-</h:panelGrid>
-   <h:messages id="messages"/>
-</rich:collapsiblePanel>
-
-
-    <h:commandButton   value="Submit"  >
+    <h:commandButton   value="Add/Edit"  >
     <a4j:ajax execute="@form" listener="#{createBookAction.submit()}" oncomplete="form"></a4j:ajax>
     </h:commandButton>
-    <h:commandButton type="reset" action="#{createBookAction.reset}" value="Reset" >
-        <f:ajax  execute="@this" render="createBookForm" ></f:ajax>
+    
+    <h:commandButton type="reset"  value="Clear" >
+        <f:ajax  execute="@this" listener="#{createBookAction.reset}" render="createBookForm" ></f:ajax>
     </h:commandButton>
     
+    <h:commandButton type="button" value="Cancel" >
+        <f:ajax  event="click" onevent="#{rich:component('createBook')}.hide()"></f:ajax>
+    </h:commandButton>
+</h:form>   
+
+</rich:popupPanel>
 
 
-
-</h:form>    
+<rich:popupPanel id="confirmAdd">
+<h:outputText value="Book has been created" />
+ <br/>
+<a4j:commandButton value="OK" 
+	oncomplete="#{createBookAction.reset()}; #{rich:component('confirmAdd')}.hide();"/>
+</rich:popupPanel>
 </h:body>
 </html>

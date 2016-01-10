@@ -14,12 +14,16 @@
                 <f:ajax event="click" listener="#{bean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
             </h:commandLink>
             <br />
+            <ui:insert name="filterType">
             <h:inputText value="#{bean.filterValues[columnName]}" >
  <f:ajax event="change"></f:ajax>
             </h:inputText>
+            </ui:insert>
         </f:facet>
         <h:panelGroup columns="1">
-        <ui:insert name="outputValue" />
+        <ui:insert name="outputValue" >
+           <h:outputText value="#{property}" />
+        </ui:insert>
     </h:panelGroup>
 
     </rich:column>

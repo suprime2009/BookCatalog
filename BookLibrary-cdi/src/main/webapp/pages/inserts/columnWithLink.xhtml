@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/pages/template/columnTemplate.xhtml">
+     <ui:define name="outputValue">
+          <h:link value="#{property}" outcome="#{outcomePage}">
+			<f:param name="id" value="#{propertyId}"></f:param>
+	</h:link>
+        </ui:define>
+    </ui:composition>
+    </html>

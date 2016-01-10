@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich" xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+    <h:head></h:head>
+	<ui:composition>
+  	<rich:column>
+		<f:facet name="header">
+		<h:selectBooleanCheckbox value="#{bean.selectAll}" >
+		<f:ajax  event="change" listener="#{bean.selectAllAction()}" render="@form"></f:ajax>
+		</h:selectBooleanCheckbox>
+		</f:facet>
+			<h:selectBooleanCheckbox  value="#{property}"> 
+			<f:ajax ></f:ajax>
+			</h:selectBooleanCheckbox>
+	</rich:column>
+	</ui:composition>
+    </html>

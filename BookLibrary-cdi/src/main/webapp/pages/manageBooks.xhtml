@@ -8,9 +8,7 @@
 	xmlns:rich="http://richfaces.org/rich">
     <h:head>
         <title>Manage Books</title>
-    </h:head>
-    <h:body>
-    <h:outputStylesheet>
+         <h:outputStylesheet>
         .even-row {
             background-color: #FCFFFE;
         }
@@ -24,77 +22,62 @@
             background-color: #FFEBDA;
         }
     </h:outputStylesheet>
-    
-   
-   
+    </h:head>
+    <h:body>
 <h:form id="formManageBooks" prependId="false">
-
-		<ui:param name="bean" value="#{manageBookBean}" />
+<ui:param name="bean" value="#{manageBookBean}" />
 
  <!--The sortable datatable-->
-		<rich:dataTable   id="booksTable1" value="#{manageBookBean.entities}" var="bookWrapper" rows="#{manageBookBean.rowsPerPage}" 
+	<rich:dataTable   id="manageBookDataTable" value="#{bean.entities}" var="bookWrapper" rows="#{bean.rowsPerPage}" 
 		rowClasses="odd-row, even-row" style="width:1000" binding="#{table}" styleClass="stable">
 		
-		<f:facet name="header">
+	<f:facet name="header">
+		<ui:include src="inserts/manageBookHeader.xhtml" >
+			<ui:param name="Name" value="MANAGE BOOK TABLE" />
+		</ui:include>
+	</f:facet>
 		
-			<ui:include src="dataTableHeader.xhtml" >
-				<ui:param name="Name" value="MANAGE BOOK TABLE" />
-				<ui:param name="bean" value="#{manageBookBean}" />
-			</ui:include>
-		</f:facet>
-		
-<!-- checkBox column -->	
-	<rich:column>
-		<f:facet name="header">
-		<h:selectBooleanCheckbox value="#{manageBookBean.selectAll}" >
-		<f:ajax  event="change" listener="#{manageBookBean.selectAllAction()}" render="@form"></f:ajax>
-		</h:selectBooleanCheckbox>
-		</f:facet>
-			<h:selectBooleanCheckbox  value="#{bookWrapper.selected}"> 
-			<f:ajax ></f:ajax>
-			</h:selectBooleanCheckbox>
-	</rich:column>
+<!-- checkBox column -->
+	<ui:include src="inserts/selectColumn.xhtml" >
+		<ui:param name="property" value="#{bookWrapper.selected}" />
+	</ui:include>	
+
 			
 <!-- bookName Column -->		
- 	<ui:include src="template/columnWithLink.xhtml" >
- 	<ui:param name="bean" value="#{manageBookBean}" />
- 	<ui:param name="id" value="bookNameColumn" />
- 	<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
- 	<ui:param name="property" value="#{bookWrapper.book.bookName}" />
- 	<ui:param name="outcomePage" value="bookDetails" />
- 	<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
+ 	<ui:include src="inserts/columnWithLink.xhtml" >
+ 		<ui:param name="id" value="bookNameColumn" />
+ 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
+ 		<ui:param name="property" value="#{bookWrapper.book.bookName}" />
+ 		<ui:param name="outcomePage" value="bookDetails" />
+ 		<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
  	</ui:include>
-	
+ 	
 <!-- Publisher column -->    
-   <ui:include src="template/regularColumn.xhtml">
-		<ui:param name="bean" value="#{manageBookBean}" />
+   <ui:include src="template/columnTemplate.xhtml">
 		<ui:param name="id" value="publisherColumn" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('publisher')}" />
 		<ui:param name="property" value="#{bookWrapper.book.publisher}" />
    </ui:include>
    
  <!-- ISBN Column --> 
- 	<ui:include src="template/regularColumn.xhtml">
- 	<ui:param name="id" value="isbnColumn" />
-		<ui:param name="bean" value="#{manageBookBean}" />
+ 	<ui:include src="template/columnTemplate.xhtml">
+ 		<ui:param name="id" value="isbnColumn" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('isbn')}" />
 		<ui:param name="property" value="#{bookWrapper.book.isbn}" />
    </ui:include>
 
 <!-- yearPublished column -->
-   <ui:include src="template/regularColumn.xhtml">
-   <ui:param name="id" value="yearPublishedColumn" />
-		<ui:param name="bean" value="#{manageBookBean}" />
+   <ui:include src="template/columnTemplate.xhtml">
+  		<ui:param name="id" value="yearPublishedColumn" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('yearPublished')}" />
 		<ui:param name="property" value="#{bookWrapper.book.yearPublished}" />
    </ui:include>
    
  <!-- Rating Column -->
- 	<ui:include src="template/regularColumn.xhtml">
- 	<ui:param name="id" value="ratingColumn" />
-		<ui:param name="bean" value="#{manageBookBean}" />
+ 	<ui:include src="template/columnTemplate.xhtml">
+ 		<ui:param name="id" value="ratingColumn" />
 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('rating')}" />
-	<ui:param name="property" value="#{bookWrapper.book.rating}" />
+		<ui:param name="property" value="#{bookWrapper.book.rating}" />
    </ui:include>
    		
  <!-- Author Column -->
@@ -112,11 +95,6 @@
              <f:ajax event="change"></f:ajax>
             </h:inputText>
         </f:facet>
-        <h:dataTable  value="#{bookWrapper.book.bookAuthors}" var="author">
-         <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
-        	<f:param name="id" value="#{author.idauthor}"></f:param>
-		</h:link>
-        </h:dataTable>
           <rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
         <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
         	<f:param name="id" value="#{author.idauthor}"></f:param>
@@ -125,47 +103,34 @@
     </rich:column>
     
     <!-- DEL / EDIT -->
-    <rich:column>
-    <f:facet name="header">
-        	<h:outputText value="Edit / delete row" />
-</f:facet>
-<a4j:commandButton value="DEL" styleClass="no-decor" execute="@this" render="@none"
-                    oncomplete="#{rich:component('confirmDelete')}.show()">
-                    <a4j:param value="#{bookWrapper.book.idBook}" assignTo="#{manageBookBean.idEntityToDelete}" />
-                </a4j:commandButton>
-    <h:commandButton value="EDIT" >
-     <f:ajax event="click" listener="#{manageBookBean.deleteEntity()}" render="@form" ></f:ajax>
-     </h:commandButton>
-    </rich:column>
+    <ui:include src="inserts/deleteAndEditColumn.xhtml" >
+    	<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
+    </ui:include>
     
     
     <!-- SCROLLER -->
     <f:facet name="footer">
  	<ui:include src="dataTableFooter.xhtml">
-		<ui:param name="bean" value="#{manageBookBean}" />
 	</ui:include>
     </f:facet>	 
     
 </rich:dataTable>
 
-<rich:popupPanel id="confirmDelete" autosized="true">
-	Are you sure you want to delete the row?
-	<a4j:commandButton value="Cancel" onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
-	<h:commandButton  value="Delete" > 
-	<f:ajax event="click" listener="#{manageBookBean.deleteEntity()}" onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
-	</h:commandButton>
-</rich:popupPanel>
+	<rich:popupPanel id="confirmDelete" autosized="true">
+		Are you sure you want to delete the row?
+	<a4j:commandButton value="Cancel"
+			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
+		<h:commandButton value="Delete">
+			<f:ajax event="click" listener="#{bean.deleteEntity()}"
+				onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
+		</h:commandButton>
+	</rich:popupPanel>
+
 </h:form>
         
-        
-        <rich:popupPanel id="createBook" autosized="true" modal="true" style="width:600px; height:300px;">
- <f:facet name="controls">
-            <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
-                X
-            </h:outputLink>
-        </f:facet>
+  
      <ui:include src="createBook.xhtml" />  
 
-</rich:popupPanel>
+
     </h:body>
 </html>

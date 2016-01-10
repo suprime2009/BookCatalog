@@ -15,6 +15,8 @@ import com.google.common.base.Optional;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
+import com.softserveinc.model.session.util.SQLCommandConstants;
 
 /**
  * ReviewFacade class is an implementation facade operations for Review entity.
@@ -22,7 +24,7 @@ import com.softserveinc.model.persist.entity.Review;
  *
  */
 @Stateless
-public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
+public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLCommandConstants {
 
 	private static Logger log = LoggerFactory.getLogger(ReviewFacade.class);
 
@@ -63,6 +65,34 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
 	@Override
 	public List<Author> findAll() {
 		return reviewFacadeLocal.findAll();
+	}
+
+	@Override
+	public List<Review> findReviewsForBook(DataTableSearchHolder dataTableSearchHolder, Book book) {
+		long start = System.currentTimeMillis();
+
+		StringBuilder sbForDataTable = new StringBuilder();
+		sbForDataTable.append(SELECT).append(R).append(FROM);
+		sbForDataTable.append(Book.class.getName()).append(' ').append(B);
+		sbForDataTable.append(JOIN).append(R).append('.').append("book ");
+		sbForDataTable.append(ORDER_BY).append(B).append('.').append("book ").append(DESC);
+		Query query = entityManager.createQuery(sbForDataTable.toString());
+		query.setFirstResult(dataTableSearchHolder.getFirstRow());
+		query.setMaxResults(dataTableSearchHolder.getRowsPerPage());
+		List<Review> list = query.getResultList();
+		return list;
+	}
+
+	@Override
+	public int findCountReviewForBook(DataTableSearchHolder dataTableSearchHolder, Book book) {
+		StringBuilder sbForDataTable = new StringBuilder();
+		sbForDataTable.append(SELECT).append(COUNT).append("( DISTINCT " + R + ") ").append(FROM);
+		sbForDataTable.append(Book.class.getName()).append(' ').append(B);
+		sbForDataTable.append(JOIN).append(R).append('.').append("book ");
+		Query query = entityManager.createQuery(sbForDataTable.toString());
+		long count;
+		count = (long) query.getSingleResult();
+		return (int) count;
 	}
 
 }

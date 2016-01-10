@@ -123,6 +123,7 @@ public class EditBookAction {
 	}
 	
 	public void submit() {
+		book.setAuthors(authors);
 		bookManager.updateBook(book);
 		System.out.println("sumbit");
 	}

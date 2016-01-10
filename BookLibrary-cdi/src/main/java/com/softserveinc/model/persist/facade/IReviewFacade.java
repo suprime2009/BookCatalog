@@ -5,6 +5,7 @@ import java.util.List;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 /**
  * IReviewFacade an interface that describes all facade methods for Review entity.
@@ -38,5 +39,9 @@ public interface IReviewFacade {
 	 * @return List<Review>.
 	 */
 	List<Author> findAll();
+	
+	List<Review> findReviewsForBook(DataTableSearchHolder dataTableSearchHolder, Book book);
+	
+	int findCountReviewForBook(DataTableSearchHolder dataTableSearchHolder, Book book);
 
 }

@@ -1,6 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
 	
 	<f:metadata>
     <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
@@ -8,17 +13,53 @@
 </f:metadata>
 
 <h:head>
-
+<h:outputStylesheet>
+        .label {
+            font-weight: bold;
+        }
+        .rf-dg, .rf-dg-c{
+            border:none;
+        }
+        .pbody {
+            width: 180px;
+        }
+    </h:outputStylesheet>
+    <title>#{bookDetail.book.bookName}</title>
 </h:head>
-<title>#{bookDetail.book.bookName}</title>
+
 <h:body>
+<h:panelGrid columns="2">
+<h:outputLabel value="Book Name: " />
 <h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
+<h:outputLabel value="Publisher: " />
 <h:outputText value="#{bookDetail.book.publisher}"></h:outputText>
+<h:outputLabel value="ISBN Number: " />
 <h:outputText value="#{bookDetail.book.isbn}"></h:outputText>
+<h:outputLabel value="Year published : " />
 <h:outputText value="#{bookDetail.book.yearPublished}"></h:outputText>
+</h:panelGrid>
 
-
-
+<h:form>
+  <rich:dataGrid value="#{bookDetail.reviews}" var="review" columns="1" elements="9" width="600px" border="0">
+  <rich:panel bodyClass="pbody">
+  <f:facet name="header">
+     <h:outputText value="#{review.createdDate}" />
+  </f:facet>
+   <h:panelGrid columns="2">
+ 						<h:outputText value="Commenter:" styleClass="label" />
+                        <h:outputText value="#{review.commenterName}" />
+                        <h:outputText value="Rating:" styleClass="label" />
+                        <h:outputText value="#{review.rating}" />
+                        <h:outputText value="Comment:" styleClass="label" />
+                        <h:outputText value="#{review.comment}" />
+   </h:panelGrid>
+  </rich:panel>
+  <f:facet name="footer">
+ 	<ui:include src="dataTableFooter.xhtml">
+	</ui:include>
+    </f:facet>	 
+  </rich:dataGrid>
+</h:form>
 </h:body>
 
 </html>

@@ -37,6 +37,7 @@
  </rich:list>  
 
 <rich:collapsiblePanel id="panel" header="Add Authors" switchType="client" style="width:300px;">
+
 <h:panelGrid columns="2">
     <h:outputLabel value="Author:" />
      <h:commandButton  actionListener="#{editBookAction.checkIfAuthorExist}"  value="add Author" >
@@ -53,10 +54,11 @@
       <rich:autocomplete  mode="cachedAjax" tokens=", " minChars="1" value="#{editBookAction.firstName}" autofill="false"
             autocompleteMethod="#{editBookAction.autocompleteFirstName}" >
             </rich:autocomplete>
-     
+
 </h:panelGrid>
    <h:messages id="messages"/>
 </rich:collapsiblePanel>
+
 
 	
 	<h:commandButton value="Edit" action="#{editBookAction.submit()}"> </h:commandButton>
@@ -64,7 +66,7 @@
     <h:commandButton type="reset"  value="Clear" >
         <f:ajax  execute="@this" listener="#{editBookAction.loadBook()}" render="editBookForm" ></f:ajax>
     </h:commandButton>
-    
+  
     <h:button value="Cancel" outcome="#{navigationAction.moveToManageBooks()}"></h:button>
 
 </h:form>

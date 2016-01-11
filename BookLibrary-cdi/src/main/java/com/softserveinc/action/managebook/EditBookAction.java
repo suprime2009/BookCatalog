@@ -28,6 +28,7 @@ import com.softserveinc.model.session.manager.BookManagerLocal;
 @ManagedBean
 @ViewScoped
 public class EditBookAction implements ValidateISBN{
+
 	
 	private String isbnBefore;
 	private String idBook;
@@ -51,11 +52,9 @@ public class EditBookAction implements ValidateISBN{
 	@EJB
 	AuthorFacadeLocal authorFacade;
 	
-	public EditBookAction() {
-		System.out.println(idBook);
-		System.out.println(idBook);
-		System.out.println(idBook);
-		System.out.println(idBook);
+
+	public EditBookAction(){
+
 	}
 	
 	public List<String> autocompleteSecondName(String prefix) {
@@ -153,6 +152,7 @@ public class EditBookAction implements ValidateISBN{
 	
 	public void loadBook() {
 		book = bookFacade.findById(idBook);
+
 		isbnBefore = book.getIsbn();
 		if (book.getAuthors() != null) {
 			authors = book.getAuthors();
@@ -161,6 +161,7 @@ public class EditBookAction implements ValidateISBN{
 		}
 	}
 	
+
 	public String submit() {
 		book.setAuthors(authors);
 		bookManager.updateBook(book);

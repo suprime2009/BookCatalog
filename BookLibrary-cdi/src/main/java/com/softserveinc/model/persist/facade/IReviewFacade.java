@@ -40,8 +40,11 @@ public interface IReviewFacade {
 	 */
 	List<Author> findAll();
 	
+
 	List<Review> findReviewsForBook(Book book, int firstRow, int countRows);
 	
 	int findCountReviewForBook(Book book);
+
+
 
 }

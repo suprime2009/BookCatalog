@@ -15,7 +15,11 @@ import org.ajax4jsf.model.Range;
 import org.ajax4jsf.model.SequenceRange;
 import org.richfaces.model.ArrangeableState;
 
+import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.model.persist.entity.Book;
+
+import com.softserveinc.model.persist.entity.EntityConstant;
+
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
@@ -25,8 +29,6 @@ import com.softserveinc.model.session.util.DataModelHelper;
 @ManagedBean
 @RequestScoped
 public class BookDetail implements Serializable {
-
-
 
 	/**
 	 * 
@@ -39,6 +41,7 @@ public class BookDetail implements Serializable {
 	@EJB
 	public ReviewFacadeLocal reviewFacade;
 	
+
 	@PersistenceContext(unitName = "primary")
 	public EntityManager entityManager;
 
@@ -101,8 +104,10 @@ public class BookDetail implements Serializable {
 		return book;
 	}
 
+
 	public void setBook(Book book) {
 		this.book = book;
 	}
+
 
 }

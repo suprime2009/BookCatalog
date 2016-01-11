@@ -85,6 +85,7 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 	}
 
 	@Override
+
 	public int findCountReviewForBook(Book book) {
 //		StringBuilder sbForDataTable = new StringBuilder();
 //		sbForDataTable.append(SELECT).append(COUNT).append("( DISTINCT " + R + ") ").append(FROM);

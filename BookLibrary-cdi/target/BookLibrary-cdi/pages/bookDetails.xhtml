@@ -41,9 +41,9 @@
 
 <h:form>
 <ui:param name="name" value="commenterName" />
-  <rich:dataTable value="#{bookDetail.dataModel}" var="review" rows="5" width="600px" border="0">
+  <rich:dataTable id="richTable" value="#{bookDetail.dataModel}" var="record" rows="5" width="600px" border="0">
   <rich:column>
-	 <h:outputText value="#{review[name]}" />
+	 <h:outputText value="#{record[name]}" />
 	 </rich:column>
 	 <f:facet name="footer">
   <rich:dataScroller id="scroller" fastStep="3" />

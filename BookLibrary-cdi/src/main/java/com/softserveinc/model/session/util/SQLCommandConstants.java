@@ -1,5 +1,10 @@
 package com.softserveinc.model.session.util;
 
+/**
+ * This interface is presentation of SQL commands is String format.
+ * Interface may use in creation String SQL queries.
+ *
+ */
 public interface SQLCommandConstants {
 	
 	public static final String SELECT ="SELECT ";

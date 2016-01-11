@@ -215,6 +215,12 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		}
 	}
 
+	/**
+	 * Method appends for query filtering attribute HAVING with fields and values
+	 * to filtering. Method does validation DataTableHelper arguments
+	 * @param sbForDataTable
+	 * @param dataTableSearchHolder
+	 */
 	public void appendQueryPartHaving(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
 		if (dataTableSearchHolder.getFilterValues().containsKey(BookConstantsHolder.RATING)) {

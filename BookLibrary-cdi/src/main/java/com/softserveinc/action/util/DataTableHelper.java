@@ -16,6 +16,13 @@ import com.softserveinc.action.managebook.UIWrapper;
 import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
+/**
+ * This abstract class used to work with dataTable.
+ * Class provides sorting and filtering possibilities
+ * for dataTable. 
+ *
+ * @param <T> entity UIWrapper
+ */
 public abstract class DataTableHelper<T> extends PaginationHelper implements Serializable{
 
 
@@ -36,16 +43,26 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		}
 	}
 	
+	/**
+	 * Method sets pagination to first page and loads data.
+	 */
 	public void refreshPage() {
 		selectAll = false;
 		pageFirst();
 
 	}
 	
+	/**
+	 * Method cleans all filtering values.
+	 */
 	public void cleanFilters() {
 		filterValues.clear();
 	}
 
+	/**
+	 * Method deletes from Map empty filter values or filter values,
+	 * which starts with whitespace.
+	 */
 	private void deleteEmptyFilterValues() {
 		for (Iterator<Map.Entry<EntityConstant, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
 			Map.Entry<EntityConstant, String> entry = it.next();
@@ -58,11 +75,19 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	public void searchAction() {
 		refreshPage();
 	}
-		
+	
+	/**
+	 * Method cleans List of entities.
+	 */
 	public void cleanListEntities() {
 		entities.clear();
 	}
 
+	/**
+	 * Method is a toggle for sorting columns.
+	 * If method call for some column, method toggle sort Order.
+	 * @param constant EntityConstant
+	 */
 	public void toggleSort(EntityConstant constant) {
 		log.error("toggleSort");
 		sortProperty = constant;
@@ -84,6 +109,10 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		refreshPage();
 	}
 
+	/**
+	 * Method gathers current requirements for dataTable.
+	 * @return DataTableSearchHolder instance.
+	 */
 	protected DataTableSearchHolder getCurrentRequirementsForDataTable() {
 		
 		deleteEmptyFilterValues();
@@ -98,8 +127,16 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		return datatableSearchHolder;
 	}
 	
+	/**
+	 * Method gets entity constants for current Entity.
+	 * @return EntityConstant
+	 */
 	public abstract EntityConstant getEntityConstantInstance();
 
+	/**
+	 * Method is a action of selectAll. Method sets all entities in list
+	 * as selected.
+	 */
 	public void selectAllAction() {
 		System.out.println("select all action");
 		
@@ -114,10 +151,17 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		}
 	};
 
+	/**
+	 * Method runs on delete single entity action.
+	 */
 	public abstract void deleteEntity();
 
+	/**
+	 * Method provides bulk deleting operation for selected entities.
+	 */
 	public abstract void deleteListEntities();
 	
+	// getters and setters
 	public List<T> getEntities() {
 		log.error("getEntities");
 		if (entities == null) {

@@ -1,4 +1,4 @@
-package com.softserveinc.model.session.managerImpl;
+package com.softserveinc.model.session.managerimpl;
 
 import java.util.ArrayList;
 import java.util.Collections;

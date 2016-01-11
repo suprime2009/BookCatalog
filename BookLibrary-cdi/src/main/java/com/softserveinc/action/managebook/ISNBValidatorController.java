@@ -22,7 +22,10 @@ import javax.inject.Named;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 
-
+/**
+ * Class 
+ *
+ */
 @FacesConverter("ISNBValidatorController")
 @FacesValidator("ISNBValidatorController")
 public class ISNBValidatorController implements Converter, Validator {

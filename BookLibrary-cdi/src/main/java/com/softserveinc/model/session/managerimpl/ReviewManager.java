@@ -1,4 +1,4 @@
-package com.softserveinc.model.session.managerImpl;
+package com.softserveinc.model.session.managerimpl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

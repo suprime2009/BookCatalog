@@ -3,6 +3,10 @@ package com.softserveinc.action.managebook;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+/**
+ * This class is a action bean
+ *
+ */
 @ManagedBean
 @RequestScoped
 public class CreateAuthorAction {

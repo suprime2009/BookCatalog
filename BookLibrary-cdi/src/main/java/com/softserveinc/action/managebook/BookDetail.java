@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.ajax4jsf.model.DataVisitor;
 import org.ajax4jsf.model.Range;
@@ -24,43 +26,42 @@ import com.softserveinc.model.session.util.DataModelHelper;
 @RequestScoped
 public class BookDetail implements Serializable {
 
+
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2063925001992083561L;
+	private static final long serialVersionUID = 7988905522264627284L;
 
 	@EJB
 	BookManagerLocal bookManager;
 
 	@EJB
 	public ReviewFacadeLocal reviewFacade;
+	
+	@PersistenceContext(unitName = "primary")
+	public EntityManager entityManager;
 
 	private String selectedId;
 	private Book book;
 
-	private final class ReviewdataModel extends DataModelHelper<Review> {
+	private final class ReviewDataModel extends DataModelHelper<Review> implements Serializable {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -1656885033253044691L;
 		private ArrangeableState arrangeableState = getArrangeableState();
 
 		@Override
 		public void walk(FacesContext context, DataVisitor visitor, Range range, Object argument) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			System.out.println("walk start");
 			SequenceRange sequenceRange = (SequenceRange) range;
 			
 			List<Review> list = reviewFacade.findReviewsForBook(book, sequenceRange.getFirstRow(), sequenceRange.getRows());
 			System.out.println(list.size());
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			for (Review r : list) {
 	            visitor.process(context, r.getIdreview(), argument);
 	        }
@@ -75,13 +76,13 @@ public class BookDetail implements Serializable {
 
 		@Override
 		public Review getRowData() {
-			return reviewFacade.findById((String) getRowKey());
+			return entityManager.find(Review.class, getRowKey());
 		}
 	}
 
 	public Object getDataModel() {
 
-		return new ReviewdataModel();
+		return new ReviewDataModel();
 	}
 
 	public void loadBook() {

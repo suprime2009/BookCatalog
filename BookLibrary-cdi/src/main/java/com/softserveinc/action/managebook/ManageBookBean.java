@@ -18,6 +18,14 @@ import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 
+/**
+ * This class is a action bean for UI page manageBooks.
+ * Class extended from DataTableHelper, which provides operations
+ * with dataTable: pagination, filtering, sorting. Class used for
+ * loading Books for dataTable in according to current UI requirements,
+ * removing and bulk removing Books.
+ *
+ */
 @ManagedBean(name = "manageBookBean")
 @SessionScoped
 public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Serializable {

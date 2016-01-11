@@ -15,6 +15,8 @@ import com.google.common.base.Optional;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
+import com.softserveinc.model.session.util.SQLCommandConstants;
 
 /**
  * ReviewFacade class is an implementation facade operations for Review entity.
@@ -22,7 +24,7 @@ import com.softserveinc.model.persist.entity.Review;
  *
  */
 @Stateless
-public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
+public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLCommandConstants {
 
 	private static Logger log = LoggerFactory.getLogger(ReviewFacade.class);
 
@@ -56,13 +58,44 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
 	}
 
 	@Override
-	public Author findById(String id) {
+	public Review findById(String id) {
 		return reviewFacadeLocal.findById(id);
 	}
 
 	@Override
 	public List<Author> findAll() {
 		return reviewFacadeLocal.findAll();
+	}
+
+	@Override
+	public List<Review> findReviewsForBook(Book book, int firstRow, int countRows) {
+		long start = System.currentTimeMillis();
+		
+		System.out.println("befor method findReviewsForBook");
+
+		String quer = "SELECT DISTINCT r FROM Review r JOIN r.book b WHERE r.book like :par";
+		Query query = entityManager.createQuery(quer);
+		query.setParameter("par", book);
+		query.setFirstResult(firstRow);
+		query.setMaxResults(countRows);
+		List<Review> list = query.getResultList();
+		
+		System.out.println("after method findReviewsForBook");
+		return list;
+	}
+
+	@Override
+	public int findCountReviewForBook(Book book) {
+//		StringBuilder sbForDataTable = new StringBuilder();
+//		sbForDataTable.append(SELECT).append(COUNT).append("( DISTINCT " + R + ") ").append(FROM);
+//		sbForDataTable.append(Book.class.getName()).append(' ').append(B);
+//		sbForDataTable.append(JOIN).append(R).append('.').append("book ");
+		String quer = "SELECT COUNT(DISTINCT r) FROM Review r JOIN r.book b WHERE r.book like :par";
+		Query query = entityManager.createQuery(quer);
+		query.setParameter("par", book);
+		long count;
+		count = (long) query.getSingleResult();
+		return (int) count;
 	}
 
 }

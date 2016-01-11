@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.EJB;
@@ -11,6 +12,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
@@ -19,17 +23,21 @@ import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
+import com.softserveinc.model.session.manager.BookManagerLocal;
 
 @ManagedBean
-@RequestScoped
-public class EditBookAction {
+@ViewScoped
+public class EditBookAction implements ValidateISBN{
 	
+	private String isbnBefore;
 	private String idBook;
 	private Book book;
-	
+
 	private String firstName;
-	private Set<Author> authors;
 	private String secondName;
+	
+	private Set<Author> authors;
+
 	private Author author;
 	
 	private List<Author> authorAutocomplete;
@@ -38,10 +46,16 @@ public class EditBookAction {
 	private BookFacadeLocal bookFacade;
 	
 	@EJB
+	private BookManagerLocal bookManager;
+	
+	@EJB
 	AuthorFacadeLocal authorFacade;
 	
-	public EditBookAction(){
-		authors = new HashSet<Author>();
+	public EditBookAction() {
+		System.out.println(idBook);
+		System.out.println(idBook);
+		System.out.println(idBook);
+		System.out.println(idBook);
 	}
 	
 	public List<String> autocompleteSecondName(String prefix) {
@@ -94,7 +108,7 @@ public class EditBookAction {
         return result;
 	}
 	
-	public void checkIfAuthorExist(ActionEvent event) throws AbortProcessingException  {
+	public void checkIfAuthorExist() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		System.out.println(firstName);
@@ -109,8 +123,48 @@ public class EditBookAction {
 		}
 	}
 	
+	@Override
+	public void validateISBN(FacesContext context, UIComponent comp, Object value) {
+		String val = (String) value;
+		 Book book = bookFacade.findBookByISNBN(val);
+		 if (book != null && !isbnBefore.equals(val)) {
+			 ((UIInput) comp).setValid(false);
+			 
+	            FacesMessage message = new FacesMessage(
+	                    "ISBN already in use");
+	            context.addMessage(comp.getClientId(context), message);
+		 }
+		
+	}
+	
+	public void removeAuthor(ActionEvent event) {
+		Map<String, Object> map = event.getComponent().getAttributes();
+		String secondName = (String) map.get("secondName");
+		String firstName = (String) map.get("firstName");
+		Iterator it = authors.iterator();
+		while (it.hasNext()) {
+			Author au = (Author) it.next();
+			if (au.getFirstName().equals(firstName) && au.getSecondName().equals(secondName)) {
+				it.remove();
+			}
+		}
+		System.out.println("removeAuthor");
+	}
+	
 	public void loadBook() {
 		book = bookFacade.findById(idBook);
+		isbnBefore = book.getIsbn();
+		if (book.getAuthors() != null) {
+			authors = book.getAuthors();
+		} else {
+			authors = new HashSet<Author>();
+		}
+	}
+	
+	public String submit() {
+		book.setAuthors(authors);
+		bookManager.updateBook(book);
+		return "manageBooks.xhtml?faces-redirect=true";
 	}
 
 	public Book getBook() {
@@ -152,9 +206,4 @@ public class EditBookAction {
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
-	
-
-	
-	
-
 }

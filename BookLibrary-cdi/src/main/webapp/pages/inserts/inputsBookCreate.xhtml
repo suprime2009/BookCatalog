@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition>
+	<h:head>
+	</h:head>
+	 <h:panelGrid columns="3" >
+    
+    	<h:outputLabel value="Name:" />
+   		<h:inputText label="Name" value="#{bean.book.bookName}" id="name" required="true" requiredMessage="Book name is required!" >
+    		<f:validateLength minimum="3"  />
+    	</h:inputText>
+    	<rich:message for="name" ajaxRendered="true"  showSummary="true" />
+    
+    	<h:outputLabel value="Publisher:" />
+    	<h:inputText label="Publisher" id="publisher" value="#{bean.book.publisher}" required="true" requiredMessage="Publisher is required!" >
+    	<f:validateLength minimum="2"  />
+    	</h:inputText>
+    	<rich:message for="publisher" ajaxRendered="true" showSummary="true" />
+    
+    	<h:outputLabel value="Year:" />
+    	<h:inputText label="Year" id="year" value="#{bean.book.yearPublished}" >
+    		<f:validateLength minimum="4" maximum="4" />
+    		<f:convertNumber integerOnly="true" type="number" />
+    	</h:inputText>
+    	<rich:message for="year" ajaxRendered="true"  />
+    
+    	<h:outputLabel value="ISBN number:" />
+   			<h:inputText label="ISBN" id="isbn" value="#{bean.book.isbn}" validator="#{bean.validateISBN}" required="true" >
+   			 <f:ajax event="blur" render="isbnMessage" />
+   			<f:converter converterId="ISNBValidatorController"></f:converter>
+   			<f:validator validatorId="ISNBValidatorController" />
+    	</h:inputText>
+    	<rich:message id="isbnMessage" for="isbn" ajaxRendered="true" />
+    	
+    </h:panelGrid>
+</ui:composition>
+</html>

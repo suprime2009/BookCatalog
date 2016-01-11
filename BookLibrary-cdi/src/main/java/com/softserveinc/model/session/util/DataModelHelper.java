@@ -61,5 +61,7 @@ public abstract class DataModelHelper<T> extends ExtendedDataModel<T> implements
 	public void setWrappedData(Object arg0) {
 		throw new UnsupportedOperationException();
 	}
+	
+	
 
 }

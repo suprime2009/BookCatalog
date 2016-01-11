@@ -15,36 +15,28 @@
     <f:viewParam name="id" value="#{editBookAction.idBook}"/>
     <f:viewAction action="#{editBookAction.loadBook}"/>
 </f:metadata>
-<f:facet name="header">
-<h:outputLabel value="Create new book" />
-</f:facet>
+
 <h:form id="editBookForm" >
-<h:panelGrid columns="3" >
-    
-    	<h:outputLabel value="Name:" />
-   		<h:inputText label="Name" value="#{editBookAction.book.bookName}" id="name" required="true" requiredMessage="Book name is required" >
-    		<f:validateLength minimum="3"  />
-    	</h:inputText>
-    	<rich:message for="name" ajaxRendered="true" />
-    
-    	<h:outputLabel value="Publisher:" />
-    	<h:inputText label="Publisher" value="#{editBookAction.book.publisher}" />
-    	<rich:message for="publisher" ajaxRendered="true" />
-    
-    	<h:outputLabel value="Year:" />
-    	<h:inputText label="Year" id="year" value="#{editBookAction.book.yearPublished}" >
-    		<f:validateLength minimum="4" maximum="4"  />
-    		<f:validateLongRange minimum="1700"></f:validateLongRange>
-    	</h:inputText>
-    	<rich:message for="year" ajaxRendered="true" />
-    
-    	<h:outputLabel value="ISBN number:" />
-   			<h:inputText required="true" label="ISBN" id="isbn" value="#{editBookAction.book.isbn}" validator="#{createBookAction.validateISBN}">
-    	</h:inputText>
-    	<rich:message for="isbn" ajaxRendered="true" />
-    </h:panelGrid>
-    
-<rich:collapsiblePanel id="panel" header="Add Authors" switchType="ajax" >
+
+
+   <ui:include src="inserts/inputsBookCreate.xhtml" >
+   <ui:param name="bean" value="#{editBookAction}" />
+   </ui:include>
+   
+ <h:outputLabel value="Authors :" />
+ <br/>
+
+ <rich:list id="listAuthors" value="#{editBookAction.authors}" var="author" >
+ <h:outputText value="#{author.firstName} #{author.secondName}  " />
+ <h:commandButton  value="Remove" actionListener="#{editBookAction.removeAuthor}">
+  <f:ajax execute="listAuthors"  render="listAuthors" > </f:ajax>
+  <f:attribute name="secondName" value="#{author.secondName}"></f:attribute>
+  <f:attribute name="firstName" value="#{author.firstName}"></f:attribute>
+ 
+  </h:commandButton>
+ </rich:list>  
+
+<rich:collapsiblePanel id="panel" header="Add Authors" switchType="client" style="width:300px;">
 <h:panelGrid columns="2">
     <h:outputLabel value="Author:" />
      <h:commandButton  actionListener="#{editBookAction.checkIfAuthorExist}"  value="add Author" >
@@ -58,17 +50,22 @@
             autocompleteMethod="#{editBookAction.autocompleteSecondName}" ></rich:autocomplete>
       
       <h:outputLabel value="First name" />
-      <rich:autocomplete mode="cachedAjax" tokens=", " minChars="1" value="#{editBookAction.firstName}" autofill="false"
-            autocompleteMethod="#{editBookAction.autocompleteFirstName}" ></rich:autocomplete>
-           
-    
+      <rich:autocomplete  mode="cachedAjax" tokens=", " minChars="1" value="#{editBookAction.firstName}" autofill="false"
+            autocompleteMethod="#{editBookAction.autocompleteFirstName}" >
+            </rich:autocomplete>
+     
 </h:panelGrid>
    <h:messages id="messages"/>
 </rich:collapsiblePanel>
 
-
-
+	
+	<h:commandButton value="Edit" action="#{editBookAction.submit()}"> </h:commandButton>
+	
+    <h:commandButton type="reset"  value="Clear" >
+        <f:ajax  execute="@this" listener="#{editBookAction.loadBook()}" render="editBookForm" ></f:ajax>
+    </h:commandButton>
     
+    <h:button value="Cancel" outcome="#{navigationAction.moveToManageBooks()}"></h:button>
 
 </h:form>
 

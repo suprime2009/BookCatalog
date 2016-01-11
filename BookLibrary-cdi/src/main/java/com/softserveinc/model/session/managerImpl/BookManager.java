@@ -136,6 +136,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 		return bookCreated;
 		
 	}
+
+	@Override
+	public void updateBook(Book book) {
+		bookHomeLocal.update(book);
+		
+	}
 	
 	
 	

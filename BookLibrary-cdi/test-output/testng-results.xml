@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" total="7" passed="7">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="4731" started-at="2016-01-06T14:20:51Z" finished-at="2016-01-06T14:20:56Z">
+  <suite name="Default suite" duration-ms="5227" started-at="2016-01-11T17:10:12Z" finished-at="2016-01-11T17:10:17Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="4731" started-at="2016-01-06T14:20:51Z" finished-at="2016-01-06T14:20:56Z">
+    <test name="Default test" duration-ms="5227" started-at="2016-01-11T17:10:12Z" finished-at="2016-01-11T17:10:17Z">
       <class name="com.softserveinc.model.persist.home.BookHomeTest">
-        <test-method status="PASS" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="getRemoteBeans" is-config="true" duration-ms="3363" started-at="2016-01-06T16:20:48Z" finished-at="2016-01-06T16:20:51Z">
+        <test-method status="PASS" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="getRemoteBeans" is-config="true" duration-ms="5185" started-at="2016-01-11T19:10:07Z" finished-at="2016-01-11T19:10:12Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getRemoteBeans -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="setUp" is-config="true" duration-ms="3997" started-at="2016-01-06T16:20:51Z" finished-at="2016-01-06T16:20:55Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="setUp" is-config="true" duration-ms="4356" started-at="2016-01-11T19:10:12Z" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testCreateBook" duration-ms="203" started-at="2016-01-06T16:20:55Z" finished-at="2016-01-06T16:20:55Z">
+        <test-method status="PASS" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testCreateBook" duration-ms="261" started-at="2016-01-11T19:10:17Z" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBook -->
-        <test-method status="PASS" signature="testCreateBookWithAlreadyExistISBN()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testCreateBookWithAlreadyExistISBN" duration-ms="47" started-at="2016-01-06T16:20:55Z" finished-at="2016-01-06T16:20:55Z">
+        <test-method status="PASS" signature="testCreateBookWithAlreadyExistISBN()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testCreateBookWithAlreadyExistISBN" duration-ms="30" started-at="2016-01-11T19:10:17Z" finished-at="2016-01-11T19:10:17Z">
           <exception class="javax.ejb.EJBTransactionRolledbackException">
             <message>
               <![CDATA[Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
@@ -238,23 +238,23 @@ Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: set
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBookWithAlreadyExistISBN -->
-        <test-method status="PASS" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testCreateBookWithAuthors" duration-ms="47" started-at="2016-01-06T16:20:55Z" finished-at="2016-01-06T16:20:55Z">
+        <test-method status="PASS" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testCreateBookWithAuthors" duration-ms="50" started-at="2016-01-11T19:10:17Z" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBookWithAuthors -->
-        <test-method status="PASS" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testUpdateBook" duration-ms="78" started-at="2016-01-06T16:20:55Z" finished-at="2016-01-06T16:20:55Z">
+        <test-method status="PASS" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testUpdateBook" duration-ms="160" started-at="2016-01-11T19:10:17Z" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateBook -->
-        <test-method status="PASS" signature="testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testDeleteBook" duration-ms="281" started-at="2016-01-06T16:20:55Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-06T16:20:56Z">
+        <test-method status="PASS" signature="testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testDeleteBook" duration-ms="300" started-at="2016-01-11T19:10:17Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteBook -->
-        <test-method status="PASS" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testFindAllBooks" duration-ms="47" started-at="2016-01-06T16:20:56Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-06T16:20:56Z">
+        <test-method status="PASS" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testFindAllBooks" duration-ms="40" started-at="2016-01-11T19:10:17Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllBooks -->
-        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="testFindByIdBook" duration-ms="15" started-at="2016-01-06T16:20:56Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-06T16:20:56Z">
+        <test-method status="PASS" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="testFindByIdBook" duration-ms="10" started-at="2016-01-11T19:10:17Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-11T19:10:17Z">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException
@@ -289,7 +289,7 @@ Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: set
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdBook -->
-        <test-method status="PASS" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2ac273d3]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2016-01-06T16:20:56Z" finished-at="2016-01-06T16:20:56Z">
+        <test-method status="PASS" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@20398b7c]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2016-01-11T19:10:17Z" finished-at="2016-01-11T19:10:17Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeEJBSession -->

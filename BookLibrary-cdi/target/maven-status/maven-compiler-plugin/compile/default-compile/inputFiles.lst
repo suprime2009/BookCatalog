@@ -1,5 +1,6 @@
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\ConstantsUtil.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\DataTableSearchHolder.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ISNBValidatorController.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\backing\UserBean.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\BookDataModel.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\IManagerAuthor.java
@@ -13,6 +14,7 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\service\AuthorServiceImpl.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\ReviewHomeLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\PaginationHelper.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ValidateISBN.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\BookManagerLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\test\BooksBean.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\AuthorManagerRemote.java
@@ -21,6 +23,7 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\BookHomeRemote.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\UIWrapper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\BookManagerRemote.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\IsbnNumber.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\AuthorManagerLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\managerImpl\BookManager.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\AuthorConstantsHolder.java
@@ -35,6 +38,7 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\EntityConstant.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageBookBean.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\NavigationAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\DataTableHelper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\IAuthorFacade.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerRemote.java

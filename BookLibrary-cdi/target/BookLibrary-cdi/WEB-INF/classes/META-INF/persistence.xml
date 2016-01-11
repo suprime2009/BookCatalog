@@ -20,7 +20,7 @@
 	</persistence-unit>
 	
 
-	<!--   <persistence-unit name="maintest" transaction-type="RESOURCE_LOCAL">
+	   <persistence-unit name="maintest" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.softserveinc.model.persist.entity.Author</class>
           <class>com.softserveinc.model.persist.entity.Book</class>
@@ -29,13 +29,13 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bookcatalog" />
             <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="rocet1990" />
+            <property name="javax.persistence.jdbc.password" value="root" />
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
         </properties>
-<<<<<<< HEAD
-    </persistence-unit>  -->   
+
+    </persistence-unit>  
 
 
 	

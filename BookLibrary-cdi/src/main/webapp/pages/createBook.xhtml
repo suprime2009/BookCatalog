@@ -11,43 +11,28 @@
         <title>Create Book</title>
     </h:head>
 <h:body>
-<rich:popupPanel id="createBook"  autosized="true" style="width:600px; height:300px">
+
+
+
+
+<h:form id="createBookForm" >
+<rich:panel>
 <f:facet name="header">
 <h:outputLabel value="Create new book" />
 </f:facet>
-<h:form id="createBookForm" >
-
-    <h:panelGrid columns="3" >
-    
-    	<h:outputLabel value="Name:" />
-   		<h:inputText label="Name" value="#{createBookAction.bookName}" id="name" required="true" requiredMessage="Book name is required" >
-    		<f:validateLength minimum="3"  />
-    	</h:inputText>
-    	<rich:message for="name" ajaxRendered="true" />
-    
-    	<h:outputLabel value="Publisher:" />
-    	<h:inputText label="Publisher" value="#{createBookAction.publisher}" />
-    	<rich:message for="publisher" ajaxRendered="true" />
-    
-    	<h:outputLabel value="Year:" />
-    	<h:inputText label="Year" id="year" value="#{createBookAction.yearPublished}" >
-    		<f:validateLength minimum="4" maximum="4"  />
-    		<f:validateLongRange minimum="1700"></f:validateLongRange>
-    	</h:inputText>
-    	<rich:message for="year" ajaxRendered="true" />
-    
-    	<h:outputLabel value="ISBN number:" />
-   			<h:inputText required="true" label="ISBN" id="isbn" value="#{createBookAction.isbn}" validator="#{createBookAction.validateISBN}">
-    	</h:inputText>
-    	<rich:message for="isbn" ajaxRendered="true" />
-    </h:panelGrid>
+   
+   <ui:include src="inserts/inputsBookCreate.xhtml" >
+   <ui:param name="bean" value="#{createBookAction}" />
+   </ui:include>
     
 
-	<a4j:commandButton id="addBook" value="Add" action="#{createBookAction.submit()}" 
-	oncomplete="if (#{createBookAction.createDone} == true) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}"/>
+	
+	<h:commandButton   value="addBook"  >
+    <a4j:ajax execute="@form" listener="#{createBookAction.submit()}" oncomplete="if (#{createBookAction.createDone} == true) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}"></a4j:ajax>
+    </h:commandButton>
     
-    <h:commandButton   value="Add/Edit"  >
-    <a4j:ajax execute="@form" listener="#{createBookAction.submit()}" oncomplete="form"></a4j:ajax>
+    <h:commandButton   value="Add/Edit" action="#{createBookAction.submitAndEdit()}" >
+    <f:param name="id"  value="#{createBookAction.bookAfterCreate.idBook}"></f:param>
     </h:commandButton>
     
     <h:commandButton type="reset"  value="Clear" >
@@ -57,16 +42,21 @@
     <h:commandButton type="button" value="Cancel" >
         <f:ajax  event="click" onevent="#{rich:component('createBook')}.hide()"></f:ajax>
     </h:commandButton>
+
+    </rich:panel>
+
 </h:form>   
 
-</rich:popupPanel>
 
 
-<rich:popupPanel id="confirmAdd">
+
+<rich:popupPanel id="confirmAdd" autosized="true"  style="width:300px; height:50px">
 <h:outputText value="Book has been created" />
  <br/>
+ <center>
 <a4j:commandButton value="OK" 
 	oncomplete="#{createBookAction.reset()}; #{rich:component('confirmAdd')}.hide();"/>
+</center>
 </rich:popupPanel>
 </h:body>
 </html>

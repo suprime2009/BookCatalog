@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -27,29 +29,16 @@ import com.softserveinc.model.session.manager.BookManagerLocal;
 
 @ManagedBean
 @RequestScoped
-public class CreateBookAction {
+public class CreateBookAction implements ValidateISBN{
 	
-	private String bookName;
-	private String publisher;
-	private Integer yearPublished;
-	private String isbn;
-	
-
-	
-	
+	private Book book;
 	private boolean createDone;
+	private Book bookAfterCreate;
 	
 	public boolean getCreateDone() {
-		return createDone;
-		
+		System.out.println("getCreateDone");
+		return createDone;	
 	}
-	
-	private Book bookAfterCreate = null;
-	
-
-	
-	@EJB
-	private AuthorFacadeLocal authorFacade;
 	
 	@EJB
 	private BookManagerLocal bookManager;
@@ -58,9 +47,7 @@ public class CreateBookAction {
 	private BookFacadeLocal bookfacade;
 	
 	public CreateBookAction() {
-	
-
-		System.out.println("BEAN CREATED");
+	book = new Book();
 	}
 	
 	@PreDestroy
@@ -68,10 +55,10 @@ public class CreateBookAction {
 		System.out.println("BEAN DESTROYED");
 	}
 	
+	@Override
 	public void validateISBN(FacesContext context, UIComponent comp,
             Object value) {
-		 System.out.println("inside validate method");
-		 String val = (String) value;
+		String val = (String) value;
 		 Book book = bookfacade.findBookByISNBN(val);
 		 if (book != null) {
 			 ((UIInput) comp).setValid(false);
@@ -84,60 +71,53 @@ public class CreateBookAction {
 		
 	public void submit() {
 		System.out.println("SUBMIT");
-		System.out.println(bookName);
-		System.out.println(publisher);
-		System.out.println(yearPublished);
-		System.out.println(isbn);
-		Book book = new Book(bookName, isbn, publisher, yearPublished, null);
 		bookAfterCreate = bookManager.createBook(book);
 		if (bookAfterCreate != null) {
 			createDone = true;
 		}				
 	}
-
 	
+	public String submitAndEdit() {
+		System.out.println("submitAndEdit");
+		bookAfterCreate = bookManager.createBook(book);
+		if (bookAfterCreate != null) {
+			return "editBook.xhtml?faces-redirect=true&amp;includeViewParams=true&id=" + bookAfterCreate.getIdBook() ;
+		} else {
+			return "";
+		}		
+	}
+
 	public void reset() {
 		System.out.println("RESET");
-		bookName = null;
-		publisher = null;
-		yearPublished = null;
-		isbn = null;
+		book = new Book(); 
 		bookAfterCreate = null;
-		System.out.println("RESET");
+	}
+
+	public Book getBook() {
+		return book;
 	}
 	
-	public String getBookName() {
-		return bookName;
+	public Book getBookAfterCreate() {
+		System.out.println("getBookAfterCreate");
+		
+		return bookAfterCreate;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	
-	public String getPublisher() {
-		return publisher;
+	public boolean isDisableParam() {
+		System.out.println("isDisableParam");
+		if (bookAfterCreate == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+	
+	
+	
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public Integer getYearPublished() {
-		return yearPublished;
-	}
-
-	public void setYearPublished(Integer yearPublished) {
-		this.yearPublished = yearPublished;
-	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
 
 }

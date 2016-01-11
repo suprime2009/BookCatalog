@@ -7,6 +7,7 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
     <h:head>
+   
         <title>Manage Books</title>
          <h:outputStylesheet>
         .even-row {
@@ -24,6 +25,11 @@
     </h:outputStylesheet>
     </h:head>
     <h:body>
+   <a4j:jsFunction name="createBookURL" action="#{navigationAction.createBookURL()}" render="createBookPanel"></a4j:jsFunction> 
+   <a4j:jsFunction name="hideCreateBook" action="#{navigationAction.hideIncludedURL()}" render="createBookPanel"></a4j:jsFunction> 
+   
+    
+    
 <h:form id="formManageBooks" prependId="false">
 <ui:param name="bean" value="#{manageBookBean}" />
 
@@ -128,8 +134,17 @@
 
 </h:form>
         
-  
-     <ui:include src="createBook.xhtml" />  
+ <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" onbeforehide="hideCreateBook()">
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
+                X
+            </h:outputLink>
+	</f:facet>
+	<h:panelGroup id="createBookPanel">
+     <ui:include src="#{navigationAction.includedURL}" /> 
+     </h:panelGroup> 
+</rich:popupPanel>
+
 
 
     </h:body>

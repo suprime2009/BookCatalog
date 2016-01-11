@@ -23,7 +23,7 @@ import com.softserveinc.model.session.manager.BookManagerLocal;
 public class ManageBookBean extends DataTableHelper<BookUIWrapper> implements Serializable {
 
 	private static Logger log = LoggerFactory.getLogger(ManageBookBean.class);
-
+	
 	@EJB
 	BookManagerLocal bookManager;
 

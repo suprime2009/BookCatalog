@@ -18,6 +18,7 @@ import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.BookFacade;
 import com.softserveinc.model.persist.home.BookHome;
+import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
 import com.softserveinc.model.session.util.SQLCommandConstants;
 
 public class Main implements SQLCommandConstants{
@@ -36,18 +37,27 @@ public class Main implements SQLCommandConstants{
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("maintest");
 		EntityManager em = emf.createEntityManager();
-		Book book = em.find(Book.class, "b19");
+//		Book book = em.find(Book.class, "b19");
+//		
+//		String quer = "SELECT COUNT(DISTINCT r) FROM Review r JOIN r.book b WHERE r.book like :par";
+//		StringBuilder sbForDataTable = new StringBuilder();
+//		sbForDataTable.append(SELECT).append(COUNT).append("( DISTINCT " + R + ") ").append(FROM);
+//		sbForDataTable.append(Book.class.getName()).append(' ').append(B);
+//		sbForDataTable.append(JOIN).append(R).append('.').append("book ");
+//		sbForDataTable.append(WHERE).append(book).append(" = ").append("r.book");
+//		Query query = em.createQuery(quer);
+//		query.setParameter("par", book);
+//		long g = (long) query.getSingleResult();
+//		System.out.println(g);
 		
-		String quer = "SELECT COUNT(DISTINCT r) FROM Review r JOIN r.book b WHERE r.book like :par";
-		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(COUNT).append("( DISTINCT " + R + ") ").append(FROM);
-		sbForDataTable.append(Book.class.getName()).append(' ').append(B);
-		sbForDataTable.append(JOIN).append(R).append('.').append("book ");
-		sbForDataTable.append(WHERE).append(book).append(" = ").append("r.book");
-		Query query = em.createQuery(quer);
-		query.setParameter("par", book);
-		long g = (long) query.getSingleResult();
-		System.out.println(g);
+		String qu = "SELECT r.rating, COUNT(r.book) FROM Review r GROUP BY r.rating ORDER BY r.rating asc";
+		Query query = em.createQuery(qu);
+		List<Object[]> result = query.getResultList();
+		for (Object[] o : result) {
+			
+
+		}
+		System.out.println("done");
 		
 		
 

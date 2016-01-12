@@ -7,12 +7,10 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	
-	<f:metadata>
-    <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
-    <f:viewAction action="#{bookDetail.loadBook}"/>
-</f:metadata>
+	
 
-<h:head>
+
+
 <h:outputStylesheet>
         .label {
             font-weight: bold;
@@ -24,10 +22,21 @@
             width: 180px;
         }
     </h:outputStylesheet>
-    <title>#{bookDetail.book.bookName}</title>
-</h:head>
 
-<h:body>
+
+<ui:composition template="layots/commonLayout.xhtml">
+
+<ui:define name="title">
+#{bookDetail.book.bookName}
+</ui:define>
+
+<f:metadata>
+    <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
+    <f:viewAction action="#{bookDetail.loadBook}"/>
+</f:metadata>
+	
+	
+<ui:define name="content">
 <h:panelGrid columns="2">
 <h:outputLabel value="Book Name: " />
 <h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
@@ -66,6 +75,7 @@
 </rich:dataTable>
 
 </h:form>
-</h:body>
+</ui:define>
+</ui:composition>
 
 </html>

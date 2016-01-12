@@ -1,6 +1,8 @@
 package com.softserveinc.model.persist.facade;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,6 +18,7 @@ import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
+import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
 import com.softserveinc.model.session.util.SQLCommandConstants;
 
 /**
@@ -97,6 +100,20 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 		long count;
 		count = (long) query.getSingleResult();
 		return (int) count;
+	}
+
+	@Override
+	public Map<Integer, Integer> findCountBooksByRating() {
+		String qu = "SELECT r.rating, COUNT(r.book) FROM Review r GROUP BY r.rating ORDER BY r.rating asc";
+		Query query = entityManager.createQuery(qu);
+		List<Object[]> result = query.getResultList();
+		Map<Integer, Integer> resultMap = new LinkedHashMap<Integer, Integer>(result.size());
+		for (Object[] o : result) {
+			int r1 = (int) o[0];
+			long r2 = (long) o[1];
+			resultMap.put(r1, (int) r2);
+		}
+		return resultMap;
 	}
 
 }

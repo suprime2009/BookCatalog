@@ -1,27 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:rich="http://richfaces.org/rich">
-	    <ui:composition>
+    xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
 
-	Header
-	
+	   	    
+<rich:toolbar id="header"  itemSeparator="disc" style="" >
+<rich:toolbarGroup >
+BOOK CATALOG
+</rich:toolbarGroup>
 
-	    </ui:composition>
+<rich:toolbarGroup location="right" itemSeparator="disc" >
+<h:form>
+ <h:panelGrid columns="3" >
+<h:commandLink  value="HOME" action="#{navigationAction.moveToHomePage()}" >
+<f:ajax></f:ajax>
+</h:commandLink>
+<h:commandLink  value="BOOKS" action="#{navigationAction.moveToManageBooks()}" >
+<f:ajax></f:ajax>
+</h:commandLink>
+<h:commandLink  value="AUTHORS" action="#{navigationAction.moveToManageAuthors()}" >
+<f:ajax></f:ajax>
+</h:commandLink>
+</h:panelGrid>
+</h:form>
+</rich:toolbarGroup>
+</rich:toolbar>
+
+
+</ui:composition>
 </html>
-
-<!-- 	<div id="header">
-<h1>HEADER</h1>
-</div>
-
-<style>
-#header {
-width:100%;
-height:70px;
-background-color:#708090 ;
-}
-h1 {
-color: #FFDEAD;
-}
-</style>	 -->

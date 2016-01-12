@@ -8,9 +8,7 @@
 
 <h:head>
 <title>
-<ui:insert name="title">
-
-</ui:insert>
+<ui:insert name="title"></ui:insert>
 </title>
 </h:head>
 
@@ -19,61 +17,35 @@
 	<h:outputStylesheet>
     #page {
 	margin: 0 auto;
-	width:1200px;
+	width:1000px;
     }
     
     #content{
     margin-bottom:16px;
-   	width:1100px;
-   	height:100vh;
-   	margin-left:50px;
-   	magrin-right:50px;
-   	border-left: thick double #708090;
-   	border-right: thick double #708090;
-   	padding-left:20px;
-   	padding-right:20px;
-    }
-    
-    #footer{
-    clear: both;
-	bottom: 0;
-    width:1200px;
-    height:40px;
-	position: fixed;
-	background-color:#708090 ;
-	margin-top:16px;
+   	width:100%;
     }
     
     #header{
     width:100%;
-	height:70px;
-	background-color:#708090 ;
+	height:50px;
 	margin-bottom:16px;
 	}
-
-	    </h:outputStylesheet>
+	</h:outputStylesheet>
 
 	<div id="page">
 
-		<rich:panel id="header">
+		<div id="heade">
 			<ui:insert name="header">
 				<ui:include src="commonHeader.xhtml" />
 			</ui:insert>
-		</rich:panel>
+		</div>
 
 		<div id="content">
 			<ui:insert name="content">
 				<ui:include src="commonContent.xhtml" />
 			</ui:insert>
 		</div>
-
-		<rich:panel id="footer">
-			<ui:insert name="footer">
-				<ui:include src="commonFooter.xhtml" />
-			</ui:insert>
-		</rich:panel>
-
-
+		
 	</div>
 </h:body>
 </html>

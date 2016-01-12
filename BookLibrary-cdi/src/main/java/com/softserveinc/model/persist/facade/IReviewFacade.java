@@ -1,11 +1,13 @@
 package com.softserveinc.model.persist.facade;
 
 import java.util.List;
+import java.util.Map;
 
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
+import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
 
 /**
  * IReviewFacade an interface that describes all facade methods for Review entity.
@@ -44,6 +46,8 @@ public interface IReviewFacade {
 	List<Review> findReviewsForBook(Book book, int firstRow, int countRows);
 	
 	int findCountReviewForBook(Book book);
+	
+	Map<Integer, Integer> findCountBooksByRating();
 
 
 

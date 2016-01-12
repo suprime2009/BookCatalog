@@ -38,5 +38,17 @@ public class NavigationAction {
 	public String moveToManageBooks() {
 		return "manageBooks.xhtml";
 	}
+	
+	public String moveToHomePage() {
+		return "welcome.xhtml";
+	}
+	
+	public String moveToManageAuthors() {
+		return "manageAuthors.xhtml";
+	}
+	
+	public String maveToManageReviews() {
+		return "manageReviews.xhtml";
+	}
 
 }

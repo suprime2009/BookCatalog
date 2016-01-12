@@ -15,6 +15,7 @@ com\softserveinc\action\managebook\CreateBookAction.class
 com\softserveinc\model\session\util\SQLCommandConstants.class
 com\softserveinc\model\persist\facade\BookFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHome.class
+com\softserveinc\model\session\util\ReviewRatingFieldsEnum.class
 com\softserveinc\model\persist\facade\IAuthorFacade.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
 com\softserveinc\model\persist\entity\AuthorConstantsHolder.class
@@ -53,6 +54,7 @@ com\softserveinc\model\persist\facade\AuthorFacade.class
 com\softserveinc\action\managebook\NavigationAction.class
 com\softserveinc\action\managebook\BookDetail$1.class
 com\softserveinc\model\persist\entity\Review.class
+com\softserveinc\action\managebook\ManageReviewsAction.class
 com\softserveinc\action\managebook\BookDetail$ReviewDataModel.class
 com\softserveinc\action\managebook\BookDetail.class
 com\softserveinc\model\session\util\ConstantsUtil.class

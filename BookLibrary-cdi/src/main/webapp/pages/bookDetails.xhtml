@@ -7,12 +7,10 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	
-	<f:metadata>
-    <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
-    <f:viewAction action="#{bookDetail.loadBook}"/>
-</f:metadata>
+	
 
-<h:head>
+
+
 <h:outputStylesheet>
         .label {
             font-weight: bold;
@@ -25,9 +23,21 @@
         }
     </h:outputStylesheet>
     <title>#{bookDetail.book.bookName}</title>
-</h:head>
 
-<h:body>
+
+<ui:composition template="layots/commonLayout.xhtml">
+
+<ui:define name="title">
+#{bookDetail.book.bookName}
+</ui:define>
+
+<f:metadata>
+    <f:viewParam name="id" value="#{bookDetail.selectedId}"/>
+    <f:viewAction action="#{bookDetail.loadBook}"/>
+</f:metadata>
+	
+	
+<ui:define name="content">
 <h:panelGrid columns="2">
 <h:outputLabel value="Book Name: " />
 <h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
@@ -50,9 +60,14 @@
   <f:facet name="header">
    <h:outputText value="#{record[created]}" />
   </f:facet>
+  <h:panelGrid columns="2">
+  <h:outputLabel value="Rating: " />
   <h:outputText value="#{record[rating]}" />
+  <h:outputLabel value="Commenter name: " />
 	 <h:outputLabel value="#{record[name]}" />
+	 <h:outputLabel value="Comment: " />
 	  <h:outputText value="#{record[comment]}" />
+	  </h:panelGrid>
 	 </rich:panel>
 	 </rich:column>
 	 <f:facet name="footer">
@@ -61,6 +76,7 @@
 </rich:dataTable>
 
 </h:form>
-</h:body>
+</ui:define>
+</ui:composition>
 
 </html>

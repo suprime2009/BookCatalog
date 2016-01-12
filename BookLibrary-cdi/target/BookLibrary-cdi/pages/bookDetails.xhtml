@@ -50,9 +50,14 @@
   <f:facet name="header">
    <h:outputText value="#{record[created]}" />
   </f:facet>
+  <h:panelGrid columns="2">
+  <h:outputLabel value="Rating: " />
   <h:outputText value="#{record[rating]}" />
+  <h:outputLabel value="Commenter name: " />
 	 <h:outputLabel value="#{record[name]}" />
+	 <h:outputLabel value="Comment: " />
 	  <h:outputText value="#{record[comment]}" />
+	  </h:panelGrid>
 	 </rich:panel>
 	 </rich:column>
 	 <f:facet name="footer">

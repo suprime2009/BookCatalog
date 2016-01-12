@@ -61,7 +61,7 @@
 
 
 	
-	<h:commandButton value="Edit" action="#{editBookAction.submit()}"> </h:commandButton>
+	<h:commandButton value="Save" action="#{editBookAction.submit()}"> </h:commandButton>
 	
     <h:commandButton type="reset"  value="Clear" >
         <f:ajax  execute="@this" listener="#{editBookAction.loadBook()}" render="editBookForm" ></f:ajax>

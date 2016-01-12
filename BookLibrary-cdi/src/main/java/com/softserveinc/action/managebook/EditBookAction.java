@@ -133,7 +133,6 @@ public class EditBookAction implements ValidateISBN{
 	                    "ISBN already in use");
 	            context.addMessage(comp.getClientId(context), message);
 		 }
-		
 	}
 	
 	public void removeAuthor(ActionEvent event) {

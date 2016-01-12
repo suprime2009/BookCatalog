@@ -10,6 +10,20 @@
    
         <title>Manage Books</title>
          <h:outputStylesheet>
+        
+         body{
+	overflow: visible;
+         text-align: center; /* выравниваем все содержимое body по центру */
+         }
+         
+         #content{
+         	padding: 10px;
+		padding-bottom: 50px; /* Height of the footer element */
+         width:1200px;
+         height: 100%;
+         margin: 0 auto;
+         }
+
         .even-row {
             background-color: #FCFFFE;
         }
@@ -25,6 +39,7 @@
     </h:outputStylesheet>
     </h:head>
     <h:body>
+    <div id="content">
    <a4j:jsFunction name="createBookURL" action="#{navigationAction.createBookURL()}" render="createBookPanel"></a4j:jsFunction> 
    <a4j:jsFunction name="hideCreateBook" action="#{navigationAction.hideIncludedURL()}" render="createBookPanel"></a4j:jsFunction> 
    
@@ -35,7 +50,7 @@
 
  <!--The sortable datatable-->
 	<rich:dataTable   id="manageBookDataTable" value="#{bean.entities}" var="bookWrapper" rows="#{bean.rowsPerPage}" 
-		rowClasses="odd-row, even-row" style="width:1000" binding="#{table}" styleClass="stable">
+		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable">
 		
 	<f:facet name="header">
 		<ui:include src="inserts/manageBookHeader.xhtml" >
@@ -146,6 +161,6 @@
 </rich:popupPanel>
 
 
-
+</div>
     </h:body>
 </html>

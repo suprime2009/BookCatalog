@@ -23,7 +23,8 @@ import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 
 /**
- * Class 
+ * Class provides a converting passed from UI ISBN Number to fixed form and
+ * validate inputed value in according to ISBN pattern. 
  *
  */
 @FacesConverter("ISNBValidatorController")

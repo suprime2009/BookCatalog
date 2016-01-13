@@ -2,6 +2,7 @@ com\softserveinc\model\persist\facade\BookFacade.class
 com\softserveinc\model\session\manager\AuthorManagerLocal.class
 com\softserveinc\model\session\manager\IManagerAuthor.class
 com\softserveinc\model\persist\backing\ResultBean.class
+com\softserveinc\model\session\manager\IManagerReview.class
 com\softserveinc\action\managebook\EditBookAction.class
 test\BooksBean$BookDataModel.class
 com\softserveinc\model\session\manager\BookManagerRemote.class

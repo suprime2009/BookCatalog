@@ -46,7 +46,10 @@ public class ManageReviewsAction implements Serializable {
 		log.info("Method start");
 		System.out.println(reviewFacade);
 		System.out.println(bookFacade);
-		countBooksByRating = reviewFacade.findCountBooksByRating();
+		for (int i = 1; i<6 ; i++) {
+			countBooksByRating.put(i, reviewFacade.findCountBooksByRating(i));
+		}
+
 
 		log.info("Method done");
 	}

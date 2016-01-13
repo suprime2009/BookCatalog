@@ -47,7 +47,7 @@ public interface IReviewFacade {
 	
 	int findCountReviewForBook(Book book);
 	
-	Map<Integer, Integer> findCountBooksByRating();
+	int findCountBooksByRating(int rating);
 
 
 

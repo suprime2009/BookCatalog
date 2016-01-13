@@ -2,10 +2,12 @@ package com.softserveinc.action.managebook;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Properties;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,11 +25,12 @@ import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
+import com.softserveinc.model.session.manager.ReviewManagerLocal;
 import com.softserveinc.model.session.util.DataModelHelper;
 
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class BookDetail implements Serializable {
 
 	/**
@@ -41,13 +44,66 @@ public class BookDetail implements Serializable {
 	@EJB
 	public ReviewFacadeLocal reviewFacade;
 	
+	@EJB
+	private ReviewManagerLocal reviewManager;
+	
 
 	@PersistenceContext(unitName = "primary")
 	public EntityManager entityManager;
 
 	private String selectedId;
 	private Book book;
+	
+	private Review review;
+	
+	public BookDetail(){
+		review = new Review();
+	}
+	
+	public Review getReview() {
+		return review;
+	}
+	
+	public void submitComment() {
+		System.out.println("submitComment start");
+		review.setBook(book);
+		reviewManager.addNewReview(review);
+		System.out.println("submitComment done");
+	}
 
+
+
+	public Object getDataModel() {
+
+		return new ReviewDataModel();
+	}
+
+	public void loadBook() {
+		book = bookManager.getBookByID(selectedId);
+	}
+	
+	public double getBookRating() {
+		return reviewFacade.findAverageRatingForBook(book);
+	}
+
+	public String getSelectedId() {
+		return selectedId;
+	}
+
+	public void setSelectedId(String selectedId) {
+		this.selectedId = selectedId;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	
+	
 	private final class ReviewDataModel extends DataModelHelper<Review> implements Serializable {
 
 		/**
@@ -81,32 +137,6 @@ public class BookDetail implements Serializable {
 		public Review getRowData() {
 			return entityManager.find(Review.class, getRowKey());
 		}
-	}
-
-	public Object getDataModel() {
-
-		return new ReviewDataModel();
-	}
-
-	public void loadBook() {
-		book = bookManager.getBookByID(selectedId);
-	}
-
-	public String getSelectedId() {
-		return selectedId;
-	}
-
-	public void setSelectedId(String selectedId) {
-		this.selectedId = selectedId;
-	}
-
-	public Book getBook() {
-		return book;
-	}
-
-
-	public void setBook(Book book) {
-		this.book = book;
 	}
 
 

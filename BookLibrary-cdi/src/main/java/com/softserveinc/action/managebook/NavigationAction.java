@@ -47,8 +47,11 @@ public class NavigationAction {
 		return "manageAuthors.xhtml";
 	}
 	
-	public String maveToManageReviews() {
+	public String moveToManageReviews() {
 		return "manageReviews.xhtml";
+	}
+	public String moveToAuthorDetailPage(){
+		return "authorDetail.xhtml";
 	}
 
 }

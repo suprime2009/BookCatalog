@@ -14,12 +14,48 @@ Manage Reviews
 
 
 <ui:define name="content">  
+<h:outputScript  name="js/jrate.js" />
+
+
+<h:outputScript  name="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" />
+<h:outputStylesheet name="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></h:outputStylesheet>
+<h:outputStylesheet name="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></h:outputStylesheet>
+<h:outputStylesheet name="css/star-rating.css"></h:outputStylesheet>
+
+<script>
+$(function () {
+	var that = this;
+	var toolitup = $("#jRate").jRate({
+		width: 40,
+		height: 40,
+
+		rating: 1,
+		strokeColor: 'black',
+		precision: 1,
+		minSelected: 1,
+		onChange: function(rating) {
+			//console.log("OnChange: Rating: "+rating);
+		},
+		onSet: function(rating) {
+			console.log("OnSet: Rating: "+rating);
+		}
+	});
+	
+	$('#btn-click').on('click', function() {
+		toolitup.setRating(0);				
+	});
+	
+});
+
+
+
+</script>
 
 <f:metadata>
     <f:viewAction action="#{manageReviewsAction.load()}" />
 </f:metadata>
 
-<h:outputScript library="js" name="common.js" />
+
 
 <rich:dataTable value="#{manageReviewsAction.countBooksByRating.entrySet().toArray()}" var="entry">
 <rich:column>
@@ -28,13 +64,24 @@ Manage Reviews
 </rich:column>
 <rich:column>
 <f:facet name="header"><h:outputText value="Stars"></h:outputText></f:facet>
+
 #{entry.key}
 </rich:column>
 <rich:column>
 <f:facet name="header"><h:outputText value="Count Books"></h:outputText></f:facet>
-#{entry.value}
+<h:form>
+<h:commandLink  value="books [#{entry.value}]" action="#{navigationAction.moveToManageBooks()}" >
+<f:ajax>
+<f:param name="ratingValue" value="#{entry.key}"></f:param>
+</f:ajax>
+</h:commandLink>
+
+</h:form>
 </rich:column>
 </rich:dataTable>
+
+
+
 
 </ui:define>
 </ui:composition>

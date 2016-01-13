@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -54,8 +55,13 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 	public Double findAverageRatingForBook(Book book) {
 		Query query = entityManager.createNamedQuery(Review.FIND_AVERAGE_RATING_FOR_BOOK);
 		query.setParameter("par", book);
-		Optional<Double> aveRatingOptional = (Optional<Double>) query.getSingleResult();
-		double aveRating = aveRatingOptional.or(0.0).doubleValue();
+		Double aveRating = null;
+		try {
+			aveRating = (Double) query.getSingleResult();
+		} catch (NoResultException e) {
+			return 0.0;
+		}
+
 		log.info("Method findAverageRatingForBook: found average rating " + "for book={}", book);
 		return aveRating;
 	}
@@ -103,17 +109,12 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 	}
 
 	@Override
-	public Map<Integer, Integer> findCountBooksByRating() {
-		String qu = "SELECT r.rating, COUNT(r.book) FROM Review r GROUP BY r.rating ORDER BY r.rating asc";
+	public int findCountBooksByRating(int rating) {
+		String qu = "select COUNT(distinct r.book) from Review  r group by r.book having floor(avg(r.rating))= " + rating;
 		Query query = entityManager.createQuery(qu);
-		List<Object[]> result = query.getResultList();
-		Map<Integer, Integer> resultMap = new LinkedHashMap<Integer, Integer>(result.size());
-		for (Object[] o : result) {
-			int r1 = (int) o[0];
-			long r2 = (long) o[1];
-			resultMap.put(r1, (int) r2);
-		}
-		return resultMap;
+		List<Integer> result = (List<Integer>) query.getResultList();
+	
+		return result.size();
 	}
 
 }

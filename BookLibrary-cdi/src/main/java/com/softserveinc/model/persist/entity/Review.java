@@ -43,7 +43,7 @@ public class Review implements Serializable {
 	@Column(name="created_date")
 	private Date createdDate;
 
-	private int rating;
+	private Integer rating;
 
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name="book_id")
@@ -52,7 +52,7 @@ public class Review implements Serializable {
 	public Review() {
 	}
 	
-	public Review(String comment, String commenterName, int rating, Book book) {
+	public Review(String comment, String commenterName, Integer rating, Book book) {
 		super();
 		this.comment = comment;
 		this.commenterName = commenterName;
@@ -63,6 +63,7 @@ public class Review implements Serializable {
 	@PrePersist
 	public void generateId() {
 		this.idreview = UUID.randomUUID().toString();
+		this.createdDate = new Date();
 	}
 
 	public String getIdreview() {
@@ -89,11 +90,11 @@ public class Review implements Serializable {
 		return this.createdDate;
 	}
 
-	public int getRating() {
+	public Integer getRating() {
 		return this.rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 

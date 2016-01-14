@@ -1,6 +1,7 @@
 package com.softserveinc.action.managebook;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -9,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -47,29 +49,30 @@ public class BookDetail implements Serializable {
 	@EJB
 	private ReviewManagerLocal reviewManager;
 	
-
 	@PersistenceContext(unitName = "primary")
 	public EntityManager entityManager;
 
 	private String selectedId;
 	private Book book;
+
 	
-	private Review review;
+	
+	
 	
 	public BookDetail(){
-		review = new Review();
+		System.out.println("create BookDetail");
+
+
 	}
 	
-	public Review getReview() {
-		return review;
-	}
 	
-	public void submitComment() {
-		System.out.println("submitComment start");
-		review.setBook(book);
-		reviewManager.addNewReview(review);
-		System.out.println("submitComment done");
-	}
+
+	
+
+
+
+
+
 
 
 

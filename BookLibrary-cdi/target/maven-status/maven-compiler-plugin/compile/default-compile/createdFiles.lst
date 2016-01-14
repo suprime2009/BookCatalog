@@ -3,6 +3,7 @@ com\softserveinc\model\session\manager\AuthorManagerLocal.class
 com\softserveinc\model\session\manager\IManagerAuthor.class
 com\softserveinc\model\persist\backing\ResultBean.class
 com\softserveinc\model\session\manager\IManagerReview.class
+test\CarsBean.class
 com\softserveinc\action\managebook\EditBookAction.class
 test\BooksBean$BookDataModel.class
 com\softserveinc\model\session\manager\BookManagerRemote.class
@@ -33,6 +34,7 @@ com\softserveinc\model\session\manager\ReviewManagerLocal.class
 com\softserveinc\model\persist\facade\AuthorFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHomeLocal.class
 com\softserveinc\model\persist\home\IHome.class
+com\softserveinc\action\managebook\CreateReviewAction.class
 com\softserveinc\action\managebook\ValidateISBN.class
 com\softserveinc\model\persist\facade\AuthorFacadeLocal.class
 com\softserveinc\model\session\managerimpl\AuthorManager.class

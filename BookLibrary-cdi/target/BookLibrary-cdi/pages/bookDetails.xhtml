@@ -7,16 +7,11 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	
-	
-
-
-
-
-
 
 <ui:composition template="layots/commonLayout.xhtml">
 
 <ui:define name="title">
+
 <h:outputStylesheet>
         .label {
             font-weight: bold;
@@ -30,13 +25,28 @@
         
         .standartP {
         width:100%; 
-        height:200px; 	
+        min-height:200px; 	
         margin-bottom:16px;
+        overflow:auto;
+
+
 
         }
         
         #editor{
 
+        }
+        
+        .basicAttributesStyle {
+        font-size: 10pt;
+        font-family: Verdana, Arial, Helvetica, sans-serif; 
+        }
+        
+        .labelH2 {
+        font-size: 11pt;
+        }
+        .labelH3 {
+        font-size: 12pt;
         }
         
  
@@ -52,13 +62,13 @@
 	
 <ui:define name="content">
 <rich:panel styleClass="standartP">
-<f:facet name="header">
-<h:outputText value="Book details" />
+<f:facet name="header" >
+<h:outputText value="Book details" styleClass="labelH2" />
 <h:outputText value="#{bookDetail.bookRating}" style=" margin-left:80%;" />
 </f:facet>
 
 
-<div style="float: left; width: 70%; ">
+<div class="basicAttributesStyle" style="float: left; width: 70%;">
 <h:panelGrid columns="2" >
 <h:outputLabel value="Book Name: " />
 <h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
@@ -70,31 +80,55 @@
 <h:outputText value="#{bookDetail.book.yearPublished}"></h:outputText>
 </h:panelGrid>
 </div>
-<div style="float: right; width: 30%; ">
-<h:outputLabel value="Authors: " />
+<div class="basicAttributesStyle" style="float: right; width: 30%; ">
+<h:outputLabel value="Authors: "  />
 <rich:list value="#{bookDetail.book.authors}" var="author">
- <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
+ <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail" styleClass="basicAttributesStyle">
         	<f:param name="id" value="#{author.idauthor}"></f:param>
 		</h:link>
 </rich:list>
 </div>
 </rich:panel>
 
-<h:form>
-<rich:panel styleClass="standartP">
+
+ <h:form>
+<rich:panel>
 
 <f:facet name="header">
-<h:outputText value="Leave a comment:" />
-<h:commandButton value="Add comment"  style=" margin-left:80%;" >
-<f:ajax execute="@form" listener="#{bookDetail.submitComment()}" render="reviewDataTable"></f:ajax>
-</h:commandButton>
+<h:outputLabel value="Reviews for book #{bookDetail.book.bookName}" />
+<h:outputLabel value="  Sorting: " />
+ <a4j:commandButton value="addRecord"  styleClass="no-decor" execute="@this"
+			render="@none" oncomplete="#{rich:component('addReviewPopUp')}.show()" />
 </f:facet>
-<h:outputLabel value="Your name:" />
-<h:inputText value="#{bookDetail.review.commenterName}" required="true" />
-<h:outputLabel value="Rating:" />
-<h:inputText value="#{bookDetail.review.rating}" />
-<h:inputTextarea value="#{bookDetail.review.comment}" />
 
+
+	
+ 
+ 
+<ui:param name="name" value="commenterName" />
+<ui:param name="created" value="createdDate" />
+<ui:param name="comment" value="comment" />
+<ui:param name="rating" value="rating" />
+ <rich:dataGrid id="reviewsDataTable" value="#{bookDetail.list}" var="review" columns="1" elements="6" style="width:100%;" border="0">
+  <rich:column >
+  <rich:panel>
+  <f:facet name="header">
+   <h:outputText value="#{record[created]}" />
+  </f:facet>
+  <h:panelGrid columns="2">
+  <h:outputLabel value="Rating: " />
+  <h:outputText value="#{review.rating}" />
+  <h:outputLabel value="Commenter name: " />
+	 <h:outputLabel value="#{review.commenterName}" />
+	 <h:outputLabel value="Comment: " />
+	  <h:outputText value="#{review.comment}" />
+	  </h:panelGrid>
+	 </rich:panel>
+	 </rich:column>
+	 <f:facet name="footer">
+  <rich:dataScroller id="scroller" fastStep="3" />
+                </f:facet>
+</rich:dataGrid>
 
 
 
@@ -102,41 +136,29 @@
 </h:form>
 
 
+<rich:popupPanel id="addReviewPopUp" autosized="true"   >
+<h:form>
+<rich:panel>
+<f:facet name="header">
+<h:outputText value="Leave a comment:" />
+<a4j:commandButton value="Cancel"
+			onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />
+<a4j:commandButton value="Add comment" action="#{createReviewAction.submitComment()}"
+		oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('addReviewPopUp')}.hide();"  actionListener="#{createReviewAction.getBookForReview}" render="reviewsDataTable">
+			<f:attribute name="reviewedBook" value="#{bookDetail.selectedId}" />
+</a4j:commandButton>			
 
+</f:facet>
+<h:outputLabel value="Your name:" />
+<h:inputText value="#{createReviewAction.commenterName}" required="true" />
+<h:outputLabel value="Rating:" />
+<h:inputText value="#{createReviewAction.rating}"  />
 
+<h:inputTextarea value="#{createReviewAction.comment}" />
 
-
-
-
-
-<h:form >
-<ui:param name="name" value="commenterName" />
-<ui:param name="created" value="createdDate" />
-<ui:param name="comment" value="comment" />
-<ui:param name="rating" value="rating" />
-  <rich:dataTable id="reviewDataTable" value="#{bookDetail.dataModel}" var="record" rows="6" width="600px" border="0">
-  <rich:column>
-  <rich:panel>
-  <f:facet name="header">
-   <h:outputText value="#{record[created]}" />
-  </f:facet>
-  <h:panelGrid columns="2">
-  <h:outputLabel value="Rating: " />
-  <h:outputText value="#{record[rating]}" />
-  <h:outputLabel value="Commenter name: " />
-	 <h:outputLabel value="#{record[name]}" />
-	 <h:outputLabel value="Comment: " />
-	  <h:outputText value="#{record[comment]}" />
-	  </h:panelGrid>
-	 </rich:panel>
-	 </rich:column>
-	 <f:facet name="footer">
-  <rich:dataScroller id="scroller" fastStep="3" />
-                </f:facet>
-</rich:dataTable>
-
+</rich:panel>
 </h:form>
-
+</rich:popupPanel>
 
 </ui:define>
 </ui:composition>

@@ -4,6 +4,10 @@ import com.softserveinc.model.persist.entity.Review;
 
 public interface IManagerReview {
 	
-	public void addNewReview(Review review);
+	public boolean createReview(Review review);
+	
+	public boolean deleteReview(String idReview);
+	
+	public boolean updateReview(Review review);
 
 }

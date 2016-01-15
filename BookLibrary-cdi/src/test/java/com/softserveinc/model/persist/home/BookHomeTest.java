@@ -27,6 +27,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 	@Test
 	public void testCreateBook() {
 		Book book = new Book(WINDOWS, ISBN, JAPAN, 2015, null);
+		assertNull(book.getIdBook());
 		book = bookHomeRemote.create(book);
 		String id = book.getIdBook();
 		Book bookExpected = bookHomeRemote.findByID(id);

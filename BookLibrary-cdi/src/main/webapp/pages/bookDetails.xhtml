@@ -61,6 +61,7 @@
 	
 	
 <ui:define name="content">
+
 <rich:panel styleClass="standartP">
 <f:facet name="header" >
 <h:outputText value="Book details" styleClass="labelH2" />
@@ -91,29 +92,34 @@
 </rich:panel>
 
 
- <h:form>
+ <h:form id="reviewDataTableForm">
 <rich:panel>
 
 <f:facet name="header">
-<h:outputLabel value="Reviews for book #{bookDetail.book.bookName}" />
-<h:outputLabel value="  Sorting: " />
- <a4j:commandButton value="addRecord"  styleClass="no-decor" execute="@this"
+<h:outputLabel value="Reviews" />
+ <a4j:commandButton id="addrecordBtm" value="addRecord"  styleClass="no-decor" style="margin-left:85%;" execute="@this"
 			render="@none" oncomplete="#{rich:component('addReviewPopUp')}.show()" />
 </f:facet>
 
-
-	
- 
- 
 <ui:param name="name" value="commenterName" />
 <ui:param name="created" value="createdDate" />
 <ui:param name="comment" value="comment" />
 <ui:param name="rating" value="rating" />
- <rich:dataGrid id="reviewsDataTable" value="#{bookDetail.dataModel}" var="record" columns="1" elements="6" style="width:100%;" border="0">
+<ui:param name="idreview" value="idreview" />
+ <rich:dataGrid id="reviewsDataTable" value="#{bookDetail.dataModel}" var="record" columns="1" elements="6" style="width:100%;" border="0"  >
   <rich:column >
   <rich:panel>
   <f:facet name="header">
    <h:outputText value="#{record[created]}" />
+   <a4j:commandButton value="Update record"  styleClass="no-decor" execute="@this"
+			render="@none" oncomplete="if (#{bookDetail.getReviewToUpdate(record[idreview])}) #{rich:component('addReviewPopUp')}.show()"  >
+
+		</a4j:commandButton>
+   <a4j:commandButton value="Delete record"  styleClass="no-decor" execute="@this"
+			render="@none" oncomplete="#{rich:component('confirmDelete')}.show()"  >
+			<f:setPropertyActionListener target="#{bookDetail.selectedIdReview}" value="#{record[idreview]}" />
+		</a4j:commandButton>
+
   </f:facet>
   <h:panelGrid columns="2">
   <h:outputLabel value="Rating: " />
@@ -133,32 +139,66 @@
 
 
 </rich:panel>
+
+
+
+
 </h:form>
 
+<!-- add & edit review popup -->
 
 <rich:popupPanel id="addReviewPopUp" autosized="true"   >
-<h:form>
+<h:form id="addReviewForm">
 <rich:panel>
 <f:facet name="header">
 <h:outputText value="Leave a comment:" />
-<a4j:commandButton value="Cancel"
-			onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />
-<a4j:commandButton value="Add comment" action="#{createReviewAction.submitComment()}"
-		oncomplete="if (#{facesContext.maximumSeverity==null}) #{rich:component('addReviewPopUp')}.hide();"  actionListener="#{createReviewAction.getBookForReview}" render="reviewsDataTable">
-			<f:attribute name="reviewedBook" value="#{bookDetail.selectedId}" />
-</a4j:commandButton>			
-
+<a4j:commandButton value="Cancel" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />
+<a4j:commandButton value="Add comment" action="#{bookDetail.submitCreateReview()}" 
+	oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" render="reviewDataTableForm" />
 </f:facet>
+
 <h:outputLabel value="Your name:" />
-<h:inputText value="#{createReviewAction.commenterName}" required="true" />
+<rich:inputNumberSlider maxValue="5" step="1" minValue="1" ></rich:inputNumberSlider>
+<h:inputText id="commenterNameInput" value="#{bookDetail.review.commenterName}" required="true" requiredMessage="Your name is required. Please enter your name." />
+<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true"  />
 <h:outputLabel value="Rating:" />
-<h:inputText value="#{createReviewAction.rating}"  />
-
-<h:inputTextarea value="#{createReviewAction.comment}" />
-
+<h:inputText id="ratingInput" value="#{bookDetail.review.rating}" validatorMessage="Please enter a number in range between 1 and 5."  >
+<f:validateLongRange maximum="5" minimum="1" ></f:validateLongRange>
+</h:inputText>
+<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" />
+<h:inputTextarea id="commentInput" value="#{bookDetail.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
+<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" />
 </rich:panel>
 </h:form>
 </rich:popupPanel>
+
+
+
+	<rich:popupPanel id="confirmDelete" autosized="true">
+	<h:form>
+	<rich:panel header="Confirm delete review">
+		<h:outputText value="Are you sure you want to delete this review?" />
+	<a4j:commandButton value="Cancel"
+			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
+		<h:commandButton id="deleteReviewBtm" value="Delete">
+			<f:ajax event="click" listener="#{bookDetail.submitDeleteReview()}"
+				onevent="#{rich:component('confirmDelete')}.hide()" render="reviewDataTableForm"></f:ajax>
+		</h:commandButton>
+		</rich:panel>
+		</h:form>
+	</rich:popupPanel>
+
+
+
+	<a4j:outputPanel ajaxRendered="true">
+		<rich:popupPanel id="afterActionPopUp" modal="false" zindex="101" autosized="true" show="#{facesContext.maximumSeverity!=null}">
+		<center>
+		<f:facet name="header"><h:messages globalOnly="true" ajaxRendered="true" style="color:blue" /></f:facet>
+			<h:commandButton  value="Close" onclick="#{rich:component('afterActionPopUp')}.hide()"/>
+			</center>
+		</rich:popupPanel>
+	</a4j:outputPanel>
+
 
 </ui:define>
 </ui:composition>

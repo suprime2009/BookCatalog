@@ -18,6 +18,7 @@ import com.google.common.base.Optional;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.persist.home.ReviewHomeLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
 import com.softserveinc.model.session.util.SQLCommandConstants;
@@ -36,7 +37,7 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 	EntityManager entityManager;
 
 	@EJB
-	private ReviewFacadeLocal reviewFacadeLocal;
+	private ReviewHomeLocal reviewHome;
 
 	public ReviewFacade() {
 	}
@@ -59,21 +60,20 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 		try {
 			aveRating = (Double) query.getSingleResult();
 		} catch (NoResultException e) {
-			return 0.0;
+			return null;
 		}
-
 		log.info("Method findAverageRatingForBook: found average rating " + "for book={}", book);
 		return aveRating;
 	}
 
 	@Override
-	public Review findById(String id) {
-		return reviewFacadeLocal.findById(id);
+	public Review findById(String id) throws IllegalArgumentException {
+		return reviewHome.findByID(id);
 	}
 
 	@Override
-	public List<Author> findAll() {
-		return reviewFacadeLocal.findAll();
+	public List<Review> findAll() {
+		return reviewHome.findAll();
 	}
 
 	@Override

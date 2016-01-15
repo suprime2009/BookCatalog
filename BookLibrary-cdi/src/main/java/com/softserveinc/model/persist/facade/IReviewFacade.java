@@ -40,7 +40,7 @@ public interface IReviewFacade {
 	 * Method gets all reviews from database.
 	 * @return List<Review>.
 	 */
-	List<Author> findAll();
+	List<Review> findAll();
 	
 
 	List<Review> findReviewsForBook(Book book, int firstRow, int countRows);

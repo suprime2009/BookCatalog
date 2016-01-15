@@ -34,7 +34,6 @@ com\softserveinc\model\session\manager\ReviewManagerLocal.class
 com\softserveinc\model\persist\facade\AuthorFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHomeLocal.class
 com\softserveinc\model\persist\home\IHome.class
-com\softserveinc\action\managebook\CreateReviewAction.class
 com\softserveinc\action\managebook\ValidateISBN.class
 com\softserveinc\model\persist\facade\AuthorFacadeLocal.class
 com\softserveinc\model\session\managerimpl\AuthorManager.class
@@ -42,6 +41,7 @@ test\BooksBean$1.class
 com\softserveinc\model\persist\home\BookHomeLocal.class
 com\softserveinc\model\session\util\DataModelHelper.class
 test\Main.class
+com\softserveinc\action\managebook\ReviewAction.class
 com\softserveinc\model\session\manager\IManagerBook.class
 com\softserveinc\model\session\manager\ReviewManagerRemote.class
 com\softserveinc\action\managebook\ISNBValidatorController.class
@@ -53,6 +53,7 @@ com\softserveinc\model\session\util\DataTableSearchHolder.class
 test\BooksBean.class
 com\softserveinc\model\session\managerimpl\ReviewManager.class
 com\softserveinc\action\managebook\NavigationController.class
+com\softserveinc\exception\BookCatalogException.class
 com\softserveinc\model\persist\facade\AuthorFacade.class
 com\softserveinc\action\managebook\NavigationAction.class
 com\softserveinc\action\managebook\BookDetail$1.class

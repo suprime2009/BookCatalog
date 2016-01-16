@@ -6,9 +6,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
-    <h:head>
-   
-        <title>Manage Books</title>
+<ui:composition template="templates/commonLayout.xhtml">
+
+<ui:define name="title">
+<f:metadata>
+    <f:viewAction action="#{manageBookAction.refreshPage()}"/>
+</f:metadata>
+   Manage Books
          <h:outputStylesheet>
         
          body{
@@ -16,13 +20,6 @@
          text-align: center; /* выравниваем все содержимое body по центру */
          }
          
-         #content{
-         	padding: 10px;
-		padding-bottom: 50px; /* Height of the footer element */
-         width:1200px;
-         height: 100%;
-         margin: 0 auto;
-         }
 
         .even-row {
             background-color: #FCFFFE;
@@ -36,134 +33,131 @@
         .odd-row:hover {
             background-color: #FFEBDA;
         }
+        
+        #slider {
+        width:100px;
+        }
+        
+        .rich-slider-tip{
+                width:100px;
+        }
+
+        
+        .rich-slider-track{
+        width:100px;
+        }
     </h:outputStylesheet>
-    </h:head>
-    <h:body>
-    
 
+</ui:define>
     
-    <div id="content">
-   <a4j:jsFunction name="createBookURL" action="#{navigationAction.createBookURL()}" render="createBookPanel"></a4j:jsFunction> 
-   <a4j:jsFunction name="hideCreateBook" action="#{navigationAction.hideIncludedURL()}" render="createBookPanel"></a4j:jsFunction> 
+<ui:define name="content">
+
    
-    
-    
+    <!--The sortable datatable-->
 <h:form id="formManageBooks" prependId="false">
-<ui:param name="bean" value="#{manageBookBean}" />
-
- <!--The sortable datatable-->
-	<rich:dataTable   id="manageBookDataTable" value="#{bean.entities}" var="bookWrapper" rows="#{bean.rowsPerPage}" 
+	
+<rich:dataTable   id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
 		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable">
 		
-	<f:facet name="header">
-		<ui:include src="inserts/manageBookHeader.xhtml" >
-			<ui:param name="Name" value="MANAGE BOOK TABLE" />
-		</ui:include>
-	</f:facet>
-		
-<!-- checkBox column -->
-	<ui:include src="inserts/selectColumn.xhtml" >
-		<ui:param name="property" value="#{bookWrapper.selected}" />
-	</ui:include>	
+		<ui:param name="bean" value="#{manageBookAction}" />		
 
+<!-- dataTableHeader -->
+<ui:decorate template="templates/dataTableHeader.xhtml">
+		<ui:param name="datatableName" value="MANAGE BOOK TABLE" />
+		<ui:define name="createButton">
+			<a4j:commandButton  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" render="createBook"></a4j:commandButton>
+		</ui:define>
+</ui:decorate>
+	
+<!-- checkBox column -->
+<ui:include src="inserts/selectColumn.xhtml" >
+		<ui:param name="property" value="#{bookWrapper.selected}" />
+</ui:include>	
 			
 <!-- bookName Column -->		
- 	<ui:include src="inserts/columnWithLink.xhtml" >
- 		<ui:param name="id" value="bookNameColumn" />
- 		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('bookName')}" />
- 		<ui:param name="property" value="#{bookWrapper.book.bookName}" />
- 		<ui:param name="outcomePage" value="bookDetails" />
- 		<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
- 	</ui:include>
+<ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('bookName')}" />
+ 		<ui:define name="outputValue">
+ 			<h:link value="#{bookWrapper.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
+				<f:param name="id" value="#{bookWrapper.book.idBook}"></f:param>
+			</h:link>
+ 		</ui:define>
+</ui:decorate>
  	
 <!-- Publisher column -->    
-   <ui:include src="template/columnTemplate.xhtml">
-		<ui:param name="id" value="publisherColumn" />
-		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('publisher')}" />
+<ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('publisher')}" />
 		<ui:param name="property" value="#{bookWrapper.book.publisher}" />
-   </ui:include>
+</ui:decorate>
    
  <!-- ISBN Column --> 
- 	<ui:include src="template/columnTemplate.xhtml">
- 		<ui:param name="id" value="isbnColumn" />
-		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('isbn')}" />
+<ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('isbn')}" />
 		<ui:param name="property" value="#{bookWrapper.book.isbn}" />
-   </ui:include>
+</ui:decorate>
 
 <!-- yearPublished column -->
-   <ui:include src="template/columnTemplate.xhtml">
-  		<ui:param name="id" value="yearPublishedColumn" />
-		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('yearPublished')}" />
+<ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('yearPublished')}" />
 		<ui:param name="property" value="#{bookWrapper.book.yearPublished}" />
-   </ui:include>
+</ui:decorate>
    
  <!-- Rating Column -->
- 	<ui:include src="template/columnTemplate.xhtml">
- 		<ui:param name="id" value="ratingColumn" />
-		<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('rating')}" />
+<ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('rating')}" />
 		<ui:param name="property" value="#{bookWrapper.book.rating}" />
-   </ui:include>
+		<ui:define name="filterType">	
+			<div id="slider">
+				<rich:inputNumberSlider tooltipClass="rich-slider-tip" trackClass="rich-slider-track" minValue="0" maxValue="5"  
+				showTooltip="true"  showInput="false" showBoundaryValues="false" showArrows="false" value="#{bean.filterValues[columnName]}">
+ 					<f:ajax event="change"></f:ajax>
+				</rich:inputNumberSlider>
+			</div>
+		</ui:define>
+</ui:decorate>
+
    		
  <!-- Author Column -->
-	<rich:column id="authorsColumn" sortBy="#{columnName}" sortOrder="#{manageBookBean.sortOrders[columnName]}" filterValue="#{manageBookBean.filterValues[property]}"
-                 filterExpression="#{property}" filterType="custom" sortType="custom">
-	<ui:param name="columnName" value="#{manageBookBean.entityConstantInstance.getConsant('authors')}" />
-        <f:facet name="header">
-        	<h:outputText value="#{columnName.UIView}" />
-            <h:commandLink >
-                #{manageBookBean.sortOrders[columnName]}
-                <f:ajax event="click" listener="#{manageBookBean.toggleSort(columnName)}" execute="@form" render="@form"></f:ajax>
-            </h:commandLink>
-            <br />
-            <h:inputText value="#{manageBookBean.filterValues[columnName]}" >
-             <f:ajax event="change"></f:ajax>
-            </h:inputText>
-        </f:facet>
-          <rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
-        <h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
-        	<f:param name="id" value="#{author.idauthor}"></f:param>
-		</h:link>
-    	</rich:list>
-    </rich:column>
+<ui:decorate template="templates/columnTemplate.xhtml"> 
+		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('authors')}" />
+		<ui:define name="outputValue">
+        	<rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
+        		<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
+        			<f:param name="id" value="#{author.idauthor}"></f:param>
+				</h:link>
+    		</rich:list>
+		</ui:define>
+</ui:decorate>
     
     <!-- DEL / EDIT -->
-    <ui:include src="inserts/deleteAndEditColumn.xhtml" >
-    	<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
-    </ui:include>
-    
-    
+<ui:include src="inserts/deleteAndEditColumn.xhtml" >
+		<ui:param name="propertyId" value="#{bookWrapper.book.idBook}" />
+</ui:include>
+     
     <!-- SCROLLER -->
-    <f:facet name="footer">
- 	<ui:include src="dataTableFooter.xhtml">
-	</ui:include>
-    </f:facet>	 
-    
+<ui:decorate template="templates/dataTableFooter.xhtml"></ui:decorate> 
 </rich:dataTable>
 
-	<rich:popupPanel id="confirmDelete" autosized="true">
-		Are you sure you want to delete the row?
-	<a4j:commandButton value="Cancel"
-			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
-		<h:commandButton value="Delete">
-			<f:ajax event="click" listener="#{bean.deleteEntity()}"
-				onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
-		</h:commandButton>
-	</rich:popupPanel>
+<ui:include src="inserts/deletePopUps.xhtml" >
+<ui:param name="bean" value="#{manageBookAction}" />
+</ui:include>
 
 </h:form>
-        
- <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" onbeforehide="hideCreateBook()">
+
+
+    
+ <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" >
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
                 X
             </h:outputLink>
 	</f:facet>
 	<h:panelGroup id="createBookPanel">
-     <ui:include src="#{navigationAction.includedURL}" /> 
+     <ui:include src="createBook.xhtml" /> 
      </h:panelGroup> 
 </rich:popupPanel>
 
 
-</div>
-    </h:body>
+</ui:define>
+</ui:composition>
 </html>

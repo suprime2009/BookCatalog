@@ -10,19 +10,16 @@
 	<h:head>
 	</h:head>
 	<rich:column>
-		<f:facet name="header">
-			<h:outputText value="Edit / delete" />
-		</f:facet>
-		<a4j:commandButton value="DEL"  styleClass="no-decor" execute="@this"
-			render="@none" oncomplete="#{rich:component('confirmDelete')}.show()">
+		<a4j:commandLink   styleClass="no-decor" execute="@this"
+			render="confirmDelete" oncomplete="#{rich:component('confirmDelete')}.show()">
 			<a4j:param value="#{propertyId}" assignTo="#{bean.idEntityToDelete}" />
-		</a4j:commandButton>
-		<h:button outcome="editBook" value="EDIT">
+			<h:graphicImage value="/resources/images/delete.gif" alt="delete" />
+		</a4j:commandLink>
+		<h:link outcome="editBook">
 		<f:param name="id" value="#{propertyId}"></f:param>
-		</h:button>
+		<h:graphicImage value="/resources/images/Edit.gif" alt="delete" />
 		
+		</h:link>
 	</rich:column>
-
-	
 </ui:composition>
 </html>

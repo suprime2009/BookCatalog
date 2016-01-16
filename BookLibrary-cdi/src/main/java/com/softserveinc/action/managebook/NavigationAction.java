@@ -35,8 +35,12 @@ public class NavigationAction {
 		return "editBook.xhtml";
 	}
 	
+	public String moveToBookDetailPage() {
+		return "bookDetails.xhtml";
+	}
+	
 	public String moveToManageBooks() {
-		return "manageBooks.xhtml";
+		return "manageBooks.xhtml?faces-redirect=true&amp;";
 	}
 	
 	public String moveToHomePage() {

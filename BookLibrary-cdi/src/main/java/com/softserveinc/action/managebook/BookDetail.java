@@ -52,7 +52,7 @@ public class BookDetail implements Serializable {
 	@EJB
 	private ReviewManagerLocal reviewManager;
 
-	private String selectedId;
+	private String selectedBookId;
 	private Book book;
 	private String selectedIdReview;
 	private Review review;
@@ -99,15 +99,26 @@ public class BookDetail implements Serializable {
 		}
 	}
 	
-	public void submitUpdateReview(FacesContext context, UIComponent component, Object value) {
-		
+	public void resetValues() {
+		review = new Review();
 	}
 	
-	public boolean getReviewToUpdate(String idReview) {
+	public void submitUpdateReview() {
+		boolean result = reviewManager.updateReview(review);
+		if (result) {
+			String message = "Review has been successfully updated.";
+			showMessageOnUI(message);
+		
+		} else {
+			String message = "Review has not been updated.";
+			showMessageOnUI(message);
+		}
+	}
+	
+	public void getReviewToUpdate(String idReview) {
 		System.out.println("getReviewToUpdate method start");
 		review = reviewFacade.findById(idReview);
 		System.out.println("method done getReviewToUpdate ====" + review.toString());
-		return true;
 	}
 	
 	private void showMessageOnUI(String message) {
@@ -127,7 +138,7 @@ public class BookDetail implements Serializable {
 	}
 
 	public void loadBook() {
-		book = bookManager.getBookByID(selectedId);
+		book = bookManager.getBookByID(selectedBookId);
 	}
 
 	public Double getBookRating() {
@@ -135,12 +146,12 @@ public class BookDetail implements Serializable {
 		return reviewFacade.findAverageRatingForBook(book);
 	}
 
-	public String getSelectedId() {
-		return selectedId;
+	public String getSelectedBookId() {
+		return selectedBookId;
 	}
 
-	public void setSelectedId(String selectedId) {
-		this.selectedId = selectedId;
+	public void setSelectedBookId(String selectedBookId) {
+		this.selectedBookId = selectedBookId;
 	}
 
 	public Book getBook() {

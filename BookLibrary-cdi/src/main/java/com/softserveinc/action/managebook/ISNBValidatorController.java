@@ -35,6 +35,13 @@ public class ISNBValidatorController implements Converter, Validator {
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		System.out.println("getAsObject");
+		System.out.println("getAsObject");
+		System.out.println("getAsObject");
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		String val = (String) value;
 		StringBuilder isbn = new StringBuilder();
 		String isbnCode = getOnlyDigits(val);
@@ -105,6 +112,10 @@ public class ISNBValidatorController implements Converter, Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+		System.out.println("validate method");
+		System.out.println("validate method");
+		System.out.println("validate method");
+		System.out.println("validate method");
 		String regex = "^(ISBN(-1[03]): )(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$";
 		Pattern pattern = Pattern.compile(regex);
 		String val = (String) value;

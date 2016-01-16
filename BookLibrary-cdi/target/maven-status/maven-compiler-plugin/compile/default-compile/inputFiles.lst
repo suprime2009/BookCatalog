@@ -41,7 +41,7 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\DataModelHelper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\EntityConstant.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerLocal.java
-C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageBookBean.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageBookAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\NavigationAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\DataTableHelper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\IAuthorFacade.java
@@ -72,4 +72,3 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Book.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookUIWrapper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\OrderBy.java
-C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\NavigationController.java

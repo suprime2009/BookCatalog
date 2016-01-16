@@ -57,7 +57,7 @@ public class CreateBookAction implements ValidateISBN {
 
 	public CreateBookAction() {
 		book = new Book();
-		log.debug("Action bean has been created.");
+		log.info("Action bean has been created.");
 	}
 
 	@PreDestroy

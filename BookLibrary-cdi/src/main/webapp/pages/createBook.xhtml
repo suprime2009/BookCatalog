@@ -28,7 +28,8 @@
 
 	
 	<h:commandButton   value="addBook"  >
-    <a4j:ajax execute="@form" listener="#{createBookAction.submit()}" oncomplete="if (#{createBookAction.createDone} == true) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}"></a4j:ajax>
+    <a4j:ajax execute="createBook" listener="#{createBookAction.submit()}" 
+    		oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" render="formManageBooks"></a4j:ajax>
     </h:commandButton>
     
     <h:commandButton   value="Add/Edit" action="#{createBookAction.submitAndEdit()}" >

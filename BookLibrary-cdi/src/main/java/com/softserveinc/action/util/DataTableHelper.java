@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.softserveinc.action.managebook.UIWrapper;
+import com.softserveinc.model.persist.entity.BookConstantsHolder;
 import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
@@ -36,6 +37,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	private EntityConstant sortProperty;
 	private boolean selectAll;
 	private String idEntityToDelete;
+	private List<T> listEntitiesToDelete;
 
 	protected DataTableHelper() {
 		for (EntityConstant constant : getEntityConstantInstance().getListConstants()) {
@@ -56,6 +58,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * Method cleans all filtering values.
 	 */
 	public void cleanFilters() {
+
 		filterValues.clear();
 	}
 
@@ -66,6 +69,9 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	private void deleteEmptyFilterValues() {
 		for (Iterator<Map.Entry<EntityConstant, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
 			Map.Entry<EntityConstant, String> entry = it.next();
+			if (entry.getKey().equals(BookConstantsHolder.RATING) && entry.getValue().equals("0")) {
+				it.remove();
+			}
 			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
 				it.remove();
 			}
@@ -80,6 +86,9 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * Method cleans List of entities.
 	 */
 	public void cleanListEntities() {
+		if (entities == null) {
+			getEntities();
+		}
 		entities.clear();
 	}
 
@@ -140,7 +149,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	public void selectAllAction() {
 		System.out.println("select all action");
 		
-		for (T b :  getEntities()) {
+		for (T b :  entities) {
 			UIWrapper wrapp = (UIWrapper) b;
 			if (getSelectAll()) {
 				wrapp.setSelected(true);
@@ -149,7 +158,19 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 			}
 
 		}
-	};
+	}
+	
+	public void createListEntitiesToDelete() {
+		System.out.println("createListEntitiesToDelete");
+		listEntitiesToDelete = new ArrayList<T>();
+		for (T b :  entities) {
+			UIWrapper wrapp = (UIWrapper) b;
+			if (wrapp.isSelected()) {
+				listEntitiesToDelete.add((T) wrapp);
+			}
+
+		}
+	}
 
 	/**
 	 * Method runs on delete single entity action.
@@ -177,6 +198,10 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 
 	public void setSelectAll(boolean selectAll) {
 		this.selectAll = selectAll;
+	}
+	
+	public List<T> getListEntitiesToDelete() {
+		return listEntitiesToDelete;
 	}
 
 	public EntityConstant getSortProperty() {

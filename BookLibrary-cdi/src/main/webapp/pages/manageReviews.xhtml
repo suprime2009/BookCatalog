@@ -7,7 +7,7 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	
-<ui:composition template="layots/commonLayout.xhtml">
+<ui:composition template="templates/commonLayout.xhtml">
 <ui:define name="title">
 Manage Reviews
 </ui:define>
@@ -47,9 +47,8 @@ $(function () {
 	
 });
 
-
-
 </script>
+
 
 <f:metadata>
     <f:viewAction action="#{manageReviewsAction.load()}" />
@@ -57,25 +56,20 @@ $(function () {
 
 
 
-<rich:dataTable value="#{manageReviewsAction.countBooksByRating.entrySet().toArray()}" var="entry">
+<rich:dataTable value="#{manageReviewsAction.countBooksByRating.entrySet().toArray()}" var="entry" style="width:100%;">
 <rich:column>
 <f:facet name="header"><h:outputText value="Rating"></h:outputText></f:facet>
 #{entry.key}
-</rich:column>
-<rich:column>
+</rich:column >
+<rich:column >
 <f:facet name="header"><h:outputText value="Stars"></h:outputText></f:facet>
 
 #{entry.key}
 </rich:column>
-<rich:column>
+<rich:column >
 <f:facet name="header"><h:outputText value="Count Books"></h:outputText></f:facet>
 <h:form>
-<h:commandLink  value="books [#{entry.value}]" action="#{navigationAction.moveToManageBooks()}" >
-<f:ajax>
-<f:param name="ratingValue" value="#{entry.key}"></f:param>
-</f:ajax>
-</h:commandLink>
-
+<h:commandLink  value="books [#{entry.value}]" action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.getBooksByRating(entry.key)}" />
 </h:form>
 </rich:column>
 </rich:dataTable>

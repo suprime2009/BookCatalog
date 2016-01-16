@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
+<h:head></h:head>
+<!--The paging buttons-->
+    <h:commandButton value="first" disabled="#{bean.disabledFirst}">
+		<f:ajax event="click" listener="#{bean.pageFirst}" execute="@form" render="@form"></f:ajax>              
+    </h:commandButton>
+	<h:commandButton value="prev" disabled="#{bean.disabledPrevious}" >
+    	<f:ajax event="click" listener="#{bean.pagePrevious}" execute="@form" render="@form"></f:ajax>
+	</h:commandButton>
+    <h:commandButton value="next" disabled="#{bean.disabledNext}" >
+    	<f:ajax event="click" listener="#{bean.pageNext}" execute="@form" render="@form"></f:ajax>              
+    </h:commandButton>
+    <h:commandButton value="last" disabled="#{bean.disabledLast}" >
+    	<f:ajax event="click" listener="#{bean.pageLast}" execute="@form" render="@form"></f:ajax>
+    </h:commandButton>
+    
+    <h:outputText value="Page #{bean.currentPage} / #{bean.totalPages}" />
+        <br />
+
+    <!--The paging links-->
+    <ui:repeat value="#{bean.pages}" var="page">
+    	<h:commandLink styleClass="page" value="#{page}" actionListener="#{bean.page}" rendered="#{page != bean.currentPage}">
+    	</h:commandLink>
+        <h:outputText styleClass="page" value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
+    </ui:repeat>
+</ui:composition>
+</html>

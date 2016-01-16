@@ -7,7 +7,7 @@
       xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 	
-<ui:composition template="layots/commonLayout.xhtml">
+<ui:composition template="templates/commonLayout.xhtml">
 
 <ui:define name="title">
 Book Catalog
@@ -16,6 +16,7 @@ Book Catalog
     <h:link value="Books page" outcome="manageBooks" />
     <p> </p>
     <h:link value="Author page" outcome="manageAuthors" />
+     <p> </p>
     <h:link value="Reviews page" outcome="#{navigationAction.moveToManageReviews()}" />
 </ui:define>
 </ui:composition>

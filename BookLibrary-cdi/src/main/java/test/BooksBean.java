@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.softserveinc.action.managebook.ManageBookBean;
+import com.softserveinc.action.managebook.ManageBookAction;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.OrderBy;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;

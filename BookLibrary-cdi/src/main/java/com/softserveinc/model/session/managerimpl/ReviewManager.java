@@ -95,7 +95,7 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote{
 			}
 		}
 		reviewHome.update(review);
-		
+		return true;
 		}catch(BookCatalogException e){
 			log.error("Can't update this review. {}", e.getMessage());
 		}

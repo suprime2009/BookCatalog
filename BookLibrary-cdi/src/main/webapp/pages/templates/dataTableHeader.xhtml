@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition>
+<f:facet name="header">
+	<rich:toolbar height="40" itemSeparator="grid" width="100%">
+		<rich:toolbarGroup >
+			<h:outputLabel value="#{dataTableName}" />
+		</rich:toolbarGroup>
+ 
+		<rich:toolbarGroup location="right">
+			<h:commandButton value="Filter" >
+				<f:ajax event="click" listener="#{bean.searchAction()}"  execute="@form" render="@form"></f:ajax>
+			</h:commandButton>
+
+			<h:commandButton value="Clean filters" >
+				<f:ajax event="click" listener="#{bean.cleanFilters()}" render="@form"></f:ajax>
+			</h:commandButton>
+			
+			<ui:insert name="createButton"></ui:insert>
+
+		<a4j:commandButton value="Delete selected" actionListener="#{bean.createListEntitiesToDelete()}" styleClass="no-decor" execute="@this"
+			render="confirmDeleteAll" oncomplete="#{rich:component('confirmDeleteAll')}.show()">
+		</a4j:commandButton>
+
+
+		</rich:toolbarGroup>
+	</rich:toolbar>
+</f:facet>
+</ui:composition>
+</html>

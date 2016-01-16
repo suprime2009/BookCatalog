@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserveinc.model.persist.entity.BookConstantsHolder;
+import com.softserveinc.model.persist.entity.EntityConstant;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
@@ -37,6 +39,10 @@ public class ManageReviewsAction implements Serializable {
 	public ManageReviewsAction() {
 		countBooksByRating = new LinkedHashMap<>(5);
 	}
+	
+	public EntityConstant getRatingConstant() {
+		return BookConstantsHolder.RATING;
+	}
 
 	public Map<Integer, Integer> getCountBooksByRating() {
 		return countBooksByRating;
@@ -49,8 +55,6 @@ public class ManageReviewsAction implements Serializable {
 		for (int i = 1; i<6 ; i++) {
 			countBooksByRating.put(i, reviewFacade.findCountBooksByRating(i));
 		}
-
-
 		log.info("Method done");
 	}
 	

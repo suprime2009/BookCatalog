@@ -4569,3 +4569,1209 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 16:16:51 16.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
 16:16:51 16.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
 16:16:51 16.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+14:54:07 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+14:54:07 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+14:54:07 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+14:54:07 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+14:54:07 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+14:54:08 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+14:54:08 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+14:54:08 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+14:54:09 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+14:54:09 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+14:54:11 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+14:54:13 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+14:54:16 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=7849e637-474e-4d2e-99c8-5441178cf59e, bookName=Windows, createdDate=Sun Jan 17 14:54:16 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+14:54:16 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=7849e637-474e-4d2e-99c8-5441178cf59e, bookName=Windows, createdDate=2016-01-17 14:54:16.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 7849e637-474e-4d2e-99c8-5441178cf59e
+14:54:16 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=90a1760d-7759-45ec-897a-c27971464c32, bookName=Windows, createdDate=Sun Jan 17 14:54:16 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+14:54:16 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+14:54:16 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+14:54:16 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+14:54:16 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy76.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+14:54:17 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=0e7a41b8-3eb0-429d-9830-6b06a7bcc059, bookName=Windows 8.1 New, createdDate=Sun Jan 17 14:54:17 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=0e7a41b8-3eb0-429d-9830-6b06a7bcc059, bookName=Windows 8.1 New, createdDate=2016-01-17 14:54:17.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = 0e7a41b8-3eb0-429d-9830-6b06a7bcc059
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+14:54:17 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+14:54:17 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+14:54:17 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+14:54:17 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+14:54:17 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+14:54:17 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+15:02:19 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+15:02:19 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+15:02:19 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+15:02:19 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+15:02:20 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+15:02:20 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+15:02:20 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+15:02:20 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+15:02:21 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:02:21 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:02:22 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:02:23 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:02:25 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=d9b66184-e7ef-44a6-9aee-ae4dd4d8d9cb, bookName=Windows, createdDate=Sun Jan 17 15:02:25 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+15:02:25 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=d9b66184-e7ef-44a6-9aee-ae4dd4d8d9cb, bookName=Windows, createdDate=2016-01-17 15:02:25.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = d9b66184-e7ef-44a6-9aee-ae4dd4d8d9cb
+15:02:25 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=0480612e-b7b8-4c61-8818-b1db848ecd0d, bookName=Windows, createdDate=Sun Jan 17 15:02:25 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+15:02:25 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+15:02:25 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+15:02:25 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+15:02:25 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy76.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+15:02:25 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=c82ccabf-a869-42ad-8d3d-b388988e66b9, bookName=Windows 8.1 New, createdDate=Sun Jan 17 15:02:25 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+15:02:25 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=c82ccabf-a869-42ad-8d3d-b388988e66b9, bookName=Windows 8.1 New, createdDate=2016-01-17 15:02:25.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = c82ccabf-a869-42ad-8d3d-b388988e66b9
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+15:02:25 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+15:02:25 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+15:02:25 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+15:02:26 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+15:02:26 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+15:02:26 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+15:02:26 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+15:02:26 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+15:02:26 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+15:02:26 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+15:02:26 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+16:14:46 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+16:14:46 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+16:14:46 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+16:14:46 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+16:14:46 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16:14:46 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:14:46 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+16:14:47 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+16:14:48 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:14:48 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:14:49 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:14:49 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:14:52 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=1195f1f8-ada9-420f-9da9-f7521cf38bfa, bookName=Windows, createdDate=Sun Jan 17 16:14:51 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=1195f1f8-ada9-420f-9da9-f7521cf38bfa, bookName=Windows, createdDate=2016-01-17 16:14:51.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 1195f1f8-ada9-420f-9da9-f7521cf38bfa
+16:14:52 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=38aa1fa2-0c99-461a-ad98-2986958f0026, bookName=Windows, createdDate=Sun Jan 17 16:14:52 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:14:52 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+16:14:52 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+16:14:52 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+16:14:52 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy80.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+16:14:52 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=ba0a2295-aaf5-49ea-a49b-ff049b29461b, bookName=Windows 8.1 New, createdDate=Sun Jan 17 16:14:52 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=ba0a2295-aaf5-49ea-a49b-ff049b29461b, bookName=Windows 8.1 New, createdDate=2016-01-17 16:14:52.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = ba0a2295-aaf5-49ea-a49b-ff049b29461b
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+16:14:52 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+16:14:52 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+16:14:52 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+16:14:52 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:14:52 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+16:14:52 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+16:18:09 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+16:18:10 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+16:18:10 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+16:18:10 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+16:18:10 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16:18:10 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:18:10 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+16:18:10 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+16:18:11 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:18:11 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:18:12 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:18:13 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:18:15 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=6c87fcd1-dedf-4af1-84a1-aa226df90f9d, bookName=Windows, createdDate=Sun Jan 17 16:18:15 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:18:15 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=6c87fcd1-dedf-4af1-84a1-aa226df90f9d, bookName=Windows, createdDate=2016-01-17 16:18:15.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 6c87fcd1-dedf-4af1-84a1-aa226df90f9d
+16:18:15 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=2f933c23-206b-47a8-b6c8-2acbfee3d04b, bookName=Windows, createdDate=Sun Jan 17 16:18:15 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:18:15 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+16:18:15 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+16:18:15 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+16:18:15 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy80.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+16:18:15 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=03cb803f-80a1-48da-8599-a5221d9184b3, bookName=Windows 8.1 New, createdDate=Sun Jan 17 16:18:15 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+16:18:15 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=03cb803f-80a1-48da-8599-a5221d9184b3, bookName=Windows 8.1 New, createdDate=2016-01-17 16:18:15.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = 03cb803f-80a1-48da-8599-a5221d9184b3
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:18:15 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+16:18:15 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+16:18:15 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+16:18:16 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+16:18:16 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+16:18:16 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+16:18:16 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:18:16 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:18:16 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:18:16 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+16:18:16 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+16:38:18 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+16:38:18 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+16:38:18 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+16:38:18 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+16:38:18 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16:38:18 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:38:18 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+16:38:18 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+16:38:19 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:38:19 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:38:20 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:38:21 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:38:23 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=7f0e214c-524e-4d3e-962d-cd059fc416f6, bookName=Windows, createdDate=Sun Jan 17 16:38:23 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:38:23 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=7f0e214c-524e-4d3e-962d-cd059fc416f6, bookName=Windows, createdDate=2016-01-17 16:38:23.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 7f0e214c-524e-4d3e-962d-cd059fc416f6
+16:38:23 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=3c469279-0a1d-4612-b590-3f50a6880f17, bookName=Windows, createdDate=Sun Jan 17 16:38:23 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:38:23 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+16:38:23 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+16:38:23 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+16:38:23 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy80.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+16:38:23 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:38:23 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+16:38:23 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=4d2e09c1-4ceb-4f9f-b14a-07bd3cac4c0e, bookName=Windows 8.1 New, createdDate=Sun Jan 17 16:38:23 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=4d2e09c1-4ceb-4f9f-b14a-07bd3cac4c0e, bookName=Windows 8.1 New, createdDate=2016-01-17 16:38:23.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = 4d2e09c1-4ceb-4f9f-b14a-07bd3cac4c0e
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+16:38:24 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+16:38:24 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+16:38:24 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+16:38:24 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:38:24 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+16:38:24 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+16:56:26 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+16:56:26 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+16:56:26 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+16:56:26 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+16:56:27 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+16:56:27 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:56:27 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+16:56:27 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+16:56:28 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:56:28 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:56:29 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:56:30 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+16:56:33 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=c17fc1ab-6bbd-4c54-9e3f-52a2ae95bb47, bookName=Windows, createdDate=Sun Jan 17 16:56:32 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=c17fc1ab-6bbd-4c54-9e3f-52a2ae95bb47, bookName=Windows, createdDate=2016-01-17 16:56:32.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = c17fc1ab-6bbd-4c54-9e3f-52a2ae95bb47
+16:56:33 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=4a2716f8-23fb-43e3-bc2b-de6fa613bea2, bookName=Windows, createdDate=Sun Jan 17 16:56:33 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+16:56:33 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+16:56:33 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+16:56:33 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+16:56:33 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy81.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+16:56:33 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=5ce03354-6bb8-45de-b166-90a578f15c47, bookName=Windows 8.1 New, createdDate=Sun Jan 17 16:56:33 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=5ce03354-6bb8-45de-b166-90a578f15c47, bookName=Windows 8.1 New, createdDate=2016-01-17 16:56:33.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = 5ce03354-6bb8-45de-b166-90a578f15c47
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+16:56:33 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+16:56:33 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+16:56:33 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+16:56:33 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+16:56:33 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+16:56:33 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+17:14:03 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+17:14:03 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+17:14:03 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+17:14:03 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+17:14:03 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+17:14:03 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+17:14:03 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+17:14:04 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+17:14:05 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+17:14:05 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+17:14:06 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+17:14:07 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+17:14:09 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=d059d18a-0519-47b6-acad-745bf559bc3f, bookName=Windows, createdDate=Sun Jan 17 17:14:09 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=d059d18a-0519-47b6-acad-745bf559bc3f, bookName=Windows, createdDate=2016-01-17 17:14:09.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = d059d18a-0519-47b6-acad-745bf559bc3f
+17:14:09 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=684868c6-8c08-4082-bdaf-eaea19b0df10, bookName=Windows, createdDate=Sun Jan 17 17:14:09 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+17:14:09 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+17:14:09 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+17:14:09 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+17:14:09 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy81.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+17:14:09 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=1dce6c2f-4844-4d24-9f3d-b662ef1c04b7, bookName=Windows 8.1 New, createdDate=Sun Jan 17 17:14:09 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=1dce6c2f-4844-4d24-9f3d-b662ef1c04b7, bookName=Windows 8.1 New, createdDate=2016-01-17 17:14:09.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = 1dce6c2f-4844-4d24-9f3d-b662ef1c04b7
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+17:14:09 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+17:14:09 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+17:14:09 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+17:14:09 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+17:14:09 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+17:14:09 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+18:09:23 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+18:09:24 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+18:09:24 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+18:09:24 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+18:09:24 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+18:09:24 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+18:09:24 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+18:09:24 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+18:09:25 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+18:09:25 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+18:09:26 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+18:09:28 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+18:09:30 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=9275e593-12d6-4d4c-bcb9-73e60b1963d8, bookName=Windows, createdDate=Sun Jan 17 18:09:30 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=9275e593-12d6-4d4c-bcb9-73e60b1963d8, bookName=Windows, createdDate=2016-01-17 18:09:30.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 9275e593-12d6-4d4c-bcb9-73e60b1963d8
+18:09:30 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=7af1b006-dced-4966-b096-e3cceb2bf359, bookName=Windows, createdDate=Sun Jan 17 18:09:30 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+18:09:30 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+18:09:30 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+18:09:30 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+18:09:30 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy81.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+18:09:30 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=d31cd855-3399-4656-aa9a-5ae224857052, bookName=Windows 8.1 New, createdDate=Sun Jan 17 18:09:30 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=d31cd855-3399-4656-aa9a-5ae224857052, bookName=Windows 8.1 New, createdDate=2016-01-17 18:09:30.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = d31cd855-3399-4656-aa9a-5ae224857052
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+18:09:30 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+18:09:30 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+18:09:30 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+18:09:30 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+18:09:30 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+18:09:30 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+19:35:49 17.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+19:35:49 17.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+19:35:49 17.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+19:35:49 17.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+19:35:49 17.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+19:35:50 17.01.2016 INFO  Dialect  <init>:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+19:35:50 17.01.2016 INFO  LobCreatorBuilder  useContextualLobCreation:97 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+19:35:50 17.01.2016 INFO  ASTQueryTranslatorFactory  <init>:47 - HHH000397: Using ASTQueryTranslatorFactory
+19:35:51 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+19:35:51 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+19:35:52 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+19:35:53 17.01.2016 WARN  AbstractTableMetaData  getDataTypeFactory:166 - Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'MySQL' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+19:35:55 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=980892fd-1936-4a06-8a80-8a185e116036, bookName=Windows, createdDate=Sun Jan 17 19:35:55 EET 2016, isbn=222-11-112-1, publisher=Japan, yearPublished=2015} has been successfully created
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=980892fd-1936-4a06-8a80-8a185e116036, bookName=Windows, createdDate=2016-01-17 19:35:55.0, isbn=222-11-112-1, publisher=Japan, yearPublished=2015, authors=[]} has been successfully found by id = 980892fd-1936-4a06-8a80-8a185e116036
+19:35:55 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=336b19cb-c58e-437a-8210-61374d39b96e, bookName=Windows, createdDate=Sun Jan 17 19:35:55 EET 2016, isbn=111-11-111-1, publisher=Japan, yearPublished=2015} has been successfully created
+19:35:55 17.01.2016 WARN  SqlExceptionHelper  logExceptions:144 - SQL Error: 1062, SQLState: 23000
+19:35:55 17.01.2016 ERROR SqlExceptionHelper  logExceptions:146 - Duplicate entry '111-11-111-1' for key 'isbn'
+19:35:55 17.01.2016 INFO  AbstractBatchImpl  release:208 - HHH000010: On release of batch it still contained JDBC statements
+19:35:55 17.01.2016 WARN  Transaction  beforeCompletion:529 - Unexpected exception from beforeCompletion; transaction will roll back
+javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1763)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1677)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl.convert(AbstractEntityManagerImpl.java:1683)
+	at org.hibernate.jpa.spi.AbstractEntityManagerImpl$CallbackExceptionMapperImpl.mapManagedFlushFailure(AbstractEntityManagerImpl.java:1882)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:115)
+	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
+	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
+	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
+	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
+	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
+	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
+	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
+	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
+	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
+	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
+	at com.sun.proxy.$Proxy85.create(Unknown Source)
+	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:72)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:49)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:126)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:112)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:211)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:62)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3124)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3581)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:104)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:463)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:349)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:350)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:56)
+	at org.hibernate.internal.SessionImpl.flush(SessionImpl.java:1222)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:425)
+	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:110)
+	... 41 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '111-11-111-1' for key 'isbn'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.Util.getInstance(Util.java:381)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:956)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3491)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3423)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1936)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2060)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2542)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1734)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2019)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1937)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1922)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:105)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:208)
+	... 52 more
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@9d45f9f5 has been successfully found by id = a9
+19:35:55 17.01.2016 INFO  BookHome  create:34 - Entity Book{idBook=bde2a006-7979-4750-96c0-61d7611a632e, bookName=Windows 8.1 New, createdDate=Sun Jan 17 19:35:55 EET 2016, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully created
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=bde2a006-7979-4750-96c0-61d7611a632e, bookName=Windows 8.1 New, createdDate=2016-01-17 19:35:55.0, isbn=111-122-32-2, publisher=Japan, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@9d45f9f5, com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = bde2a006-7979-4750-96c0-61d7611a632e
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=Spring, createdDate=2015-10-29 10:28:15.0, isbn=111-11-111-5, publisher=England, yearPublished=2015, authors=[com.softserveinc.model.persist.entity.Author@37d05346]} has been successfully found by id = b5
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@b8680a15 has been successfully found by id = a5
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@5e2621c5 has been successfully found by id = a6
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@f44766d7 has been successfully found by id = a7
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@970e3a45 has been successfully found by id = a2
+19:35:55 17.01.2016 INFO  BookHome  update:40 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully updated
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b5, bookName=New Name, createdDate=2015-10-29 10:28:15.0, isbn=777-777-777-7, publisher=publisher, yearPublished=1990, authors=[com.softserveinc.model.persist.entity.Author@f44766d7, com.softserveinc.model.persist.entity.Author@5e2621c5, com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@b8680a15]} has been successfully found by id = b5
+19:35:55 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b36
+19:35:55 17.01.2016 INFO  BookHome  delete:49 - Entity Book{idBook=b36, bookName=Espanol, createdDate=2015-11-10 11:30:15.0, isbn=111-11-111-35, publisher=England, yearPublished=2008, authors=[com.softserveinc.model.persist.entity.Author@970e3a45, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully deleted
+19:35:55 17.01.2016 INFO  AuthorHome  findAll:51 - List<Author> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  ReviewHome  findAll:77 - List<Review> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  BookHome  findAll:63 - List<Author> has been successfully created. Method findAll() finished
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@37d05346 has been successfully found by id = a1
+19:35:55 17.01.2016 INFO  AuthorHome  findByID:57 - Entity com.softserveinc.model.persist.entity.Author@e7965f79 has been successfully found by id = a4
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[com.softserveinc.model.persist.entity.Author@37d05346, com.softserveinc.model.persist.entity.Author@e7965f79]} has been successfully found by id = b2
+19:35:55 17.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900

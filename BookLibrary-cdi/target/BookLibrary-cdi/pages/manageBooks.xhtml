@@ -51,7 +51,8 @@
 </ui:define>
     
 <ui:define name="content">
-    
+
+   
     <!--The sortable datatable-->
 <h:form id="formManageBooks" prependId="false">
 	
@@ -64,10 +65,7 @@
 <ui:decorate template="templates/dataTableHeader.xhtml">
 		<ui:param name="datatableName" value="MANAGE BOOK TABLE" />
 		<ui:define name="createButton">
-
-			
-						 <a4j:commandButton id="createBookBtm" value="Create Book"   execute="@this"
-					render="createBookPopUp"  oncomplete="#{rich:component('createBookPopUp')}.show()" />
+			<a4j:commandButton  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" render="createBook"></a4j:commandButton>
 		</ui:define>
 </ui:decorate>
 	
@@ -144,13 +142,20 @@
 <ui:param name="bean" value="#{manageBookAction}" />
 </ui:include>
 
-
-
 </h:form>
 
 
-    <ui:include src="createBook.xhtml" />
-
+    
+ <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" >
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
+                X
+            </h:outputLink>
+	</f:facet>
+	<h:panelGroup id="createBookPanel">
+     <ui:include src="createBook.xhtml" /> 
+     </h:panelGroup> 
+</rich:popupPanel>
 
 
 </ui:define>

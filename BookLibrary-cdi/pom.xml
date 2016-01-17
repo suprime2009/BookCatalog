@@ -58,7 +58,61 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<!-- JBoss distributes a complete set of Java EE 7 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-7.0-with-tools stack (you can 
+				read this as the JBoss stack of the Java EE 7 APIs, with some extras tools 
+				for your project, such as Arquillian for testing) and the jboss-javaee-7.0-with-hibernate 
+				stack you can read this as the JBoss stack of the Java EE 7 APIs, with extras 
+				from the Hibernate family of projects) -->
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>jboss-javaee-7.0-with-tools</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+				<version>${version.jboss.bom}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
+
+		<!-- First declare the APIs we depend on and need for compilation. All 
+			of them are provided by JBoss WildFly -->
+
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss WildFly -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+			as the API is included in JBoss WildFly -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+			in JBoss WildFly -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>jaxrs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.enterprise</groupId>
@@ -163,36 +217,30 @@
 			<artifactId>jsf-api</artifactId>
 			<version>2.2.12</version>
 		</dependency>
-		
+
 		<dependency>
-	<groupId>javax.faces</groupId>
-	<artifactId>javax.faces-api</artifactId>
-	<version>2.2</version>
-</dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>javax.faces-api</artifactId>
+			<version>2.2</version>
+		</dependency>
 
-<dependency>
-	<groupId>org.richfaces</groupId>
-	<artifactId>richfaces-core</artifactId>
-	<version>4.5.0.Final</version>
-</dependency>
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces-core</artifactId>
+			<version>4.5.0.Final</version>
+		</dependency>
 
-<dependency>
-    <groupId>org.richfaces</groupId>
-    <artifactId>richfaces</artifactId>
-    <version>4.5.0.Final</version>
-</dependency>
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces</artifactId>
+			<version>4.5.0.Final</version>
+		</dependency>
 
-<dependency>
-	<groupId>org.richfaces</groupId>
-	<artifactId>richfaces-a4j</artifactId>
-	<version>4.5.0.Final</version>
-</dependency>
-
-
-
-
-
-
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces-a4j</artifactId>
+			<version>4.5.0.Final</version>
+		</dependency>
 
 		<!-- Google Guava dependency -->
 		<dependency>
@@ -200,15 +248,12 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
-		
-		<dependency>
-	<groupId>jstl</groupId>
-	<artifactId>jstl</artifactId>
-	<version>1.2</version>
-</dependency>
-		
-		
 
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.w3c.css</groupId>
 			<artifactId>sac</artifactId>
@@ -219,10 +264,15 @@
 			<artifactId>cssparser</artifactId>
 			<version>0.9.18</version>
 		</dependency>
+		
+		<dependency>
+		<groupId>org.jboss.resteasy</groupId>
+		<artifactId>resteasy-jaxb-provider</artifactId>
+		<version>2.2.0.GA</version>
+	</dependency>
+
 
 	</dependencies>
-
-
 
 	<build>
 		<!-- Maven will append the version to the finalName (which is the name 

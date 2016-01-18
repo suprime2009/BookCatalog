@@ -21,9 +21,8 @@
     <a4j:commandButton value="Add book" action="#{createBookAction.submit()}" 
 				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render="manageBookDataTable" />
     				
-    <a4j:commandButton   value="Add and edit" actionListener="#{editBookAction.loadBookForEdit}" action="#{createBookAction.submitAndEdit()}" render="editBookPopUp" execute="createBook" 
-    			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createBook')}.hide(); #{rich:component('editBookPopUp')}.show();}">
-    			<f:setPropertyActionListener target="#{editBookAction.book}" value="#{createBookAction.idBookAfterCreate}" />
+    <a4j:commandButton   value="Add and edit"  action="#{createBookAction.submitAndEdit()}" render="confirmAdd" execute="createBook" 
+    			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}">
     </a4j:commandButton>
     
     <a4j:commandButton value="Clear" action="#{createBookAction.reset}" execute="@this" render="inputPanel" />
@@ -43,8 +42,14 @@
 <h:outputText value="Book has been created" />
  <br/>
  <center>
-<a4j:commandButton value="OK" 
-	oncomplete="#{createBookAction.reset()}; #{rich:component('confirmAdd')}.hide();"/>
+
+<a4j:commandLink actionListener="#{editBookAction.loadBookForEdit}"
+oncomplete="#{rich:component('confirmAdd')}.hide(); #{rich:component('editBookPopUp')}.show()" render="editBookPopUp" execute="@this" >
+		<h:graphicImage value="/resources/images/Edit.gif" alt="edit" />
+		<f:attribute name="bookId" value="#{createBookAction.idBookAfterCreate}" />
+		</a4j:commandLink>
+
+
 </center>
 </rich:popupPanel>
 

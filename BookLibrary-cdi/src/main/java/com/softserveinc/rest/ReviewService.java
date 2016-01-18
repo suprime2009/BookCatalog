@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.softserveinc.model.persist.entity.Review;
 
-@Path("/reviews")
+@Path("/review")
 @Local
 public interface ReviewService {
 	
@@ -23,16 +23,21 @@ public interface ReviewService {
 	@Produces("application/json")
 	public Response findById( String id);
 	
+	@GET
+	@Path("/")
+	@Produces("application/json")
+	public Response findAll();
+	
 	@POST
 	@Consumes("application/json")
 	public Response create(Review review);
 	
 	@PUT
 	@Consumes("application/json")
-	public Response update(Review student);
+	public Response update(Review review);
 	
 	@DELETE
-	@Path("/delete/{id}")
+	@Path("/{id}")
 	public Response deleteById(@PathParam("id") String id);
 
 }

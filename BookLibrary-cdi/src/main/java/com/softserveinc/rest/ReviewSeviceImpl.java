@@ -1,6 +1,7 @@
 package com.softserveinc.rest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -60,6 +61,52 @@ public class ReviewSeviceImpl implements ReviewService {
 		return builder.build();
 	}
 	
+	@Override
+	public Response findAll() {
+		List<Review> list = reviewFacade.findAll();
+		return Response.ok(list).build();
+	}
+	
+	@Override
+	public Response update(Review review) {
+		Response.ResponseBuilder builder = null;
+
+		try {
+			validateReview(review);
+			boolean status = reviewManager.updateReview(review);
+			if (status == false) {
+				throw new Exception("Unexpected internal error.");
+			}
+			builder = Response.status(Status.OK);
+		} catch (NullPointerException e) {
+			Map<String, String> responseObj = new HashMap<>();
+			responseObj.put("error", e.getMessage());
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
+
+		} catch (BookCatalogException e) {
+			Map<String, String> responseObj = new HashMap<>();
+			responseObj.put("error", e.getMessage());
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
+		} catch (Exception e) {
+			Map<String, String> responseObj = new HashMap<>();
+			responseObj.put("error", e.getMessage());
+			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(responseObj);
+		}
+
+		return builder.build();
+	}
+
+	@Override
+	public Response deleteById(String id) {
+		Response r = null;
+		boolean result = reviewManager.deleteReview(id);
+		if (result) {
+			return r.ok("OK").build();
+		} else {
+			return r = Response.ok("error").build();
+		}
+	}
+	
 
 
 	public void validateReview(Review review) throws BookCatalogException {
@@ -77,21 +124,8 @@ public class ReviewSeviceImpl implements ReviewService {
 		}
 	}
 
-	@Override
-	public Response update(Review student) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	public Response deleteById(String id) {
-		Response r = null;
-		boolean result = reviewManager.deleteReview(id);
-		if (result) {
-			return r.ok("OK").build();
-		} else {
-			return r = Response.ok("error").build();
-		}
-	}
+
 
 }

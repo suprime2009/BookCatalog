@@ -114,6 +114,7 @@ public class CreateBookAction implements ValidateISBN {
 		} else {
 			log.debug("Book instance has not been created.");
 		}
+		book = new Book();
 	}
 
 	/**

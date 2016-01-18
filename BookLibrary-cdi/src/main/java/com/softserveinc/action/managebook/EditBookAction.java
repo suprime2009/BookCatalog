@@ -118,7 +118,7 @@ public class EditBookAction implements ValidateISBN{
 		}
 		log.debug("Method finished. Author {} {} has been removed from temporary list.", secondName, firstName);
 	}
-		
+			
 	public void loadBookForEdit(ActionEvent event) {
 		String bookIdToEdit = (String) event.getComponent().getAttributes().get("bookId");
 		book = bookFacade.findById(bookIdToEdit);

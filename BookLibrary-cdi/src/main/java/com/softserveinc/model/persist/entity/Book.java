@@ -66,7 +66,7 @@ public class Book implements Serializable {
 	private Integer yearPublished;
 
 //	@ElementCollection
-//	@OrderColumn(name="author.secondName")
+	@OrderColumn(name="author.secondName")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
@@ -75,7 +75,7 @@ public class Book implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy="book")
 	private Set<Review> reviews;
 	
-	
+	@Transient
 	private transient Double rating;
 
 	public Book() {

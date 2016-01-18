@@ -31,7 +31,7 @@ public class ISNBValidator implements Validator {
 			FacesMessage message = new FacesMessage("ISBN not valid");
 			context.addMessage(component.getClientId(context), message);
 		} else {
-				((UIInput) component).setValid(true);
+				
 				FacesMessage message = new FacesMessage("ISBN  valid " + val);
 				System.out.println(true);
 				context.addMessage(component.getClientId(context), message);

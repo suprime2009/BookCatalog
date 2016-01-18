@@ -52,11 +52,12 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 	public void getBooksByRating(Integer rating) {
 		cleanFilters();
 		getFilterValues().put(BookConstantsHolder.RATING, String.valueOf(rating));
+		refreshPage();
 	}
 	
 	@Override
-	public EntityConstant getEntityConstantInstance() {
-		return BookConstantsHolder.INSTANCE;
+	public EntityConstant [] getEntityConstantInstances() {
+		return BookConstantsHolder.values();
 	}
 
 	@Override
@@ -97,6 +98,12 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		bookManager.deleteListBooks(list);
 		refreshPage();
 
+	}
+
+
+	@Override
+	public EntityConstant getFieldHolderForColumn(String column) {
+		return BookConstantsHolder.valueOf(column);
 	}
 
 }

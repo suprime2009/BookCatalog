@@ -36,14 +36,14 @@ import com.softserveinc.model.session.manager.BookManagerLocal;
  *
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CreateBookAction implements ValidateISBN {
 
 	private static Logger log = LoggerFactory.getLogger(CreateBookAction.class);
 
 	private Book book;
 	private boolean createDone;
-	private Book bookAfterCreate;
+	private String idBookAfterCreate;
 
 	public boolean getCreateDone() {
 		return createDone;
@@ -66,7 +66,7 @@ public class CreateBookAction implements ValidateISBN {
 	}
 
 	@Override
-	public void validateISBN(FacesContext context, UIComponent comp, Object value) {
+	public void validateIfExistISBN(FacesContext context, UIComponent comp, Object value) {
 		log.debug("Method start. Passed value to validate equals {}", value.toString());
 		String val = (String) value;
 		Book book = bookfacade.findBookByISNBN(val);
@@ -88,12 +88,13 @@ public class CreateBookAction implements ValidateISBN {
 	 * 
 	 */
 	public void submit() {
-		bookAfterCreate = bookManager.createBook(book);
+		Book bookAfterCreate = bookManager.createBook(book);
+		idBookAfterCreate = bookAfterCreate.getIdBook();
 		if (bookAfterCreate != null) {
 			createDone = true;
-			log.debug("Book instance has been successfully created.");
+			log.info("Book instance has been successfully created.");
 		} else {
-			log.debug("Book instance has not been created.");
+			log.info("Book instance has not been created.");
 		}
 	}
 
@@ -105,14 +106,13 @@ public class CreateBookAction implements ValidateISBN {
 	 * 
 	 * @return If Book instance has been created return URL for editBook page.
 	 */
-	public String submitAndEdit() {
-		bookAfterCreate = bookManager.createBook(book);
+	public void submitAndEdit() {
+		Book bookAfterCreate = bookManager.createBook(book);
+		idBookAfterCreate = bookAfterCreate.getIdBook();
 		if (bookAfterCreate != null) {
 			log.debug("Book instance has been successfully created.");
-			return "editBook.xhtml?faces-redirect=true&amp;includeViewParams=true&id=" + bookAfterCreate.getIdBook();
 		} else {
 			log.debug("Book instance has not been created.");
-			return "";
 		}
 	}
 
@@ -121,7 +121,7 @@ public class CreateBookAction implements ValidateISBN {
 	 */
 	public void reset() {
 		book = new Book();
-		bookAfterCreate = null;
+		idBookAfterCreate = null;
 		log.debug("Method done.");
 	}
 
@@ -129,8 +129,8 @@ public class CreateBookAction implements ValidateISBN {
 		return book;
 	}
 
-	public Book getBookAfterCreate() {
-		return bookAfterCreate;
+	public String getIdBookAfterCreate() {
+		return idBookAfterCreate;
 	}
 
 	public void setBook(Book book) {
@@ -139,7 +139,7 @@ public class CreateBookAction implements ValidateISBN {
 
 	public boolean isDisableParam() {
 		System.out.println("isDisableParam");
-		if (bookAfterCreate == null) {
+		if (idBookAfterCreate == null) {
 			return true;
 		} else {
 			return false;

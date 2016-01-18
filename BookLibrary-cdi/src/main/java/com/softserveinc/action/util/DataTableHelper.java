@@ -40,7 +40,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	private List<T> listEntitiesToDelete;
 
 	protected DataTableHelper() {
-		for (EntityConstant constant : getEntityConstantInstance().getListConstants()) {
+		for (EntityConstant constant : getEntityConstantInstances()) {
 			sortOrders.put(constant, SortOrder.unsorted);
 		}
 	}
@@ -77,6 +77,8 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 			}
 		}
 	}
+	
+	public abstract EntityConstant getFieldHolderForColumn(String column);
 
 	public void searchAction() {
 		refreshPage();
@@ -140,7 +142,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * Method gets entity constants for current Entity.
 	 * @return EntityConstant
 	 */
-	public abstract EntityConstant getEntityConstantInstance();
+	public abstract EntityConstant [] getEntityConstantInstances();
 
 	/**
 	 * Method is a action of selectAll. Method sets all entities in list

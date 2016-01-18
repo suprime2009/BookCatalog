@@ -10,9 +10,6 @@ public interface EntityConstant {
 	String getBusinessView();
 	
 	String getUIView();
-	
-	List<EntityConstant> getListConstants();
-	
-	EntityConstant getConsant(String constant);
+		
 
 }

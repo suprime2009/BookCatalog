@@ -7,9 +7,9 @@ test\CarsBean.class
 com\softserveinc\action\managebook\EditBookAction.class
 test\BooksBean$BookDataModel.class
 com\softserveinc\model\session\manager\BookManagerRemote.class
+com\softserveinc\action\util\ISBNConverter.class
 com\softserveinc\model\persist\backing\HelloBean.class
 com\softserveinc\model\session\util\BookDataModel.class
-resttest\AuthorWs.class
 com\softserveinc\model\persist\service\AuthorService.class
 com\softserveinc\model\persist\backing\HomeManagedBean.class
 com\softserveinc\action\managebook\UIWrapper.class
@@ -31,6 +31,7 @@ com\softserveinc\model\persist\entity\Author.class
 com\softserveinc\model\persist\home\ReviewHomeRemote.class
 com\softserveinc\action\managebook\AuthorDetailAction.class
 com\softserveinc\action\managebook\CreateAuthorAction.class
+com\softserveinc\action\util\ISNBValidator.class
 com\softserveinc\model\session\manager\ReviewManagerLocal.class
 com\softserveinc\model\persist\facade\AuthorFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHomeLocal.class
@@ -46,7 +47,6 @@ test\Main.class
 com\softserveinc\action\managebook\ReviewAction.class
 com\softserveinc\model\session\manager\IManagerBook.class
 com\softserveinc\model\session\manager\ReviewManagerRemote.class
-com\softserveinc\action\managebook\ISNBValidatorController.class
 com\softserveinc\model\session\manager\BookManagerLocal.class
 com\softserveinc\action\managebook\BookUIWrapper.class
 com\softserveinc\model\persist\home\BookHome.class

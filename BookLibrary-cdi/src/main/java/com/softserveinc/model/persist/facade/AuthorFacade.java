@@ -1,5 +1,6 @@
 package com.softserveinc.model.persist.facade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -49,7 +50,7 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote{
 	}
 
 	@Override
-	public Author findAuthorByFullName(String firstName, String secondName) {
+	public Author findAuthorByFullName(String secondName, String firstName) {
 		Author object = null;
 		Query query = entityManager.createNamedQuery(Author.FIND_AUTHOR_BY_FULL_NAME);
 		query.setParameter("fn", firstName);
@@ -79,12 +80,16 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote{
 		return authorHomeLocal.findAll();
 	}
 
+
+
 	@Override
-	public List<Author> findAuthorsBySecondName(String secondname) {
-		Query query = entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_SECOND_NAME);
-		query.setParameter("sn", secondname + '%');
-		List<Author> list = (List<Author>) query.getResultList();
-		System.out.println("findAuthorsBySecondName");
+	public List<String> findAuthorsFullNamesForAutocomplete(String prefix) {
+		Query query = entityManager.createNamedQuery(Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE);
+		query.setParameter("sn", prefix + '%');
+		query.setMaxResults(5);
+		List<String> list =  query.getResultList();
+
+		log.info("Method done.");
 		return list;
 	}
 

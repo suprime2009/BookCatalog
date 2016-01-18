@@ -1,6 +1,5 @@
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\ConstantsUtil.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\DataTableSearchHolder.java
-C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ISNBValidatorController.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\backing\UserBean.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\BookDataModel.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\exception\BookCatalogException.java
@@ -69,11 +68,12 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\BookFacadeRemote.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\AuthorDetailAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\ReviewFacade.java
-C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\resttest\AuthorWs.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\backing\HomeManagedBean.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\ReviewHomeRemote.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\AuthorHome.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\ReviewFacadeRemote.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\ISBNConverter.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Book.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookUIWrapper.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\ISNBValidator.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\OrderBy.java

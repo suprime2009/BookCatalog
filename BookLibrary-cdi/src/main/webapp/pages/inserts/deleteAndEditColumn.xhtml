@@ -15,11 +15,10 @@
 			<a4j:param value="#{propertyId}" assignTo="#{bean.idEntityToDelete}" />
 			<h:graphicImage value="/resources/images/delete.gif" alt="delete" />
 		</a4j:commandLink>
-		<h:link outcome="editBook">
-		<f:param name="id" value="#{propertyId}"></f:param>
-		<h:graphicImage value="/resources/images/Edit.gif" alt="delete" />
-		
-		</h:link>
+		<a4j:commandLink actionListener="#{editBookAction.loadBookForEdit}" oncomplete="#{rich:component('editBookPopUp')}.show()" render="editBookPopUp" execute="@this" >
+		<f:attribute name="bookId" value="#{propertyId}" />
+		<h:graphicImage value="/resources/images/Edit.gif" alt="edit" />
+		</a4j:commandLink>
 	</rich:column>
 </ui:composition>
 </html>

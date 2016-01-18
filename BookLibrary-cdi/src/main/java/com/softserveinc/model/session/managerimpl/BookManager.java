@@ -133,7 +133,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 	public Book createBook(Book book) {
 		System.out.println("createBook");
 		Book bookCreated = bookHomeLocal.create(book);
-		return bookCreated;
+		if (bookCreated.getIdBook() != null) {
+			return bookCreated;
+		} else {
+			return null;
+		}
+		
 		
 	}
 

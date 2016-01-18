@@ -13,7 +13,6 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.google.common.base.Optional;
-import com.softserveinc.action.managebook.ISNBValidatorController;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.BookFacade;

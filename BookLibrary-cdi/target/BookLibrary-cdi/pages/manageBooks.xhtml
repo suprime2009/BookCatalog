@@ -9,9 +9,7 @@
 <ui:composition template="templates/commonLayout.xhtml">
 
 <ui:define name="title">
-<f:metadata>
-    <f:viewAction action="#{manageBookAction.refreshPage()}"/>
-</f:metadata>
+
    Manage Books
          <h:outputStylesheet>
         
@@ -65,7 +63,7 @@
 <ui:decorate template="templates/dataTableHeader.xhtml">
 		<ui:param name="datatableName" value="MANAGE BOOK TABLE" />
 		<ui:define name="createButton">
-			<a4j:commandButton  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" render="createBook"></a4j:commandButton>
+			<a4j:commandButton  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this"></a4j:commandButton>
 		</ui:define>
 </ui:decorate>
 	
@@ -76,7 +74,7 @@
 			
 <!-- bookName Column -->		
 <ui:decorate template="templates/columnTemplate.xhtml">
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('bookName')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('BOOK_NAME')}" />
  		<ui:define name="outputValue">
  			<h:link value="#{bookWrapper.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
 				<f:param name="id" value="#{bookWrapper.book.idBook}"></f:param>
@@ -86,25 +84,25 @@
  	
 <!-- Publisher column -->    
 <ui:decorate template="templates/columnTemplate.xhtml">
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('publisher')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('PUBLISHER')}" />
 		<ui:param name="property" value="#{bookWrapper.book.publisher}" />
 </ui:decorate>
    
  <!-- ISBN Column --> 
 <ui:decorate template="templates/columnTemplate.xhtml">
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('isbn')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('ISBN')}" />
 		<ui:param name="property" value="#{bookWrapper.book.isbn}" />
 </ui:decorate>
 
 <!-- yearPublished column -->
 <ui:decorate template="templates/columnTemplate.xhtml">
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('yearPublished')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('YEAR_PUBLISHED')}" />
 		<ui:param name="property" value="#{bookWrapper.book.yearPublished}" />
 </ui:decorate>
    
  <!-- Rating Column -->
 <ui:decorate template="templates/columnTemplate.xhtml">
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('rating')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('RATING')}" />
 		<ui:param name="property" value="#{bookWrapper.book.rating}" />
 		<ui:define name="filterType">	
 			<div id="slider">
@@ -119,7 +117,7 @@
    		
  <!-- Author Column -->
 <ui:decorate template="templates/columnTemplate.xhtml"> 
-		<ui:param name="columnName" value="#{manageBookAction.entityConstantInstance.getConsant('authors')}" />
+		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('AUTHORS')}" />
 		<ui:define name="outputValue">
         	<rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
         		<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
@@ -141,21 +139,15 @@
 <ui:include src="inserts/deletePopUps.xhtml" >
 <ui:param name="bean" value="#{manageBookAction}" />
 </ui:include>
-
 </h:form>
 
+<ui:include src="createBook.xhtml" />
 
-    
- <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" >
-	<f:facet name="controls">
-	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">
-                X
-            </h:outputLink>
-	</f:facet>
-	<h:panelGroup id="createBookPanel">
-     <ui:include src="createBook.xhtml" /> 
-     </h:panelGroup> 
-</rich:popupPanel>
+<ui:include src="editBook.xhtml" />
+
+
+
+
 
 
 </ui:define>

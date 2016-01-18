@@ -66,4 +66,6 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 		
 	}
 
+
+
 }

@@ -22,6 +22,8 @@ public interface IManagerAuthor {
 	
 	void removeAll(List<Author> list);
 	
+
+	
 	
 	
 }

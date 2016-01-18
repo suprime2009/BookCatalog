@@ -31,39 +31,4 @@ public enum AuthorConstantsHolder implements EntityConstant {
 	public String getUIView() {
 		return UI_VIEW;
 	}
-
-	@Override
-	public List<EntityConstant> getListConstants() {
-		List<EntityConstant> list = new ArrayList<EntityConstant>();
-		list.add(ID);
-		list.add(FIRST_NAME);
-		list.add(CREATED_DATE);
-		list.add(SECOND_NAME);
-		list.add(BOOKS);
-		return list;
-	}
-
-	@Override
-	public EntityConstant getConsant(String constant) {
-		switch (constant) {
-		case "idAuthor":
-			return ID;
-
-		case "firstName":
-			return FIRST_NAME;
-
-		case "createdDate":
-			return CREATED_DATE;
-
-		case "secondName":
-			return SECOND_NAME;
-
-		case "books":
-			return BOOKS;
-
-		default:
-			throw new IllegalArgumentException();
-		}
-	}
-
 }

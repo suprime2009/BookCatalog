@@ -46,6 +46,7 @@ public interface IAuthorFacade {
 	 */
 	List<Author> findAll();
 	
-	List<Author> findAuthorsBySecondName(String secondName);
+	
+	List<String> findAuthorsFullNamesForAutocomplete(String prefix);
 
 }

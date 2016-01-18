@@ -1,52 +1,40 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
-	 xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <h:head>
-        <title>Create Book</title>
-    </h:head>
-<h:body>
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
 
-
-
-
-<h:form id="createBookForm" >
-<rich:panel>
-<f:facet name="header">
-<h:outputLabel value="Create new book" />
-</f:facet>
-   
+  <h:form>
+ <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" domElementAttachment="parent" header="Create new book" >
+ 
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">X</h:outputLink>
+	</f:facet>
+	
    <ui:include src="inserts/inputsBookCreate.xhtml" >
    <ui:param name="bean" value="#{createBookAction}" />
    </ui:include>
     
-
-	
-	<h:commandButton   value="addBook"  >
-    <a4j:ajax execute="createBook" listener="#{createBookAction.submit()}" 
-    		oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" render="formManageBooks"></a4j:ajax>
-    </h:commandButton>
+    <a4j:commandButton value="Add book" action="#{createBookAction.submit()}" 
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render="manageBookDataTable" />
+    				
+    <a4j:commandButton   value="Add and edit" actionListener="#{editBookAction.loadBookForEdit}" action="#{createBookAction.submitAndEdit()}" render="editBookPopUp" execute="createBook" 
+    			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createBook')}.hide(); #{rich:component('editBookPopUp')}.show();}">
+    			<f:setPropertyActionListener target="#{editBookAction.book}" value="#{createBookAction.idBookAfterCreate}" />
+    </a4j:commandButton>
     
-    <h:commandButton   value="Add/Edit" action="#{createBookAction.submitAndEdit()}" >
-    <f:param name="id"  value="#{createBookAction.bookAfterCreate.idBook}"></f:param>
-    </h:commandButton>
-    
-    <h:commandButton type="reset"  value="Clear" >
-        <f:ajax  execute="@this" listener="#{createBookAction.reset}" render="createBookForm" ></f:ajax>
-    </h:commandButton>
-    
-    <h:commandButton type="button" value="Cancel" >
-        <f:ajax  event="click" onevent="#{rich:component('createBook')}.hide()"></f:ajax>
-    </h:commandButton>
+    <a4j:commandButton value="Clear" action="#{createBookAction.reset}" execute="@this" render="inputPanel" />
 
-    </rich:panel>
+    <a4j:commandButton value="Cancel"  onclick="#{rich:component('createBook')}.hide(); return false;" />
 
-</h:form>   
+</rich:popupPanel>
+</h:form> 
+
+
+   
 
 
 
@@ -59,5 +47,6 @@
 	oncomplete="#{createBookAction.reset()}; #{rich:component('confirmAdd')}.hide();"/>
 </center>
 </rich:popupPanel>
-</h:body>
+
+</ui:composition>
 </html>

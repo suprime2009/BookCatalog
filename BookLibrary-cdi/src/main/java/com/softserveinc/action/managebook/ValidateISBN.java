@@ -17,5 +17,5 @@ public interface ValidateISBN {
 	 * @param comp
 	 * @param value ISBN from UI.
 	 */
-	public void validateISBN(FacesContext context, UIComponent comp, Object value);
+	public void validateIfExistISBN(FacesContext context, UIComponent comp, Object value);
 }

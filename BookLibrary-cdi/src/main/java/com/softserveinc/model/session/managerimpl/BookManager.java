@@ -71,6 +71,7 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 	private ReviewFacadeLocal reviewFacadeLocal;
 
 	public BookManager() {
+		
 	}
 
 	@PostConstruct
@@ -87,13 +88,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 		List<Book> list = bookFacadeLocal.findAll();
 		log.info("Method has been successfully finished.");
 		return list;
-	}
-
-	@Override
-	public Book getBookByID(String id) {
-		Book book = bookHomeLocal.findByID(id);
-		log.info("Method has been successfully finished.");
-		return book;
 	}
 
 	@Transactional

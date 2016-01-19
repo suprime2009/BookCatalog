@@ -1,5 +1,11 @@
 package com.softserveinc.exception;
 
+/**
+ * The class {@code BookCatalogException} is a subclass of {@link Exception} is a global
+ * exception for Book Catalog application. This exception can be thrown to indicate 
+ * that some global application conditions violated. 
+ *
+ */
 public class BookCatalogException extends Exception {
 
 	public BookCatalogException() {
@@ -17,7 +23,4 @@ public class BookCatalogException extends Exception {
 	public BookCatalogException(Throwable cause) {
 		super(cause);
 	}
-	
-	
-
 }

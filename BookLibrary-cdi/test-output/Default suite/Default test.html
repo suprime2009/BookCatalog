@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>7/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/0/7</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Jan 18 23:43:24 EET 2016</td>
+<td>Started on:</td><td>Tue Jan 19 09:21:48 EET 2016</td>
 </tr>
-<tr><td>Total time:</td><td>16 seconds (16245 ms)</td>
+<tr><td>Total time:</td><td>0 seconds (31 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,152 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.softserveinc.model.persist.home.BookHomeTest.getRemoteBeans()'><b>getRemoteBeans</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
+<td><div><pre>org.apache.openejb.OpenEjbContainer$AssembleApplicationException: org.apache.openejb.OpenEJBException: Creating application failed: C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.OpenEjbContainer$Provider.createEJBContainer(OpenEjbContainer.java:339)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:127)
+	at com.softserveinc.model.util.TestHelper.getInitialContext(TestHelper.java:63)
+	at com.softserveinc.model.util.TestHelper.&lt;init&gt;(TestHelper.java:33)
+	at com.softserveinc.model.util.TestHelper.getInstance(TestHelper.java:46)
+	at com.softserveinc.model.util.BaseTest.getRemoteBeans(BaseTest.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:298)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.apache.openejb.OpenEJBException: Creating application failed: C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:970)
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:652)
+	at org.apache.openejb.OpenEjbContainer$Provider.createEJBContainer(OpenEjbContainer.java:335)
+	... 23 more
+Caused by: org.apache.openejb.OpenEJBException: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:805)
+	... 25 more
+Caused by: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.createDelegate(ReloadableEntityManagerFactory.java:118)
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.&lt;init&gt;(ReloadableEntityManagerFactory.java:102)
+	at org.apache.openejb.assembler.classic.PersistenceBuilder.createEntityManagerFactory(PersistenceBuilder.java:154)
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:799)
+	... 25 more
+Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:104)
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:71)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:205)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:111)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:234)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:206)
+	at org.hibernate.cfg.Configuration.buildTypeRegistrations(Configuration.java:1885)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1843)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:850)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:843)
+	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.withTccl(ClassLoaderServiceImpl.java:398)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:842)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createContainerEntityManagerFactory(HibernatePersistenceProvider.java:152)
+	at org.apache.openejb.assembler.classic.EntityManagerFactoryCallable.call(EntityManagerFactoryCallable.java:64)
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.createDelegate(ReloadableEntityManagerFactory.java:116)
+	... 28 more
+</pre></div><a href='#' onClick='toggleBox("stack-trace1663774813", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1663774813'><pre>org.apache.openejb.OpenEjbContainer$AssembleApplicationException: org.apache.openejb.OpenEJBException: Creating application failed: C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.OpenEjbContainer$Provider.createEJBContainer(OpenEjbContainer.java:339)
+	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:127)
+	at com.softserveinc.model.util.TestHelper.getInitialContext(TestHelper.java:63)
+	at com.softserveinc.model.util.TestHelper.&lt;init&gt;(TestHelper.java:33)
+	at com.softserveinc.model.util.TestHelper.getInstance(TestHelper.java:46)
+	at com.softserveinc.model.util.BaseTest.getRemoteBeans(BaseTest.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:298)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: org.apache.openejb.OpenEJBException: Creating application failed: C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:970)
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:652)
+	at org.apache.openejb.OpenEjbContainer$Provider.createEJBContainer(OpenEjbContainer.java:335)
+	... 23 more
+Caused by: org.apache.openejb.OpenEJBException: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:805)
+	... 25 more
+Caused by: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.createDelegate(ReloadableEntityManagerFactory.java:118)
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.&lt;init&gt;(ReloadableEntityManagerFactory.java:102)
+	at org.apache.openejb.assembler.classic.PersistenceBuilder.createEntityManagerFactory(PersistenceBuilder.java:154)
+	at org.apache.openejb.assembler.classic.Assembler.createApplication(Assembler.java:799)
+	... 25 more
+Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when &apos;hibernate.dialect&apos; not set
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:104)
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:71)
+	at org.hibernate.engine.jdbc.internal.JdbcServicesImpl.configure(JdbcServicesImpl.java:205)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.configureService(StandardServiceRegistryImpl.java:111)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:234)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:206)
+	at org.hibernate.cfg.Configuration.buildTypeRegistrations(Configuration.java:1885)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1843)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:850)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:843)
+	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.withTccl(ClassLoaderServiceImpl.java:398)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:842)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createContainerEntityManagerFactory(HibernatePersistenceProvider.java:152)
+	at org.apache.openejb.assembler.classic.EntityManagerFactoryCallable.call(EntityManagerFactoryCallable.java:64)
+	at org.apache.openejb.assembler.classic.ReloadableEntityManagerFactory.createDelegate(ReloadableEntityManagerFactory.java:116)
+	... 28 more
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED CONFIGURATIONS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.softserveinc.model.persist.home.BookHomeTest.setUp()'><b>setUp</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
+<td></td>
+<td>0</td>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
+<tr>
+<td title='com.softserveinc.model.persist.home.BookHomeTest.tearDown()'><b>tearDown</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
+<td></td>
+<td>0</td>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
@@ -78,344 +222,21 @@ function toggleAllBoxes() {
 <td title='com.softserveinc.model.persist.home.BookHomeTest.testCreateBook()'><b>testCreateBook</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
 <td></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
 <tr>
 <td title='com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN()'><b>testCreateBookWithAlreadyExistISBN</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
-<td><div><pre>javax.ejb.EJBTransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	org.apache.openejb.core.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:338)
-	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
-	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
-	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
-	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.RollbackException: Unable to commit: transaction marked for rollback
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:272)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
-	... 34 more
-Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: setRollbackOnly() called.  See stacktrace for origin
-	at org.apache.geronimo.transaction.manager.TransactionImpl.setRollbackOnly(TransactionImpl.java:126)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.setRollbackOnly(TransactionManagerImpl.java:243)
-	at org.hibernate.engine.transaction.internal.jta.CMTTransaction.markRollbackOnly(CMTTransaction.java:131)
-	at org.hibernate.engine.transaction.internal.TransactionCoordinatorImpl.setRollbackOnly(TransactionCoordinatorImpl.java:326)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.setRollbackOnly(SynchronizationCallbackCoordinatorNonTrackingImpl.java:124)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:114)
-	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
-	... 36 more
-
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.convertException(BaseEjbProxyHandler.java:395)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:326)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	org.apache.openejb.core.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:338)
-	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
-	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
-	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
-	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.RollbackException: Unable to commit: transaction marked for rollback
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:272)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
-	... 34 more
-Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: setRollbackOnly() called.  See stacktrace for origin
-	at org.apache.geronimo.transaction.manager.TransactionImpl.setRollbackOnly(TransactionImpl.java:126)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.setRollbackOnly(TransactionManagerImpl.java:243)
-	at org.hibernate.engine.transaction.internal.jta.CMTTransaction.markRollbackOnly(CMTTransaction.java:131)
-	at org.hibernate.engine.transaction.internal.TransactionCoordinatorImpl.setRollbackOnly(TransactionCoordinatorImpl.java:326)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.setRollbackOnly(SynchronizationCallbackCoordinatorNonTrackingImpl.java:124)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:114)
-	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
-	... 36 more
-
-	at org.apache.openejb.core.transaction.TransactionRolledbackException.writeReplace(TransactionRolledbackException.java:216)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at java.io.ObjectStreamClass.invokeWriteReplace(ObjectStreamClass.java:1075)
-	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1136)
-	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.copyObj(BaseEjbProxyHandler.java:571)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.copy(BaseEjbProxyHandler.java:346)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:325)
-	... 26 more
-</pre></div><a href='#' onClick='toggleBox("stack-trace1122108119", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1122108119'><pre>javax.ejb.EJBTransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	org.apache.openejb.core.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:338)
-	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
-	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
-	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
-	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.RollbackException: Unable to commit: transaction marked for rollback
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:272)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
-	... 34 more
-Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: setRollbackOnly() called.  See stacktrace for origin
-	at org.apache.geronimo.transaction.manager.TransactionImpl.setRollbackOnly(TransactionImpl.java:126)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.setRollbackOnly(TransactionManagerImpl.java:243)
-	at org.hibernate.engine.transaction.internal.jta.CMTTransaction.markRollbackOnly(CMTTransaction.java:131)
-	at org.hibernate.engine.transaction.internal.TransactionCoordinatorImpl.setRollbackOnly(TransactionCoordinatorImpl.java:326)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.setRollbackOnly(SynchronizationCallbackCoordinatorNonTrackingImpl.java:124)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:114)
-	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
-	... 36 more
-
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.convertException(BaseEjbProxyHandler.java:395)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:326)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	org.apache.openejb.core.transaction.TransactionRolledbackException: Transaction was rolled back, presumably because setRollbackOnly was called during a synchronization
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:338)
-	at org.apache.openejb.core.transaction.TxRequired.commit(TxRequired.java:76)
-	at org.apache.openejb.core.transaction.EjbTransactionUtil.afterInvoke(EjbTransactionUtil.java:77)
-	at org.apache.openejb.core.stateless.StatelessContainer._invoke(StatelessContainer.java:246)
-	at org.apache.openejb.core.stateless.StatelessContainer.invoke(StatelessContainer.java:194)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.synchronizedBusinessMethod(EjbObjectProxyHandler.java:308)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler.businessMethod(EjbObjectProxyHandler.java:303)
-	at org.apache.openejb.core.ivm.EjbObjectProxyHandler._invoke(EjbObjectProxyHandler.java:92)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:322)
-	at com.sun.proxy.$Proxy87.create(Unknown Source)
-	at com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAlreadyExistISBN(BookHomeTest.java:45)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
-	at org.testng.TestNG.run(TestNG.java:1048)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-Caused by: javax.transaction.RollbackException: Unable to commit: transaction marked for rollback
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:272)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.commit(TransactionManagerImpl.java:252)
-	at org.apache.openejb.core.transaction.JtaTransactionPolicy.completeTransaction(JtaTransactionPolicy.java:331)
-	... 34 more
-Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: setRollbackOnly() called.  See stacktrace for origin
-	at org.apache.geronimo.transaction.manager.TransactionImpl.setRollbackOnly(TransactionImpl.java:126)
-	at org.apache.geronimo.transaction.manager.TransactionManagerImpl.setRollbackOnly(TransactionManagerImpl.java:243)
-	at org.hibernate.engine.transaction.internal.jta.CMTTransaction.markRollbackOnly(CMTTransaction.java:131)
-	at org.hibernate.engine.transaction.internal.TransactionCoordinatorImpl.setRollbackOnly(TransactionCoordinatorImpl.java:326)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.setRollbackOnly(SynchronizationCallbackCoordinatorNonTrackingImpl.java:124)
-	at org.hibernate.engine.transaction.synchronization.internal.SynchronizationCallbackCoordinatorNonTrackingImpl.beforeCompletion(SynchronizationCallbackCoordinatorNonTrackingImpl.java:114)
-	at org.hibernate.engine.transaction.synchronization.internal.RegisteredSynchronization.beforeCompletion(RegisteredSynchronization.java:50)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:527)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforeCompletion(TransactionImpl.java:511)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.beforePrepare(TransactionImpl.java:413)
-	at org.apache.geronimo.transaction.manager.TransactionImpl.commit(TransactionImpl.java:262)
-	... 36 more
-
-	at org.apache.openejb.core.transaction.TransactionRolledbackException.writeReplace(TransactionRolledbackException.java:216)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at java.io.ObjectStreamClass.invokeWriteReplace(ObjectStreamClass.java:1075)
-	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1136)
-	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.copyObj(BaseEjbProxyHandler.java:571)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.copy(BaseEjbProxyHandler.java:346)
-	at org.apache.openejb.core.ivm.BaseEjbProxyHandler.invoke(BaseEjbProxyHandler.java:325)
-	... 26 more
-</pre></div></td>
+<td></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
 <tr>
 <td title='com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors()'><b>testCreateBookWithAuthors</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
 <td></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
 <tr>
 <td title='com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook()'><b>testDeleteBook</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.home.BookHomeTest.testFindAllBooks()'><b>testFindAllBooks</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
-<td></td>
-<td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
-<tr>
-<td title='com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook()'><b>testFindByIdBook</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
-<td><div><pre>java.lang.NullPointerException
-	at com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook(BookHomeTest.java:136)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+<td><div><pre>java.lang.Throwable: Method BookHomeTest.testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
 	at org.testng.TestRunner.privateRun(TestRunner.java:774)
@@ -432,17 +253,9 @@ Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: set
 	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
-</pre></div><a href='#' onClick='toggleBox("stack-trace1533295982", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1533295982'><pre>java.lang.NullPointerException
-	at com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook(BookHomeTest.java:136)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1248595768", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1248595768'><pre>java.lang.Throwable: Method BookHomeTest.testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
 	at org.testng.TestRunner.privateRun(TestRunner.java:774)
@@ -461,12 +274,96 @@ Caused by: org.apache.geronimo.transaction.manager.SetRollbackOnlyException: set
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
 </pre></div></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
+<td>null</td></tr>
+<tr>
+<td title='com.softserveinc.model.persist.home.BookHomeTest.testFindAllBooks()'><b>testFindAllBooks</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
+<td><div><pre>java.lang.Throwable: Method BookHomeTest.testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+</pre></div><a href='#' onClick='toggleBox("stack-trace410033330", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace410033330'><pre>java.lang.Throwable: Method BookHomeTest.testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
+<tr>
+<td title='com.softserveinc.model.persist.home.BookHomeTest.testFindByIdBook()'><b>testFindByIdBook</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
+<td><div><pre>java.lang.Throwable: Method BookHomeTest.testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+</pre></div><a href='#' onClick='toggleBox("stack-trace199320792", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace199320792'><pre>java.lang.Throwable: Method BookHomeTest.testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+</pre></div></td>
+<td>0</td>
+<td>null</td></tr>
 <tr>
 <td title='com.softserveinc.model.persist.home.BookHomeTest.testUpdateBook()'><b>testUpdateBook</b><br>Test class: com.softserveinc.model.persist.home.BookHomeTest</td>
 <td></td>
 <td>0</td>
-<td>com.softserveinc.model.persist.home.BookHomeTest@6d7b4f4c</td></tr>
+<td>com.softserveinc.model.persist.home.BookHomeTest@2286778</td></tr>
 </table><p>
 </body>
 </html>

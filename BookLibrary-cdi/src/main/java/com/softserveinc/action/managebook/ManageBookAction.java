@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.BookConstantsHolder;
-import com.softserveinc.model.persist.entity.EntityConstant;
+import com.softserveinc.model.persist.entity.BookFieldHolder;
+import com.softserveinc.model.persist.entity.EntityFieldHolder;
 import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.session.manager.BookManagerLocal;
 
@@ -51,13 +51,13 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 	
 	public void getBooksByRating(Integer rating) {
 		cleanFilters();
-		getFilterValues().put(BookConstantsHolder.RATING, String.valueOf(rating));
+		getFilterValues().put(BookFieldHolder.RATING, String.valueOf(rating));
 		refreshPage();
 	}
 	
 	@Override
-	public EntityConstant [] getEntityConstantInstances() {
-		return BookConstantsHolder.values();
+	public EntityFieldHolder [] getEntityConstantInstances() {
+		return BookFieldHolder.values();
 	}
 
 	@Override
@@ -102,8 +102,8 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 
 
 	@Override
-	public EntityConstant getFieldHolderForColumn(String column) {
-		return BookConstantsHolder.valueOf(column);
+	public EntityFieldHolder getFieldHolderForColumn(String column) {
+		return BookFieldHolder.valueOf(column);
 	}
 
 }

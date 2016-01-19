@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.ReviewManagerException;
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.session.manager.ReviewManagerLocal;
@@ -38,10 +39,9 @@ public class ReviewSeviceImpl implements ReviewService {
 
 		try {
 			validateReview(review);
-			boolean status = reviewManager.createReview(review);
-			if (status == false) {
-				throw new Exception("Unexpected internal error.");
-			}
+			reviewManager.createReview(review);
+
+			
 			builder = Response.status(Status.CREATED);
 		} catch (NullPointerException e) {
 			Map<String, String> responseObj = new HashMap<>();
@@ -73,10 +73,7 @@ public class ReviewSeviceImpl implements ReviewService {
 
 		try {
 			validateReview(review);
-			boolean status = reviewManager.updateReview(review);
-			if (status == false) {
-				throw new Exception("Unexpected internal error.");
-			}
+			 reviewManager.updateReview(review);
 			builder = Response.status(Status.OK);
 		} catch (NullPointerException e) {
 			Map<String, String> responseObj = new HashMap<>();
@@ -99,12 +96,13 @@ public class ReviewSeviceImpl implements ReviewService {
 	@Override
 	public Response deleteById(String id) {
 		Response r = null;
-		boolean result = reviewManager.deleteReview(id);
-		if (result) {
-			return r.ok("OK").build();
-		} else {
+		try {
+			reviewManager.deleteReview(id);
+		} catch (ReviewManagerException e) {
 			return r = Response.ok("error").build();
-		}
+		} 
+
+			return r.ok("OK").build();
 	}
 	
 

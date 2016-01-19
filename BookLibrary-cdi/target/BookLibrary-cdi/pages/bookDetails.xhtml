@@ -15,7 +15,6 @@
 </ui:define>
 
 <f:metadata>
-    <f:viewParam name="id" value="#{bookDetail.selectedBookId}"/>
     <f:viewAction action="#{bookDetail.loadBook}"/>
 </f:metadata>
 	
@@ -30,18 +29,18 @@
 		<div class="basicAttributesStyle" style="float: left; width: 70%;">
 			<h:panelGrid columns="2" >
 				<h:outputLabel value="Book Name: " />
-				<h:outputText value="#{bookDetail.book.bookName}"></h:outputText>
+				<h:outputText value="#{bookDetailAction.book.bookName}"></h:outputText>
 				<h:outputLabel value="Publisher: " />
-				<h:outputText value="#{bookDetail.book.publisher}"></h:outputText>
+				<h:outputText value="#{bookDetailAction.book.publisher}"></h:outputText>
 				<h:outputLabel value="ISBN Number: " />
-				<h:outputText value="#{bookDetail.book.isbn}"></h:outputText>
+				<h:outputText value="#{bookDetailAction.book.isbn}"></h:outputText>
 				<h:outputLabel value="Year published : " />
-				<h:outputText value="#{bookDetail.book.yearPublished}"></h:outputText>
+				<h:outputText value="#{bookDetailAction.book.yearPublished}"></h:outputText>
 			</h:panelGrid>
 		</div>
 		<div class="basicAttributesStyle" style="float: right; width: 30%; ">
 				<h:outputLabel value="Authors: "  />
-				<rich:list value="#{bookDetail.book.authors}" var="author">
+				<rich:list value="#{bookDetailAction.book.authors}" var="author">
 					<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail" styleClass="basicAttributesStyle">
         				<f:param name="id" value="#{author.idauthor}"></f:param>
 					</h:link>
@@ -64,16 +63,16 @@
 		<ui:param name="comment" value="comment" />
 		<ui:param name="rating" value="rating" />
 		<ui:param name="idreview" value="idreview" />
-		<rich:dataGrid id="reviewsDataTable" value="#{bookDetail.dataModel}" var="record" columns="1" elements="6" style="width:100%;" border="0"  >
+		<rich:dataGrid id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record" columns="1" elements="6" style="width:100%;" border="0"  >
   			<rich:column >
   			<rich:panel>
   			<f:facet name="header">
    				<h:outputText value="#{record[created]}" />
-   				<a4j:commandButton value="Update record"  styleClass="no-decor" execute="@this" actionListener="#{bookDetail.getReviewToUpdate(record[idreview])}"
+   				<a4j:commandButton value="Update record"  styleClass="no-decor" execute="@this" actionListener="#{bookDetailAction.getReviewToUpdate(record[idreview])}"
 					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()"/>
    				<a4j:commandButton value="Delete record"  styleClass="no-decor" execute="@this"
 					render="@none" oncomplete="#{rich:component('confirmDelete')}.show()"  >
-					<f:setPropertyActionListener target="#{bookDetail.selectedIdReview}" value="#{record[idreview]}" />
+					<f:setPropertyActionListener target="#{bookDetailAction.selectedIdReview}" value="#{record[idreview]}" />
 				</a4j:commandButton>
 			</f:facet>
 			
@@ -101,21 +100,21 @@
 		<f:facet name="header">
 			<h:outputText value="Leave a comment:" />
 			<a4j:commandButton value="Cancel" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />
-			<a4j:commandButton value="Update review" action="#{bookDetail.submitUpdateReview()}" 
+			<a4j:commandButton value="Update review" action="#{bookDetailAction.submitUpdateReview()}" 
 				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating" />
-			<a4j:commandButton value="Add review" action="#{bookDetail.submitCreateReview()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating" />
+			<a4j:commandButton value="Add review" action="#{bookDetailAction.submitCreateReview()}" 
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp"  render="reviewsDataTable, averageRating" />
 		</f:facet>
 
 		<h:outputLabel value="Your name:" />
-		<h:inputText id="commenterNameInput" value="#{bookDetail.review.commenterName}" required="true" requiredMessage="Your name is required. Please enter your name." />
+		<h:inputText id="commenterNameInput" value="#{bookDetailAction.review.commenterName}" required="true" requiredMessage="Your name is required. Please enter your name." />
 			<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true"  />
 		<h:outputLabel value="Rating:" />
-		<h:inputText id="ratingInput" value="#{bookDetail.review.rating}" validatorMessage="Please enter a number in range between 1 and 5."  >
+		<h:inputText id="ratingInput" value="#{bookDetailAction.review.rating}" validatorMessage="Please enter a number in range between 1 and 5."  >
 			<f:validateLongRange maximum="5" minimum="1" ></f:validateLongRange>
 		</h:inputText>
 			<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" />
-		<h:inputTextarea id="commentInput" value="#{bookDetail.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
+		<h:inputTextarea id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
 			<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" />
 	</rich:panel>
 	</rich:popupPanel>
@@ -133,7 +132,7 @@
 	<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
 		<h:commandButton id="deleteReviewBtm" value="Delete">
-			<f:ajax event="click" listener="#{bookDetail.submitDeleteReview()}"
+			<f:ajax event="click" listener="#{bookDetailAction.submitDeleteReview()}"
 				onevent="#{rich:component('confirmDelete')}.hide()" execute="confirmDelete" render="reviewDataTableForm"></f:ajax>
 		</h:commandButton>
 		</rich:panel>

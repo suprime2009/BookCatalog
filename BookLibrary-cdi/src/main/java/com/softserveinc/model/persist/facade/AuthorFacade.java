@@ -60,7 +60,7 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote{
 		} catch(NoResultException e) {
 			return null;
 		}
-		log.info("Method findAuthorByFullName finished. By firstName={} and lastName={}"
+		log.info("Method findAuthorByFullName finished. By firstName={} and lastName={} "
 				+ "has been found author={}",firstName, secondName, object);
 		return object;
 	}

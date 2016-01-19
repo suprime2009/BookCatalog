@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang.StringUtils;
 import org.richfaces.component.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 import com.softserveinc.action.managebook.UIWrapper;
-import com.softserveinc.model.persist.entity.BookConstantsHolder;
-import com.softserveinc.model.persist.entity.EntityConstant;
+import com.softserveinc.model.persist.entity.BookFieldHolder;
+import com.softserveinc.model.persist.entity.EntityFieldHolder;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 /**
@@ -32,15 +33,15 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	private static Logger log = LoggerFactory.getLogger(DataTableHelper.class);
 
 	private List<T> entities;
-	private Map<EntityConstant, SortOrder> sortOrders = Maps.newHashMap();
-	private Map<EntityConstant, String> filterValues = Maps.newHashMap();
-	private EntityConstant sortProperty;
+	private Map<EntityFieldHolder, SortOrder> sortOrders = Maps.newHashMap();
+	private Map<EntityFieldHolder, String> filterValues = Maps.newHashMap();
+	private EntityFieldHolder sortProperty;
 	private boolean selectAll;
 	private String idEntityToDelete;
 	private List<T> listEntitiesToDelete;
 
 	protected DataTableHelper() {
-		for (EntityConstant constant : getEntityConstantInstances()) {
+		for (EntityFieldHolder constant : getEntityConstantInstances()) {
 			sortOrders.put(constant, SortOrder.unsorted);
 		}
 	}
@@ -67,9 +68,9 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * which starts with whitespace.
 	 */
 	private void deleteEmptyFilterValues() {
-		for (Iterator<Map.Entry<EntityConstant, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
-			Map.Entry<EntityConstant, String> entry = it.next();
-			if (entry.getKey().equals(BookConstantsHolder.RATING) && entry.getValue().equals("0")) {
+		for (Iterator<Map.Entry<EntityFieldHolder, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
+			Map.Entry<EntityFieldHolder, String> entry = it.next();
+			if (entry.getKey().equals(BookFieldHolder.RATING) && entry.getValue().equals("0")) {
 				it.remove();
 			}
 			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
@@ -78,7 +79,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		}
 	}
 	
-	public abstract EntityConstant getFieldHolderForColumn(String column);
+	public abstract EntityFieldHolder getFieldHolderForColumn(String column);
 
 	public void searchAction() {
 		refreshPage();
@@ -99,10 +100,10 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * If method call for some column, method toggle sort Order.
 	 * @param constant EntityConstant
 	 */
-	public void toggleSort(EntityConstant constant) {
+	public void toggleSort(EntityFieldHolder constant) {
 		log.error("toggleSort");
 		sortProperty = constant;
-		for (Entry<EntityConstant, SortOrder> entry : sortOrders.entrySet()) {
+		for (Entry<EntityFieldHolder, SortOrder> entry : sortOrders.entrySet()) {
 			SortOrder newOrder;
 
 			if (entry.getKey().equals(sortProperty)) {
@@ -142,7 +143,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * Method gets entity constants for current Entity.
 	 * @return EntityConstant
 	 */
-	public abstract EntityConstant [] getEntityConstantInstances();
+	public abstract EntityFieldHolder [] getEntityConstantInstances();
 
 	/**
 	 * Method is a action of selectAll. Method sets all entities in list
@@ -206,7 +207,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		return listEntitiesToDelete;
 	}
 
-	public EntityConstant getSortProperty() {
+	public EntityFieldHolder getSortProperty() {
 		log.error("getSortProperty");
 		return sortProperty;
 	}
@@ -220,16 +221,16 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		this.idEntityToDelete = idEntityToDelete;
 	}
 
-	public void setSortProperty(EntityConstant sortPropety) {
+	public void setSortProperty(EntityFieldHolder sortPropety) {
 		this.sortProperty = sortPropety;
 	}
 
-	public Map<EntityConstant, SortOrder> getSortOrders() {
+	public Map<EntityFieldHolder, SortOrder> getSortOrders() {
 		log.error("getSortOrders");
 		return sortOrders;
 	}
 
-	public Map<EntityConstant, String> getFilterValues() {
+	public Map<EntityFieldHolder, String> getFilterValues() {
 		log.info("Current values for filtering = {}", filterValues.size());
 		return filterValues;
 	}

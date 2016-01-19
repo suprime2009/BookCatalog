@@ -77,7 +77,7 @@
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('BOOK_NAME')}" />
  		<ui:define name="outputValue">
  			<h:link value="#{bookWrapper.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
-				<f:param name="id" value="#{bookWrapper.book.idBook}"></f:param>
+				<f:param name="idBook" value="#{bookWrapper.book.idBook}"></f:param>
 			</h:link>
  		</ui:define>
 </ui:decorate>

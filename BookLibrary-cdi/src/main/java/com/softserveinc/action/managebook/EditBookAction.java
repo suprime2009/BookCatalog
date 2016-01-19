@@ -136,6 +136,7 @@ public class EditBookAction implements ValidateISBN{
 		book.setAuthors(authors);
 		bookManager.updateBook(book);
 		authorFullName = "";
+		log.debug("Method done. Book {} has been updated.", book.toString());
 	}
 
 	public Book getBook() {

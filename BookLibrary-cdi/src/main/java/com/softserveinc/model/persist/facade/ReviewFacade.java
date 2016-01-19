@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Optional;
+import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
@@ -67,8 +68,9 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 	}
 
 	@Override
-	public Review findById(String id) throws IllegalArgumentException {
-		return reviewHome.findByID(id);
+	public Review findById(String id)  {
+		Review review = reviewHome.findByID(id);
+		return review;
 	}
 
 	@Override

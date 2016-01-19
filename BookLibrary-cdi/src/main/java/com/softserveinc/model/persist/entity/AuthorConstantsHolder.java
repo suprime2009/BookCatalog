@@ -3,14 +3,14 @@ package com.softserveinc.model.persist.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum AuthorConstantsHolder implements EntityConstant {
+public enum AuthorConstantsHolder implements EntityFieldHolder {
 	INSTANCE, ID("idAuthor", "idAuthor"), CREATED_DATE("createdDate", "Created date"), FIRST_NAME("firstName", "First name"), 
 	SECOND_NAME("secondName", "Second name"), BOOKS("books", "Author books");
 	
 	private String BUSINESS_VIEW;
 	private String UI_VIEW;
 	
-	public static EntityConstant getInstance() {
+	public static EntityFieldHolder getInstance() {
 		return INSTANCE;
 	}
 	

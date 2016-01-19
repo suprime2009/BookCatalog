@@ -6971,3 +6971,11 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExce
 23:43:40 18.01.2016 INFO  AuthorHome  findByID:57 - Entity Author{idAuthor=a4, createdDate=2015-10-29 10:28:15.0, firstName=Greg, secondName=Blou} has been successfully found by id = a4
 23:43:40 18.01.2016 INFO  BookHome  findByID:55 - Entity Book{idBook=b2, bookName=Hibernate, createdDate=2015-12-14 11:55:15.0, isbn=111-11-111-2, publisher=USA, yearPublished=2009, authors=[Author{idAuthor=a1, createdDate=2015-11-10 11:30:15.0, firstName=Raul, secondName=Garsia}, Author{idAuthor=a4, createdDate=2015-10-29 10:28:15.0, firstName=Greg, secondName=Blou}]} has been successfully found by id = b2
 23:43:40 18.01.2016 INFO  BookHome  findByID:55 - Entity null has been successfully found by id = b900
+09:21:47 19.01.2016 INFO  LogHelper  logPersistenceUnitInformation:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: primary
+	...]
+09:21:47 19.01.2016 INFO  Version  logVersion:54 - HHH000412: Hibernate Core {4.3.6.Final}
+09:21:47 19.01.2016 INFO  Environment  <clinit>:239 - HHH000206: hibernate.properties not found
+09:21:47 19.01.2016 INFO  Environment  buildBytecodeProvider:346 - HHH000021: Bytecode provider name : javassist
+09:21:48 19.01.2016 INFO  Version  <clinit>:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+09:21:48 19.01.2016 WARN  JdbcServicesImpl  configure:204 - HHH000342: Could not obtain connection to query metadata : Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: YES))

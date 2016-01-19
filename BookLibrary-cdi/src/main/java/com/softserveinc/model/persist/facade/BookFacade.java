@@ -23,8 +23,8 @@ import org.slf4j.LoggerFactory;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.AuthorConstantsHolder;
 import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.BookConstantsHolder;
-import com.softserveinc.model.persist.entity.EntityConstant;
+import com.softserveinc.model.persist.entity.BookFieldHolder;
+import com.softserveinc.model.persist.entity.EntityFieldHolder;
 import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.persist.home.BookHomeLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
@@ -131,7 +131,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 			throw new IllegalArgumentException();
 		}
 
-		if (!dataTableSearchHolder.getSortColumn().equals(BookConstantsHolder.CREATED_DATE)) {
+		if (!dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.CREATED_DATE)) {
 			sbForDataTable.append(COMMA);
 		}
 	}
@@ -141,9 +141,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		sbForDataTable.append(String.format("%s %s %s", FROM, Review.class.getName(), R));
 		sbForDataTable.append(String.format("%s %s.%s %s", RIGHT_JOIN, R, "book", B));
 		if ((dataTableSearchHolder.getSortColumn() != null)
-				&& (dataTableSearchHolder.getSortColumn().equals(BookConstantsHolder.AUTHORS))
-				|| (dataTableSearchHolder.getFilterValues().containsKey(BookConstantsHolder.AUTHORS)) ) {
-			sbForDataTable.append(String.format("%s %s.%s %s", LEFT_JOIN, B, BookConstantsHolder.AUTHORS.getBusinessView(), A));
+				&& (dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.AUTHORS))
+				|| (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.AUTHORS)) ) {
+			sbForDataTable.append(String.format("%s %s.%s %s", LEFT_JOIN, B, BookFieldHolder.AUTHORS.getBusinessView(), A));
 		}
 	}
 
@@ -159,7 +159,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		if (dataTableSearchHolder.getSortColumn() == null) {
 			sbForDataTable.append(String.format("%s %s, ", RAT, DESC));
 		} else {
-			switch ((BookConstantsHolder) dataTableSearchHolder.getSortColumn()) {
+			switch ((BookFieldHolder) dataTableSearchHolder.getSortColumn()) {
 			case RATING:
 				sbForDataTable.append(RAT);
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
@@ -175,7 +175,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 			}
 		}
-		sbForDataTable.append(String.format("%s.%s %s ", B, BookConstantsHolder.CREATED_DATE.getBusinessView(), DESC));
+		sbForDataTable.append(String.format("%s.%s %s ", B, BookFieldHolder.CREATED_DATE.getBusinessView(), DESC));
 
 	}
 
@@ -186,19 +186,19 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	 */
 	private void appendQueryPartWhere(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
-		Map<EntityConstant, String> map = dataTableSearchHolder.getFilterValues();
+		Map<EntityFieldHolder, String> map = dataTableSearchHolder.getFilterValues();
 		if (dataTableSearchHolder.getFilterValues().size() > 1
-				|| !dataTableSearchHolder.getFilterValues().containsKey(BookConstantsHolder.RATING)) {
+				|| !dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
 			sbForDataTable.append(WHERE);
 		}
 		int count = 0;
 		boolean isRating = false;
-		for (Map.Entry<EntityConstant, String> pair : map.entrySet()) {
+		for (Map.Entry<EntityFieldHolder, String> pair : map.entrySet()) {
 			if (count > 0 && isRating == false) {
 				sbForDataTable.append(AND);
 			}
 			isRating = false;
-			switch ((BookConstantsHolder) pair.getKey()) {
+			switch ((BookFieldHolder) pair.getKey()) {
 			case AUTHORS:
 				sbForDataTable.append(String.format("(%s.%s %s '%s%%' ", A, AuthorConstantsHolder.SECOND_NAME.getBusinessView(), LIKE, pair.getValue()));
 				sbForDataTable.append(OR);
@@ -223,9 +223,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	 */
 	public void appendQueryPartHaving(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 
-		if (dataTableSearchHolder.getFilterValues().containsKey(BookConstantsHolder.RATING)) {
-			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookConstantsHolder.RATING));
-			sbForDataTable.append(String.format("%s %s(%s(%s.%s)) = %s ", HAVING, FLOOR, AVG, R, BookConstantsHolder.RATING.getBusinessView(), value));
+		if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
+			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING));
+			sbForDataTable.append(String.format("%s %s(%s(%s.%s)) = %s ", HAVING, FLOOR, AVG, R, BookFieldHolder.RATING.getBusinessView(), value));
 		}
 	}
 
@@ -235,7 +235,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 
 		StringBuilder sbForDataTable = new StringBuilder();
 		sbForDataTable.append(SELECT).append(B).append(COMMA);
-		sbForDataTable.append(String.format("%s(%s.%s) %s %s", AVG, R, BookConstantsHolder.RATING.getBusinessView(), AS, RAT));
+		sbForDataTable.append(String.format("%s(%s.%s) %s %s", AVG, R, BookFieldHolder.RATING.getBusinessView(), AS, RAT));
 
 		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
 
@@ -284,7 +284,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
 		}
-		containsRating = dataTableSearchHolder.getFilterValues().containsKey(BookConstantsHolder.RATING);
+		containsRating = dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING);
 		if (containsRating) {
 			sbForDataTable.append(GROUP_BY).append(B);
 			appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);

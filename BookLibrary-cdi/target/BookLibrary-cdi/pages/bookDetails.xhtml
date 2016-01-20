@@ -11,33 +11,53 @@
 <ui:composition template="templates/commonLayout.xhtml">
 
 <ui:define name="title">
-#{bookDetail.book.bookName}
+#{bookDetailAction.book.bookName}
+<h:outputStylesheet  name="common.css" library="css" />
 </ui:define>
 
 <f:metadata>
-    <f:viewAction action="#{bookDetail.loadBook}"/>
+    <f:viewAction action="#{bookDetailAction.loadBook}"/>
 </f:metadata>
 	
 	
 <ui:define name="content">
+
+<h:outputStylesheet>
+
+</h:outputStylesheet>
+
+<!-- navigation panel  -->
+<ui:decorate template="templates/naviOnDetailPageTemplate.xhtml">
+<ui:define name="btmEdit">
+<h:commandButton  styleClass="naviBtm" action="#{bookDetail}" value="Edit book" />
+</ui:define>
+<ui:define name="btmDelete">
+<h:commandButton styleClass="naviBtm" action="#{bookDetail}" value="Delete book" />
+</ui:define>
+<ui:define name="btmMoveBack">
+<h:commandButton styleClass="naviBtm" action="manageBooks.xhtml" value="Move back" />
+</ui:define>
+</ui:decorate>
+
 <!-- book detail information -->
-<rich:panel styleClass="standartP">
+<rich:panel styleClass="standartPanel">
 		<f:facet name="header" >
 			<h:outputText value="Book details" styleClass="labelH2" />
-			<h:outputText id="averageRating" value="#{bookDetail.bookRating}" style=" margin-left:80%;" />
+			<h:outputText id="averageRating" value="#{bookDetailAction.bookRating}" style=" margin-left:80%;" />
 		</f:facet>
 		<div class="basicAttributesStyle" style="float: left; width: 70%;">
 			<h:panelGrid columns="2" >
 				<h:outputLabel value="Book Name: " />
-				<h:outputText value="#{bookDetailAction.book.bookName}"></h:outputText>
+					<h:outputText value="#{bookDetailAction.book.bookName}"></h:outputText>
 				<h:outputLabel value="Publisher: " />
-				<h:outputText value="#{bookDetailAction.book.publisher}"></h:outputText>
+					<h:outputText value="#{bookDetailAction.book.publisher}"></h:outputText>
 				<h:outputLabel value="ISBN Number: " />
-				<h:outputText value="#{bookDetailAction.book.isbn}"></h:outputText>
+					<h:outputText value="#{bookDetailAction.book.isbn}"></h:outputText>
 				<h:outputLabel value="Year published : " />
-				<h:outputText value="#{bookDetailAction.book.yearPublished}"></h:outputText>
+					<h:outputText value="#{bookDetailAction.book.yearPublished}"></h:outputText>
 			</h:panelGrid>
 		</div>
+		
 		<div class="basicAttributesStyle" style="float: right; width: 30%; ">
 				<h:outputLabel value="Authors: "  />
 				<rich:list value="#{bookDetailAction.book.authors}" var="author">
@@ -47,38 +67,86 @@
 				</rich:list>
 		</div>
 </rich:panel>
+<h:outputScript name="jrate.js" library="js" ></h:outputScript>
+<h:outputStylesheet  name="star-rating.css" library="css" />
+<h:outputScript>
+
+
+$(function () {
+			var that = this;
+			var toolitup = $(".ratingRead").jRate({
+				rating: 2,
+				strokeColor: 'black',
+				precision: 1,
+
+				minSelected: 1,
+				onChange: function(rating) {
+					//console.log("OnChange: Rating: "+rating);
+				},
+				onSet: function(rating) {
+					console.log("OnSet: Rating: "+rating);
+				}
+			});
+			
+			$('#btn-click').on('click', function() {
+				toolitup.setRating(0);				
+			});
+			
+		});
+</h:outputScript>
+
 
 <rich:messages globalOnly="true" style="color:blue"  ></rich:messages>
+
 <!-- Review Data Table -->
  <h:form id="reviewDataTableForm">
-	<rich:panel>
-	<f:facet name="header">
-		<h:outputLabel value="Reviews" />
-			 <a4j:commandButton id="addrecordBtm" value="addRecord"  styleClass="no-decor" style="margin-left:85%;" execute="@this"
+<rich:toolbar  >
+
+<h:outputLabel value="Reviews" styleClass="labelH2" />
+
+<rich:toolbarGroup  itemSeparator="line"  location="right" >
+<h:outputText value="Total count of reviews: #{bookDetailAction.getCountReviewForBook()}" style="margin-right:300px;"   />
+
+<h:outputLabel  value="Sort: " />
+		<a4j:commandLink action="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewDataTableForm" rendered="#{bookDetailAction.orderStatus == false}"  >
+		<h:graphicImage value="/resources/images/up.gif" alt="ascending" />
+		</a4j:commandLink>
+		<a4j:commandLink action="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewDataTableForm" rendered="#{bookDetailAction.orderStatus}"  >
+		<h:graphicImage value="/resources/images/down.gif" alt="descending" />
+		</a4j:commandLink>
+
+		<a4j:commandButton style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"    execute="@this"
 					render="addReviewPopUp"  oncomplete="#{rich:component('addReviewPopUp')}.show()" />
-	</f:facet>
+</rich:toolbarGroup>
+</rich:toolbar>
 
 		<ui:param name="name" value="commenterName" />
 		<ui:param name="created" value="createdDate" />
 		<ui:param name="comment" value="comment" />
 		<ui:param name="rating" value="rating" />
 		<ui:param name="idreview" value="idreview" />
-		<rich:dataGrid id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record" columns="1" elements="6" style="width:100%;" border="0"  >
-  			<rich:column >
-  			<rich:panel>
-  			<f:facet name="header">
-   				<h:outputText value="#{record[created]}" />
-   				<a4j:commandButton value="Update record"  styleClass="no-decor" execute="@this" actionListener="#{bookDetailAction.getReviewToUpdate(record[idreview])}"
-					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()"/>
-   				<a4j:commandButton value="Delete record"  styleClass="no-decor" execute="@this"
+		<rich:dataGrid id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record"  columns="1" elements="6" style="width:100%;" border="0"   >
+  			<rich:column>
+  			<rich:panel bodyClass="panel_body"  >
+  			<f:facet name="header" >
+  			<h:outputLabel value="Created: " for="createdDate" styleClass="labelH3" />
+   				<h:outputText id="createdDate" value="#{record[created]}" styleClass="labelH3" converter="CreateDateConverter"  />
+   				<div style="float:right;">
+   				<a4j:commandLink style="margin-right:30px;" execute="@this" actionListener="#{bookDetailAction.loadReviewForUpdate(record[idreview])}"
+					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()">
+					<h:graphicImage value="/resources/images/edit.png" alt="delete"  />
+					</a4j:commandLink>
+   				<a4j:commandLink style="margin-right:50px;" execute="@this"
 					render="@none" oncomplete="#{rich:component('confirmDelete')}.show()"  >
 					<f:setPropertyActionListener target="#{bookDetailAction.selectedIdReview}" value="#{record[idreview]}" />
-				</a4j:commandButton>
+					<h:graphicImage value="/resources/images/delete.png" alt="delete" />
+				</a4j:commandLink>
+				</div>
 			</f:facet>
 			
   			<h:panelGrid columns="2">
   				<h:outputLabel value="Rating: " />
-  				<h:outputText value="#{record['rating']}" />
+  				<div class="ratingRead"><h:inputText value="" onchange="jRate()" />  </div>
  				<h:outputLabel value="Commenter name: " />
 	 			<h:outputLabel value="#{record[name]}" />
 	 			<h:outputLabel value="Comment: " />
@@ -90,7 +158,7 @@
   				<rich:dataScroller id="scroller" fastStep="3" />
 			</f:facet>
 		</rich:dataGrid>
-	</rich:panel>
+	
 	
 	
 	
@@ -165,6 +233,10 @@ alert("done");
   -->
   
   <h:outputStylesheet>
+  
+  .panel_body {
+   background-color: #FFEBDA;
+  }
         .label {
             font-weight: bold;
         }
@@ -175,7 +247,7 @@ alert("done");
             width: 180px;
         }
         
-        .standartP {
+        .standartPanel {
         width:100%; 
         min-height:200px; 	
         margin-bottom:16px;
@@ -188,14 +260,16 @@ alert("done");
         }
         
         .labelH2 {
-        font-size: 11pt;
-        }
-        .labelH3 {
         font-size: 12pt;
         }
+        .labelH3 {
+        font-size: 10pt;
+        }
+        
         
  
 </h:outputStylesheet>
+
 </ui:define>
 </ui:composition>
 

@@ -5,7 +5,7 @@
 <ui:composition>
 <h:head>
 </h:head>
-    <rich:column sortBy="#{columnName}" sortOrder="#{bean.sortOrders[columnName]}" sortType="custom" >
+    <rich:column sortBy="#{columnName}" sortOrder="#{bean.sortOrders[columnName]}" sortType="custom"    >
  
         <f:facet name="header">
             <h:outputLabel value="#{columnName.UIView}" />
@@ -20,7 +20,7 @@
             </h:inputText>
             </ui:insert>
         </f:facet>
-        <h:panelGroup columns="1">
+        <h:panelGroup columns="1"  >
         <ui:insert name="outputValue" >
            <h:outputText value="#{property}" />
         </ui:insert>

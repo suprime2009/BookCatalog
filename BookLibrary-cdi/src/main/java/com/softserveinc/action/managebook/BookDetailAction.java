@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.richfaces.skin.*;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -20,6 +21,7 @@ import javax.persistence.PersistenceContext;
 import org.ajax4jsf.model.DataVisitor;
 import org.ajax4jsf.model.Range;
 import org.ajax4jsf.model.SequenceRange;
+import org.richfaces.component.SortOrder;
 import org.richfaces.model.ArrangeableState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +51,10 @@ public class BookDetailAction implements Serializable {
 	private Book book;
 	private String selectedIdReview;
 	private Review review;
+	
+	//true - ascending
+	//false - descending
+	private SortOrder sortOrder;
 
 	@EJB
 	private BookFacadeLocal bookfacade;
@@ -60,8 +66,25 @@ public class BookDetailAction implements Serializable {
 	private ReviewManagerLocal reviewManager;
 
 	public BookDetailAction() {
+		sortOrder = SortOrder.descending;
 		review = new Review();
 		log.debug("The bean has been created.");
+	}
+	
+	public void toogleSortOrder() {
+		if (sortOrder == SortOrder.descending) {
+			sortOrder = SortOrder.ascending;
+		} else {
+			sortOrder = SortOrder.descending;
+		}
+	}
+	
+	public boolean getOrderStatus() {
+		if (sortOrder.equals(SortOrder.ascending)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private void showGlobalMessageOnPage(String message) {
@@ -95,6 +118,10 @@ public class BookDetailAction implements Serializable {
 			log.error("Review hasn't created. {}", e.getMessage());
 		}
 		log.debug("The method successfully finished. Review has been created.");
+	}
+	
+	public int getCountReviewForBook() {
+		return 4;
 	}
 
 	public void submitUpdateReview() {
@@ -176,4 +203,8 @@ public class BookDetailAction implements Serializable {
 
 	public void setSelectedIdReview(String selectedIdReview) {this.selectedIdReview = selectedIdReview;}
 
+	public SortOrder getSortOrder() {return sortOrder;}
+
+	public void setSortOrder(SortOrder sortOrder) {this.sortOrder = sortOrder;}
+	
 }

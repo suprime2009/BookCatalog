@@ -1,0 +1,25 @@
+ .even-row {
+            background-color: #FCFFFE;
+        }
+ 
+        .odd-row {
+            background-color: #ECF3FE;
+        }
+ 
+        .even-row:hover,
+        .odd-row:hover {
+            background-color: #FFEBDA;
+        }
+        
+        #slider {
+        width:100px;
+        }
+        
+        .rich-slider-tip{
+                width:100px;
+        }
+
+        
+        .rich-slider-track{
+        width:100px;
+        }

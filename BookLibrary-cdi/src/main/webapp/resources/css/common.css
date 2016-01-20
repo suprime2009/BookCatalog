@@ -1,0 +1,33 @@
+	.naviBtm{
+	width:100px;
+    display:block;
+    margin:0 auto;
+    margin-top:1%;
+    padding:10px;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .3s;
+    -webkit-transition:background .3s;
+}
+.regularBtm{
+	width:100px;
+	height:27px;
+	margin-top:1%;
+    margin:0 auto;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    transition:background .3s;
+    -webkit-transition:background .3s;
+}
+.smallBtm{
+	width:90px;
+	height:20px;
+    margin:0 auto;
+    text-decoration:none;
+    text-align:center;
+    cursor:pointer;
+    transition:background .3s;
+    -webkit-transition:background .3s;
+}

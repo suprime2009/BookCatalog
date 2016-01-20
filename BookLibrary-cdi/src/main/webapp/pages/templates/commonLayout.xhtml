@@ -19,11 +19,22 @@
 
 	<div id="page">
 
-		<div id="header">
-			<ui:insert name="header">
-				<ui:include src="commonHeader.xhtml" />
-			</ui:insert>
-		</div>
+<rich:toolbar  style="width:1000px; height:70px;  position: absolute; top:0px; "  itemSeparator="disc"   >
+<rich:toolbarGroup >
+<h:outputLabel value="BOOK CATALOG" styleClass="headerText" />
+</rich:toolbarGroup>
+
+<rich:toolbarGroup location="right" itemSeparator="disc" >
+<h:form>
+ <h:panelGrid columns="3" >
+<h:link  value="HOME" outcome="#{navigationAction.moveToHomePage()}" />
+<h:link  value="BOOKS" outcome="#{navigationAction.moveToManageBooks()}" />
+<h:link  value="AUTHORS" outcome="#{navigationAction.moveToManageAuthors()}" />
+</h:panelGrid>
+</h:form>
+</rich:toolbarGroup>
+</rich:toolbar>
+<div style=" margin-top:72px;"></div>
 
 		<div id="content">
 			<ui:insert name="content"></ui:insert>

@@ -2,12 +2,12 @@
 <testng-results skipped="7" failed="0" total="7" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="31" started-at="2016-01-19T07:21:48Z" finished-at="2016-01-19T07:21:48Z">
+  <suite name="Default suite" duration-ms="20" started-at="2016-01-20T13:43:43Z" finished-at="2016-01-20T13:43:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="31" started-at="2016-01-19T07:21:48Z" finished-at="2016-01-19T07:21:48Z">
+    <test name="Default test" duration-ms="20" started-at="2016-01-20T13:43:43Z" finished-at="2016-01-20T13:43:43Z">
       <class name="com.softserveinc.model.persist.home.BookHomeTest">
-        <test-method status="FAIL" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="getRemoteBeans" is-config="true" duration-ms="0" started-at="2016-01-19T09:21:46Z" finished-at="2016-01-19T09:21:46Z">
+        <test-method status="FAIL" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="getRemoteBeans" is-config="true" duration-ms="0" started-at="2016-01-20T15:43:40Z" finished-at="2016-01-20T15:43:40Z">
           <exception class="org.apache.openejb.OpenEjbContainer$AssembleApplicationException">
             <message>
               <![CDATA[org.apache.openejb.OpenEJBException: Creating application failed: C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi: org.apache.openejb.OpenEJBRuntimeException: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set]]>
@@ -75,11 +75,19 @@ Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo can
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getRemoteBeans -->
-        <test-method status="SKIP" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="setUp" is-config="true" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
+        <test-method status="SKIP" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="setUp" is-config="true" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="SKIP" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testFindAllBooks" duration-ms="0" started-at="2016-01-19T09:21:48Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-19T09:21:48Z">
+        <test-method status="SKIP" signature="testCreateBookWithAlreadyExistISBN()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBookWithAlreadyExistISBN" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateBookWithAlreadyExistISBN -->
+        <test-method status="SKIP" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBook" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateBook -->
+        <test-method status="SKIP" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testFindAllBooks" duration-ms="0" started-at="2016-01-20T15:43:43Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-20T15:43:43Z">
           <exception class="java.lang.Throwable">
             <message>
               <![CDATA[Method BookHomeTest.testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods]]>
@@ -109,15 +117,7 @@ Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo can
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAllBooks -->
-        <test-method status="SKIP" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testUpdateBook" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testUpdateBook -->
-        <test-method status="SKIP" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBookWithAuthors" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCreateBookWithAuthors -->
-        <test-method status="SKIP" signature="testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testDeleteBook" duration-ms="0" started-at="2016-01-19T09:21:48Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-19T09:21:48Z">
+        <test-method status="SKIP" signature="testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testDeleteBook" duration-ms="0" started-at="2016-01-20T15:43:43Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-20T15:43:43Z">
           <exception class="java.lang.Throwable">
             <message>
               <![CDATA[Method BookHomeTest.testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods]]>
@@ -147,15 +147,19 @@ Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo can
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteBook -->
-        <test-method status="SKIP" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBook" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
+        <test-method status="SKIP" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testUpdateBook" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateBook -->
-        <test-method status="SKIP" signature="testCreateBookWithAlreadyExistISBN()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBookWithAlreadyExistISBN" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
+        </test-method> <!-- testUpdateBook -->
+        <test-method status="SKIP" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateBookWithAlreadyExistISBN -->
-        <test-method status="SKIP" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testFindByIdBook" duration-ms="0" started-at="2016-01-19T09:21:48Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-19T09:21:48Z">
+        </test-method> <!-- tearDown -->
+        <test-method status="SKIP" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testCreateBookWithAuthors" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateBookWithAuthors -->
+        <test-method status="SKIP" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="testFindByIdBook" duration-ms="0" started-at="2016-01-20T15:43:43Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-01-20T15:43:43Z">
           <exception class="java.lang.Throwable">
             <message>
               <![CDATA[Method BookHomeTest.testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778] depends on not successfully finished methods]]>
@@ -185,11 +189,7 @@ Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo can
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdBook -->
-        <test-method status="SKIP" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="SKIP" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2016-01-19T09:21:48Z" finished-at="2016-01-19T09:21:48Z">
+        <test-method status="SKIP" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@2286778]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2016-01-20T15:43:43Z" finished-at="2016-01-20T15:43:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeEJBSession -->

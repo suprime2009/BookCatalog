@@ -23,6 +23,10 @@
     <param-name>resteasy.scan</param-name>
     <param-value>true</param-value>
   </context-param>
+  <context-param>
+    <param-name>org.richfaces.skin</param-name>
+    <param-value>wine</param-value>
+</context-param>
 
   <context-param>
     <param-name>resteasy.servlet.mapping.prefix</param-name>

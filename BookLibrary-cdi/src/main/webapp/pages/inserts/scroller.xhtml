@@ -6,7 +6,7 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 <ui:composition>
-<h:head></h:head>
+
 <!--The paging buttons-->
     <h:commandButton value="first" disabled="#{bean.disabledFirst}">
 		<f:ajax event="click" listener="#{bean.pageFirst}" execute="@form" render="@form"></f:ajax>              

@@ -8,64 +8,39 @@
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="templates/commonLayout.xhtml">
 
+
 <ui:define name="title">
 
    Manage Books
-         <h:outputStylesheet>
-        
-         body{
-	overflow: visible;
-         text-align: center; /* выравниваем все содержимое body по центру */
-         }
-         
+<h:outputStylesheet  name="manageBooks.css" library="css" />
+<h:outputStylesheet  name="common.css" library="css" />
 
-        .even-row {
-            background-color: #FCFFFE;
-        }
- 
-        .odd-row {
-            background-color: #ECF3FE;
-        }
- 
-        .even-row:hover,
-        .odd-row:hover {
-            background-color: #FFEBDA;
-        }
-        
-        #slider {
-        width:100px;
-        }
-        
-        .rich-slider-tip{
-                width:100px;
-        }
-
-        
-        .rich-slider-track{
-        width:100px;
-        }
-    </h:outputStylesheet>
 
 </ui:define>
-    
+   
 <ui:define name="content">
+
 
    
     <!--The sortable datatable-->
 <h:form id="formManageBooks" prependId="false">
-	
-<rich:dataTable   id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
-		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable">
-		
-		<ui:param name="bean" value="#{manageBookAction}" />		
 
 <!-- dataTableHeader -->
 <ui:decorate template="templates/dataTableHeader.xhtml">
-		<ui:param name="datatableName" value="MANAGE BOOK TABLE" />
-		<ui:define name="createButton">
-			<a4j:commandButton  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this"></a4j:commandButton>
+		<ui:param name="bean" value="#{manageBookAction}" />
+		<ui:define name="dataTableName">
+				<h:outputLabel value="MANAGE BOOKS DATA TABLE" />
 		</ui:define>
-</ui:decorate>
+		<ui:define name="createButton">
+			<a4j:commandButton styleClass="regularBtm"  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this"></a4j:commandButton>
+		</ui:define>
+</ui:decorate>	
+<rich:dataTable   id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
+		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable" style="width:100%;">
+		
+		<ui:param name="bean" value="#{manageBookAction}" />		
+
+
 	
 <!-- checkBox column -->
 <ui:include src="inserts/selectColumn.xhtml" >

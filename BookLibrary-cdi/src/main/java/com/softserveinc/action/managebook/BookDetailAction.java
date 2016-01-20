@@ -55,6 +55,9 @@ public class BookDetailAction implements Serializable {
 	//true - ascending
 	//false - descending
 	private SortOrder sortOrder;
+	//true - add
+	//false - edit
+	private boolean addAction;
 
 	@EJB
 	private BookFacadeLocal bookfacade;
@@ -206,5 +209,13 @@ public class BookDetailAction implements Serializable {
 	public SortOrder getSortOrder() {return sortOrder;}
 
 	public void setSortOrder(SortOrder sortOrder) {this.sortOrder = sortOrder;}
+
+	public boolean isAddAction() {return addAction;}
+
+	public void setAddAction(boolean addAction) {
+		this.addAction = addAction;
+	}
 	
+	
+
 }

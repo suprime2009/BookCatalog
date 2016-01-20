@@ -43,7 +43,8 @@
 <rich:panel styleClass="standartPanel">
 		<f:facet name="header" >
 			<h:outputText value="Book details" styleClass="labelH2" />
-			<h:outputText id="averageRating" value="#{bookDetailAction.bookRating}" style=" margin-left:80%;" />
+			<h:outputLabel styleClass="label" value="AverageRating: " for="averageRating"  style=" margin-left:60%;" />
+			<h:outputText id="averageRating" value="#{bookDetailAction.bookRating}" />
 		</f:facet>
 		<div class="basicAttributesStyle" style="float: left; width: 70%;">
 			<h:panelGrid columns="2" >
@@ -67,33 +68,7 @@
 				</rich:list>
 		</div>
 </rich:panel>
-<h:outputScript name="jrate.js" library="js" ></h:outputScript>
-<h:outputStylesheet  name="star-rating.css" library="css" />
-<h:outputScript>
 
-
-$(function () {
-			var that = this;
-			var toolitup = $(".ratingRead").jRate({
-				rating: 2,
-				strokeColor: 'black',
-				precision: 1,
-
-				minSelected: 1,
-				onChange: function(rating) {
-					//console.log("OnChange: Rating: "+rating);
-				},
-				onSet: function(rating) {
-					console.log("OnSet: Rating: "+rating);
-				}
-			});
-			
-			$('#btn-click').on('click', function() {
-				toolitup.setRating(0);				
-			});
-			
-		});
-</h:outputScript>
 
 
 <rich:messages globalOnly="true" style="color:blue"  ></rich:messages>
@@ -115,8 +90,10 @@ $(function () {
 		<h:graphicImage value="/resources/images/down.gif" alt="descending" />
 		</a4j:commandLink>
 
-		<a4j:commandButton style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"    execute="@this"
-					render="addReviewPopUp"  oncomplete="#{rich:component('addReviewPopUp')}.show()" />
+		<a4j:commandButton style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"  execute="@this"
+					render="addReviewPopUp"  oncomplete="#{rich:component('addReviewPopUp')}.show()" >
+					 <f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="true" />
+					 </a4j:commandButton>
 </rich:toolbarGroup>
 </rich:toolbar>
 
@@ -125,8 +102,8 @@ $(function () {
 		<ui:param name="comment" value="comment" />
 		<ui:param name="rating" value="rating" />
 		<ui:param name="idreview" value="idreview" />
-		<rich:dataGrid id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record"  columns="1" elements="6" style="width:100%;" border="0"   >
-  			<rich:column>
+		<rich:dataGrid  id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record"  columns="1" elements="6" style="width:100%;" border="0"   >
+  			<rich:column >
   			<rich:panel bodyClass="panel_body"  >
   			<f:facet name="header" >
   			<h:outputLabel value="Created: " for="createdDate" styleClass="labelH3" />
@@ -144,47 +121,63 @@ $(function () {
 				</div>
 			</f:facet>
 			
-  			<h:panelGrid columns="2">
-  				<h:outputLabel value="Rating: " />
-  				<div class="ratingRead"><h:inputText value="" onchange="jRate()" />  </div>
- 				<h:outputLabel value="Commenter name: " />
-	 			<h:outputLabel value="#{record[name]}" />
-	 			<h:outputLabel value="Comment: " />
+  			<div>
+  			<div style="width:50%; float: left; text-align: left;">
+  					<h:outputLabel styleClass="label" value="        Commenter name:      " />
+  					<h:outputLabel styleClass="label" value="#{record[name]}" style=""  />
+			</div>
+			<div style="width:50%; float: right; text-align: center;">
+  					<h:outputLabel styleClass="label" value="Rating: " />
+	 				<h:outputLabel styleClass="label" value="#{record[rating]}" style="  position:center;" />
+			</div>
+	 		</div>
+	 		
+	 		<h:outputLabel value="Comment: " />
 	  			<h:outputText value="#{record[comment]}" />
-	 		</h:panelGrid>
 	 		</rich:panel>
 	 		</rich:column>
-			<f:facet name="footer">
+		<f:facet name="footer">
   				<rich:dataScroller id="scroller" fastStep="3" />
 			</f:facet>
-		</rich:dataGrid>
+			</rich:dataGrid>
+  				
+ 				
+	 			
+	 		
+	
+		
 	
 	
 	
 	
 	<!-- add & edit review popup -->
-	<rich:popupPanel id="addReviewPopUp" autosized="true"  domElementAttachment="form" >
-	<rich:panel>
-		<f:facet name="header">
-			<h:outputText value="Leave a comment:" />
-			<a4j:commandButton value="Cancel" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />
-			<a4j:commandButton value="Update review" action="#{bookDetailAction.submitUpdateReview()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating" />
-			<a4j:commandButton value="Add review" action="#{bookDetailAction.submitCreateReview()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp"  render="reviewsDataTable, averageRating" />
-		</f:facet>
+	<rich:popupPanel id="addReviewPopUp" header="Leave a comment:" autosized="true" style="height:200px; widht:500px;"  domElementAttachment="form" >
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;">X</h:outputLink>
+	</f:facet>
 
-		<h:outputLabel value="Your name:" />
-		<h:inputText id="commenterNameInput" value="#{bookDetailAction.review.commenterName}" required="true" requiredMessage="Your name is required. Please enter your name." />
-			<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true"  />
-		<h:outputLabel value="Rating:" />
-		<h:inputText id="ratingInput" value="#{bookDetailAction.review.rating}" validatorMessage="Please enter a number in range between 1 and 5."  >
+	<rich:panel>
+		<h:outputLabel styleClass="label" for="commenterNameInput" value="Your name:" />
+		<h:inputText id="commenterNameInput" value="#{bookDetailAction.review.commenterName}" size="30" required="true" requiredMessage="Your name is required. Please enter your name." />	
+		<h:outputLabel styleClass="label"  value="Rating:" for="ratingInput" style="magrin-left:300px;" />
+		<h:inputText  id="ratingInput" value="#{bookDetailAction.review.rating}" validatorMessage="Please enter a number in range between 1 and 5."  >
 			<f:validateLongRange maximum="5" minimum="1" ></f:validateLongRange>
 		</h:inputText>
-			<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" />
-		<h:inputTextarea id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
-			<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" />
 	</rich:panel>
+	<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
+	<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
+	<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true" showDetail="false"  />
+	<h:inputTextarea style="width:98%; position:relative; height:100px;" id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
+ 	
+
+ 	<rich:panel style="position:absolute; bottom:0; left:150px; border:0;">
+ 	<a4j:commandButton styleClass="smallBtm" value="Edit review" action="#{bookDetailAction.submitUpdateReview()}" rendered="#{bookDetailAction.addAction == false}" 
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating" />
+	<a4j:commandButton styleClass="smallBtm" value="Add review" action="#{bookDetailAction.submitCreateReview()}" rendered="#{bookDetailAction.addAction}"
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp"  render="reviewsDataTable, averageRating" />
+	<a4j:commandButton styleClass="smallBtm" value="Cancel" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />	
+	</rich:panel>		
+
 	</rich:popupPanel>
 </h:form>
 
@@ -239,6 +232,7 @@ alert("done");
   }
         .label {
             font-weight: bold;
+            font-size: 9pt;
         }
         .rf-dg, .rf-dg-c{
             border:none;

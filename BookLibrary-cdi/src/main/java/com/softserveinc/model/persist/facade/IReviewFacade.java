@@ -3,6 +3,9 @@ package com.softserveinc.model.persist.facade;
 import java.util.List;
 import java.util.Map;
 
+import org.richfaces.component.SortOrder;
+
+import com.softserveinc.exception.ReviewFacadeException;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
@@ -43,7 +46,9 @@ public interface IReviewFacade {
 	List<Review> findAll();
 	
 
-	List<Review> findReviewsForBook(Book book, int firstRow, int countRows);
+	List<Review> findReviewsForBook(Book book, int firstRow, int countRows, SortOrder order) throws ReviewFacadeException;
+	
+	List<Review> findReviewsForBook(Book book);
 	
 	int findCountReviewForBook(Book book);
 	

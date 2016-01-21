@@ -6,16 +6,18 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 <ui:composition>
-	<h:head>
-	</h:head>
+
+
 	<rich:popupPanel id="confirmDelete" autosized="true">
 		Are you sure you want to delete the row?
 	<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
-		<h:commandButton value="Delete">
-			<f:ajax event="click" listener="#{bean.deleteEntity()}"
+			<ui:insert name="action">
+		<h:commandButton value="Delete" >
+			<f:ajax event="click" listener="#{bookDetailAction.deleteBook()}"
 				onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
 		</h:commandButton>
+		</ui:insert>
 	</rich:popupPanel>
 	
 	

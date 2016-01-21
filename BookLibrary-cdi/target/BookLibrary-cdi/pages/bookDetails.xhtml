@@ -11,8 +11,10 @@
 <ui:composition template="templates/commonLayout.xhtml">
 
 <ui:define name="title">
-#{bookDetailAction.book.bookName}
 <h:outputStylesheet  name="common.css" library="css" />
+<h:outputStylesheet  name="bookDetail.css" library="css" />
+#{bookDetailAction.book.bookName}
+
 </ui:define>
 
 <f:metadata>
@@ -22,20 +24,18 @@
 	
 <ui:define name="content">
 
-<h:outputStylesheet>
-
-</h:outputStylesheet>
-
 <!-- navigation panel  -->
 <ui:decorate template="templates/naviOnDetailPageTemplate.xhtml">
 <ui:define name="btmEdit">
 <h:commandButton  styleClass="naviBtm" action="#{bookDetail}" value="Edit book" />
 </ui:define>
 <ui:define name="btmDelete">
-<h:commandButton styleClass="naviBtm" action="#{bookDetail}" value="Delete book" />
+<a4j:commandButton styleClass="naviBtm" value="Delete book"  render="confirmDelete" oncomplete="#{rich:component('confirmDelete')}.show()" >
+<a4j:param value="#{bookDetailAction.book.idBook}" assignTo="#{manageBookAction.idEntityToDelete}" />
+</a4j:commandButton>
 </ui:define>
 <ui:define name="btmMoveBack">
-<h:commandButton styleClass="naviBtm" action="manageBooks.xhtml" value="Move back" />
+<h:button styleClass="naviBtm" outcome="manageBooks.xhtml" value="Move back" />
 </ui:define>
 </ui:decorate>
 
@@ -59,10 +59,10 @@
 			</h:panelGrid>
 		</div>
 		
-		<div class="basicAttributesStyle" style="float: right; width: 30%; ">
+		<div class="labelH1" style="float: right; width: 30%; ">
 				<h:outputLabel value="Authors: "  />
 				<rich:list value="#{bookDetailAction.book.authors}" var="author">
-					<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail" styleClass="basicAttributesStyle">
+					<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail" styleClass="labelH1">
         				<f:param name="id" value="#{author.idauthor}"></f:param>
 					</h:link>
 				</rich:list>
@@ -80,7 +80,7 @@
 <h:outputLabel value="Reviews" styleClass="labelH2" />
 
 <rich:toolbarGroup  itemSeparator="line"  location="right" >
-<h:outputText value="Total count of reviews: #{bookDetailAction.getCountReviewForBook()}" style="margin-right:300px;"   />
+<h:outputText value="Total count of reviews: #{bookDetailAction.countReviewsForCurrentBook}" style="margin-right:300px;"   />
 
 <h:outputLabel  value="Sort: " />
 		<a4j:commandLink action="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewDataTableForm" rendered="#{bookDetailAction.orderStatus == false}"  >
@@ -90,10 +90,10 @@
 		<h:graphicImage value="/resources/images/down.gif" alt="descending" />
 		</a4j:commandLink>
 
-		<a4j:commandButton style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"  execute="@this"
+		<a4j:commandButton actionListener="#{bookDetailAction.reset()}" style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"  execute="@this"
 					render="addReviewPopUp"  oncomplete="#{rich:component('addReviewPopUp')}.show()" >
-					 <f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="true" />
-					 </a4j:commandButton>
+			<f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="true" />
+		</a4j:commandButton>
 </rich:toolbarGroup>
 </rich:toolbar>
 
@@ -111,10 +111,11 @@
    				<div style="float:right;">
    				<a4j:commandLink style="margin-right:30px;" execute="@this" actionListener="#{bookDetailAction.loadReviewForUpdate(record[idreview])}"
 					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()">
-					<h:graphicImage value="/resources/images/edit.png" alt="delete"  />
+					 <f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="false" />
+					<h:graphicImage value="/resources/images/edit.png" alt="edit"  />
 					</a4j:commandLink>
    				<a4j:commandLink style="margin-right:50px;" execute="@this"
-					render="@none" oncomplete="#{rich:component('confirmDelete')}.show()"  >
+					render="@none" oncomplete="#{rich:component('confirmDeleteReview')}.show()"  >
 					<f:setPropertyActionListener target="#{bookDetailAction.selectedIdReview}" value="#{record[idreview]}" />
 					<h:graphicImage value="/resources/images/delete.png" alt="delete" />
 				</a4j:commandLink>
@@ -137,7 +138,7 @@
 	 		</rich:panel>
 	 		</rich:column>
 		<f:facet name="footer">
-  				<rich:dataScroller id="scroller" fastStep="3" />
+  				<rich:dataScroller id="scroller" fastStep="3"  lastPageMode="full"  />
 			</f:facet>
 			</rich:dataGrid>
   				
@@ -151,7 +152,7 @@
 	
 	
 	<!-- add & edit review popup -->
-	<rich:popupPanel id="addReviewPopUp" header="Leave a comment:" autosized="true" style="height:200px; widht:500px;"  domElementAttachment="form" >
+	<rich:popupPanel id="addReviewPopUp" header="Leave a comment:" autosized="true" style="min-height:200px; widht:500px;"  domElementAttachment="form" >
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;">X</h:outputLink>
 	</f:facet>
@@ -167,7 +168,7 @@
 	<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
 	<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
 	<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true" showDetail="false"  />
-	<h:inputTextarea style="width:98%; position:relative; height:100px;" id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
+	<h:inputTextarea style="width:99%; position:relative; resize: none; height:100px;" id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
  	
 
  	<rich:panel style="position:absolute; bottom:0; left:150px; border:0;">
@@ -183,87 +184,78 @@
 
 
 
-
-
-<!-- confirm delete review popup -->
-	<rich:popupPanel id="confirmDelete" autosized="true" >
-	<h:form>
-	<rich:panel header="Confirm delete review">
-		<h:outputText value="Are you sure you want to delete this review?" />
+	<rich:popupPanel id="confirmDelete" autosized="true">
+		Are you sure you want to delete the row?
+		<h:form>
 	<a4j:commandButton value="Cancel"
 			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
-		<h:commandButton id="deleteReviewBtm" value="Delete">
-			<f:ajax event="click" listener="#{bookDetailAction.submitDeleteReview()}"
-				onevent="#{rich:component('confirmDelete')}.hide()" execute="confirmDelete" render="reviewDataTableForm"></f:ajax>
+
+		<h:commandButton immediate="true"   value="Delete" >
+		<f:ajax event="click" execute="@form" ></f:ajax>
 		</h:commandButton>
-		</rich:panel>
-		</h:form>
+</h:form>
 	</rich:popupPanel>
 
+	
+	
+<!-- confirm delete review popup -->
+	<rich:popupPanel header="Confirm delete review" id="confirmDeleteReview" style="width:300px; height:50px; text-align:center;" autosized="true" >
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('confirmDeleteReview')}.hide(); return false;">X</h:outputLink>
+	</f:facet>
+	<h:form>
 
-<!--  
-	<a4j:outputPanel ajaxRendered="true">
-		<rich:popupPanel id="afterActionPopUp" modal="false" zindex="101" autosized="true" show="#{facesContext.maximumSeverity!=null}" onshow="myF()" >
-		<center>
-		<f:facet name="header"><h:messages globalOnly="true" ajaxRendered="true" style="color:blue" /></f:facet>
-			<h:commandButton  value="Close" onclick="#{rich:component('afterActionPopUp')}.hide()"/>
-			</center>
-		</rich:popupPanel>
-	</a4j:outputPanel>
+		<h:outputText  value="Are you sure you want to delete this review?" />
+	<rich:panel style="position:absolute; bottom:0; left:60px; border:0;">
+		<h:commandButton styleClass="smallBtm" id="deleteReviewBtm" value="Yes">
+			<f:ajax event="click" listener="#{bookDetailAction.submitDeleteReview()}"
+				onevent="#{rich:component('confirmDeleteReview')}.hide()" execute="confirmDeleteReview" render="reviewDataTableForm"></f:ajax>
+		</h:commandButton>
+		<a4j:commandButton styleClass="smallBtm" value="No" render="@none" execute="@this"
+			onclick="#{rich:component('confirmDeleteReview')}.hide(); return false;" />
+	</rich:panel>
+		</h:form>
+	</rich:popupPanel>
+	
 
-<h:outputScript>
-function myF() {
-setTimeout(wait, 3000);
 
-}
-function wait() {
-hideMessage();
-alert("done");
-}
-</h:outputScript>
-  
-  
-  -->
-  
-  <h:outputStylesheet>
-  
-  .panel_body {
-   background-color: #FFEBDA;
-  }
-        .label {
-            font-weight: bold;
-            font-size: 9pt;
-        }
+<h:outputStylesheet>
+
         .rf-dg, .rf-dg-c{
             border:none;
         }
+        .panel_body {
+   background-color: #FFEBDA;
+  }
+       
+       
         .pbody {
             width: 180px;
         }
         
         .standartPanel {
-        width:100%; 
+
         min-height:200px; 	
         margin-bottom:16px;
         overflow:auto;
         }
         
-        .basicAttributesStyle {
-        font-size: 10pt;
-        font-family: Verdana, Arial, Helvetica, sans-serif; 
-        }
-        
-        .labelH2 {
+ .label {
+        font-weight: bold;
+        font-size: 9pt;
+       }
+       
+ .labelH2 {
+ 		font-weight: bold;
         font-size: 12pt;
         }
-        .labelH3 {
+.labelH1 {
+
         font-size: 10pt;
         }
-        
-        
- 
 </h:outputStylesheet>
 
+ 
 </ui:define>
 </ui:composition>
 

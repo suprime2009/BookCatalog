@@ -16,6 +16,7 @@ com\softserveinc\model\persist\backing\HomeManagedBean.class
 com\softserveinc\action\managebook\UIWrapper.class
 com\softserveinc\model\persist\facade\ReviewFacade.class
 com\softserveinc\action\managebook\CreateBookAction.class
+com\softserveinc\exception\ReviewFacadeException.class
 com\softserveinc\model\session\util\SQLCommandConstants.class
 com\softserveinc\model\persist\facade\BookFacadeRemote.class
 com\softserveinc\model\persist\home\AuthorHome.class

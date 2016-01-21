@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.ReviewFacadeException;
 import com.softserveinc.exception.ReviewManagerException;
 import com.softserveinc.model.persist.entity.Book;
 
@@ -46,48 +47,65 @@ import com.softserveinc.model.session.util.DataModelHelper;
 @ViewScoped
 public class BookDetailAction implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 681604932693331609L;
 	private static Logger log = LoggerFactory.getLogger(BookDetailAction.class);
 
 	private Book book;
 	private String selectedIdReview;
 	private Review review;
-	
-	//true - ascending
-	//false - descending
+
 	private SortOrder sortOrder;
-	//true - add
-	//false - edit
+	// true - add
+	// false - edit
 	private boolean addAction;
+	private int countReviewsForBook;
 
 	@EJB
 	private BookFacadeLocal bookfacade;
+	
+	@EJB
+	private BookManagerLocal bookManager;
 
 	@EJB
 	private ReviewFacadeLocal reviewFacade;
 
 	@EJB
 	private ReviewManagerLocal reviewManager;
-
+	
 	public BookDetailAction() {
 		sortOrder = SortOrder.descending;
 		review = new Review();
 		log.debug("The bean has been created.");
 	}
 	
+	public int getCountReviewsForCurrentBook() {
+		countReviewsForBook = reviewFacade.findCountReviewForBook(book);
+		return countReviewsForBook;
+	}
+
 	public void toogleSortOrder() {
 		if (sortOrder == SortOrder.descending) {
 			sortOrder = SortOrder.ascending;
 		} else {
 			sortOrder = SortOrder.descending;
 		}
+		log.info("The sortOrder has been toogled. Current order is {}", sortOrder);
 	}
-	
+
 	public boolean getOrderStatus() {
 		if (sortOrder.equals(SortOrder.ascending)) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public String deleteBook() {
+		bookManager.deleteBook(book);
+		return "/manageBooks.xhtml?faces-redirect=true";
 	}
 
 	private void showGlobalMessageOnPage(String message) {
@@ -122,10 +140,6 @@ public class BookDetailAction implements Serializable {
 		}
 		log.debug("The method successfully finished. Review has been created.");
 	}
-	
-	public int getCountReviewForBook() {
-		return 4;
-	}
 
 	public void submitUpdateReview() {
 		try {
@@ -152,10 +166,11 @@ public class BookDetailAction implements Serializable {
 	}
 
 	public void loadBook() {
+		System.out.println("loadBook startMethod");
 		FacesContext context = FacesContext.getCurrentInstance();
 		String ibBook = (String) context.getExternalContext().getRequestParameterMap().get("idBook");
 		book = bookfacade.findById(ibBook);
-		log.debug("The method done. Book {} has been loaded.", book);
+		log.info("The method done. Book {} has been loaded.", book);
 	}
 
 	public Double getBookRating() {
@@ -165,17 +180,28 @@ public class BookDetailAction implements Serializable {
 	}
 
 	private final class ReviewDataModel extends DataModelHelper<Review> implements Serializable {
-		
-		private  Logger log = LoggerFactory.getLogger(ReviewDataModel.class);
-		
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 7733745802725088461L;
+		private Logger log = LoggerFactory.getLogger(ReviewDataModel.class);
+
 		@Override
 		public void walk(FacesContext context, DataVisitor visitor, Range range, Object argument) {
-			
+			log.debug("The method starts.");
 			SequenceRange sequenceRange = (SequenceRange) range;
 			int firstRow = sequenceRange.getFirstRow();
 			int countRows = sequenceRange.getRows();
-			List<Review> list = reviewFacade.findReviewsForBook(book, firstRow, countRows);
-			System.out.println(list.size());
+			List<Review> list = null;
+			try {
+				list = reviewFacade.findReviewsForBook(book, firstRow, countRows, sortOrder);
+			} catch (ReviewFacadeException e) {
+				list = new ArrayList<Review>();
+				String errorMessage = "Not executed. ";
+				log.error(errorMessage + e.getMessage());
+				showGlobalMessageOnPage(errorMessage);
+			}
 
 			for (Review r : list) {
 				visitor.process(context, r.getIdreview(), argument);
@@ -185,7 +211,7 @@ public class BookDetailAction implements Serializable {
 
 		@Override
 		public int getRowCount() {
-			return reviewFacade.findCountReviewForBook(book);
+			return countReviewsForBook;
 		}
 
 		@Override
@@ -196,26 +222,39 @@ public class BookDetailAction implements Serializable {
 
 	// getters and setters
 
-	public Book getBook() {return book;}
+	public Book getBook() {
+		return book;
+	}
 
-	public void setBook(Book book) {this.book = book;}
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
-	public Review getReview() {return review;}
+	public Review getReview() {
+		return review;
+	}
 
-	public String getSelectedIdReview() {return selectedIdReview;}
+	public String getSelectedIdReview() {
+		return selectedIdReview;
+	}
 
-	public void setSelectedIdReview(String selectedIdReview) {this.selectedIdReview = selectedIdReview;}
+	public void setSelectedIdReview(String selectedIdReview) {
+		this.selectedIdReview = selectedIdReview;
+	}
 
-	public SortOrder getSortOrder() {return sortOrder;}
+	public SortOrder getSortOrder() {
+		return sortOrder;
+	}
 
-	public void setSortOrder(SortOrder sortOrder) {this.sortOrder = sortOrder;}
+	public void setSortOrder(SortOrder sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 
-	public boolean isAddAction() {return addAction;}
+	public boolean isAddAction() {
+		return addAction;
+	}
 
 	public void setAddAction(boolean addAction) {
 		this.addAction = addAction;
 	}
-	
-	
-
 }

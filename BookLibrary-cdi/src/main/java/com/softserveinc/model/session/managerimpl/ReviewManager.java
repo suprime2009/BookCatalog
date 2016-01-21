@@ -27,13 +27,6 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 	private ReviewHomeLocal reviewHome;
 
 	@Override
-	public double getAverageRating(Book book) {
-		double result = reviewFacade.findAverageRatingForBook(book);
-		log.info("Method done. Average rating={} finded for Book={}", result, book);
-		return result;
-	}
-
-	@Override
 	public void createReview(Review review) throws ReviewManagerException, BookCatalogException {
 
 		long startMethodTime = System.currentTimeMillis();

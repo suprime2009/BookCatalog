@@ -17,6 +17,5 @@ public interface IManagerReview {
 
 	public void updateReview(Review review) throws ReviewManagerException;
 
-	public double getAverageRating(Book book);
 
 }

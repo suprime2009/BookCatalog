@@ -63,7 +63,7 @@
 				<h:outputLabel value="Authors: "  />
 				<rich:list value="#{bookDetailAction.book.authors}" var="author">
 					<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail" styleClass="labelH1">
-        				<f:param name="id" value="#{author.idauthor}"></f:param>
+        				<f:param name="id" value="#{author.idAuthor}"></f:param>
 					</h:link>
 				</rich:list>
 		</div>

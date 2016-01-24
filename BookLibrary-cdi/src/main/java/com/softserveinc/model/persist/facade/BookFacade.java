@@ -3,6 +3,7 @@ package com.softserveinc.model.persist.facade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -12,8 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-
+import javax.persistence.TypedQuery;
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import org.richfaces.component.SortOrder;
 import org.slf4j.Logger;
@@ -21,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 
 import com.softserveinc.model.persist.entity.Author;
-import com.softserveinc.model.persist.entity.AuthorConstantsHolder;
+import com.softserveinc.model.persist.entity.AuthorFieldHolder;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookFieldHolder;
 import com.softserveinc.model.persist.entity.EntityFieldHolder;
@@ -165,9 +166,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			case AUTHORS:
-				sbForDataTable.append(String.format("%s.%s ", A, AuthorConstantsHolder.SECOND_NAME.getBusinessView()));
+				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.SECOND_NAME.getBusinessView()));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-				sbForDataTable.append(String.format("%s.%s ", A, AuthorConstantsHolder.FIRST_NAME.getBusinessView()));
+				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.FIRST_NAME.getBusinessView()));
 				appendSortOrder(sbForDataTable, dataTableSearchHolder);
 				break;
 			default:
@@ -200,9 +201,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 			isRating = false;
 			switch ((BookFieldHolder) pair.getKey()) {
 			case AUTHORS:
-				sbForDataTable.append(String.format("(%s.%s %s '%s%%' ", A, AuthorConstantsHolder.SECOND_NAME.getBusinessView(), LIKE, pair.getValue()));
+				sbForDataTable.append(String.format("(%s.%s %s '%s%%' ", A, AuthorFieldHolder.SECOND_NAME.getBusinessView(), LIKE, pair.getValue()));
 				sbForDataTable.append(OR);
-				sbForDataTable.append(String.format(" %s.%s %s '%s%%') ", A, AuthorConstantsHolder.FIRST_NAME.getBusinessView(), LIKE, pair.getValue()));
+				sbForDataTable.append(String.format(" %s.%s %s '%s%%') ", A, AuthorFieldHolder.FIRST_NAME.getBusinessView(), LIKE, pair.getValue()));
 				break;
 			case RATING:
 				isRating = true;
@@ -302,5 +303,18 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		long end = System.currentTimeMillis();
 		log.info("Method done, that took {} milliseconds. Has been found {} books.", (end - start), count);
 		return (int) count;
+	}
+
+	@Override
+	public List<Book> findBooksByBookNameForAutocomplete(String value) {
+		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME);
+		if (value == null || value.equals("")) {
+			return new ArrayList<Book>();
+		}
+		query.setParameter("nam", value + '%');
+		query.setMaxResults(10);
+		List<Book> list =  query.getResultList();
+		log.info("The metjod done. Has been found {} books.", list.size());
+		return list;
 	}
 }

@@ -67,7 +67,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 		assertEquals(bookExpected.getIsbn(), book.getIsbn());
 		assertEquals(bookExpected.getPublisher(), book.getPublisher());
 		assertEquals(bookExpected.getYearPublished(), book.getYearPublished());
-		assertEquals(bookExpected.getBookAuthors(), book.getBookAuthors());
+		assertEquals(bookExpected.getAuthors(), book.getAuthors());
 	}
 	
 	@Test
@@ -92,19 +92,19 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 		bookBefore.setIsbn(SEVEN);
 		bookBefore.setPublisher(PUBLISHER);
 		bookBefore.setYearPublished(1990);
-		bookBefore.setBookAuthors(setAfter);
+		bookBefore.setAuthors(setAfter);
 
 		bookHomeRemote.update(bookBefore);
 		Book bookAfter = bookHomeRemote.findByID(B5);
 		assertNotNull(bookAfter);
 		assertNotNull(bookBefore);
-		assertEquals(4, bookAfter.getBookAuthors().size());
-		assertTrue(bookAfter.getBookAuthors().contains(author3));
-		assertTrue(bookAfter.getBookAuthors().contains(author4));
-		assertTrue(bookAfter.getBookAuthors().contains(author5));
-		assertTrue(bookAfter.getBookAuthors().contains(author6));
-		assertFalse(bookAfter.getBookAuthors().contains(author1));
-		assertFalse(bookAfter.getBookAuthors().contains(author2));
+		assertEquals(4, bookAfter.getAuthors().size());
+		assertTrue(bookAfter.getAuthors().contains(author3));
+		assertTrue(bookAfter.getAuthors().contains(author4));
+		assertTrue(bookAfter.getAuthors().contains(author5));
+		assertTrue(bookAfter.getAuthors().contains(author6));
+		assertFalse(bookAfter.getAuthors().contains(author1));
+		assertFalse(bookAfter.getAuthors().contains(author2));
 		assertEquals(NEW_NEW, bookAfter.getBookName());
 		assertEquals(SEVEN, bookAfter.getIsbn());
 		assertEquals(PUBLISHER, bookAfter.getPublisher());
@@ -129,7 +129,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 		assertEquals("Hibernate", book.getBookName());
 		assertEquals("111-11-111-2", book.getIsbn());
 		assertEquals("USA", book.getPublisher());
-		assertEquals(set, book.getBookAuthors());
+		assertEquals(set, book.getAuthors());
 		assertEquals(new Integer(2009), book.getYearPublished());
 		
 		book = bookHomeRemote.findByID("b900");
@@ -148,7 +148,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 		List<Review> listReviewAfter = reviewHomeRemote.findAll();
 		assertEquals(listAuthorAfter.size(), listAuthorBefore.size());
 		assertEquals(144, listReviewBefore.size());
-		assertNotNull(book.getBookAuthors());
+		assertNotNull(book.getAuthors());
 		assertEquals(137, listReviewAfter.size());
 		assertEquals(listBefore.size(), listAfter.size() + 1);
 	}

@@ -8,27 +8,28 @@
 <ui:composition>
 
   <h:form>
- <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:150px" domElementAttachment="parent" header="Create new book" >
+ <rich:popupPanel id="createBook"  autosized="true" style="width:500px; height:160px" domElementAttachment="parent" header="Create new book" >
  
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">X</h:outputLink>
 	</f:facet>
-	
+	<rich:panel>
    <ui:include src="inserts/inputsBookCreate.xhtml" >
    <ui:param name="bean" value="#{createBookAction}" />
    </ui:include>
-    
-    <a4j:commandButton value="Add book" action="#{createBookAction.submit()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render="manageBookDataTable" />
+    </rich:panel>
+    <rich:panel style="position:absolute; bottom:0; left:70px; border:0;">
+    <a4j:commandButton styleClass="smallBtm" value="Add book" action="#{createBookAction.submit()}" 
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render=" manageBookDataTable" />
     				
-    <a4j:commandButton   value="Add and edit"  action="#{createBookAction.submitAndEdit()}" render="confirmAdd" execute="createBook" 
+    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"  action="#{createBookAction.submitAndEdit()}" render="confirmAdd" execute="createBook" 
     			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createBook')}.hide(); #{rich:component('confirmAdd')}.show();}">
     </a4j:commandButton>
     
-    <a4j:commandButton value="Clear" action="#{createBookAction.reset}" execute="@this" render="inputPanel" />
+    <a4j:commandButton styleClass="smallBtm" value="Clear" action="#{createBookAction.reset}" execute="@this" render="inputPanel" />
 
-    <a4j:commandButton value="Cancel"  onclick="#{rich:component('createBook')}.hide(); return false;" />
-
+    <a4j:commandButton styleClass="smallBtm" value="Cancel"  onclick="#{rich:component('createBook')}.hide(); return false;" />
+	</rich:panel>
 </rich:popupPanel>
 </h:form> 
 

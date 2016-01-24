@@ -2,28 +2,20 @@ package com.softserveinc.model.session.manager;
 
 import java.util.List;
 
+import com.softserveinc.exception.AuthorManagerException;
+import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.model.persist.entity.Author;
 
 public interface IManagerAuthor {
 	
-	void createAuthor(Author author);
+	void createAuthor(Author author) throws AuthorManagerException, BookCatalogException;
 	
-	void updateAuthor(Author author);
+	void updateAuthor(Author author) throws AuthorManagerException;
 	
-	void removeAuthor(Author author);
+	void deleteAuthor(String idAuthor) throws AuthorManagerException;
 	
-	Author getAuthorById(String id);
+	void deleteAuthorWithNoBooks(String idAuthor) throws AuthorManagerException;
 	
-	List<Author> getAllAuthors();
-	
-	List<Author> getAuthorsWithAverageRating(int rating);
-	
-	void removeAuthorWithNoBooks(Author author);
-	
-	void removeAll(List<Author> list);
-	
-
-	
-	
-	
+	void bulkDeleteAuthorsWithNoBooks(List<Author> list) throws AuthorManagerException;
+		
 }

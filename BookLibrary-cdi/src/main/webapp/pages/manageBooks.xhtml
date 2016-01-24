@@ -82,7 +82,7 @@
 		<ui:define name="filterType">	
 			<div id="slider">
 				<rich:inputNumberSlider tooltipClass="rich-slider-tip" trackClass="rich-slider-track" minValue="0" maxValue="5"  
-				showTooltip="true"  showInput="false" showBoundaryValues="false" showArrows="false" value="#{bean.filterValues[columnName]}">
+				showTooltip="true"  showInput="false" showBoundaryValues="false"  showArrows="false" value="#{bean.filterValues[columnName]}">
  					<f:ajax event="change"></f:ajax>
 				</rich:inputNumberSlider>
 			</div>
@@ -94,9 +94,9 @@
 <ui:decorate template="templates/columnTemplate.xhtml"> 
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('AUTHORS')}" />
 		<ui:define name="outputValue">
-        	<rich:list  value="#{bookWrapper.book.bookAuthors}" id="manageBookAuthors" var="author" >
+        	<rich:list  value="#{bookWrapper.book.authors}" id="manageBookAuthors" var="author" >
         		<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
-        			<f:param name="id" value="#{author.idauthor}"></f:param>
+        			<f:param name="id" value="#{author.idAuthor}"></f:param>
 				</h:link>
     		</rich:list>
 		</ui:define>
@@ -111,9 +111,15 @@
 <ui:decorate template="templates/dataTableFooter.xhtml"></ui:decorate> 
 </rich:dataTable>
 
-<ui:include src="inserts/deletePopUps.xhtml" >
+<ui:decorate template="inserts/deletePopUps.xhtml">
 <ui:param name="bean" value="#{manageBookAction}" />
-</ui:include>
+<ui:define name="listToDelete">
+<rich:list value="#{bean.listEntitiesToDelete}" var="record">
+<h:outputText value="#{record.book.bookName}" />
+</rich:list>
+</ui:define>
+</ui:decorate>
+
 </h:form>
 
 <ui:include src="createBook.xhtml" />

@@ -63,4 +63,10 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 		log.info("List<Author> has been successfully created. Method findAll() finished");
 		return results;
 	}
+
+	@Override
+	public void bulkRemove(List<Book> list) {
+		// TODO Auto-generated method stub
+		
+	}
 }

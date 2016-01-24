@@ -7,12 +7,13 @@
         <methods>
           <include name="testCreateBookWithAuthors"/>
           <include name="testFindAllBooks"/>
-          <include name="testCreateBookWithAlreadyExistISBN"/>
+          <include name="closeEJBSession"/>
           <include name="testCreateBook"/>
           <include name="testDeleteBook"/>
           <include name="testFindByIdBook"/>
           <include name="getRemoteBeans"/>
-          <include name="testUpdateBook"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
       </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
     </classes>

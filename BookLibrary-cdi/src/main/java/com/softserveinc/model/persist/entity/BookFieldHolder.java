@@ -8,7 +8,7 @@ public enum BookFieldHolder implements EntityFieldHolder {
 	
 	ID("idBook", "idBook"), BOOK_NAME("bookName", "Book name"), CREATED_DATE("createdDate", "Created date"), ISBN(
 			"isbn", "ISBN Number"), YEAR_PUBLISHED("yearPublished", "Year of published"), PUBLISHER("publisher",
-					"Publisher"), AUTHORS("authors", "Authors"), RATING("rating", "Average rating");
+					"Publisher"), AUTHORS("authors", "Authors"), RATING("rating", "Average rating"), REVIEWS("reviews", "Reviews");
 	
 	private String BUSINESS_VIEW;
 	private String UI_VIEW;
@@ -29,12 +29,4 @@ public enum BookFieldHolder implements EntityFieldHolder {
 		this.BUSINESS_VIEW = businessView;
 		this.UI_VIEW = uIView;
 	}
-	
-	private BookFieldHolder() {
-	}
-	
-
-	
-	
-
 }

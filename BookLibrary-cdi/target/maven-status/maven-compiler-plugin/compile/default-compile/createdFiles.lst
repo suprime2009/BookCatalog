@@ -23,12 +23,14 @@ com\softserveinc\model\persist\home\AuthorHome.class
 com\softserveinc\model\session\util\ReviewRatingFieldsEnum.class
 com\softserveinc\model\persist\facade\IAuthorFacade.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
-com\softserveinc\model\persist\entity\AuthorConstantsHolder.class
 com\softserveinc\model\persist\backing\HelloWorldBean.class
 com\softserveinc\action\util\DataTableHelper.class
+com\softserveinc\model\session\util\ConnectionFilter.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class
 com\softserveinc\model\session\managerimpl\BookManager.class
+com\softserveinc\model\persist\entity\ReviewFieldHolder.class
 com\softserveinc\model\persist\entity\Author.class
+com\softserveinc\action\managebook\ManageAuthorsAction.class
 com\softserveinc\model\persist\home\ReviewHomeRemote.class
 com\softserveinc\action\managebook\BookDetailAction$ReviewDataModel.class
 com\softserveinc\action\managebook\AuthorDetailAction.class
@@ -57,6 +59,8 @@ com\softserveinc\model\persist\home\ReviewHome.class
 com\softserveinc\model\session\util\DataTableSearchHolder.class
 com\softserveinc\exception\AuthorManagerException.class
 test\BooksBean.class
+com\softserveinc\model\persist\entity\AuthorFieldHolder.class
+com\softserveinc\action\managebook\AuthorUIWrapper.class
 com\softserveinc\model\session\managerimpl\ReviewManager.class
 com\softserveinc\rest\ReviewSeviceImpl.class
 com\softserveinc\exception\BookCatalogException.class
@@ -71,6 +75,7 @@ com\softserveinc\model\persist\facade\BookFacade$1.class
 com\softserveinc\action\util\CreateDateConverter.class
 resttest\MessageRestService.class
 com\softserveinc\action\managebook\BookDetailAction$1.class
+com\softserveinc\action\util\BookConverter.class
 com\softserveinc\model\persist\service\AuthorServiceImpl.class
 com\softserveinc\model\persist\backing\UserBean.class
 com\softserveinc\model\persist\entity\BookFieldHolder.class

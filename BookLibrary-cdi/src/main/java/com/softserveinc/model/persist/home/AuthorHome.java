@@ -6,8 +6,11 @@ import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -15,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.model.persist.entity.Author;
+import com.softserveinc.model.persist.entity.Book;
 
 /**
  * AuthorHome class is an implementation of CRUD operations for Author entity.
@@ -26,7 +30,7 @@ public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 
 	private static Logger log = LoggerFactory.getLogger(AuthorHome.class);
 	
-	@PersistenceContext(unitName = "primary")
+	@PersistenceContext( unitName = "primary")
 	private EntityManager entityManager;
 
 	public Author create(Author object) {
@@ -41,6 +45,8 @@ public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 	}
 
 	public void delete(Author object) {
+		System.out.println("Author home");
+		object = entityManager.getReference(Author.class, object.getIdAuthor());
 		entityManager.remove(object);
 		log.info("Entity {} has been successfully deleted", object);
 	}
@@ -52,10 +58,21 @@ public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 		return results;
 	}
 
+
 	public Author findByID(String id) {
 		Author object = (Author) entityManager.find(Author.class, id);
 		log.info("Entity {} has been successfully found by id = {}", object, id);
 		return object;
+	}
+
+	@Override
+	public void bulkRemove(List<Author> list) {
+		Query query = entityManager.createNamedQuery(Author.BULK_REMOVE);
+		query.setParameter("list", list);
+		query.executeUpdate();
+		log.info("The method done.");
+		
+		
 	}
 
 }

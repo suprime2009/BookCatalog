@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.model.session.util.DataTableSearchHolder;
 
 /**
  * IAuthorFacade an interface that describes all facade methods for Author entity.
@@ -48,5 +49,11 @@ public interface IAuthorFacade {
 	
 	
 	List<String> findAuthorsFullNamesForAutocomplete(String prefix);
+	
+	List<Object[]> findAuthorsForDataTable(DataTableSearchHolder dataTableSearchHolder);
+	
+	int findCountAuthorsForDataTable(DataTableSearchHolder dataTableSearchHolder);
+	
+	Double findAuthorAvegareRating(Author author);
 
 }

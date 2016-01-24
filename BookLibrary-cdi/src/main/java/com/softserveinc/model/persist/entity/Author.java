@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.common.base.MoreObjects;
 
 import java.util.Date;
@@ -20,7 +23,9 @@ import java.util.UUID;
 @Table(name = "author")
 @NamedQueries({ @NamedQuery(name = Author.FIND_ALL_AUTHORS, query = "SELECT a FROM Author a"),
 		@NamedQuery(name = Author.FIND_AUTHOR_BY_FULL_NAME, query = "SELECT DISTINCT a FROM Author a WHERE a.firstName LIKE :fn AND a.secondName LIKE :sn"),
+		@NamedQuery(name = Author.BULK_REMOVE, query = "DELETE FROM Author a WHERE a IN :list"),
 		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"),
+		@NamedQuery(name = Author.FIND_AUTHOR_RATING, query = "SELECT AVG(r.rating) FROM Author a LEFT JOIN a.books b LEFT JOIN b.reviews r WHERE a = :author"),
 		@NamedQuery(name = Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE, query = "SELECT CONCAT(a.secondName, ' ', a.firstName) FROM Author a WHERE a.secondName LIKE :sn or a.firstName LIKE :sn")})
 public class Author implements Serializable {
 
@@ -30,9 +35,12 @@ public class Author implements Serializable {
 	public static final String FIND_AUTHOR_BY_FULL_NAME = "Author.findAuthorByFullName";
 	public static final String FIND_ALL_AUTHORS_BY_BOOK = "Author.findAllAuthorsByBook";
 	public static final String FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE = "Author.findAuthorsFullNamesForAutocomplete";
+	public static final String FIND_AUTHOR_RATING = "Author.findAuthorAvegareRating";
+	public static final String BULK_REMOVE = "Author.bulkRemove";
 
 	@Id
 	@Column(name = "author_id")
+	@JsonIgnore
 	private String idAuthor;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -45,10 +53,11 @@ public class Author implements Serializable {
 	@Column(name = "second_name")
 	private String secondName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "book_id") })
-	private Set<Book> books;
+	@JsonBackReference
+	private List<Book> books;
 
 	public Author() {
 	}
@@ -65,8 +74,12 @@ public class Author implements Serializable {
 		this.createdDate = new Date();
 	}
 
-	public String getIdauthor() {
+	public String getIdAuthor() {
 		return this.idAuthor;
+	}
+	
+	public void setIdAuthor(String idAuthor) {
+		this.idAuthor = idAuthor;
 	}
 
 	public Date getCreatedDate() {
@@ -80,20 +93,20 @@ public class Author implements Serializable {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
 	public String getSecondName() {
-		return this.secondName;
+		return secondName;
 	}
 
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
 
-	public Set<Book> getBooks() {
+	public List<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(Set<Book> books) {
+	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
 

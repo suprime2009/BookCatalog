@@ -21,23 +21,25 @@
 	</rich:popupPanel>
 	
 	
-<rich:popupPanel id="confirmDeleteAll" autosized="true" domElementAttachment="form">
-
+<rich:popupPanel id="confirmDeleteAll" style="width:500px;" header="Confirm delete selected" autosized="true" domElementAttachment="form">
 	<f:facet name="controls">
-	 <h:outputLink value="#" onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;">
-                X
-            </h:outputLink>
+		<h:outputLink value="#" onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;">X</h:outputLink>
 	</f:facet>
-Are you sure you want to delete #{manageBookAction.listEntitiesToDelete.size()} objects?
-<rich:list value="#{manageBookAction.listEntitiesToDelete}" var="record">
-<h:outputText value="#{record.book.bookName}" />
-</rich:list>
-<a4j:commandButton value="Cancel"
-			onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;" />
-		<h:commandButton value="Delete">
+	<rich:panel>
+Are you sure you want to delete #{bean.listEntitiesToDelete.size()} objects?
+	</rich:panel>
+	<rich:panel style="position:relative;">
+	<ui:insert name="listToDelete" >
+		
+	</ui:insert>
+</rich:panel>
+<rich:panel style="position:absolute; bottom:0; left:160px; border:0;">
+		<h:commandButton styleClass="smallBtm" value="YES">
 			<f:ajax event="click" listener="#{bean.deleteListEntities()}"
 				onevent="#{rich:component('confirmDeleteAll')}.hide()" render="@form"></f:ajax>
 		</h:commandButton>
+		<a4j:commandButton styleClass="smallBtm" value="NO" onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;" />
+	</rich:panel>
 </rich:popupPanel>
 
 </ui:composition>

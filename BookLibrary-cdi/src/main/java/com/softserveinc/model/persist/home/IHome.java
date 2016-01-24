@@ -31,6 +31,8 @@ public interface IHome<T> {
 	 */
 	void delete(T object);
 	
+	void bulkRemove(List<T> list);
+	
 	/**
 	 * Method gets all records from database table.
 	 * 

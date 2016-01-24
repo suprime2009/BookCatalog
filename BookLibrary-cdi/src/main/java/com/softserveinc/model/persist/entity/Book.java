@@ -1,11 +1,22 @@
 package com.softserveinc.model.persist.entity;
 
+import java.io.IOException;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.persistence.OrderBy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
+import com.google.gson.annotations.Expose;
 
 import java.util.Date;
 import java.util.Set;
@@ -36,7 +47,11 @@ public class Book implements Serializable {
 	//columns={
 //	        @ColumnResult(name="rat")})
 	
-	private static final long serialVersionUID = -7250506880391204120L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7480370770263659296L;
 	public static final String FIND_ALL_BOOKS = "Book.findAll";
 	public static final String FIND_BOOKS_WITH_RATING = "Book.findBooksWithRating";
 	public static final String FIND_BOOK_BY_NAME = "Book.findBookByName";
@@ -45,12 +60,14 @@ public class Book implements Serializable {
 	public static final String FIND_BOOKS_BY_AUTHOR = "Book.findBooksByAuthor";
 	public static final String FIND_COUNT_BOOKS = "Book.findCountBooks";
 
+
 	@Id
 	@Column(name = "book_id")
 	private String idBook;
 
 	@Column(name = "book_name")
 	private String bookName;
+
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")
@@ -66,19 +83,50 @@ public class Book implements Serializable {
 	private Integer yearPublished;
 
 //	@ElementCollection
+	
+
 	@OrderColumn(name="author.secondName")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
-	private Set<Author> authors;
+	@JsonBackReference
+	private  Set<Author> authors;
 	
+
+
 	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.REMOVE, mappedBy="book")
-	private Set<Review> reviews;
+	@JsonManagedReference
+	private  Set<Review> reviews;
 	
+
+
 	@Transient
+	@JsonIgnore
 	private transient Double rating;
 
 	public Book() {
+	}
+	
+	public Book(String json) {
+		System.out.println("In constructor");
+		System.out.println(json);
+		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
+		Book book = null;
+		try {
+			book = or.readValue(json);
+			System.out.println(book);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		this.bookName = book.getBookName();
+		this.isbn = book.getIsbn();
+		this.publisher = book.getPublisher();
+		this.yearPublished = book.getYearPublished();
 	}
 
 	public Book(String bookName, String isbn, String publisher, Integer yearPublished, Set<Author> authors) {
@@ -99,9 +147,7 @@ public class Book implements Serializable {
 	public Set<Review> getReviews() {
 		return reviews;
 	}
-	
-	
-	
+
 	public String getIdBook() {
 		return idBook;
 	}
@@ -121,15 +167,20 @@ public class Book implements Serializable {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
+	
 
+	@JsonIgnore
 	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
 
+	@JsonIgnore
 	public Double getRating() {
 		return rating;
 	}
 	
+	@JsonIgnore
 	public void setRating(Double rating) {
 		this.rating = rating;
 	}
@@ -161,21 +212,15 @@ public class Book implements Serializable {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
+	
+	@JsonGetter("yearPublished")
 	public Integer getYearPublished() {
-		return this.yearPublished;
+		return yearPublished;
 	}
-
+	
+	@JsonSetter("yearPublished")
 	public void setYearPublished(Integer yearPublished) {
 		this.yearPublished = yearPublished;
-	}
-
-	public Set<Author> getBookAuthors() {
-		return this.authors;
-	}
-
-	public void setBookAuthors(Set<Author> authors) {
-		this.authors = authors;
 	}
 
 	@Override

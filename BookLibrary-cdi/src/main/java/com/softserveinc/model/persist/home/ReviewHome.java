@@ -77,4 +77,10 @@ public class ReviewHome implements ReviewHomeLocal, ReviewHomeRemote {
 		log.info("List<Review> has been successfully created. Method findAll() finished");
 		return results;
 	}
+
+	@Override
+	public void bulkRemove(List<Review> list) {
+		// TODO Auto-generated method stub
+		
+	}
 }

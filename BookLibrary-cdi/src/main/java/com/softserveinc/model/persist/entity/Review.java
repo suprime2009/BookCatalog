@@ -3,6 +3,7 @@ package com.softserveinc.model.persist.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -52,6 +53,7 @@ public class Review implements Serializable {
 
 	@ManyToOne(optional=false)
 	@JoinColumn(name="book_id")
+	@JsonBackReference
 	private Book book;
 
 	public Review() {

@@ -1,6 +1,7 @@
 package com.softserveinc.model.persist.facade;
 
 import java.util.List;
+import java.util.Set;
 
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.model.persist.entity.Author;
@@ -80,5 +81,7 @@ public interface IBookFacade {
 	 * @return int count of books  based on current dataTable requirements..
 	 */
 	int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder);
+	
+	List<Book> findBooksByBookNameForAutocomplete(String value);
 
 }

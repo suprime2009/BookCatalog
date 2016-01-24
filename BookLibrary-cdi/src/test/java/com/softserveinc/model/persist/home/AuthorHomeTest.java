@@ -20,10 +20,10 @@ public class AuthorHomeTest extends BaseTest implements DataBaseConstants{
 	public void testCreateAuthor() {
 		Author author = new Author(BLACK, JACK);
 		author = authorHomeRemote.create(author);
-		String id = author.getIdauthor();
+		String id = author.getIdAuthor();
 		Author authorExpected = authorHomeRemote.findByID(id);
 		assertNotNull(author);
-		assertEquals(authorExpected.getIdauthor(), id);
+		assertEquals(authorExpected.getIdAuthor(), id);
 		assertEquals(authorExpected.getFirstName(), author.getFirstName());
 		assertEquals(authorExpected.getSecondName(), author.getSecondName());
 	}
@@ -40,7 +40,7 @@ public class AuthorHomeTest extends BaseTest implements DataBaseConstants{
 		assertEquals(JOHN, authorAfter.getFirstName());
 		assertEquals(SMITH, authorAfter.getSecondName());
 		assertEquals(authorBefore.getCreatedDate(), authorAfter.getCreatedDate());
-		assertEquals(authorBefore.getIdauthor(), authorAfter.getIdauthor());
+		assertEquals(authorBefore.getIdAuthor(), authorAfter.getIdAuthor());
 	}
 	
 //	 @Test(dependsOnMethods = {CREATE_AUTHOR})
@@ -55,7 +55,7 @@ public class AuthorHomeTest extends BaseTest implements DataBaseConstants{
 	@Test(dependsOnMethods={CREATE_AUTHOR})
 	public void testFindByIdAuthor() {
 		Author author = authorHomeRemote.findByID(A4);
-		assertEquals(A4, author.getIdauthor());
+		assertEquals(A4, author.getIdAuthor());
 		assertEquals("Greg", author.getFirstName());
 		assertEquals("Blou", author.getSecondName());
 	}

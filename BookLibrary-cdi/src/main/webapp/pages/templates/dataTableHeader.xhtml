@@ -8,7 +8,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition>
 
-	<rich:toolbar height="40" itemSeparator="grid"  style="border:0;">
+	<rich:toolbar id="dataTableToolbar" height="40" itemSeparator="grid"  style="border:0;">
 		<rich:toolbarGroup >
 		<ui:insert name="dataTableName">
 		
@@ -27,7 +27,7 @@
 			<ui:insert name="createButton"></ui:insert>
 
 		<a4j:commandButton  value="Delete selected" actionListener="#{bean.createListEntitiesToDelete()}" styleClass="regularBtm" execute="@this"
-			render="confirmDeleteAll" oncomplete="#{rich:component('confirmDeleteAll')}.show()">
+			render="confirmDeleteAll" oncomplete="#{rich:component('confirmDeleteAll')}.show()" >
 		</a4j:commandButton>
 
 

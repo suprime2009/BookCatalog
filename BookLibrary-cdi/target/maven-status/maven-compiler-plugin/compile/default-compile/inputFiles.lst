@@ -25,9 +25,10 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\UIWrapper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\BookManagerRemote.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\AuthorManagerLocal.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\ReviewFieldHolder.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\managerimpl\BookManager.java
-C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\AuthorConstantsHolder.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageReviewsAction.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\ConnectionFilter.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\test\CarsBean.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\CreateBookAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookDetailAction.java
@@ -48,6 +49,7 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\exception\AuthorManagerException.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageBookAction.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\ManageAuthorsAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\NavigationAction.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\DataTableHelper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\IAuthorFacade.java
@@ -63,6 +65,8 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\resttest\Messag
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\exception\ReviewFacadeException.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Author.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\IManagerBook.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\AuthorUIWrapper.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\BookConverter.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Review.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\AuthorFacadeLocal.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\managerimpl\AuthorManager.java
@@ -80,4 +84,5 @@ C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softservein
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Book.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\managebook\BookUIWrapper.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\action\util\ISNBValidator.java
+C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\AuthorFieldHolder.java
 C:\Users\pkrav\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\OrderBy.java

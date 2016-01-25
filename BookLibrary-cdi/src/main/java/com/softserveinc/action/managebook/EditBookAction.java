@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.AuthorFacade;
@@ -134,7 +135,12 @@ public class EditBookAction implements ValidateISBN{
 
 	public void submit() {
 		book.setAuthors(authors);
-		bookManager.updateBook(book);
+		try {
+			bookManager.updateBook(book);
+		} catch (BookManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		authorFullName = "";
 		log.debug("Method done. Book {} has been updated.", book.toString());
 	}

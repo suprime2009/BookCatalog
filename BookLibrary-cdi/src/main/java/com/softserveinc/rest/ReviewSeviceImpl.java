@@ -1,5 +1,6 @@
 package com.softserveinc.rest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,120 +10,169 @@ import javax.ejb.Stateless;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.softserveinc.action.managebook.BookDetailAction;
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.exception.ReviewManagerException;
+import com.softserveinc.model.persist.dto.JsonFieldsHolder;
+import com.softserveinc.model.persist.dto.ReviewDTO;
+import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.persist.facade.BookFacadeLocal;
 import com.softserveinc.model.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.model.session.manager.ReviewManagerLocal;
 
 @Stateless
 public class ReviewSeviceImpl implements ReviewService {
 
+	private static Logger log = LoggerFactory.getLogger(ReviewSeviceImpl.class);
+
 	@EJB
 	private ReviewFacadeLocal reviewFacade;
 
 	@EJB
-	ReviewManagerLocal reviewManager;
+	private ReviewManagerLocal reviewManager;
+
+	@EJB
+	private BookFacadeLocal bookFacade;
 
 	@Override
 	public Response findById(String id) {
+		if (id == null) {
+			return Response.status(Status.BAD_REQUEST).build();
+		}
 		Review review = reviewFacade.findById(id);
 		if (review == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		return Response.ok(review).build();
+		ReviewDTO dto = convertToDTO(review);
+		return Response.ok(dto).build();
 	}
 
 	@Override
-	public Response create(Review review) {
+	public Response create(ReviewDTO reviewDTO) {
 		Response.ResponseBuilder builder = null;
-
-		try {
-			validateReview(review);
-			reviewManager.createReview(review);
-
-			
-			builder = Response.status(Status.CREATED);
-		} catch (NullPointerException e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
-
-		} catch (BookCatalogException e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
-		} catch (Exception e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(responseObj);
+		if (reviewDTO == null || reviewDTO.getIdReview() != null) {
+			System.out.println("BAD REQUEST");
+			return Response.status(Status.BAD_REQUEST).build();
 		}
 
+		Review review = convertToEntity(reviewDTO);		
+		try {
+			reviewManager.createReview(review);
+			builder = Response.status(Status.CREATED);
+		} catch (ReviewManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+
+		} catch (BookCatalogException e) {
+			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(e.getMessage());
+		}
 		return builder.build();
 	}
-	
+
+
 	@Override
 	public Response findAll() {
 		List<Review> list = reviewFacade.findAll();
-		return Response.ok(list).build();
+		List<ReviewDTO> dto = convertToListDTO(list);
+		return Response.ok(dto).build();
 	}
-	
+
 	@Override
-	public Response update(Review review) {
-		Response.ResponseBuilder builder = null;
-
-		try {
-			validateReview(review);
-			 reviewManager.updateReview(review);
-			builder = Response.status(Status.OK);
-		} catch (NullPointerException e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
-
-		} catch (BookCatalogException e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(responseObj);
-		} catch (Exception e) {
-			Map<String, String> responseObj = new HashMap<>();
-			responseObj.put("error", e.getMessage());
-			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(responseObj);
+	public Response update(ReviewDTO reviewDTO) {
+		Response.ResponseBuilder builder = null;		
+		if (reviewDTO == null || reviewDTO.getIdReview() == null) {
+			System.out.println("BAD REQUEST");
+			return Response.status(Status.BAD_REQUEST).build();
 		}
-
+		Review review = null;
+		if (reviewDTO.getIdBook() == null) {
+			review = reviewFacade.findById(reviewDTO.getIdReview());
+			reviewDTO.setIdBook(review.getBook().getIdBook());
+		}
+		
+		review = convertToEntity(reviewDTO);	
+		try {
+			reviewManager.updateReview(review);
+			builder = Response.status(Status.OK);
+		} catch (ReviewManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+		}
 		return builder.build();
 	}
 
 	@Override
 	public Response deleteById(String id) {
-		Response r = null;
+
 		try {
 			reviewManager.deleteReview(id);
 		} catch (ReviewManagerException e) {
-			return r = Response.ok("error").build();
-		} 
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
 
-			return r.ok("OK").build();
+		return Response.ok().build();
 	}
 	
-
-
-	public void validateReview(Review review) throws BookCatalogException {
-		if (review == null) {
-			throw new NullPointerException();
+	@Override
+	public Response getReviewsByBook(String idBook) {
+		if (idBook == null) {
+			return Response.status(Status.BAD_REQUEST).build();
 		}
-		if (review.getComment() == null || review.getCommenterName() == null) {
-			throw new BookCatalogException("Commenter name or comment can't be empty.");
+		Book book = bookFacade.findById(idBook);
+		if (book == null) {
+			return Response.status(Status.BAD_REQUEST).build();
 		}
-		if (review.getRating() != null) {
-			if (review.getRating() < 1 || review.getRating() > 5) {
-				throw new BookCatalogException("Rating should be between 1 and 5.");
-			}
-
-		}
+		List<Review> list = reviewFacade.findReviewsForBook(book);
+		List<ReviewDTO> result = convertToListDTO(list);
+		return Response.ok(result).build();
 	}
 
-	
+	@Override
+	public Review convertToEntity(ReviewDTO dto) {
+		String idReview = dto.getIdReview();
+		String comment = dto.getComment();
+		String commenterName = dto.getCommenterName();
+		Book book = bookFacade.findById(dto.getIdBook());
+		Integer rating = dto.getRating();
+		Review review = new Review(comment, commenterName, rating, book);
+		review.setIdReview(idReview);
+		log.info("The method done. Convertation from DTO to Review successful.");
+
+		return review;
+	}
+
+	@Override
+	public ReviewDTO convertToDTO(Review object) {
+		String idReview = object.getIdreview();
+		String comment = object.getComment();
+		String commenterName = object.getCommenterName();
+		String idBook = object.getBook().getIdBook();
+		Integer rating = object.getRating();
+		ReviewDTO dto = new ReviewDTO(idReview, comment, commenterName, idBook, rating);
+		log.info("The method done. Convertation from Review to ReviewDTO successful.");
+		return dto;
+
+	}
+
+	@Override
+	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) {
+		List<Review> list = new ArrayList<Review>();
+		for (ReviewDTO revD : listDTO) {
+			list.add(convertToEntity(revD));
+		}
+		return list;
+	}
+
+	@Override
+	public List<ReviewDTO> convertToListDTO(List<Review> list) {
+		List<ReviewDTO> listDTO = new ArrayList<ReviewDTO>();
+		for (Review r : list) {
+			listDTO.add(convertToDTO(r));
+		}
+		return listDTO;
+	}
 
 
 

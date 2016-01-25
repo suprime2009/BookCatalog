@@ -1,6 +1,7 @@
 package com.softserveinc.model.persist.facade;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -170,6 +172,14 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		query.setParameter("author", author);
 		Double result = (Double) query.getSingleResult();
 		return result;
+	}
+
+	@Override
+	public Collection<Author> findAuthorsByListId(List<String> list) {
+		TypedQuery<Author> query = (TypedQuery<Author>) entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_LIST_ID);
+		query.setParameter("list", list);
+		Collection<Author> authors = query.getResultList();
+		return authors;
 	}
 
 }

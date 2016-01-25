@@ -70,34 +70,34 @@ public class Main implements SQLCommandConstants{
 //		System.out.println("done");
 //		
 //		
-		List<Integer> list1 = new ArrayList<Integer>();
-		list1.add(1);
-		list1.add(2);
-		list1.add(3);
-		
-		List<Integer> list2 = new ArrayList<Integer>();
-		list2.add(1);
-		list2.add(2);
-		list2.add(2);
-		list2.add(4);
-		
-		List<Integer> list3 = ListUtils.subtract(list1, list2);
-		
-		System.out.println(list3.size());
-		for (int i : list3) {
-			System.out.println(i);
-		}
-//		Book book = em.find(Book.class, "b38");
-//		System.out.println(book);
-//		ObjectWriter ow = new ObjectMapper().writer().forType(Book.class);
-//		String json = ow.writeValueAsString(book);
-//		System.out.println(json);
+//		List<Integer> list1 = new ArrayList<Integer>();
+//		list1.add(1);
+//		list1.add(2);
+//		list1.add(3);
 //		
+//		List<Integer> list2 = new ArrayList<Integer>();
+//		list2.add(1);
+//		list2.add(2);
+//		list2.add(2);
+//		list2.add(4);
 //		
-//		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
-//	
-//		Book book1 = or.readValue(json);
-//		System.out.println(book1);
+//		List<Integer> list3 = ListUtils.subtract(list1, list2);
+//		
+//		System.out.println(list3.size());
+//		for (int i : list3) {
+//			System.out.println(i);
+//		}
+		Book book = em.find(Book.class, "b38");
+		System.out.println(book);
+		ObjectWriter ow = new ObjectMapper().writer().forType(Book.class);
+		String json = ow.writeValueAsString(book);
+		System.out.println(json);
+		
+		
+		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
+	
+		Book book1 = or.readValue(json);
+		System.out.println(book1);
 		
 
 		}

@@ -26,6 +26,7 @@ import java.util.UUID;
 		@NamedQuery(name = Author.BULK_REMOVE, query = "DELETE FROM Author a WHERE a IN :list"),
 		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"),
 		@NamedQuery(name = Author.FIND_AUTHOR_RATING, query = "SELECT AVG(r.rating) FROM Author a LEFT JOIN a.books b LEFT JOIN b.reviews r WHERE a = :author"),
+		@NamedQuery(name = Author.FIND_AUTHORS_BY_LIST_ID, query = "SELECT a FROM Author a WHERE a.idAuthor IN :list "),
 		@NamedQuery(name = Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE, query = "SELECT CONCAT(a.secondName, ' ', a.firstName) FROM Author a WHERE a.secondName LIKE :sn or a.firstName LIKE :sn")})
 public class Author implements Serializable {
 
@@ -37,6 +38,7 @@ public class Author implements Serializable {
 	public static final String FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE = "Author.findAuthorsFullNamesForAutocomplete";
 	public static final String FIND_AUTHOR_RATING = "Author.findAuthorAvegareRating";
 	public static final String BULK_REMOVE = "Author.bulkRemove";
+	public static final String FIND_AUTHORS_BY_LIST_ID = "Author.findAuthorsByListId";
 
 	@Id
 	@Column(name = "author_id")
@@ -56,7 +58,7 @@ public class Author implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "book_id") })
-	@JsonBackReference
+	@JsonBackReference(value="1")
 	private List<Book> books;
 
 	public Author() {

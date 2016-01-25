@@ -30,7 +30,7 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 	public void createReview(Review review) throws ReviewManagerException, BookCatalogException {
 
 		long startMethodTime = System.currentTimeMillis();
-		log.debug("Method starts. Review to create ={}", review.toString());
+		log.debug("Method starts. Review to create ={}", review);
 		String errorMessage = "";
 		validateReviewFields(review);
 		reviewHome.create(review);
@@ -70,6 +70,13 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 
 		log.debug("The method starts. Review to update ={}", review);
 		validateReviewFields(review);
+		String errorMessage = "";
+		Review reviewCheck = reviewFacade.findById(review.getIdreview());
+		if (!reviewCheck.getBook().getIdBook().equals(review.getBook().getIdBook())) {
+			errorMessage = String.format("The review has been created for book %s, book can not be changed for current review", review.getBook());
+			log.error(errorMessage);
+			throw new ReviewManagerException(errorMessage);
+		}
 		reviewHome.update(review);
 		log.info("The method finished. Review {} has been successfully updated.", review);
 

@@ -7,6 +7,8 @@ import org.ajax4jsf.model.SequenceRange;
 import org.richfaces.component.SortOrder;
 import org.richfaces.model.ArrangeableState;
 
+import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.exception.ReviewManagerException;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.OrderBy;
@@ -21,28 +23,12 @@ public interface IManagerBook {
 
 	void setRatingForBooks(List<Book> list);
 
-	void deleteListBooks(List<Book> list);
+	void bulkDelete(List<Book> list) throws BookManagerException;
 
-	Book createBook(Book book);
+	void createBook(Book book) throws BookManagerException, BookCatalogException;
 
-	void updateBook(Book book);
+	void updateBook(Book book) throws BookManagerException;
 
-	/**
-	 * This method starts to load books in according to data table requirements.
-	 * Method gets in argument instance of {@link DataTableSearchHolder}, which describe the
-	 * requirements for query, include current dataTable requirements like first
-	 * row, count rows on page, column for sorting by order and columns for
-	 * filtering with values. Based on this data, method creates a query for the
-	 * database and returns <code>List</code> for current page in dataTable and
-	 * count of finding rows to those requirements. That two statements added to
-	 * List<Object>.
-	 * 
-	 * @param  DataTableSearchHolder
-	 *            dataTableSearchHolder instance
-	 * @return List<Object> 
-	 */
-	List<Object> getBookForDataTable(DataTableSearchHolder dataTableHelper);
-
-	void deleteBook(Book book);
+	void deleteBook(Book book) throws BookManagerException;
 
 }

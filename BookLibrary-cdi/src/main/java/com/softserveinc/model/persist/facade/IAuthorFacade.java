@@ -1,5 +1,6 @@
 package com.softserveinc.model.persist.facade;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.softserveinc.model.persist.entity.Author;
@@ -55,5 +56,7 @@ public interface IAuthorFacade {
 	int findCountAuthorsForDataTable(DataTableSearchHolder dataTableSearchHolder);
 	
 	Double findAuthorAvegareRating(Author author);
+	
+	Collection<Author> findAuthorsByListId(List<String> list);
 
 }

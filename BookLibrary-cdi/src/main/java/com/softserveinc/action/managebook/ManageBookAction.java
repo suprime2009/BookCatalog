@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.action.util.DataTableHelper;
+import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookFieldHolder;
 import com.softserveinc.model.persist.entity.EntityFieldHolder;
@@ -85,7 +86,12 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 	public void deleteEntity() {
 		System.out.println("Method DELETE ROW");
 		Book book = bookFacade.findById(getIdEntityToDelete());
-		bookManager.deleteBook(book);
+		try {
+			bookManager.deleteBook(book);
+		} catch (BookManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		load();
 		log.info("done");
 	}
@@ -97,7 +103,12 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		for (BookUIWrapper w: getListEntitiesToDelete()) {
 			list.add(w.getBook());
 		}
-		bookManager.deleteListBooks(list);
+		try {
+			bookManager.bulkDelete(list);
+		} catch (BookManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		refreshPage();
 
 	}

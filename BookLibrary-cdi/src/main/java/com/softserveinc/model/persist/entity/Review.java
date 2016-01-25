@@ -68,13 +68,17 @@ public class Review implements Serializable {
 	}
 	
 	@PrePersist
-	public void generateId() {
+	private void generateId() {
 		this.idreview = UUID.randomUUID().toString();
 		this.createdDate = new Date();
 	}
 
 	public String getIdreview() {
 		return this.idreview;
+	}
+	
+	public void setIdReview(String idReview) {
+		this.idreview = idReview;
 	}
 
 	public String getComment() {

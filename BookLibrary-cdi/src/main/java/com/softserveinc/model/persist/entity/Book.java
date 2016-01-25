@@ -36,6 +36,7 @@ import java.util.UUID;
 @NamedQuery(name = Book.FIND_BOOK_BY_ISNBN, query = "SELECT b FROM Book b WHERE b.isbn LIKE :isb "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_PUBLISHER, query = "SELECT b FROM Book b WHERE b.publisher LIKE :pub "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_AUTHOR, query = "SELECT b FROM Book b JOIN b.authors a WHERE a = :auth "),
+@NamedQuery(name = Book.FIND_BOOKS_BY_LIST_ID, query = "SELECT b FROM Book b WHERE b.idBook IN :list "),
 @NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ")
 })
 public class Book implements Serializable {
@@ -59,6 +60,7 @@ public class Book implements Serializable {
 	public static final String FIND_BOOKS_BY_PUBLISHER = "Book.findBooksByPublisher";
 	public static final String FIND_BOOKS_BY_AUTHOR = "Book.findBooksByAuthor";
 	public static final String FIND_COUNT_BOOKS = "Book.findCountBooks";
+	public static final String FIND_BOOKS_BY_LIST_ID = "Book.findBooksByListId";
 
 
 	@Id
@@ -82,14 +84,12 @@ public class Book implements Serializable {
 	@Column(name = "year_published")
 	private Integer yearPublished;
 
-//	@ElementCollection
 	
-
 	@OrderColumn(name="author.secondName")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
-	@JsonBackReference
+	@JsonManagedReference(value="1")
 	private  Set<Author> authors;
 	
 
@@ -107,27 +107,22 @@ public class Book implements Serializable {
 	public Book() {
 	}
 	
-	public Book(String json) {
-		System.out.println("In constructor");
-		System.out.println(json);
-		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
-		Book book = null;
-		try {
-			book = or.readValue(json);
-			System.out.println(book);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	
 
-		this.bookName = book.getBookName();
-		this.isbn = book.getIsbn();
-		this.publisher = book.getPublisher();
-		this.yearPublished = book.getYearPublished();
+
+	public Book(String idBook, String bookName, String isbn, String publisher, Integer yearPublished) {
+		super();
+		this.idBook = idBook;
+		this.bookName = bookName;
+		this.isbn = isbn;
+		this.publisher = publisher;
+		this.yearPublished = yearPublished;
 	}
+
+
+
+
 
 	public Book(String bookName, String isbn, String publisher, Integer yearPublished, Set<Author> authors) {
 		super();

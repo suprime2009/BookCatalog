@@ -83,5 +83,7 @@ public interface IBookFacade {
 	int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder);
 	
 	List<Book> findBooksByBookNameForAutocomplete(String value);
+	
+	List<Book> findBooksByListId(List<String> idForBooks);
 
 }

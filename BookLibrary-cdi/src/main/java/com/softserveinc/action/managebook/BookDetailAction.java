@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.action.util.DataTableHelper;
 import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.exception.ReviewFacadeException;
 import com.softserveinc.exception.ReviewManagerException;
 import com.softserveinc.model.persist.entity.Book;
@@ -104,7 +105,12 @@ public class BookDetailAction implements Serializable {
 	}
 	
 	public String deleteBook() {
-		bookManager.deleteBook(book);
+		try {
+			bookManager.deleteBook(book);
+		} catch (BookManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "/manageBooks.xhtml?faces-redirect=true";
 	}
 

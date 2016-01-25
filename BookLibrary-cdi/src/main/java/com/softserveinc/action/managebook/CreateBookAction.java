@@ -24,6 +24,8 @@ import javax.faces.event.ActionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserveinc.exception.BookCatalogException;
+import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.facade.AuthorFacadeLocal;
@@ -88,13 +90,15 @@ public class CreateBookAction implements ValidateISBN {
 	 * 
 	 */
 	public void submit() {
-		Book bookAfterCreate = bookManager.createBook(book);
-		idBookAfterCreate = bookAfterCreate.getIdBook();
-		if (bookAfterCreate != null) {
+		try {
+			bookManager.createBook(book);
+			idBookAfterCreate = book.getIdBook();
 			createDone = true;
-			log.info("Book instance has been successfully created.");
-		} else {
-			log.info("Book instance has not been created.");
+		} catch (BookManagerException e) {
+			log.error(e.getMessage());
+
+		} catch (BookCatalogException e) {
+			log.error(e.getMessage());
 		}
 	}
 
@@ -105,9 +109,12 @@ public class CreateBookAction implements ValidateISBN {
 	 * successful this method sets {@value createDone} to true.
 	 * 
 	 * @return If Book instance has been created return URL for editBook page.
+	 * @throws BookCatalogException 
+	 * @throws BookManagerException 
 	 */
-	public void submitAndEdit() {
-		Book bookAfterCreate = bookManager.createBook(book);
+	public void submitAndEdit() throws BookManagerException, BookCatalogException {
+		bookManager.createBook(book);
+		Book bookAfterCreate = book;
 		idBookAfterCreate = bookAfterCreate.getIdBook();
 		if (bookAfterCreate != null) {
 			log.debug("Book instance has been successfully created.");

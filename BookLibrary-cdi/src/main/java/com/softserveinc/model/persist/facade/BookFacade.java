@@ -317,4 +317,12 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		log.info("The metjod done. Has been found {} books.", list.size());
 		return list;
 	}
+
+	@Override
+	public List<Book> findBooksByListId(List<String> idForBooks) {
+		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOKS_BY_LIST_ID);
+		query.setParameter("list", idForBooks);
+		List<Book> books = query.getResultList();
+		return books;
+	}
 }

@@ -17,6 +17,8 @@ import com.softserveinc.model.persist.home.BookHome;
 import com.softserveinc.model.persist.home.BookHomeRemote;
 import com.softserveinc.model.persist.home.ReviewHome;
 import com.softserveinc.model.persist.home.ReviewHomeRemote;
+import com.softserveinc.rest.client.AuthorClient;
+import com.softserveinc.rest.client.AuthorClientRemote;
 
 /**
  * This abstract class extends for test class. Class has two method which runs
@@ -32,6 +34,7 @@ public abstract class BaseTest {
 	protected static BookFacadeRemote bookFacadeRemote;
 	protected static ReviewHomeRemote reviewHomeRemote;
 	protected static ReviewFacadeRemote reviewFacadeRemote;
+	protected static AuthorClientRemote authorClientRemote;
 	protected static TestHelper testHelper;
 	protected static DBUnitHelper dbUnitHelper = DBUnitHelper.getInstance();
 
@@ -48,6 +51,7 @@ public abstract class BaseTest {
 		bookFacadeRemote = (BookFacadeRemote) testHelper.getRemoteBean(BookFacade.class);
 		reviewHomeRemote = (ReviewHomeRemote) testHelper.getRemoteBean(ReviewHome.class);
 		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class);
+		authorClientRemote = (AuthorClientRemote) testHelper.getRemoteBean(AuthorClient.class);
 	}
 
 	/**

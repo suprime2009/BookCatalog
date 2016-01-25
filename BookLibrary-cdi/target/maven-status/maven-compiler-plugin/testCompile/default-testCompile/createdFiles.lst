@@ -8,4 +8,5 @@ com\softserveinc\model\persist\home\AuthorHomeTest.class
 com\softserveinc\model\persist\home\ReviewHomeTest.class
 com\softserveinc\model\persist\facade\AuthorFacadeTest.class
 com\softserveinc\model\util\BaseTest.class
+test\RestClientTest.class
 com\softserveinc\model\persist\facade\BookFacadeTest.class

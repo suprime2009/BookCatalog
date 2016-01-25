@@ -85,5 +85,7 @@ public interface IBookFacade {
 	List<Book> findBooksByBookNameForAutocomplete(String value);
 	
 	List<Book> findBooksByListId(List<String> idForBooks);
+	
+	List<Book> findBooksByRating(Integer rating);
 
 }

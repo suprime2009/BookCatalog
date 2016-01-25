@@ -5,12 +5,14 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 
 /**
@@ -66,7 +68,10 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 
 	@Override
 	public void bulkRemove(List<Book> list) {
-		// TODO Auto-generated method stub
+		Query query = entityManager.createNamedQuery(Book.BULK_REMOVE);
+		query.setParameter("list", list);
+		query.executeUpdate();
+		log.info("The method done.");
 		
 	}
 }

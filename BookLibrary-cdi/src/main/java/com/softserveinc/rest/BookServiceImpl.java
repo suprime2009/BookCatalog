@@ -1,6 +1,7 @@
 package com.softserveinc.rest;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserveinc.exception.AuthorManagerException;
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.exception.ReviewManagerException;
@@ -97,8 +99,39 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Response deleteById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			bookManager.deleteBook(id);
+		} catch (BookManagerException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+
+		return Response.ok().build();
+	}
+
+	@Override
+	public Response getBooksByAuthor(String idAuthor) {
+		if (idAuthor == null) {
+			return Response.status(Status.BAD_REQUEST).build();
+		}
+		Author author = authorFacade.findById(idAuthor);
+		if (author == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		List<BookDTO> dto = convertToListDTO(bookFacade.findBooksByAuthor(author));
+		return Response.ok(dto).build();
+	}
+
+	@Override
+	public Response getReviewsByRating(Integer rating) {
+		if (rating == 0) {
+			rating = null;
+		} else {
+			if (rating < 1 || rating >5) {
+				return Response.status(Status.BAD_REQUEST).build();
+			}
+		}
+		List<BookDTO> dto = convertToListDTO(bookFacade.findBooksByRating(rating));
+		return Response.ok(dto).build();
 	}
 
 	@Override
@@ -110,7 +143,7 @@ public class BookServiceImpl implements BookService {
 			for (AuthorDTO d : dto.getAuthors()) {
 				idAuthors.add(d.getIdAuthor());
 			}
-			Set<Author> authors = (Set<Author>) authorFacade.findAuthorsByListId(idAuthors);
+			Set<Author> authors = new HashSet<Author>(authorFacade.findAuthorsByListId(idAuthors)) ;
 			book.setAuthors(authors);
 
 		}
@@ -151,5 +184,6 @@ public class BookServiceImpl implements BookService {
 		}
 		return authorDto;
 	}
+
 
 }

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.softserveinc.exception.AuthorManagerException;
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.exception.BookManagerException;
+import com.softserveinc.exception.ReviewManagerException;
 import com.softserveinc.model.persist.dto.AuthorDTO;
 import com.softserveinc.model.persist.dto.BookDTO;
 import com.softserveinc.model.persist.entity.Author;
@@ -96,8 +97,13 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public Response deleteById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			authorManager.deleteAuthor(id);
+		} catch (AuthorManagerException e) {
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		}
+
+		return Response.ok().build();
 	}
 
 	@Override

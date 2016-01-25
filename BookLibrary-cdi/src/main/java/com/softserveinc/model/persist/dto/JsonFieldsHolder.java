@@ -1,7 +1,6 @@
 package com.softserveinc.model.persist.dto;
 
 public interface JsonFieldsHolder {
-	
 	public static final String REVIEW_ID = "id_review";
 	public static final String COMMENT = "comment";
 	public static final String COMMENTER_NAME = "commenter_name";	
@@ -19,6 +18,4 @@ public interface JsonFieldsHolder {
 	public static final String FIRST_NAME = "first_name";
 	public static final String SECOND_NAME = "second_name";
 	public static final String BOOKS = "books";
-
-
 }

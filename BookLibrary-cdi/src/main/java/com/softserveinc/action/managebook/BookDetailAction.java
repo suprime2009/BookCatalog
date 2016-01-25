@@ -106,7 +106,7 @@ public class BookDetailAction implements Serializable {
 	
 	public String deleteBook() {
 		try {
-			bookManager.deleteBook(book);
+			bookManager.deleteBook(book.getIdBook());
 		} catch (BookManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package com.softserveinc.model.persist.facade;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
@@ -57,6 +58,6 @@ public interface IAuthorFacade {
 	
 	Double findAuthorAvegareRating(Author author);
 	
-	Collection<Author> findAuthorsByListId(List<String> list);
+	List<Author> findAuthorsByListId(List<String> list);
 
 }

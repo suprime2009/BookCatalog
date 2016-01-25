@@ -325,4 +325,12 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		List<Book> books = query.getResultList();
 		return books;
 	}
+
+	@Override
+	public List<Book> findBooksByRating(Integer rating) {
+		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOKS_BY_RATING);
+		query.setParameter("rat", rating);
+		List<Book> books = query.getResultList();
+		return books;
+	}
 }

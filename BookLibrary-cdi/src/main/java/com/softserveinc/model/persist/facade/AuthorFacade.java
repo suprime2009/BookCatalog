@@ -175,10 +175,10 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 	}
 
 	@Override
-	public Collection<Author> findAuthorsByListId(List<String> list) {
+	public List<Author> findAuthorsByListId(List<String> list) {
 		TypedQuery<Author> query = (TypedQuery<Author>) entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_LIST_ID);
 		query.setParameter("list", list);
-		Collection<Author> authors = query.getResultList();
+		List<Author> authors = query.getResultList();
 		return authors;
 	}
 

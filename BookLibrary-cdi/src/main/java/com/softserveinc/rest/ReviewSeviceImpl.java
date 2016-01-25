@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import com.softserveinc.action.managebook.BookDetailAction;
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.exception.ReviewManagerException;
-import com.softserveinc.model.persist.dto.JsonFieldsHolder;
 import com.softserveinc.model.persist.dto.ReviewDTO;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.Review;

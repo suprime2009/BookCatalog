@@ -43,6 +43,7 @@ import com.softserveinc.exception.AuthorManagerException;
 import com.softserveinc.exception.BookCatalogException;
 import com.softserveinc.exception.BookManagerException;
 import com.softserveinc.exception.ReviewManagerException;
+import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.OrderBy;
 import com.softserveinc.model.persist.entity.Review;
@@ -122,7 +123,7 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 		String errorMessage = "";
 		validateBookFields(book);
 		Book checkISBN = bookFacade.findBookByISNBN(book.getIsbn());
-		if (checkISBN != null && !checkISBN.equals(book)) {
+		if (checkISBN != null && !checkISBN.getIdBook().equals(book.getIdBook())) {
 			errorMessage = String.format("Passed ISBN number %s already in use.", book.getIsbn());
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
@@ -133,14 +134,34 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 	}
 
 	@Override
-	public void deleteBook(Book book) throws BookManagerException {
+	public void deleteBook(String idBook) throws BookManagerException {
+		log.debug("Method starts. The book id ={}", idBook);
+		String errorMessage = "";
+		if (idBook == null) {
+			errorMessage = "Passed id cannot be null.";
+			log.error(errorMessage);
+			throw new BookManagerException(errorMessage);
+		}
+		Book book = bookFacade.findById(idBook);
+		if (book == null) {
+			errorMessage = String.format("The Book by id= %s hasn't found.", idBook);
+			log.error(errorMessage);
+			throw new BookManagerException(errorMessage);
+		}
 		bookHome.delete(book);
-		log.info("Book {} has been deleted from database", book);
+		log.info("Method finished. The Book {} has been deleted.", book);
 	}
 
 	@Override
 	public void bulkDelete(List<Book> list) throws BookManagerException {
-		// TODO Auto-generated method stub
+		String errorMessage = "";
+		if (list == null || list.isEmpty()) {
+			errorMessage = "List Books to delete is empty.";
+			log.error(errorMessage);
+			throw new BookManagerException(errorMessage);
+		}
+		
+		bookHome.bulkRemove(list);
 
 	}
 

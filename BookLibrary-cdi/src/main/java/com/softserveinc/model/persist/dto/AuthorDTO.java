@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class AuthorDTO implements Serializable, JsonFieldsHolder {
+public class AuthorDTO implements Serializable, JsonFieldsHolder{
 	
 	/**
 	 * 

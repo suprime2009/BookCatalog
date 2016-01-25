@@ -29,6 +29,6 @@ public interface IManagerBook {
 
 	void updateBook(Book book) throws BookManagerException;
 
-	void deleteBook(Book book) throws BookManagerException;
+	void deleteBook(String idBook) throws BookManagerException;
 
 }

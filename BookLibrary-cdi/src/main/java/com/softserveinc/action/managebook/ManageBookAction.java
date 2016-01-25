@@ -87,7 +87,7 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		System.out.println("Method DELETE ROW");
 		Book book = bookFacade.findById(getIdEntityToDelete());
 		try {
-			bookManager.deleteBook(book);
+			bookManager.deleteBook(book.getIdBook());
 		} catch (BookManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

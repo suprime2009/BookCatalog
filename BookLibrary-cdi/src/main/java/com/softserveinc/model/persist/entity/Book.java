@@ -33,10 +33,12 @@ import java.util.UUID;
 @NamedQuery(name = Book.FIND_BOOKS_WITH_RATING, query = "SELECT DISTINCT b FROM Review r "
 		+ "JOIN r.book b WHERE r.rating = :rat"),
 @NamedQuery(name = Book.FIND_BOOK_BY_NAME, query = "SELECT b FROM Book b WHERE b.bookName LIKE :nam"),
+@NamedQuery(name = Book.BULK_REMOVE, query = "DELETE FROM Book b WHERE b IN :list"),
 @NamedQuery(name = Book.FIND_BOOK_BY_ISNBN, query = "SELECT b FROM Book b WHERE b.isbn LIKE :isb "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_PUBLISHER, query = "SELECT b FROM Book b WHERE b.publisher LIKE :pub "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_AUTHOR, query = "SELECT b FROM Book b JOIN b.authors a WHERE a = :auth "),
 @NamedQuery(name = Book.FIND_BOOKS_BY_LIST_ID, query = "SELECT b FROM Book b WHERE b.idBook IN :list "),
+@NamedQuery(name = Book.FIND_BOOKS_BY_RATING, query = "SELECT b FROM Review r JOIN r.book b  GROUP BY r.book  HAVING FLOOR(AVG(r.rating)) = :rat"),
 @NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ")
 })
 public class Book implements Serializable {
@@ -61,6 +63,8 @@ public class Book implements Serializable {
 	public static final String FIND_BOOKS_BY_AUTHOR = "Book.findBooksByAuthor";
 	public static final String FIND_COUNT_BOOKS = "Book.findCountBooks";
 	public static final String FIND_BOOKS_BY_LIST_ID = "Book.findBooksByListId";
+	public static final String FIND_BOOKS_BY_RATING = "Book.findBooksByRating";
+	public static final String BULK_REMOVE = "Book.bulkRemove";
 
 
 	@Id

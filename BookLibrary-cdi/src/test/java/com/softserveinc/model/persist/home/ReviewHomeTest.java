@@ -23,7 +23,7 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 		List<Review> listBefore = reviewHomeRemote.findAll();
 		Book book = bookHomeRemote.findByID("b4");
 		Review review = new Review("This book wonderfull!", "Fred12", 5, book);
-		review = reviewHomeRemote.create(review);
+		reviewHomeRemote.create(review);
 		List<Review> listAfter = reviewHomeRemote.findAll();
 
 		assertNotNull(review);
@@ -35,7 +35,7 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 
 		
 		review = new Review("I am agree with Fred!!", "Sara", 4, book);
-		review = reviewHomeRemote.create(review);
+		 reviewHomeRemote.create(review);
 		listAfter = reviewHomeRemote.findAll();
 		assertNotNull(review);
 		assertEquals(book, review.getBook());

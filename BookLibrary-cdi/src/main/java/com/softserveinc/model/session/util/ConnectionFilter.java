@@ -11,51 +11,34 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 public class ConnectionFilter implements Filter {
+	
+	@Resource
+    private UserTransaction utx;
 
 	@Override
 	public void destroy() {
-
+		// TODO Auto-generated method stub
+		
 	}
-
-	@Resource
-	private UserTransaction utx;
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			utx.begin();
-			chain.doFilter(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				utx.commit();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (RollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicMixedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (HeuristicRollbackException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SystemException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+            utx.begin();
+            chain.doFilter(request, response);
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
 	}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-
+		// TODO Auto-generated method stub
+		
 	}
+
+	
 }

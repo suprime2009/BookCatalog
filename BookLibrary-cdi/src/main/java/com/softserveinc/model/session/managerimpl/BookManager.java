@@ -79,12 +79,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote, Constan
 
 	@PostConstruct
 	private void postConstruct() {
-		log.info("Bean BookManager has been created.");
+		log.debug("Bean has been created.");
 	}
 
 	@PreDestroy
 	private void preDestroy() {
-		log.info("Bean BookManager has been destroyed.");
+		log.debug("Bean has been destroyed.");
 	}
 
 	@Override

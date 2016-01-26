@@ -3,49 +3,53 @@ package com.softserveinc.model.persist.home;
 import java.util.List;
 
 /**
- * Interface that describes basic CRUD operations for Home methods
- * for each entity.
+ * Interface that describes basic CRUD operations for entities.
  * 
- * @param <T> Entity
+ * @param <T>
+ *            entity class
  */
 public interface IHome<T> {
-	
+
+	public static final String PERSISTANCE_UNIT_PRIMARY = "primary";
+
 	/**
-	 * Method creates a record in a database.
+	 * The method creates a record in a database.
 	 * 
-	 * @param object to add to database
+	 * @param object
+	 *            to add to database
 	 */
-	T create(T object);
-	
+	void create(T object);
+
 	/**
-	 * Method updates a record in database.
+	 * The method updates a record in database.
 	 * 
-	 * @param object to update in database
+	 * @param object
+	 *            to update in database
 	 */
 	void update(T object);
-	
+
 	/**
-	 * Method deletes a record from database.
+	 * The method deletes single record from database table.
 	 * 
-	 * @param object to delete record from database
+	 * @param object
+	 *            to delete record from database table.
 	 */
 	void delete(T object);
-	
-	void bulkRemove(List<T> list);
-	
+
 	/**
-	 * Method gets all records from database table.
+	 * The method gets all records from database table.
 	 * 
 	 * @return list of entities
 	 */
 	List<T> findAll();
-	
+
 	/**
-	 * Method finds a record in database table by id.
+	 * The method finds a record in database table by id.
 	 * 
-	 * @param id of entity
+	 * @param id
+	 *            of entity
 	 * @return single entity object
 	 */
 	T findByID(String id);
-	
+
 }

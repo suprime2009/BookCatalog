@@ -28,7 +28,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 	public void testCreateBook() {
 		Book book = new Book(WINDOWS, ISBN, JAPAN, 2015, null);
 		assertNull(book.getIdBook());
-		book = bookHomeRemote.create(book);
+		bookHomeRemote.create(book);
 		String id = book.getIdBook();
 		Book bookExpected = bookHomeRemote.findByID(id);
 		assertNotNull(bookExpected);
@@ -42,7 +42,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 	@Test(expectedExceptions=Exception.class)
 	public void testCreateBookWithAlreadyExistISBN() {
 		Book book = new Book(WINDOWS, EXISTING_ISBN, JAPAN, 2015, null);
-		book =bookHomeRemote.create(book);
+		bookHomeRemote.create(book);
 		
 		assertEquals(book.getIdBook(), null);
 	}
@@ -56,7 +56,7 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 		set.add(author2);
 		
 		Book book = new Book("Windows 8.1 New", "111-122-32-2", JAPAN, 2015, set);
-		book = bookHomeRemote.create(book);
+		bookHomeRemote.create(book);
 		String id = book.getIdBook();
 		Book bookExpected = bookHomeRemote.findByID(id);
 		

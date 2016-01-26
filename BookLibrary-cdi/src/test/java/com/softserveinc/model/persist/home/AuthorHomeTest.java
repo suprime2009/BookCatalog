@@ -19,7 +19,7 @@ public class AuthorHomeTest extends BaseTest implements DataBaseConstants{
 	@Test
 	public void testCreateAuthor() {
 		Author author = new Author(BLACK, JACK);
-		author = authorHomeRemote.create(author);
+		authorHomeRemote.create(author);
 		String id = author.getIdAuthor();
 		Author authorExpected = authorHomeRemote.findByID(id);
 		assertNotNull(author);

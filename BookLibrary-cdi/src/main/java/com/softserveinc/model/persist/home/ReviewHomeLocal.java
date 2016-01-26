@@ -5,11 +5,12 @@ import javax.ejb.Local;
 import com.softserveinc.model.persist.entity.Review;
 
 /**
- * ReviewHomeLocal an interface extended from IHome interface and describes basic CRUD operation
- * for Review entity. This interface is local and used in application as main.
+ * The {@code ReviewHomeLocal} an interface, extended from {@link IHome}
+ * interface. It provides basic CRUD and all write operations for {@link Review}
+ * entity. This interface is a local.
  *
  */
 @Local
-public interface ReviewHomeLocal extends IHome<Review>{
+public interface ReviewHomeLocal extends IHome<Review> {
 
 }

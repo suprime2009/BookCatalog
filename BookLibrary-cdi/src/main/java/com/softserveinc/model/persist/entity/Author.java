@@ -55,7 +55,7 @@ public class Author implements Serializable {
 	@Column(name = "second_name")
 	private String secondName;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, 
 	inverseJoinColumns = {@JoinColumn(name = "book_id") })
 	@JsonBackReference(value="1")

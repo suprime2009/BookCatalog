@@ -93,7 +93,7 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 		
 	}
 
-	@TransactionAttribute(value=TransactionAttributeType.NOT_SUPPORTED)
+
 	@Override
 	public void getEntitiesForCurrentPage() {
 		System.out.println("Method starts. getEntitiesForCurrentPage");

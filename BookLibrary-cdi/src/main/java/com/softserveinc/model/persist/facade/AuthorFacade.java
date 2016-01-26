@@ -1,7 +1,5 @@
 package com.softserveinc.model.persist.facade;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -21,7 +19,6 @@ import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.AuthorFieldHolder;
 import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookFieldHolder;
-import com.softserveinc.model.persist.entity.ReviewFieldHolder;
 import com.softserveinc.model.persist.home.AuthorHomeLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 import com.softserveinc.model.session.util.SQLCommandConstants;
@@ -74,22 +71,25 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		return object;
 	}
 
-//	@Override
-//	public List<Author> findAuthorsByAverageRating(String rating) {
-//		return null;
-//	}
 
+
+	
 	@Override
 	public Author findById(String id) {
-		return authorHomeLocal.findByID(id);
+	//	return authorHomeLocal.findByID(id);
+		Author object = entityManager.find(Author.class, id);
+		if (object == null) {
+			log.error("By id {} nothing found.", id);
+		} else {
+			log.info("Entity {} has been successfully found by id = {}", object, id);
+		}
+		return object;
 	}
-
+	
 	@Override
 	public List<Author> findAll() {
 		return authorHomeLocal.findAll();
 	}
-
-
 
 	@Override
 	public List<String> findAuthorsFullNamesForAutocomplete(String prefix) {
@@ -101,7 +101,7 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		log.info("Method done.");
 		return list;
 	}
-	
+
 	private void appendSelectQueryPart(StringBuilder sbForDataTable) {
 		sbForDataTable.append(String.format("%s %s, ", SELECT, A));
 		sbForDataTable.append(String.format("%s(%s %s), ", COUNT, DISTINCT, B));
@@ -123,8 +123,6 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		}
 	}
 	
-
-
 	@Override
 	public List<Object[]> findAuthorsForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
@@ -161,8 +159,6 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		List<Long> findedValues = query.getResultList();
 		int count = findedValues.size();
 
-
-		
 		return  count;
 	}
 
@@ -176,7 +172,7 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 
 	@Override
 	public List<Author> findAuthorsByListId(List<String> list) {
-		TypedQuery<Author> query = (TypedQuery<Author>) entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_LIST_ID);
+		TypedQuery<Author> query = entityManager.createNamedQuery(Author.FIND_AUTHORS_BY_LIST_ID, Author.class);
 		query.setParameter("list", list);
 		List<Author> authors = query.getResultList();
 		return authors;

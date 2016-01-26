@@ -4,6 +4,15 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
+	<filter>
+		<filter-name>ConnectionFilter</filter-name>
+		<filter-class>com.softserveinc.model.session.util.ConnectionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ConnectionFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -19,16 +28,12 @@
 		<welcome-file>pages/welcome.xhtml</welcome-file>
 	</welcome-file-list>
 
-<!-- 		<filter>
-		<filter-name>ConnectionFilter</filter-name>
-		<filter-class>com.softserveinc.model.session.util.ConnectionFilter</filter-class>
-	</filter>
- <filter-mapping>
-		<filter-name>ConnectionFilter</filter-name>
-		<url-pattern>*.xhtml</url-pattern>
-	</filter-mapping> -->
+	<!-- <filter> <filter-name>ConnectionFilter</filter-name> <filter-class>com.softserveinc.model.session.util.ConnectionFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>ConnectionFilter</filter-name> <url-pattern>*.xhtml</url-pattern> 
+		</filter-mapping> -->
 
-<context-param>
+
+	<context-param>
 		<param-name>org.richfaces.skin</param-name>
 		<param-value>wine</param-value>
 	</context-param>
@@ -37,7 +42,7 @@
 		<param-name>resteasy.scan</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 
 	<context-param>
 		<param-name>resteasy.servlet.mapping.prefix</param-name>

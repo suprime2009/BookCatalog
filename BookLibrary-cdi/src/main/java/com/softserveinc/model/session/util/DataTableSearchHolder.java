@@ -75,10 +75,4 @@ public class DataTableSearchHolder {
 		this.filterValues = filterValues;
 	}
 	
-	
-	
-	
-	
-	
-
 }

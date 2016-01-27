@@ -3,6 +3,7 @@ C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softs
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\facade\BookFacadeRemote.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\AuthorHomeRemote.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerRemote.java
+C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\SortOrder.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\entity\Book.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\rest\client\AuthorClientRemote.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\persist\home\BookHome.java
@@ -49,6 +50,7 @@ C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softs
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\test\CarsBean.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\test\Main.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\test\JPADataModel.java
+C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\util\QueryBuilderForDataTable.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\test\BooksBean.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\exception\ReviewManagerException.java
 C:\Users\pkrav\Desktop\clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\model\session\manager\ReviewManagerLocal.java

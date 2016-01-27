@@ -1,38 +1,52 @@
 package com.softserveinc.model.session.util;
 
 import java.util.Map;
-
 import org.richfaces.component.SortOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.softserveinc.model.persist.entity.EntityFieldHolder;
 
 /**
- * Class DataTableHelper used for group dataTable requirements like firstRow, rowsPerPage, sortColumn,
- * sortOrder, filterValues in one case. 
+ * Class DataTableHelper used for group dataTable requirements like firstRow,
+ * rowsPerPage, sortColumn, sortOrder, filterValues in one case.
  *
  */
 public class DataTableSearchHolder {
-	
+
+	private static Logger log = LoggerFactory.getLogger(DataTableSearchHolder.class);
+
 	private int firstRow;
 	private int rowsPerPage;
 	private EntityFieldHolder sortColumn;
-	private SortOrder sortOrder;
+	private String sortOrder;
 	private Map<EntityFieldHolder, String> filterValues;
-	
-	public DataTableSearchHolder(){}
-	
+
+	public DataTableSearchHolder() {
+	}
+
 	public DataTableSearchHolder(int firstRow, int rowsPerPage) {
 		super();
 		this.firstRow = firstRow;
 		this.rowsPerPage = rowsPerPage;
 	}
-	
-	public DataTableSearchHolder(int firstRow, int rowsPerPage, EntityFieldHolder sortColumn, SortOrder sortOrder) {
+
+	public DataTableSearchHolder(int firstRow, int rowsPerPage, EntityFieldHolder sortColumn, String sortOrder) {
 		super();
 		this.firstRow = firstRow;
 		this.rowsPerPage = rowsPerPage;
 		this.sortColumn = sortColumn;
 		this.sortOrder = sortOrder;
+	}
+	
+	public DataTableSearchHolder(int firstRow, int rowsPerPage, EntityFieldHolder sortColumn, String sortOrder,
+			Map<EntityFieldHolder, String> filterValues) {
+		super();
+		this.firstRow = firstRow;
+		this.rowsPerPage = rowsPerPage;
+		this.sortColumn = sortColumn;
+		this.sortOrder = sortOrder;
+		this.filterValues = filterValues;
 	}
 
 	public int getFirstRow() {
@@ -59,11 +73,11 @@ public class DataTableSearchHolder {
 		this.sortColumn = sortColumn;
 	}
 
-	public SortOrder getSortOrder() {
+	public String getSortOrder() {
 		return sortOrder;
 	}
 
-	public void setSortOrder(SortOrder sortOrder) {
+	public void setSortOrder(String sortOrder) {
 		this.sortOrder = sortOrder;
 	}
 
@@ -74,5 +88,5 @@ public class DataTableSearchHolder {
 	public void setFilterValues(Map<EntityFieldHolder, String> filterValues) {
 		this.filterValues = filterValues;
 	}
-	
+
 }

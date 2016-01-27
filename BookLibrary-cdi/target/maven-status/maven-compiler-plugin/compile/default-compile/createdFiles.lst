@@ -4,8 +4,10 @@ test\BooksBean$BookDataModel.class
 com\softserveinc\model\persist\home\AuthorHome.class
 com\softserveinc\model\session\util\ReviewRatingFieldsEnum.class
 com\softserveinc\model\persist\facade\IReviewFacade.class
+com\softserveinc\model\persist\facade\BookQueryBuilderForDataTable$1.class
 com\softserveinc\model\session\util\ConnectionFilter.class
 com\softserveinc\model\session\manager\AuthorManagerRemote.class
+com\softserveinc\model\session\util\SortOrder.class
 com\softserveinc\model\session\managerimpl\BookManager.class
 com\softserveinc\model\persist\entity\Author.class
 com\softserveinc\action\managebook\ManageAuthorsAction.class
@@ -41,6 +43,7 @@ com\softserveinc\model\persist\facade\IBookFacade.class
 com\softserveinc\model\persist\facade\BookFacadeLocal.class
 com\softserveinc\model\persist\home\BookHomeRemote.class
 com\softserveinc\exception\BookManagerException.class
+com\softserveinc\model\session\util\QueryBuilderForDataTable.class
 com\softserveinc\rest\JacksonJsonProvider.class
 com\softserveinc\model\persist\dto\BookDTO.class
 com\softserveinc\rest\AuthorServiceImpl.class
@@ -88,6 +91,7 @@ com\softserveinc\action\managebook\BookDetailAction$1.class
 com\softserveinc\action\util\BookConverter.class
 com\softserveinc\model\persist\entity\BookFieldHolder.class
 com\softserveinc\model\persist\entity\OrderBy.class
+com\softserveinc\model\persist\facade\BookQueryBuilderForDataTable.class
 com\softserveinc\model\persist\facade\ReviewFacadeRemote.class
 com\softserveinc\model\persist\home\ReviewHomeLocal.class
 com\softserveinc\action\util\PaginationHelper.class

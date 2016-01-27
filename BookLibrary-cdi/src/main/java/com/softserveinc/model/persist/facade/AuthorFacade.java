@@ -11,6 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,6 +114,45 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		
 	}
 	
+	private void appendHavingQueryPart(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
+
+		if (dataTableSearchHolder.getFilterValues().containsKey(AuthorFieldHolder.AVE_RATING)) {
+			sbForDataTable.append(HAVING).append("FLOOR (AVG(r.rating)) = ").append(Integer.valueOf(dataTableSearchHolder.getFilterValues().get(AuthorFieldHolder.AVE_RATING))).append(" ");
+		}
+	}
+	
+	/**
+	 * Method appends for query sorting attribute ORDER BY with fields and
+	 * Orders to sorting. Method does validation DataTableHelper arguments
+	 * sortColumn and sortOrder.
+	 */
+	private void appendQueryPartOrderBy(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
+
+//		sbForDataTable.append(ORDER_BY);
+//
+//		if (dataTableSearchHolder.getSortColumn() == null) {
+//			sbForDataTable.append(String.format("%s %s, ", RAT, DESC));
+//		} else {
+//			switch ((BookFieldHolder) dataTableSearchHolder.getSortColumn()) {
+//			case RATING:
+//				sbForDataTable.append(RAT);
+//				appendSortOrder(sbForDataTable, dataTableSearchHolder);
+//				break;
+//			case AUTHORS:
+//				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.SECOND_NAME.getBusinessView()));
+//				appendSortOrder(sbForDataTable, dataTableSearchHolder);
+//				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.FIRST_NAME.getBusinessView()));
+//				appendSortOrder(sbForDataTable, dataTableSearchHolder);
+//				break;
+//			default:
+//				sbForDataTable.append(String.format("%s.%s ", B, dataTableSearchHolder.getSortColumn().getBusinessView()));
+//				appendSortOrder(sbForDataTable, dataTableSearchHolder);
+//			}
+//		}
+//		sbForDataTable.append(String.format("%s.%s %s ", B, BookFieldHolder.CREATED_DATE.getBusinessView(), DESC));
+
+	}
+	
 	private void appendWhereQueryPart(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
 		if (dataTableSearchHolder.getFilterValues().containsKey(AuthorFieldHolder.FULL_NAME)) {
 			String filterValue = (String) dataTableSearchHolder.getFilterValues().get(AuthorFieldHolder.FULL_NAME);
@@ -132,6 +172,7 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 		appendSelectQueryPart(sbForDataTable);
 		appendWhereQueryPart(sbForDataTable, dataTableSearchHolder);
 		sbForDataTable.append(" GROUP BY a");
+		appendHavingQueryPart(sbForDataTable, dataTableSearchHolder);
 	
 		
 		Query query = entityManager.createQuery(sbForDataTable.toString());
@@ -146,7 +187,6 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote, SQLC
 	public int findCountAuthorsForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		StringBuilder sbForDataTable = new StringBuilder();
 		sbForDataTable.append("SELECT COUNT(DISTINCT a) ");
-		
 
 		sbForDataTable.append(String.format("%s %s %S", FROM, Author.class.getName(), A));
 		sbForDataTable.append(String.format("%s %s.%s %S", LEFT_JOIN, A, AuthorFieldHolder.BOOKS.getBusinessView(), B));

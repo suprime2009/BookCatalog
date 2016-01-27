@@ -37,5 +37,12 @@ public interface SQLCommandConstants {
 	public static final String COMMA = ", ";
 	
 	
+	//String templates
+	public static final String LIKE_TEMPLATE = "LIKE '%s%%' ";
+	public static final String AGREGATE_FUNC_TEMPLATE = " %s(%s.%s) ";
+	public static final String AGREGATE_FUNC_DISTINCT_TEMPLATE = " %s( DISTINCT %s) ";
+	public static final String FIELD_TEMPLATE = " %s.%s ";
+	
+	
 
 }

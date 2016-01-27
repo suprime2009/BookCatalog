@@ -81,7 +81,7 @@
 	 			<f:param name="id" value="#{authorWrapper.author.idAuthor}"></f:param>
 	 			<h:graphicImage value="/resources/images/edit.png" alt="edit" />
 		</h:link>
-		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{empty authorWrapper.author.books}"
+		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
 			 oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
 			<a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
 			<h:graphicImage value="/resources/images/delete.png" alt="delete" />

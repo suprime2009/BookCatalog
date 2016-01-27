@@ -3,7 +3,6 @@ package com.softserveinc.model.persist.facade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -14,12 +13,9 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
-import org.richfaces.component.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import com.softserveinc.model.persist.entity.Author;
 import com.softserveinc.model.persist.entity.AuthorFieldHolder;
@@ -30,6 +26,7 @@ import com.softserveinc.model.persist.entity.Review;
 import com.softserveinc.model.persist.home.BookHomeLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 import com.softserveinc.model.session.util.SQLCommandConstants;
+import com.softserveinc.model.session.util.QueryBuilderForDataTable;
 
 /**
  * BookFacade class is an implementation facade operations for Book entity. This
@@ -115,196 +112,6 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		return (int) count;
 	}
 
-	/**
-	 * Method is converter org.richfaces.component.SortOrder attributes
-	 * ascending and descending to String id SQL format.
-	 * 
-	 * @param SortOrder
-	 *            order
-	 * @return String
-	 */
-	private void appendSortOrder(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
-		if (dataTableSearchHolder.getSortOrder().equals(SortOrder.ascending)) {
-			sbForDataTable.append(ASC);
-		} else if (dataTableSearchHolder.getSortOrder().equals(SortOrder.descending)) {
-			sbForDataTable.append(DESC);
-		} else {
-			throw new IllegalArgumentException();
-		}
-
-		if (!dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.CREATED_DATE)) {
-			sbForDataTable.append(COMMA);
-		}
-	}
-
-	private void appendQueryPartFrom(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
-
-		sbForDataTable.append(String.format("%s %s %s", FROM, Review.class.getName(), R));
-		sbForDataTable.append(String.format("%s %s.%s %s", RIGHT_JOIN, R, "book", B));
-		if ((dataTableSearchHolder.getSortColumn() != null)
-				&& (dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.AUTHORS))
-				|| (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.AUTHORS)) ) {
-			sbForDataTable.append(String.format("%s %s.%s %s", LEFT_JOIN, B, BookFieldHolder.AUTHORS.getBusinessView(), A));
-		}
-	}
-
-	/**
-	 * Method appends for query sorting attribute ORDER BY with fields and
-	 * Orders to sorting. Method does validation DataTableHelper arguments
-	 * sortColumn and sortOrder.
-	 */
-	private void appendQueryPartOrderBy(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
-
-		sbForDataTable.append(ORDER_BY);
-
-		if (dataTableSearchHolder.getSortColumn() == null) {
-			sbForDataTable.append(String.format("%s %s, ", RAT, DESC));
-		} else {
-			switch ((BookFieldHolder) dataTableSearchHolder.getSortColumn()) {
-			case RATING:
-				sbForDataTable.append(RAT);
-				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-				break;
-			case AUTHORS:
-				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.SECOND_NAME.getBusinessView()));
-				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-				sbForDataTable.append(String.format("%s.%s ", A, AuthorFieldHolder.FIRST_NAME.getBusinessView()));
-				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-				break;
-			default:
-				sbForDataTable.append(String.format("%s.%s ", B, dataTableSearchHolder.getSortColumn().getBusinessView()));
-				appendSortOrder(sbForDataTable, dataTableSearchHolder);
-			}
-		}
-		sbForDataTable.append(String.format("%s.%s %s ", B, BookFieldHolder.CREATED_DATE.getBusinessView(), DESC));
-
-	}
-
-	/**
-	 * Method appends for query filtering attribute WHERE with fields and values
-	 * to filtering. Method does validation DataTableHelper arguments
-	 * Map<String, String> filterValues.
-	 */
-	private void appendQueryPartWhere(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
-
-		Map<EntityFieldHolder, String> map = dataTableSearchHolder.getFilterValues();
-		if (dataTableSearchHolder.getFilterValues().size() > 1
-				|| !dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
-			sbForDataTable.append(WHERE);
-		}
-		int count = 0;
-		boolean isRating = false;
-		for (Map.Entry<EntityFieldHolder, String> pair : map.entrySet()) {
-			if (count > 0 && isRating == false) {
-				sbForDataTable.append(AND);
-			}
-			isRating = false;
-			switch ((BookFieldHolder) pair.getKey()) {
-			case AUTHORS:
-				sbForDataTable.append(String.format("(%s.%s %s '%s%%' ", A, AuthorFieldHolder.SECOND_NAME.getBusinessView(), LIKE, pair.getValue()));
-				sbForDataTable.append(OR);
-				sbForDataTable.append(String.format(" %s.%s %s '%s%%') ", A, AuthorFieldHolder.FIRST_NAME.getBusinessView(), LIKE, pair.getValue()));
-				break;
-			case RATING:
-				isRating = true;
-				break;
-
-			default:
-				sbForDataTable.append(String.format("%s.%s %s '%s%%' ", B, pair.getKey().getBusinessView(), LIKE, pair.getValue()));
-			}
-			++count;
-		}
-	}
-
-	/**
-	 * Method appends for query filtering attribute HAVING with fields and values
-	 * to filtering. Method does validation DataTableHelper arguments
-	 * @param sbForDataTable
-	 * @param dataTableSearchHolder
-	 */
-	public void appendQueryPartHaving(StringBuilder sbForDataTable, DataTableSearchHolder dataTableSearchHolder) {
-
-		if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
-			int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING));
-			sbForDataTable.append(String.format("%s %s(%s(%s.%s)) = %s ", HAVING, FLOOR, AVG, R, BookFieldHolder.RATING.getBusinessView(), value));
-		}
-	}
-
-	@Override
-	public List<Book> findBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
-		long start = System.currentTimeMillis();
-
-		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(SELECT).append(B).append(COMMA);
-		sbForDataTable.append(String.format("%s(%s.%s) %s %s", AVG, R, BookFieldHolder.RATING.getBusinessView(), AS, RAT));
-
-		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
-
-		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
-			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
-		}
-
-		sbForDataTable.append(GROUP_BY).append(B);
-		appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);
-
-		appendQueryPartOrderBy(sbForDataTable, dataTableSearchHolder);
-
-		log.info("Query for getting Books for dataTable created == {}", sbForDataTable.toString());
-
-		Query query = entityManager.createQuery(sbForDataTable.toString());
-
-		query.setFirstResult(dataTableSearchHolder.getFirstRow());
-		query.setMaxResults(dataTableSearchHolder.getRowsPerPage());
-
-		List<Object[]> result = query.getResultList();
-		List<Book> books = new ArrayList<Book>();
-		for (Object[] o : result) {
-			Book book = (Book) o[0];
-			Double rating = (Double) o[1];
-			if (rating == null) {
-				rating = 0.0;
-			}
-			book.setRating(rating);
-			books.add(book);
-		}
-		long end = System.currentTimeMillis();
-		log.info("Method done, that took {} milliseconds. Has been found {} books.", (end - start), books.size());
-
-		return books;
-	}
-
-	@Override
-	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
-		long start = System.currentTimeMillis();
-
-		boolean containsRating = false;
-
-		StringBuilder sbForDataTable = new StringBuilder();
-		sbForDataTable.append(String.format("%s %s(%s %s)", SELECT, COUNT, DISTINCT, B));
-		appendQueryPartFrom(sbForDataTable, dataTableSearchHolder);
-		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
-			appendQueryPartWhere(sbForDataTable, dataTableSearchHolder);
-		}
-		containsRating = dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING);
-		if (containsRating) {
-			sbForDataTable.append(GROUP_BY).append(B);
-			appendQueryPartHaving(sbForDataTable, dataTableSearchHolder);
-		}
-
-		log.info("Query for getting count Books for dataTable created {}", sbForDataTable.toString());
-		Query query = entityManager.createQuery(sbForDataTable.toString());
-		long count;
-		if (containsRating) {
-			List<Long> findedValues = query.getResultList();
-			count = findedValues.size();
-		} else {
-			count = (long) query.getSingleResult();
-		}
-		long end = System.currentTimeMillis();
-		log.info("Method done, that took {} milliseconds. Has been found {} books.", (end - start), count);
-		return (int) count;
-	}
-
 	@Override
 	public List<Book> findBooksByBookNameForAutocomplete(String value) {
 		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME);
@@ -313,7 +120,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		}
 		query.setParameter("nam", value + '%');
 		query.setMaxResults(10);
-		List<Book> list =  query.getResultList();
+		List<Book> list = query.getResultList();
 		log.info("The metjod done. Has been found {} books.", list.size());
 		return list;
 	}
@@ -333,4 +140,165 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		List<Book> books = query.getResultList();
 		return books;
 	}
+
+	@Override
+	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
+		long start = System.currentTimeMillis();
+
+		String createdQuery = new BookQueryBuilderForDataTable().getCountObjectsQuery(dataTableSearchHolder);
+
+		Query query = entityManager.createQuery(createdQuery);
+		long count;
+		// if
+		// (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING))
+		// {
+		List<Long> findedValues = query.getResultList();
+		count = findedValues.size();
+		// } else {
+		// count = (long) query.getSingleResult();
+		// }
+		log.info("Method done, that took {} milliseconds. Has been found {} books.",
+				(System.currentTimeMillis() - start), count);
+		return (int) count;
+	}
+
+	@Override
+	public List<Book> findBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
+		long start = System.currentTimeMillis();
+		log.debug("The method starts. Passed value for method = {}", dataTableSearchHolder);
+
+		String createdQuery = new BookQueryBuilderForDataTable().getObjectsQuery(dataTableSearchHolder);
+
+		Query query = entityManager.createQuery(createdQuery);
+		query.setFirstResult(dataTableSearchHolder.getFirstRow());
+		query.setMaxResults(dataTableSearchHolder.getRowsPerPage());
+
+		List<Object[]> result = query.getResultList();
+		List<Book> books = new ArrayList<Book>();
+		for (Object[] o : result) {
+			Book book = (Book) o[0];
+			Double rating = (Double) o[1];
+			if (rating == null) {
+				rating = 0.0;
+			}
+			book.setRating(rating);
+			books.add(book);
+		}
+		log.info("Method done, that took {} milliseconds. Has been found {} books.",
+				(System.currentTimeMillis() - start), books.size());
+
+		return books;
+	}
+
+	/**
+	 * This class is a implementation of {@link QueryBuilderForDataTable} class
+	 * and class is a query builder for {@code ManageBooks} DataTables (table
+	 * for managing {@link Book} instances).
+	 */
+	class BookQueryBuilderForDataTable extends QueryBuilderForDataTable {
+
+		@Override
+		protected void appendQueryPartSelectCountObjects() {
+			sbForDataTable.append(SELECT).append(String.format(AGREGATE_FUNC_DISTINCT_TEMPLATE, COUNT, B));
+		}
+
+		@Override
+		protected void appendQueryPartSelectObjects() {
+			sbForDataTable.append(SELECT).append(B).append(COMMA)
+					.append(String.format(AGREGATE_FUNC_TEMPLATE, AVG, R, BookFieldHolder.RATING.getBusinessView()))
+					.append(AS).append(RAT);
+		}
+
+		@Override
+		protected void appendQueryPartFrom() {
+			sbForDataTable.append(FROM).append(Review.class.getName()).append(R).append(RIGHT_JOIN)
+					.append((String.format(FIELD_TEMPLATE, R, "book"))).append(B);
+			if ((dataTableSearchHolder.getSortColumn() != null)
+					&& (dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.AUTHORS))
+					|| (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.AUTHORS))) {
+				sbForDataTable.append(LEFT_JOIN)
+						.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.AUTHORS.getBusinessView())).append(A);
+			}
+		}
+
+		@Override
+		protected void appendQueryPartWhere() {
+			Map<EntityFieldHolder, String> map = dataTableSearchHolder.getFilterValues();
+			if (!dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)
+					|| dataTableSearchHolder.getFilterValues().size() > 1) {
+				sbForDataTable.append(WHERE);
+			}
+			int count = 1;
+			boolean isRating = false;
+			for (Map.Entry<EntityFieldHolder, String> pair : map.entrySet()) {
+				if (count > 1 && isRating == false) {
+					sbForDataTable.append(AND);
+				}
+				++count;
+				isRating = false;
+				switch ((BookFieldHolder) pair.getKey()) {
+				case AUTHORS:
+					sbForDataTable.append('(')
+							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.SECOND_NAME.getBusinessView()))
+							.append(String.format(LIKE_TEMPLATE, pair.getValue())).append(OR)
+							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.FIRST_NAME.getBusinessView()))
+							.append(String.format(LIKE_TEMPLATE, pair.getValue())).append(')');
+					break;
+				case RATING:
+					isRating = true;
+					break;
+
+				default:
+					sbForDataTable.append(String.format(FIELD_TEMPLATE, B, pair.getKey().getBusinessView()))
+							.append(String.format(LIKE_TEMPLATE, pair.getValue()));
+				}
+			}
+		}
+
+		@Override
+		protected void appendQueryPartGroupBy() {
+			sbForDataTable.append(GROUP_BY).append(B);
+		}
+
+		@Override
+		protected void appendQueryPartHaving() {
+			if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
+				int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING));
+				sbForDataTable.append(HAVING).append(FLOOR + '(')
+						.append(String.format(AGREGATE_FUNC_TEMPLATE, AVG, R, BookFieldHolder.RATING.getBusinessView()))
+						.append(") = ").append(value);
+			}
+		}
+
+		@Override
+		protected void appendQueryPartOrderBy() {
+			sbForDataTable.append(ORDER_BY);
+
+			if (dataTableSearchHolder.getSortColumn() == null) {
+				sbForDataTable.append(RAT).append(DESC).append(COMMA);
+			} else {
+				switch ((BookFieldHolder) dataTableSearchHolder.getSortColumn()) {
+				case RATING:
+					sbForDataTable.append(RAT).append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+					break;
+				case AUTHORS:
+					sbForDataTable
+							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.SECOND_NAME.getBusinessView()))
+							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+					sbForDataTable
+							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.FIRST_NAME.getBusinessView()))
+							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+					break;
+				default:
+					sbForDataTable
+							.append(String.format(FIELD_TEMPLATE, B,
+									dataTableSearchHolder.getSortColumn().getBusinessView()))
+							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+				}
+			}
+			sbForDataTable.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.CREATED_DATE.getBusinessView()))
+					.append(DESC);
+		}
+	}
+
 }

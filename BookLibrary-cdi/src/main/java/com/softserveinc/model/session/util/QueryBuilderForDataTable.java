@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * all needed data for dataTable and query for getting count of found objects.
  *
  */
-public abstract class QueryBuilderForDataTable implements SQLCommandConstants {
+public abstract class QueryBuilderForDataTable {
 
 	private static Logger log = LoggerFactory.getLogger(QueryBuilderForDataTable.class);
 
@@ -67,6 +67,7 @@ public abstract class QueryBuilderForDataTable implements SQLCommandConstants {
 		if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
 			appendQueryPartHaving();
 		}
+		sbForDataTable.append(')');
 		log.info("Query for getting Books for dataTable created == {}", sbForDataTable.toString());
 		return sbForDataTable.toString();
 	}

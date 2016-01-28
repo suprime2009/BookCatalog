@@ -24,7 +24,5 @@ public interface AuthorHomeLocal extends IHome<Author> {
 	 *            of Author to delete
 	 */
 	void bulkRemove(List<Author> list);
-	
-	public void print(Author author);
 
 }

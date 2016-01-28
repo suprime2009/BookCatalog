@@ -141,14 +141,4 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote, SQLC
 		}
 	}
 
-	@Override
-	public int findCountBooksByRating(int rating) {
-		String qu = "select COUNT(distinct r.book) from Review  r group by r.book having floor(avg(r.rating))= "
-				+ rating;
-		Query query = entityManager.createQuery(qu);
-		List<Integer> result = (List<Integer>) query.getResultList();
-
-		return result.size();
-	}
-
 }

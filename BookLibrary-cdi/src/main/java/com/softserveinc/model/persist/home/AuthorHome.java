@@ -37,7 +37,7 @@ public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 
 	@PersistenceContext(unitName = PERSISTANCE_UNIT_PRIMARY)
 	private EntityManager entityManager;
-	
+
 	@EJB
 	AuthorHomeLocal authorHome;
 
@@ -65,31 +65,15 @@ public class AuthorHome implements AuthorHomeLocal, AuthorHomeRemote {
 		return results;
 	}
 
-	
 	public Author findByID(String id) {
-		
+
 		Author object = entityManager.find(Author.class, id);
 		if (object == null) {
 			log.error("By id {} nothing found.", id);
 		} else {
 			log.info("Entity {} has been successfully found by id = {}", object, id);
 		}
-		authorHome.print(object);
-//		Query query = entityManager.createQuery("select a from Author a where a.idAuthor like '" + id +"'");
-//		Author object = (Author) query.getSingleResult();
 		return object;
-	}
-	
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public void print(Author author) {
-		System.out.println("PRINT!!!");
-		System.out.println("PRINT!!!");
-		System.out.println("PRINT!!!");
-		System.out.println("PRINT!!!");
-		for (Book b : author.getBooks()) {
-			System.out.println(b);
-		}
-		System.out.println(author.getBooks());
 	}
 
 	@Override

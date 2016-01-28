@@ -25,7 +25,7 @@ import java.util.UUID;
 		@NamedQuery(name = Author.FIND_AUTHOR_BY_FULL_NAME, query = "SELECT DISTINCT a FROM Author a WHERE a.firstName LIKE :fn AND a.secondName LIKE :sn"),
 		@NamedQuery(name = Author.BULK_REMOVE, query = "DELETE FROM Author a WHERE a IN :list"),
 		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"),
-		@NamedQuery(name = Author.FIND_AUTHOR_RATING, query = "SELECT AVG(r.rating) FROM Author a LEFT JOIN a.books b LEFT JOIN b.reviews r WHERE a = :author"),
+		@NamedQuery(name = Author.FIND_AUTHOR_RATING, query = "SELECT ROUND(AVG(r.rating),2) FROM Author a LEFT JOIN a.books b LEFT JOIN b.reviews r WHERE a = :author"),
 		@NamedQuery(name = Author.FIND_AUTHORS_BY_LIST_ID, query = "SELECT a FROM Author a WHERE a.idAuthor IN :list "),
 		@NamedQuery(name = Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE, query = "SELECT CONCAT(a.secondName, ' ', a.firstName) FROM Author a WHERE a.secondName LIKE :sn or a.firstName LIKE :sn")})
 public class Author implements Serializable {

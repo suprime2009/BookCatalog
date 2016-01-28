@@ -18,6 +18,7 @@ public interface SQLCommandConstants {
 	public static final String ORDER_BY =" ORDER BY ";
 	public static final String AND =" AND ";
 	public static final String OR =" OR ";
+	public static final String IN =" IN ";
 	public static final String LIKE =" LIKE ";
 	public static final String DESC =" DESC ";
 	public static final String ASC =" ASC ";
@@ -27,6 +28,7 @@ public interface SQLCommandConstants {
 	public static final String FLOOR =" FLOOR";
 	public static final String FORMAT =" FORMAT";
 	public static final String DISTINCT =" DISTINCT ";
+	public static final String ROUND =" ROUND ";
 	
 	
 	//Personal alias for Book, Author, Review and rating
@@ -35,13 +37,16 @@ public interface SQLCommandConstants {
 	public static final String R =" r";
 	public static final String RAT =" rat ";
 	public static final String COMMA = ", ";
+	public static final String EQUAL = " = ";
 	
 	
 	//String templates
-	public static final String LIKE_TEMPLATE = "LIKE '%s%%' ";
+	public static final String LIKE_TEMPLATE = " LIKE '%s%%' ";
 	public static final String AGREGATE_FUNC_TEMPLATE = " %s(%s.%s) ";
 	public static final String AGREGATE_FUNC_DISTINCT_TEMPLATE = " %s( DISTINCT %s) ";
 	public static final String FIELD_TEMPLATE = " %s.%s ";
+	public static final String FLOOR_TEMPLATE = " FLOOR(AVG(%s.%s)) ";
+	public static final String ROUND_AVG_TEMPLATE_TO_TWO_DIGITS = " ROUND(AVG(%s.%s), 2) ";
 	
 	
 

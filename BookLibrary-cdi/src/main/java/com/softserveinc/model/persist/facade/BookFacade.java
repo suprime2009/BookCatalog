@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
@@ -23,33 +24,34 @@ import com.softserveinc.model.persist.entity.Book;
 import com.softserveinc.model.persist.entity.BookFieldHolder;
 import com.softserveinc.model.persist.entity.EntityFieldHolder;
 import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.model.persist.entity.ReviewFieldHolder;
 import com.softserveinc.model.persist.home.BookHomeLocal;
 import com.softserveinc.model.session.util.DataTableSearchHolder;
 import com.softserveinc.model.session.util.SQLCommandConstants;
 import com.softserveinc.model.session.util.QueryBuilderForDataTable;
 
 /**
- * BookFacade class is an implementation facade operations for Book entity. This
- * class is @Stateless.
+ * The {@code BookFacade} class is an implementation facade (read) operations
+ * for {@link Book} entity. This class is @Stateless.
  *
  */
 @Stateless
-public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommandConstants {
+public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 
 	private static Logger log = LoggerFactory.getLogger(BookFacade.class);
 
-	@PersistenceContext(unitName = "primary")
-	public EntityManager entityManager;
+	@PersistenceContext(unitName = PERSISTANCE_UNIT_PRIMARY)
+	private EntityManager entityManager;
 
 	@EJB
-	BookHomeLocal bookHomeLocal;
+	private BookHomeLocal bookHomeLocal;
 
 	public BookFacade() {
 	}
 
 	@Override
 	public List<Book> findBookByName(String name) {
-		Query query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME);
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME, Book.class);
 		query.setParameter("nam", name);
 		List<Book> list = (List<Book>) query.getResultList();
 		log.info("By book name= {} has been found books. Count books= {}", name, list.size());
@@ -58,32 +60,24 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 
 	@Override
 	public Book findBookByISNBN(String isbn) {
-		Query query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_ISNBN);
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_ISNBN, Book.class);
 		query.setParameter("isb", isbn);
 		Book object = null;
 		try {
 			object = (Book) query.getSingleResult();
 		} catch (NoResultException e) {
+			log.error("By {} no one book finded.", isbn);
 			return null;
 		}
-		log.info("By findBookByISNBN: isbn book number= {} has been found Book= {}", isbn, object);
+		log.info("The method done. By {} has been found Book= {}", isbn, object);
 		return object;
 	}
 
 	@Override
-	public List<Book> findBooksByPublisher(String publisher) {
-		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_PUBLISHER);
-		query.setParameter("pub", publisher);
-		List<Book> list = (List<Book>) query.getResultList();
-		log.info("By book publisher name= {} has been found books." + " Count books={} ", publisher, list.size());
-		return list;
-	}
-
-	@Override
 	public List<Book> findBooksByAuthor(Author author) {
-		Query query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_AUTHOR);
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_AUTHOR, Book.class);
 		query.setParameter("auth", author);
-		List<Book> list = (List<Book>) query.getResultList();
+		List<Book> list = query.getResultList();
 		log.info("By author={} has been found {} books", author, list.size());
 		return list;
 	}
@@ -91,78 +85,121 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	@Override
 	public Book findById(String id) {
 		Book book = bookHomeLocal.findByID(id);
-		// Preconditions.checkArgument(book == null, "Passed id is not present
-		// in database.");
-		log.info("By id={} has been found Book=={}", id, book);
+		if (book == null) {
+			log.error("By id={} nothing finded.", id);
+		} else {
+			log.info("By id={} has been found Book=={}", id, book);
+		}
 		return book;
 	}
 
 	@Override
 	public List<Book> findAll() {
 		List<Book> books = bookHomeLocal.findAll();
-		log.info("Has been found {} books", books.size());
+		log.info("The method done. Has been found {} books", books.size());
 		return books;
 	}
 
 	@Override
 	public int findCountAllBooks() {
 		Query query = entityManager.createNamedQuery(Book.FIND_COUNT_BOOKS);
-		long count = (long) query.getSingleResult();
-		log.info("Has been found {} books", count);
+		long count;
+		try {
+			count = (long) query.getSingleResult();
+		} catch (NoResultException e) {
+			log.info("Book table in database is empty.");
+			return 0;
+		}
+		log.info("The method done. Has been found {} books", count);
 		return (int) count;
 	}
 
+	/**
+	 * This method is a implementation of {@link IBookFacade} method
+	 * {@linkplain findBooksByBookNameForAutocomplete}. This implementation is
+	 * specific, books returns are limited. Current limits set at 10.
+	 *
+	 */
 	@Override
 	public List<Book> findBooksByBookNameForAutocomplete(String value) {
-		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME);
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOK_BY_NAME, Book.class);
 		if (value == null || value.equals("")) {
 			return new ArrayList<Book>();
 		}
 		query.setParameter("nam", value + '%');
 		query.setMaxResults(10);
-		List<Book> list = query.getResultList();
-		log.info("The metjod done. Has been found {} books.", list.size());
-		return list;
+		List<Book> books = query.getResultList();
+		log.info("The method done. Has been found {} books.", books.size());
+		return books;
 	}
 
 	@Override
 	public List<Book> findBooksByListId(List<String> idForBooks) {
-		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOKS_BY_LIST_ID);
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_LIST_ID, Book.class);
 		query.setParameter("list", idForBooks);
 		List<Book> books = query.getResultList();
+		log.info("The method finished. Has been found {} books.", books.size());
 		return books;
 	}
 
 	@Override
 	public List<Book> findBooksByRating(Integer rating) {
-		TypedQuery<Book> query = (TypedQuery<Book>) entityManager.createNamedQuery(Book.FIND_BOOKS_BY_RATING);
+		if (rating != null && rating > 5 || rating < 1) {
+			String errorMessage = "Rating must be in range between 1 and 5.";
+			log.error(errorMessage);
+			throw new IllegalArgumentException(errorMessage);
+		}
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_BOOKS_BY_RATING, Book.class);
 		query.setParameter("rat", rating);
 		List<Book> books = query.getResultList();
+		log.info("The method finished. By rating = {} has been found {} books.", rating, books.size());
 		return books;
+	}
+
+	@Override
+	public Integer findCountBooksByRating(Integer rating) {
+		if (rating == null) {
+			return null;
+		}
+		if (rating > 5 || rating < 1) {
+			String errorMessage = "Rating must be in range between 1 and 5.";
+			log.error(errorMessage);
+			throw new IllegalArgumentException(errorMessage);
+		}
+		Query query = entityManager.createQuery(Book.FIND_COUNT_BOOKS_BY_RATING);
+		query.setParameter("rat", rating);
+		long result;
+		try {
+			result = (long) query.getSingleResult();
+			log.info("The method done. Has been found {} books.", result);
+		} catch (NoResultException e) {
+			log.info("The method done. For rating {} no books found", rating);
+			return 0;
+		}
+		return (int) result;
 	}
 
 	@Override
 	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
 
-		String createdQuery = new BookQueryBuilderForDataTable().getCountObjectsQuery(dataTableSearchHolder);
+		Query query = entityManager
+				.createQuery(new BookQueryBuilderForDataTable().getCountObjectsQuery(dataTableSearchHolder));
+		long result;
+		try {
+			result = (long) query.getSingleResult();
+			log.info("The method done, that took {} milliseconds. Has been found {} books.",
+					(System.currentTimeMillis() - start), result);
 
-		Query query = entityManager.createQuery(createdQuery);
-		long count;
-		// if
-		// (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING))
-		// {
-		List<Long> findedValues = query.getResultList();
-		count = findedValues.size();
-		// } else {
-		// count = (long) query.getSingleResult();
-		// }
-		log.info("Method done, that took {} milliseconds. Has been found {} books.",
-				(System.currentTimeMillis() - start), count);
-		return (int) count;
+		} catch (NoResultException e) {
+			log.info("The method done. For current dataTable requirements = {}, no books found", dataTableSearchHolder);
+			return 0;
+		}
+		return (int) result;
 	}
 
 	@Override
+
 	public List<Book> findBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
 		log.debug("The method starts. Passed value for method = {}", dataTableSearchHolder);
@@ -177,6 +214,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		List<Book> books = new ArrayList<Book>();
 		for (Object[] o : result) {
 			Book book = (Book) o[0];
+
 			Double rating = (Double) o[1];
 			if (rating == null) {
 				rating = 0.0;
@@ -184,7 +222,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 			book.setRating(rating);
 			books.add(book);
 		}
-		log.info("Method done, that took {} milliseconds. Has been found {} books.",
+		log.info("The method done, that took {} milliseconds. Has been found {} books.",
 				(System.currentTimeMillis() - start), books.size());
 
 		return books;
@@ -195,24 +233,30 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 	 * and class is a query builder for {@code ManageBooks} DataTables (table
 	 * for managing {@link Book} instances).
 	 */
-	class BookQueryBuilderForDataTable extends QueryBuilderForDataTable {
+	class BookQueryBuilderForDataTable extends QueryBuilderForDataTable implements SQLCommandConstants {
 
 		@Override
 		protected void appendQueryPartSelectCountObjects() {
-			sbForDataTable.append(SELECT).append(String.format(AGREGATE_FUNC_DISTINCT_TEMPLATE, COUNT, B));
+			sbForDataTable.append(SELECT)
+					.append(String.format(AGREGATE_FUNC_TEMPLATE, COUNT, B, BookFieldHolder.ID.getBusinessView()))
+					.append(FROM).append(Book.class.getName()).append(B).append(WHERE)
+					.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.ID.getBusinessView())).append(IN)
+					.append('(').append(SELECT)
+					.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.ID.getBusinessView()));
+
 		}
 
 		@Override
 		protected void appendQueryPartSelectObjects() {
-			sbForDataTable.append(SELECT).append(B).append(COMMA)
-					.append(String.format(AGREGATE_FUNC_TEMPLATE, AVG, R, BookFieldHolder.RATING.getBusinessView()))
+			sbForDataTable.append(SELECT).append(B).append(COMMA).append(
+					String.format(ROUND_AVG_TEMPLATE_TO_TWO_DIGITS, R, BookFieldHolder.RATING.getBusinessView()))
 					.append(AS).append(RAT);
 		}
 
 		@Override
 		protected void appendQueryPartFrom() {
 			sbForDataTable.append(FROM).append(Review.class.getName()).append(R).append(RIGHT_JOIN)
-					.append((String.format(FIELD_TEMPLATE, R, "book"))).append(B);
+					.append((String.format(FIELD_TEMPLATE, R, ReviewFieldHolder.BOOK.getBusinessView()))).append(B);
 			if ((dataTableSearchHolder.getSortColumn() != null)
 					&& (dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.AUTHORS))
 					|| (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.AUTHORS))) {
@@ -264,9 +308,9 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote, SQLCommand
 		protected void appendQueryPartHaving() {
 			if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
 				int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING));
-				sbForDataTable.append(HAVING).append(FLOOR + '(')
-						.append(String.format(AGREGATE_FUNC_TEMPLATE, AVG, R, BookFieldHolder.RATING.getBusinessView()))
-						.append(") = ").append(value);
+				sbForDataTable.append(HAVING)
+						.append(String.format(FLOOR_TEMPLATE, R, BookFieldHolder.RATING.getBusinessView()))
+						.append(EQUAL).append(value);
 			}
 		}
 

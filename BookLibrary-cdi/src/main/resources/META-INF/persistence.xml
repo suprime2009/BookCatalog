@@ -20,7 +20,7 @@
 
 	</persistence-unit>
 	
-<!--
+
 	    <persistence-unit name="maintest" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.softserveinc.model.persist.entity.Author</class>
@@ -37,7 +37,7 @@
         </properties>
 
     </persistence-unit>  
-  -->
+
 
 	
 </persistence>

@@ -20,7 +20,7 @@ import java.util.UUID;
 @NamedQueries({
 @NamedQuery(name = Review.FIND_ALL_REVIEWS, query="SELECT r FROM Review r"),
 @NamedQuery(name = Review.FIND_ALL_REVIEWS_BY_COMMENTER_NAME, query="SELECT r FROM Review r WHERE r.commenterName like :par"),
-@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT AVG(r.rating) FROM Review r WHERE r.book.idBook LIKE :par"),
+@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT ROUND(AVG(r.rating),2) FROM Review r WHERE r.book.idBook LIKE :par"),
 @NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_DESC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate DESC"),
 @NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_ASC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate ASC"),
 @NamedQuery(name = Review.FIND_COUNT_REVIEWS_FOR_BOOK, query="SELECT  COUNT(DISTINCT r) FROM Review r WHERE r.book.idBook LIKE :par"),

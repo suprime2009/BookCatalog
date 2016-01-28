@@ -47,13 +47,6 @@ public class BookFacadeTest extends BaseTest {
 	}
 	
 	@Test
-	public void testFindBooksByPublisher() {
-		List<Book> list = bookFacadeRemote.findBooksByPublisher("England");
-		assertNotNull(list);
-		assertEquals(list.size(), 2);
-	}
-	
-	@Test
 	public void testFindBookByName() {
 		List<Book> list = bookFacadeRemote.findBookByName("Java Core");
 		

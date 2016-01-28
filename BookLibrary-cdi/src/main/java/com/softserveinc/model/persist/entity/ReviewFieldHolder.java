@@ -1,27 +1,26 @@
 package com.softserveinc.model.persist.entity;
 
-public enum ReviewFieldHolder implements EntityFieldHolder{
-	
-	RATING("rating", "Rating");
+public enum ReviewFieldHolder implements EntityFieldHolder {
+
+	ID("idreview", "idreview"), RATING("rating", "Rating"), BOOK("book", "Book"), CREATED("createdDate",
+			"Created: "), COMMENT("comment", "Comment"), COMMENTER_NAME("commenterName", "Commenter name");
 
 	private String BUSINESS_VIEW;
 	private String UI_VIEW;
-	
+
 	private ReviewFieldHolder(String businessView, String uIView) {
 		this.BUSINESS_VIEW = businessView;
 		this.UI_VIEW = uIView;
 	}
-	
+
 	@Override
 	public String getBusinessView() {
-		// TODO Auto-generated method stub
-		return null;
+		return BUSINESS_VIEW;
 	}
 
 	@Override
 	public String getUIView() {
-		// TODO Auto-generated method stub
-		return null;
+		return UI_VIEW;
 	}
 
 }

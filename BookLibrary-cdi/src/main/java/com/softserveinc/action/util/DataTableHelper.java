@@ -102,7 +102,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 *            EntityConstant
 	 */
 	public void toggleSort(EntityFieldHolder constant) {
-		log.error("toggleSort");
 		sortProperty = constant;
 		for (Entry<EntityFieldHolder, SortOrder> entry : sortOrders.entrySet()) {
 			SortOrder newOrder;
@@ -123,25 +122,24 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	/**
-	 * Method gathers current requirements for dataTable.
+	 * Method gathers current requirements for dataTable as like sorting (field
+	 * for sorting and sort order), filtering (fields and values) and pagination
+	 * (first row and page size). Method returns {@link DataTableSearchHolder},
+	 * that is a DTO holder for current requirements for dataTable.
 	 * 
 	 * @return DataTableSearchHolder instance.
 	 */
 	protected DataTableSearchHolder getCurrentRequirementsForDataTable() {
-
 		deleteEmptyFilterValues();
-
-		DataTableSearchHolder datatableSearchHolder = new DataTableSearchHolder(getFirstRow(), getRowsPerPage(),
-				sortProperty, null, filterValues);
-		if (sortProperty != null) {
-			if (sortProperty.equals(SortOrder.ascending)) {
-				datatableSearchHolder.setSortOrder(" ASC ");
+		String sortorder = null;
+		if (sortOrders.get(sortProperty) != null) {
+			if (sortOrders.get(sortProperty).equals(SortOrder.ascending)) {
+				sortorder = " ASC ";
 			} else {
-				datatableSearchHolder.setSortOrder(" DESC ");
+				sortorder = " DESC ";
 			}
 		}
-
-		return datatableSearchHolder;
+		return new DataTableSearchHolder(getFirstRow(), getRowsPerPage(), sortProperty, sortorder, filterValues);
 	}
 
 	/**
@@ -177,7 +175,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 			if (wrapp.isSelected()) {
 				listEntitiesToDelete.add((T) wrapp);
 			}
-
 		}
 	}
 

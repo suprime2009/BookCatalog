@@ -1,7 +1,6 @@
 package com.softserveinc.model.persist.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public enum AuthorFieldHolder implements EntityFieldHolder {
 	ID("idAuthor", "idAuthor"), CREATED_DATE("createdDate", "Created date"), FIRST_NAME("firstName",

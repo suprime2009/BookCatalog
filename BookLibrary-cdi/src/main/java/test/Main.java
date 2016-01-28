@@ -50,8 +50,13 @@ public class Main implements SQLCommandConstants{
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("maintest");
 		EntityManager em = emf.createEntityManager();
-//
-//		
+
+		
+		String q = "SELECT COUNT(b) FROM Book b WHERE b.idBook IN (SELECT b.idBook FROM Review r RIGHT JOIN r.book  b WHERE b.publisher  LIKE 'u%'  GROUP BY  b HAVING  FLOOR(AVG( r.rating))  = 3)";
+		Query query = em.createQuery(q);
+		long a = (long) query.getSingleResult();
+		System.out.println(a);
+
 //		String qu = "SELECT a, COUNT(distinct b), COUNT(distinct r), AVG(r.rating) from Author a left join a.books b left join b.reviews r "
 //				+ " group by a having COUNT(distinct b) >5";
 //		Query query = em.createQuery(qu);
@@ -87,17 +92,17 @@ public class Main implements SQLCommandConstants{
 //		for (int i : list3) {
 //			System.out.println(i);
 //		}
-		Book book = em.find(Book.class, "b38");
-		System.out.println(book);
-		ObjectWriter ow = new ObjectMapper().writer().forType(Book.class);
-		String json = ow.writeValueAsString(book);
-		System.out.println(json);
-		
-		
-		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
-	
-		Book book1 = or.readValue(json);
-		System.out.println(book1);
+//		Book book = em.find(Book.class, "b38");
+//		System.out.println(book);
+//		ObjectWriter ow = new ObjectMapper().writer().forType(Book.class);
+//		String json = ow.writeValueAsString(book);
+//		System.out.println(json);
+//		
+//		
+//		ObjectReader or = new ObjectMapper().reader().forType(Book.class);
+//	
+//		Book book1 = or.readValue(json);
+//		System.out.println(book1);
 		
 
 		}

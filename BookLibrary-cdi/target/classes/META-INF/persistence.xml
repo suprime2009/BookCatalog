@@ -20,11 +20,12 @@
 
 	</persistence-unit>
 	
-
+<!-- 
 	    <persistence-unit name="maintest" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.softserveinc.model.persist.entity.Author</class>
-          <class>com.softserveinc.model.persist.entity.Book</class>
+        <class>com.softserveinc.booklibrary.model.entity.Author</class>
+          <class>com.softserveinc.booklibrary.model.entity.Book</class>
+          <class>com.softserveinc.booklibrary.model.entity.Review</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -38,6 +39,6 @@
 
     </persistence-unit>  
 
-
+ -->
 	
 </persistence>

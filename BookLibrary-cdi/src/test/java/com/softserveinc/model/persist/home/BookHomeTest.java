@@ -1,19 +1,20 @@
 package com.softserveinc.model.persist.home;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 import org.testng.annotations.Test;
 
-import com.softserveinc.model.persist.entity.Author;
-import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.booklibrary.model.entity.Author;
+import com.softserveinc.booklibrary.model.entity.Book;
+import com.softserveinc.booklibrary.model.entity.Review;
 import com.softserveinc.model.util.BaseTest;
 import com.softserveinc.model.util.DataBaseConstants;
 

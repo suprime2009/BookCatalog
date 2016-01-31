@@ -19,6 +19,7 @@
 
 <f:metadata>
     <f:viewAction action="#{bookDetailAction.loadBook}"/>
+    <f:viewAction action="#{editBookAction.loadBookForEdit()}"/>
 </f:metadata>
 	
 	
@@ -26,11 +27,9 @@
 
 <!-- navigation panel  -->
 <ui:decorate template="templates/naviOnDetailPageTemplate.xhtml">
-<ui:define name="btmEdit">
-<h:commandButton  styleClass="naviBtm" action="#{bookDetail}" value="Edit book" />
-</ui:define>
+
 <ui:define name="btmDelete">
-<a4j:commandButton styleClass="naviBtm" value="Delete book"  render="confirmDelete" oncomplete="#{rich:component('confirmDelete')}.show()" >
+<a4j:commandButton styleClass="naviBtm" value="Delete book"  render="confirmDelete" oncomplete="#{rich:component('confirmDeleteBook')}.show()" >
 <a4j:param value="#{bookDetailAction.book.idBook}" assignTo="#{manageBookAction.idEntityToDelete}" />
 </a4j:commandButton>
 </ui:define>
@@ -40,7 +39,10 @@
 </ui:decorate>
 
 <!-- book detail information -->
-<rich:panel styleClass="standartPanel">
+<rich:tabPanel  switchType="client" id="tp" activeItem="#{bookDetailAction.tabIdToAction}"  headerPosition="top" styleClass="standartPanel"  >
+     
+<rich:tab id="bookDetailTab"  header="Book details" rendered="#{not facesContext.validationFailed}">
+	<rich:panel id="bookDetailsPanel" styleClass="standartPanel">
 		<f:facet name="header" >
 			<h:outputText value="Book details" styleClass="labelH2" />
 			<h:outputLabel styleClass="label" value="AverageRating: " for="averageRating"  style=" margin-left:60%;" />
@@ -54,8 +56,8 @@
 					<h:outputText value="#{bookDetailAction.book.publisher}"></h:outputText>
 				<h:outputLabel value="ISBN Number: " />
 					<h:outputText value="#{bookDetailAction.book.isbn}"></h:outputText>
-				<h:outputLabel value="Year published : " />
-					<h:outputText value="#{bookDetailAction.book.yearPublished}"></h:outputText>
+				<h:outputLabel value="Year published : " rendered="#{not empty bookDetailAction.book.yearPublished}" />
+					<h:outputText value="#{bookDetailAction.book.yearPublished}" rendered="#{not empty bookDetailAction.book.yearPublished}" />
 			</h:panelGrid>
 		</div>
 		
@@ -67,25 +69,76 @@
 					</h:link>
 				</rich:list>
 		</div>
-</rich:panel>
+	</rich:panel>
+ </rich:tab>
+ 
+ <!-- edit book tab -->
+ <rich:tab id="editBookTab" header="Edit book" >
+ 	 <h:form>
+	<rich:panel id="editBookPanel" style="  min-height:200px; ">
+		<f:facet name="header" >
+			<h:outputText value="Edit book" styleClass="labelH2" />
+		</f:facet>
+	<div class="basicAttributesStyle" style="float: left; width: 70%;">
+ 		<ui:decorate template="inserts/inputsBookCreate.xhtml">
+			<ui:param name="bean" value="#{editBookAction}" />
+ 			<ui:define name="addAuthor">
+				<h:outputLabel value="Author: " />
+				<rich:autocomplete id="autoCompleteAuthor"  mode="ajax" tokens=", " minChars="1" style="width:200px;"  value="#{editBookAction.authorFullName}" autofill="false"
+        	    	autocompleteMethod="#{editBookAction.autocomplete}" />
+   				<a4j:commandLink id="addAuthorBtm" action="#{editBookAction.checkIfAuthorExist()}" execute="autoCompleteAuthor" render="listAuthors" >
+   					<h:graphicImage value="/resources/images/add.gif" alt="add" />
+   				</a4j:commandLink>
+			</ui:define>
+		</ui:decorate>
+    <rich:message for="addAuthorBtm" ajaxRendered="true" showSummary="true" showDetail="false" />
+	</div>
+		
+	<div class="labelH1" style="float: right; width: 30%; ">
+	<h:outputLabel value="Authors: "  />
+		<rich:list type="ordered" id="listAuthors"  value="#{editBookAction.authors}" var="author" >
+			<h:outputText value="#{author.firstName} #{author.secondName}  " />
+			<h:commandLink   actionListener="#{editBookAction.removeAuthor}">
+				<f:ajax execute="listAuthors"  render="listAuthors" > </f:ajax>
+				<f:attribute name="secondName" value="#{author.secondName}"></f:attribute>
+				<f:attribute name="firstName" value="#{author.firstName}"></f:attribute>
+				<h:graphicImage value="/resources/images/remove.gif" alt="remove" />
+			</h:commandLink>
+		</rich:list>  
+		</div>
+	</rich:panel>
+	<rich:panel style="margin-left:390px; border:0;" >
+		<a4j:commandButton  styleClass="smallBtm" value="Save" action="#{editBookAction.submit()}" 
+				oncomplete="if (!#{facesContext.validationFailed})" execute="editBookPanel"  render="bookDetailsPanel, notifyMessage" >
+		</a4j:commandButton>
+    	<a4j:commandButton  styleClass="smallBtm" value="Clean" action="#{editBookAction.reset()}" execute="@this" render="editBookPanel"  />
+   </rich:panel>
+   </h:form>
+ </rich:tab>
+</rich:tabPanel>
+
+
+
+
+
+
 
 
 <rich:messages globalOnly="true" style="color:blue"  ></rich:messages>
 
 <!-- Review Data Table -->
  <h:form id="reviewDataTableForm">
-<rich:toolbar  >
+<rich:toolbar id="reviewToolbar"  >
 
 <h:outputLabel value="Reviews" styleClass="labelH2" />
+<rich:toolbarGroup   itemSeparator="line"  location="right" >
+<h:outputText id="countReviews" value="Total count of reviews: #{bookDetailAction.countReviewsForCurrentBook}" style="margin-right:300px;"   />
 
-<rich:toolbarGroup  itemSeparator="line"  location="right" >
-<h:outputText value="Total count of reviews: #{bookDetailAction.countReviewsForCurrentBook}" style="margin-right:300px;"   />
-
-<h:outputLabel  value="Sort: " />
-		<a4j:commandLink action="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewDataTableForm" rendered="#{bookDetailAction.orderStatus == false}"  >
+<h:outputLabel  value="Sort by create date: " />
+		<a4j:commandLink actionListener="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewsDataTable, reviewToolbar" rendered="#{bookDetailAction.orderStatus == false}"  >
 		<h:graphicImage value="/resources/images/up.gif" alt="ascending" />
 		</a4j:commandLink>
-		<a4j:commandLink action="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewDataTableForm" rendered="#{bookDetailAction.orderStatus}"  >
+		<a4j:commandLink actionListener="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewsDataTable, reviewToolbar" rendered="#{bookDetailAction.orderStatus}"  >
 		<h:graphicImage value="/resources/images/down.gif" alt="descending" />
 		</a4j:commandLink>
 
@@ -101,14 +154,16 @@
 		<ui:param name="comment" value="comment" />
 		<ui:param name="rating" value="rating" />
 		<ui:param name="idreview" value="idreview" />
-		<rich:dataGrid  id="reviewsDataTable" value="#{bookDetailAction.dataModel}" var="record"  columns="1" elements="6" style="width:100%;" border="0"   >
-  			<rich:column >
+		<rich:dataGrid  id="reviewsDataTable" value="#{bookDetailAction.dataModel}"  var="record" columns="1" elements="3" style="width:100%;" border="0"  > 
+		
+  			<rich:column  >
   			<rich:panel bodyClass="panel_body"  >
   			<f:facet name="header" >
   			<h:outputLabel value="Created: " for="createdDate" styleClass="labelH3" />
    				<h:outputText id="createdDate" value="#{record[created]}" styleClass="labelH3" converter="CreateDateConverter"  />
    				<div style="float:right;">
-   				<a4j:commandLink style="margin-right:30px;" execute="@this" actionListener="#{bookDetailAction.loadReviewForUpdate(record[idreview])}"
+   				<a4j:commandLink id="updateReviewBtm" style="margin-right:30px;" limitRender="true" execute="@this" 
+   					actionListener="#{bookDetailAction.loadReviewForUpdate(record[idreview])}"
 					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()">
 					 <f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="false" />
 					<h:graphicImage value="/resources/images/edit.png" alt="edit"  />
@@ -137,25 +192,20 @@
 	 		</rich:panel>
 	 		</rich:column>
 		<f:facet name="footer">
-  				<rich:dataScroller id="scroller" fastStep="3"  lastPageMode="full"  />
+  				<rich:dataScroller id="scroller" fastStep="3"   />
 			</f:facet>
-			</rich:dataGrid>
-  				
- 				
-	 			
-	 		
-	
-		
-	
-	
-	
-	
+			</rich:dataGrid> 		
+</h:form>
+
+<h:form>
 	<!-- add & edit review popup -->
-	<rich:popupPanel id="addReviewPopUp" header="Leave a comment:" autosized="true" style="min-height:200px; widht:500px;"  domElementAttachment="form" >
+	<rich:popupPanel id="addReviewPopUp" header="Leave a comment:" autosized="true" style="min-height:180px; widht:500px;"  domElementAttachment="form" >
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;">X</h:outputLink>
 	</f:facet>
-
+<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
+	<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
+	<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true" showDetail="false"  />
 	<rich:panel>
 		<h:outputLabel styleClass="label" for="commenterNameInput" value="Your name:" />
 		<h:inputText id="commenterNameInput" value="#{bookDetailAction.review.commenterName}" size="30" required="true" requiredMessage="Your name is required. Please enter your name." />	
@@ -164,17 +214,14 @@
 			<f:validateLongRange maximum="5" minimum="1" ></f:validateLongRange>
 		</h:inputText>
 	</rich:panel>
-	<rich:message for="commentInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
-	<rich:message for="ratingInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
-	<rich:message for="commenterNameInput" ajaxRendered="true"  showSummary="true" showDetail="false"  />
 	<h:inputTextarea style="width:99%; position:relative; resize: none; height:100px;" id="commentInput" value="#{bookDetailAction.review.comment}" required="true" requiredMessage="Empty message is not allowed." />
  	
 
- 	<rich:panel style="position:absolute; bottom:0; left:150px; border:0;">
+ 	<rich:panel style="position:relative; border:0; margin-left:140px; ">
  	<a4j:commandButton styleClass="smallBtm" value="Edit review" action="#{bookDetailAction.submitUpdateReview()}" rendered="#{bookDetailAction.addAction == false}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating" />
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp" render="reviewsDataTable, averageRating, reviewToolbar, notifyMessage" />
 	<a4j:commandButton styleClass="smallBtm" value="Add review" action="#{bookDetailAction.submitCreateReview()}" rendered="#{bookDetailAction.addAction}"
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp"  render="reviewsDataTable, averageRating" />
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('addReviewPopUp')}.hide();" execute="addReviewPopUp"  render="reviewsDataTable, averageRating, reviewToolbar, notifyMessage" />
 	<a4j:commandButton styleClass="smallBtm" value="Cancel" onclick="#{rich:component('addReviewPopUp')}.hide(); return false;" />	
 	</rich:panel>		
 
@@ -183,10 +230,22 @@
 
 
 
+<!-- confirm delete book popup -->
+	<rich:popupPanel header="Confirm delete book" id="confirmDeleteBook" style="width:300px; height:50px; text-align:center;" autosized="true" >
+	<f:facet name="controls">
+	 <h:outputLink value="#" onclick="#{rich:component('confirmDeleteBook')}.hide(); return false;">X</h:outputLink>
+	</f:facet>
+	<h:form>
 
-<ui:include src="inserts/deletePopUps.xhtml" >
-<ui:param name="bean" value="#{manageBookAction}" />
-</ui:include>
+		<h:outputText  value="Are you sure you want to delete this book?" />
+	<rich:panel style="position:absolute; bottom:0; left:60px; border:0;">
+	<a4j:commandButton styleClass="smallBtm" id="deleteAuthorBtm" value="Yes" action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.deleteEntity()}" 
+			execute="@this" render="@none"></a4j:commandButton>
+		<a4j:commandButton styleClass="smallBtm" value="No" render="@none" execute="@this"
+			onclick="#{rich:component('confirmDeleteBook')}.hide(); return false;" />
+	</rich:panel>
+		</h:form>
+	</rich:popupPanel>
 
 	
 	
@@ -199,16 +258,15 @@
 
 		<h:outputText  value="Are you sure you want to delete this review?" />
 	<rich:panel style="position:absolute; bottom:0; left:60px; border:0;">
-		<h:commandButton styleClass="smallBtm" id="deleteReviewBtm" value="Yes">
-			<f:ajax event="click" listener="#{bookDetailAction.submitDeleteReview()}"
-				onevent="#{rich:component('confirmDeleteReview')}.hide()" execute="confirmDeleteReview" render="reviewDataTableForm"></f:ajax>
-		</h:commandButton>
+		<a4j:commandButton styleClass="smallBtm" id="deleteReviewBtm" value="Yes" action="#{bookDetailAction.submitDeleteReview()}" 
+		oncomplete="#{rich:component('confirmDeleteReview')}.hide()" execute="confirmDeleteReview"  render="reviewsDataTable, averageRating, reviewToolbar, notifyMessage" />
 		<a4j:commandButton styleClass="smallBtm" value="No" render="@none" execute="@this"
 			onclick="#{rich:component('confirmDeleteReview')}.hide(); return false;" />
 	</rich:panel>
 		</h:form>
 	</rich:popupPanel>
 	
+
 
 
 <h:outputStylesheet>

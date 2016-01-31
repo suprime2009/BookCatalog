@@ -16,7 +16,7 @@
 		</rich:toolbarGroup>
  
 		<rich:toolbarGroup location="right">
-			<h:commandButton value="Filter" styleClass="regularBtm" >
+			<h:commandButton id="filterDataTable" value="Filter" styleClass="regularBtm" >
 				<f:ajax event="click" listener="#{bean.searchAction()}"  execute="@form" render="@form"></f:ajax>
 			</h:commandButton>
 

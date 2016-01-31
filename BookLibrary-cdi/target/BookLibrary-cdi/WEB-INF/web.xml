@@ -6,7 +6,7 @@
 
 	<filter>
 		<filter-name>ConnectionFilter</filter-name>
-		<filter-class>com.softserveinc.model.session.util.ConnectionFilter</filter-class>
+		<filter-class>com.softserveinc.booklibrary.session.util.ConnectionFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>ConnectionFilter</filter-name>

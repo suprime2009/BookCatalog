@@ -10,14 +10,15 @@
 	<h:head>
 	</h:head>
 	<rich:column>
-	<a4j:commandLink  actionListener="#{editBookAction.loadBookForEdit}"  oncomplete="#{rich:component('editBookPopUp')}.show()" render="editBookPopUp" execute="@this" >
-		<f:attribute name="bookId" value="#{propertyId}" />
-		<h:graphicImage value="/resources/images/edit1.png" alt="edit" />
-		</a4j:commandLink>
+	<h:link    outcome="#{navigationAction.moveToBookDetailPage()}" >
+		<f:param name="idBook" value="#{bookWrapper.book.idBook}"></f:param>
+		<f:param name="action" value="edit" />
+		<h:graphicImage value="/resources/images/edit.png" alt="edit" />
+		</h:link>
 		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this"
 			render="confirmDelete" oncomplete="#{rich:component('confirmDelete')}.show()">
 			<a4j:param value="#{propertyId}" assignTo="#{bean.idEntityToDelete}" />
-			<h:graphicImage value="/resources/images/delete1.png" alt="delete" />
+			<h:graphicImage value="/resources/images/delete.png" alt="delete" />
 		</a4j:commandLink>
 		
 	</rich:column>

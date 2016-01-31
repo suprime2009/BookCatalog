@@ -1,38 +1,15 @@
 package test;
 
 import java.io.IOException;
-import java.text.Format;
-import java.util.ArrayList;
-import java.util.Formatter;
-import java.util.List;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
-
-import org.apache.commons.collections.ListUtils;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationConfig;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.base.Optional;
-import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
-import com.softserveinc.model.persist.entity.Author;
-import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.facade.BookFacade;
-import com.softserveinc.model.persist.home.BookHome;
-import com.softserveinc.model.session.util.ReviewRatingFieldsEnum;
-import com.softserveinc.model.session.util.SQLCommandConstants;
+import com.softserveinc.booklibrary.session.util.SQLCommandConstants;
+
 
 public class Main implements SQLCommandConstants{
 	
@@ -52,7 +29,7 @@ public class Main implements SQLCommandConstants{
 		EntityManager em = emf.createEntityManager();
 
 		
-		String q = "SELECT COUNT(b) FROM Book b WHERE b.idBook IN (SELECT b.idBook FROM Review r RIGHT JOIN r.book  b WHERE b.publisher  LIKE 'u%'  GROUP BY  b HAVING  FLOOR(AVG( r.rating))  = 3)";
+		String q = "SELECT COUNT(b) FROM Book b WHERE b.idBook IN (SELECT b.idBook FROM Review r RIGHT JOIN r.book  b  GROUP BY  b HAVING  FLOOR(AVG( r.rating))  = 3)";
 		Query query = em.createQuery(q);
 		long a = (long) query.getSingleResult();
 		System.out.println(a);

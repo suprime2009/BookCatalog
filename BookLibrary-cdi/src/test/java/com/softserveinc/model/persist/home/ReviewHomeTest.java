@@ -1,16 +1,14 @@
 package com.softserveinc.model.persist.home;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.hibernate.jpa.boot.archive.spi.ArchiveException;
 import org.testng.annotations.Test;
 
-import com.softserveinc.exception.BookCatalogException;
-import com.softserveinc.model.persist.entity.Book;
-import com.softserveinc.model.persist.entity.Review;
+import com.softserveinc.booklibrary.model.entity.Book;
+import com.softserveinc.booklibrary.model.entity.Review;
 import com.softserveinc.model.util.BaseTest;
 import com.softserveinc.model.util.DataBaseConstants;
 

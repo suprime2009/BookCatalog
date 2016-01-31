@@ -3,7 +3,8 @@ package test;
 
 import org.testng.annotations.Test;
 import static org.junit.Assert.*;
-import com.softserveinc.model.persist.dto.AuthorDTO;
+
+import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.model.util.BaseTest;
 import com.softserveinc.model.util.DataBaseConstants;
 

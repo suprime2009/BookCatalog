@@ -5,20 +5,20 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-import com.softserveinc.model.persist.facade.AuthorFacade;
-import com.softserveinc.model.persist.facade.AuthorFacadeRemote;
-import com.softserveinc.model.persist.facade.BookFacade;
-import com.softserveinc.model.persist.facade.BookFacadeRemote;
-import com.softserveinc.model.persist.facade.ReviewFacade;
-import com.softserveinc.model.persist.facade.ReviewFacadeRemote;
-import com.softserveinc.model.persist.home.AuthorHome;
-import com.softserveinc.model.persist.home.AuthorHomeRemote;
-import com.softserveinc.model.persist.home.BookHome;
-import com.softserveinc.model.persist.home.BookHomeRemote;
-import com.softserveinc.model.persist.home.ReviewHome;
-import com.softserveinc.model.persist.home.ReviewHomeRemote;
-import com.softserveinc.rest.client.AuthorClient;
-import com.softserveinc.rest.client.AuthorClientRemote;
+import com.softserveinc.booklibrary.rest.client.AuthorClient;
+import com.softserveinc.booklibrary.rest.client.AuthorClientRemote;
+import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeRemote;
+import com.softserveinc.booklibrary.session.persist.facade.BookFacadeRemote;
+import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeRemote;
+import com.softserveinc.booklibrary.session.persist.facade.impl.AuthorFacade;
+import com.softserveinc.booklibrary.session.persist.facade.impl.BookFacade;
+import com.softserveinc.booklibrary.session.persist.facade.impl.ReviewFacade;
+import com.softserveinc.booklibrary.session.persist.home.AuthorHomeRemote;
+import com.softserveinc.booklibrary.session.persist.home.BookHomeRemote;
+import com.softserveinc.booklibrary.session.persist.home.ReviewHomeRemote;
+import com.softserveinc.booklibrary.session.persist.home.impl.AuthorHome;
+import com.softserveinc.booklibrary.session.persist.home.impl.BookHome;
+import com.softserveinc.booklibrary.session.persist.home.impl.ReviewHome;
 
 /**
  * This abstract class extends for test class. Class has two method which runs

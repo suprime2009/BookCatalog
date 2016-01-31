@@ -12,6 +12,7 @@
           <include name="testDeleteBook"/>
           <include name="testFindByIdBook"/>
           <include name="getRemoteBeans"/>
+          <include name="testUpdateBook"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

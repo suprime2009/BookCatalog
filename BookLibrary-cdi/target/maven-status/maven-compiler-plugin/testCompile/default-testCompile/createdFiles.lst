@@ -1,6 +1,7 @@
 com\softserveinc\model\util\DBUnitConfig.class
 com\softserveinc\model\util\DBUnitHelper.class
 com\softserveinc\model\util\TestHelper.class
+test\ArguliatTest.class
 com\softserveinc\model\util\DataBaseConstants.class
 com\softserveinc\model\persist\facade\ReviewFacadeTest.class
 com\softserveinc\model\persist\home\BookHomeTest.class

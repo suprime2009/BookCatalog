@@ -14,7 +14,7 @@
 			onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
 			<ui:insert name="action">
 		<h:commandButton value="Delete" >
-			<f:ajax event="click" listener="#{bookDetailAction.deleteBook()}"
+			<f:ajax event="click" listener="#{manageBookAction.deleteEntity()}"
 				onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
 		</h:commandButton>
 		</ui:insert>

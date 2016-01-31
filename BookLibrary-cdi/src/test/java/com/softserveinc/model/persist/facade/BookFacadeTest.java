@@ -1,12 +1,13 @@
 package com.softserveinc.model.persist.facade;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 
 import org.testng.annotations.Test;
 
-import com.softserveinc.model.persist.entity.Author;
-import com.softserveinc.model.persist.entity.Book;
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.model.util.BaseTest;
 
 public class BookFacadeTest extends BaseTest {

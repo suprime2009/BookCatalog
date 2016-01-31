@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
-import com.softserveinc.model.persist.entity.Author;
+import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.model.util.BaseTest;
 import com.softserveinc.model.util.DataBaseConstants;
 

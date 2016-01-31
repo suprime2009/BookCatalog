@@ -10,32 +10,34 @@
 	 <h:panelGrid columns="3" >
 
     	<h:outputLabel value="Name:" />
-   		<h:inputText label="Name" value="#{bean.book.bookName}" id="name" required="true" requiredMessage="Book name is required!" >
+   		<h:inputText label="Name" style="width:200px;" value="#{bean.book.bookName}" id="name" required="true" requiredMessage="Book name is required!" >
     		<f:validateLength minimum="3" maximum="80" />
     	</h:inputText>
     	<rich:message for="name" ajaxRendered="true"  showSummary="true" showDetail="false" />
     
     	<h:outputLabel value="Publisher:" />
-    	<h:inputText label="Publisher" id="publisher" value="#{bean.book.publisher}" required="true" requiredMessage="Publisher is required!" >
+    	<h:inputText label="Publisher" style="width:200px;"  id="publisher" value="#{bean.book.publisher}" required="true" requiredMessage="Publisher is required!" >
     	<f:validateLength minimum="3" maximum="80"  />
     	</h:inputText>
     	<rich:message for="publisher" ajaxRendered="true" showSummary="true" showDetail="false" />
     
     	<h:outputLabel value="Year:" />
-    	<h:inputText label="Year" id="year" value="#{bean.book.yearPublished}" >
+    	<h:inputText label="Year" style="width:200px;"  id="year" value="#{bean.book.yearPublished}" >
     		<f:validateLength minimum="4" maximum="4" />
     		<f:convertNumber integerOnly="true" type="number" />
     	</h:inputText>
     	<rich:message for="year" ajaxRendered="true" showDetail="false" showSummary="true" />
     
     	<h:outputLabel value="ISBN number:" />
-   			<h:inputText label="ISBN" id="isbn" value="#{bean.book.isbn}" validator="#{bean.validateIfExistISBN}" required="true" >
+   			<h:inputText label="ISBN" style="width:200px;"  id="isbn" value="#{bean.book.isbn}" validator="#{bean.validateIfExistISBN}" required="true" >
    			 <f:ajax event="blur" render="isbnMessage" />
    			<f:converter converterId="ISNBConverter"></f:converter>
    			<f:validator validatorId="ISNBValidator" />
     	</h:inputText>
     	<rich:message id="isbnMessage" for="isbn" ajaxRendered="true" style="color:red;"  />
     	
+    	<ui:insert name="addAuthor" >
+    	</ui:insert>	
     </h:panelGrid>
     </rich:panel>
 </ui:composition>

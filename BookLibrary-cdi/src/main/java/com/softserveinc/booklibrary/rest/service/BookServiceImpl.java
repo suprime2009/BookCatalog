@@ -23,7 +23,6 @@ import com.softserveinc.booklibrary.session.manager.BookManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 
-
 @Stateless
 public class BookServiceImpl implements BookService {
 
@@ -123,7 +122,7 @@ public class BookServiceImpl implements BookService {
 		if (rating == 0) {
 			rating = null;
 		} else {
-			if (rating < 1 || rating >5) {
+			if (rating < 1 || rating > 5) {
 				return Response.status(Status.BAD_REQUEST).build();
 			}
 		}
@@ -140,7 +139,7 @@ public class BookServiceImpl implements BookService {
 			for (AuthorDTO d : dto.getAuthors()) {
 				idAuthors.add(d.getIdAuthor());
 			}
-			Set<Author> authors = new HashSet<Author>(authorFacade.findAuthorsByListId(idAuthors)) ;
+			Set<Author> authors = new HashSet<Author>(authorFacade.findAuthorsByListId(idAuthors));
 			book.setAuthors(authors);
 
 		}
@@ -150,17 +149,13 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookDTO convertToDTO(Book object) {
 
-		String idBook = object.getIdBook();
-		String bookName = object.getBookName();
-		String isbn = object.getIsbn();
-		String publisher = object.getPublisher();
-		Integer yearPublished = object.getYearPublished();
 		List<AuthorDTO> authorDto = new ArrayList<AuthorDTO>();
 		for (Author a : object.getAuthors()) {
 			authorDto.add(new AuthorDTO(a.getIdAuthor(), a.getFirstName(), a.getSecondName()));
 		}
 
-		BookDTO dto = new BookDTO(idBook, bookName, isbn, publisher, yearPublished, authorDto);
+		BookDTO dto = new BookDTO(object.getIdBook(), object.getBookName(), object.getIsbn(), object.getPublisher(),
+				object.getYearPublished(), authorDto);
 		return dto;
 	}
 
@@ -181,6 +176,5 @@ public class BookServiceImpl implements BookService {
 		}
 		return authorDto;
 	}
-
 
 }

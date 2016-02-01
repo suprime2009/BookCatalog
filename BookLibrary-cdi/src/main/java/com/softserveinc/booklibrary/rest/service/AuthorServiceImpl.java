@@ -36,6 +36,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@EJB
 	private AuthorManagerLocal authorManager;
+	
+	@EJB
+	private BookService bookService;
 
 	@Override
 	public Response findById(String id) {
@@ -103,6 +106,19 @@ public class AuthorServiceImpl implements AuthorService {
 
 		return Response.ok().build();
 	}
+	
+	@Override
+	public Response getBooksByAuthor(String idAuthor) {
+		if (idAuthor == null) {
+			return Response.status(Status.BAD_REQUEST).build();
+		}
+		Author author = authorFacade.findById(idAuthor);
+		if (author == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		List<BookDTO> dto = bookService.convertToListDTO(bookFacade.findBooksByAuthor(author));
+		return Response.ok(dto).build();
+	}
 
 	@Override
 	public Author convertToEntity(AuthorDTO dto) {
@@ -149,5 +165,7 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 		return authorsDto;
 	}
+
+
 
 }

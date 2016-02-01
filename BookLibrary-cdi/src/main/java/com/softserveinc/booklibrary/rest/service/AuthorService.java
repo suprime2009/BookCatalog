@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.softserveinc.booklibrary.model.entity.Author;
@@ -43,6 +44,11 @@ public interface AuthorService {
 	@DELETE
 	@Path("/{id}")
 	public Response deleteById(@PathParam("id") String id);
+	
+	@GET
+	@Path("/{author_id}/books")
+	@Produces("application/json")
+	public Response getBooksByAuthor(@PathParam("author_id") String idAuthor);
 	
 	public Author convertToEntity(AuthorDTO dto);
 	

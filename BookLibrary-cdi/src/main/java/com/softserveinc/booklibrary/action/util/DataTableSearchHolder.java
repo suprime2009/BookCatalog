@@ -13,8 +13,6 @@ import com.softserveinc.booklibrary.session.util.holders.EntityFieldHolder;
  */
 public class DataTableSearchHolder {
 
-	private static Logger log = LoggerFactory.getLogger(DataTableSearchHolder.class);
-
 	private int firstRow;
 	private int rowsPerPage;
 	private EntityFieldHolder sortColumn;

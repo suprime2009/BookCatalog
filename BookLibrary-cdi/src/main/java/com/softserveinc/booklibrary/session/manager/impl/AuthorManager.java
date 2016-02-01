@@ -20,7 +20,6 @@ import com.softserveinc.booklibrary.session.manager.AuthorManagerRemote;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.home.AuthorHomeLocal;
 
-
 /**
  * The {@code AuthorManager} class is an implementation of business logic for
  * write operations for {@link Author} entity
@@ -35,7 +34,7 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 
 	@EJB
 	AuthorFacadeLocal authorFacadeLocal;
-	
+
 	@PostConstruct
 	private void postConstruct() {
 		log.debug("Bean has been created.");
@@ -135,14 +134,20 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 			log.error(errorMessage);
 			throw new AuthorManagerException(errorMessage);
 		}
-		List<Author> listAuthorsWithNoBooks = new ArrayList<Author>();
+		List<String> listIdAuthors = new ArrayList<String>();
 		for (Author a : list) {
-			if (a.getBooks() == null || a.getBooks().isEmpty()) {
-				listAuthorsWithNoBooks.add(a);
+			listIdAuthors.add(a.getIdAuthor());
+		}
+		list = authorFacadeLocal.findAuthorsByListId(listIdAuthors);
+		for (Author a : list) {
+			if (a.getBooks() != null && !a.getBooks().isEmpty()) {
+				errorMessage = String.format("the author %s has books and can't be removed.", a);
+				log.error(errorMessage);
+				throw new AuthorManagerException(errorMessage);
 			}
 		}
-		authorHome.bulkRemove(listAuthorsWithNoBooks);
-		log.info("The method finished. {} authors has been deleted.", listAuthorsWithNoBooks.size());
+		authorHome.bulkRemove(list);
+		log.info("The method finished. {} authors has been deleted.", list.size());
 	}
 
 	/**

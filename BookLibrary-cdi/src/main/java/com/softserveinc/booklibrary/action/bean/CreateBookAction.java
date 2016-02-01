@@ -86,9 +86,7 @@ public class CreateBookAction implements ValidateISBN {
 		} catch (BookManagerException e) {
 			log.error(e.getMessage());
 
-		} catch (BookCatalogException e) {
-			log.error(e.getMessage());
-		}
+		} 
 	}
 
 	/**
@@ -101,16 +99,17 @@ public class CreateBookAction implements ValidateISBN {
 	 * @throws BookCatalogException 
 	 * @throws BookManagerException 
 	 */
-	public void submitAndEdit() throws BookManagerException, BookCatalogException {
+	public String submitAndEdit() throws BookManagerException {
 		bookManager.createBook(book);
 		Book bookAfterCreate = book;
 		idBookAfterCreate = bookAfterCreate.getIdBook();
 		if (bookAfterCreate != null) {
 			log.debug("Book instance has been successfully created.");
+			return null;
 		} else {
 			log.debug("Book instance has not been created.");
+			return "bookDetails.xhtml?includeViewParams=true?idBook=" + book.getIdBook();
 		}
-		book = new Book();
 	}
 
 	/**

@@ -14,6 +14,9 @@
    Manage Books
 <h:outputStylesheet  name="manageBooks.css" library="css" />
 <h:outputStylesheet  name="common.css" library="css" />
+<f:metadata>
+    <f:viewAction action="#{manageBookAction.load()}"/>
+</f:metadata>
 
 
 </ui:define>
@@ -23,7 +26,7 @@
 
    
     <!--The sortable datatable-->
-<h:form id="formManageBooks" prependId="false">
+<h:form  id="formManageBooks" prependId="false">
 
 <!-- dataTableHeader -->
 <ui:decorate template="templates/dataTableHeader.xhtml">
@@ -35,8 +38,8 @@
 			<a4j:commandButton styleClass="regularBtm"  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this"></a4j:commandButton>
 		</ui:define>
 </ui:decorate>	
-<rich:dataTable   id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
-		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable" style="width:100%;">
+<rich:dataTable id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
+		rowClasses="odd-row, even-row"  binding="#{table}" styleClass="stable" style="width:100%;"  >
 		
 		<ui:param name="bean" value="#{manageBookAction}" />		
 
@@ -50,6 +53,7 @@
 <!-- bookName Column -->		
 <ui:decorate template="templates/columnTemplate.xhtml">
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('BOOK_NAME')}" />
+		<ui:param name="columnWidth" value="205px;" />
  		<ui:define name="outputValue">
  			<h:link value="#{bookWrapper.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
 				<f:param name="idBook" value="#{bookWrapper.book.idBook}"></f:param>
@@ -59,24 +63,28 @@
  	
 <!-- Publisher column -->    
 <ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnWidth" value="100px;" />
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('PUBLISHER')}" />
 		<ui:param name="property" value="#{bookWrapper.book.publisher}" />
 </ui:decorate>
    
  <!-- ISBN Column --> 
 <ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnWidth" value="130px;" />
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('ISBN')}" />
 		<ui:param name="property" value="#{bookWrapper.book.isbn}" />
 </ui:decorate>
 
 <!-- yearPublished column -->
 <ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnWidth" value="60px;" />
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('YEAR_PUBLISHED')}" />
 		<ui:param name="property" value="#{bookWrapper.book.yearPublished}" />
 </ui:decorate>
    
  <!-- Rating Column -->
 <ui:decorate template="templates/columnTemplate.xhtml">
+		<ui:param name="columnWidth" value="70px;" />
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('RATING')}" />
 		<ui:param name="property" value="#{bookWrapper.book.rating}" />
 		<ui:define name="filterType">	
@@ -92,6 +100,7 @@
    		
  <!-- Author Column -->
 <ui:decorate template="templates/columnTemplate.xhtml"> 
+		<ui:param name="columnWidth" value="150px;" />	
 		<ui:param name="columnName" value="#{manageBookAction.getFieldHolderForColumn('AUTHORS')}" />
 		<ui:define name="outputValue">
         	<rich:list  value="#{bookWrapper.book.authors}" id="manageBookAuthors" var="author" >
@@ -111,14 +120,9 @@
 <ui:decorate template="templates/dataTableFooter.xhtml"></ui:decorate> 
 </rich:dataTable>
 
-<ui:decorate template="inserts/deletePopUps.xhtml">
-<ui:param name="bean" value="#{manageBookAction}" />
-<ui:define name="listToDelete">
-<rich:list value="#{bean.listEntitiesToDelete}" var="record">
-<h:outputText value="#{record.book.bookName}" />
-</rich:list>
-</ui:define>
-</ui:decorate>
+
+<ui:include src="inserts/popUpsForBookPage.xhtml" />
+
 
 </h:form>
 

@@ -61,7 +61,10 @@
 </rich:panel>
 
 <!-- EDIT PANEL -->
-<rich:panel id="authorEditPanel" header="Edit author: " style="height:370px; position:relative;" >
+<rich:panel id="authorEditPanel"  style="height:370px; position:relative;" >
+<f:facet name="header">
+<h:outputLabel value="Edit author" styleClass="labelH2" />
+</f:facet>
 	<h:form id="editAuthorForm">
 		<rich:panel id="inputPanel" style="height:40px;">
 			<div style="float: left; width: 50%;">
@@ -121,7 +124,7 @@
 </rich:panel>
 <rich:panel style="position:absolute; bottom:0; left:410px; border:0;">
  <a4j:commandButton styleClass="smallBtm" value="Save" action="#{authorDetailAction.submitEdit()}" 
-				execute="editAuthorForm" render="editAuthorForm, authorDetailPanel" />   
+				execute="@form" render="editAuthorForm, authorDetailPanel" />   
 <a4j:commandButton styleClass="smallBtm" value="Reset" action="#{authorDetailAction.reset()}" 
 				execute="@this" render="editAuthorForm, inputPanel" />  
 </rich:panel>

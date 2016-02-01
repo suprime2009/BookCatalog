@@ -283,7 +283,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 			boolean isRating = false;
 			for (Map.Entry<EntityFieldHolder, String> pair : map.entrySet()) {
 				if (count > 1 && isRating == false) {
-					if (!pair.getValue().equals(BookFieldHolder.RATING.getBusinessView())) {
+					if (!pair.getKey().equals(BookFieldHolder.RATING)) {
 						sbForDataTable.append(AND);
 					}
 				}

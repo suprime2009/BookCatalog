@@ -1,6 +1,7 @@
 package com.softserveinc.booklibrary.action.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -61,17 +62,17 @@ public class AuthorDetailAction implements Serializable {
 	public void loadAuthor() {
 		author = authorFacade.findById(selectedId);
 		authorForEdit = author;
-		avaibleBooks = Lists.newArrayList();
+		avaibleBooks = new ArrayList<Book>();
 	}
 
 	public void submitEdit() {
+		System.out.println("submitEdit");
 		try {
 			authorManager.updateAuthor(authorForEdit);
 		} catch (AuthorManagerException e) {
 			showGlobalMessageOnPage(e.getMessage());
 		}
 		loadAuthor();
-		autocompleteBooks = null;
 	}
 
 	public String deleteAuthor() {

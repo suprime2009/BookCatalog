@@ -4,7 +4,6 @@ com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade$1.class
 com\softserveinc\booklibrary\session\util\ConnectionFilter.class
 com\softserveinc\booklibrary\action\bean\CreateBookAction.class
 com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade.class
-com\softserveinc\booklibrary\action\bean\CreateAuthorAction.class
 com\softserveinc\booklibrary\action\util\AuthorUIWrapper.class
 com\softserveinc\booklibrary\exception\AuthorManagerException.class
 com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade.class

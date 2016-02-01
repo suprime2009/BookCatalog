@@ -21,6 +21,7 @@ import java.util.UUID;
 @NamedQuery(name = Review.FIND_ALL_REVIEWS, query="SELECT r FROM Review r"),
 @NamedQuery(name = Review.FIND_ALL_REVIEWS_BY_COMMENTER_NAME, query="SELECT r FROM Review r WHERE r.commenterName like :par"),
 @NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT ROUND(AVG(r.rating),2) FROM Review r WHERE r.book.idBook LIKE :par"),
+@NamedQuery(name = Review.BULK_REMOVE_BY_BOOK, query = "DELETE FROM Review r WHERE r.book IN :list"),
 @NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_DESC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate DESC"),
 @NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_ASC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate ASC"),
 @NamedQuery(name = Review.FIND_COUNT_REVIEWS_FOR_BOOK, query="SELECT  COUNT(DISTINCT r) FROM Review r WHERE r.book.idBook LIKE :par"),
@@ -28,12 +29,17 @@ import java.util.UUID;
 public class Review implements Serializable {
 	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -700824980794022986L;
 	public static final String FIND_ALL_REVIEWS = "Review.findAll";
 	public static final String FIND_ALL_REVIEWS_BY_COMMENTER_NAME = "Review.findAllReviewsByCommenter";
 	public static final String FIND_AVERAGE_RATING_FOR_BOOK = "Review.findAverageRatingForBook";
 	public static final String FIND_REVIEWS_BY_BOOK_ORDER_ASC = "Review.findReviewsForBookOrderAsc";
 	public static final String FIND_REVIEWS_BY_BOOK_ORDER_DESC = "Review.findReviewsForBookOrderDesc";
 	public static final String FIND_COUNT_REVIEWS_FOR_BOOK = "Review.findCountReviewForBook";
+	public static final String BULK_REMOVE_BY_BOOK = "Review.bulkRemoveByBook";
 
 	@Id
 	@Column(name="review_id")
@@ -53,7 +59,6 @@ public class Review implements Serializable {
 
 	@ManyToOne(optional=false)
 	@JoinColumn(name="book_id")
-	@JsonBackReference
 	private Book book;
 
 	public Review() {

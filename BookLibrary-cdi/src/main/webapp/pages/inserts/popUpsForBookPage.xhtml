@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
+
+	<!-- confirm delete book popup -->
+	<rich:popupPanel header="Confirm delete book" id="confirmDelete"
+		style="width:300px; height:50px; text-align:center;" autosized="true">
+		<f:facet name="controls">
+			<h:outputLink value="#"
+				onclick="#{rich:component('confirmDelete')}.hide(); return false;">X</h:outputLink>
+		</f:facet>
+
+		<h:outputText value="Are you sure you want to delete this book?" />
+		<rich:panel style="position:absolute; bottom:0; left:60px; border:0;">
+
+			<h:commandButton styleClass="smallBtm" value="Yes">
+				<f:ajax event="click" listener="#{manageBookAction.deleteEntity()}"
+					onevent="#{rich:component('confirmDelete')}.hide()" render="@form"></f:ajax>
+			</h:commandButton>
+			<a4j:commandButton styleClass="smallBtm" value="No" render="@none"
+				execute="@this"
+				onclick="#{rich:component('confirmDelete')}.hide(); return false;" />
+		</rich:panel>
+	</rich:popupPanel>
+
+	<rich:popupPanel id="confirmDeleteAll"
+		style="width:500px; min-height:150px;"
+		header="Confirm delete selected" autosized="true"
+		domElementAttachment="form"  >
+		<f:facet name="controls">
+			<h:outputLink value="#"
+				onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;">X</h:outputLink>
+		</f:facet>
+		<rich:panel>
+		<center>
+<h:outputText styleClass="label"  value="Are you sure you want to delete #{bean.listEntitiesToDelete.size()} books?"></h:outputText>
+</center>
+	</rich:panel>
+		<rich:panel style="position:relative;">
+		<h:outputLabel styleClass="label" value="Names of books to delete: " />
+			<rich:list value="#{bean.listEntitiesToDelete}" var="record">
+				<h:outputText value="#{record.book.bookName}" />
+			</rich:list>
+		</rich:panel>
+		<rich:panel style=" margin-left:160px; border:0;">
+			<h:commandButton styleClass="smallBtm" value="YES">
+				<f:ajax event="click" listener="#{manageBookAction.deleteListEntities()}"
+					onevent="#{rich:component('confirmDeleteAll')}.hide()"
+					render="@form"></f:ajax>
+			</h:commandButton>
+			<a4j:commandButton styleClass="smallBtm" value="NO"
+				onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;" />
+		</rich:panel>
+	</rich:popupPanel>
+
+</ui:composition>
+</html>

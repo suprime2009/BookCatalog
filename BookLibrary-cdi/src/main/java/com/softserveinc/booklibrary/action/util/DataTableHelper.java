@@ -63,17 +63,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * Method deletes from Map empty filter values or filter values, which
 	 * starts with whitespace.
 	 */
-	private void deleteEmptyFilterValues() {
-		for (Iterator<Map.Entry<EntityFieldHolder, String>> it = filterValues.entrySet().iterator(); it.hasNext();) {
-			Map.Entry<EntityFieldHolder, String> entry = it.next();
-			if (entry.getKey().equals(BookFieldHolder.RATING) && entry.getValue().equals("0")) {
-				it.remove();
-			}
-			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
-				it.remove();
-			}
-		}
-	}
+	public abstract void deleteEmptyFilterValues();
 
 	public abstract EntityFieldHolder getFieldHolderForColumn(String column);
 
@@ -117,7 +107,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 		}
 		refreshPage();
 	}
-
+	
 	/**
 	 * Method gathers current requirements for dataTable as like sorting (field
 	 * for sorting and sort order), filtering (fields and values) and pagination

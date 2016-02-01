@@ -25,6 +25,6 @@ public interface BookHomeRemote extends IHome<Book> {
 	 * @param List
 	 *            of Book to delete
 	 */
-	void bulkRemove(List<Book> list);
+	int bulkRemove(List<Book> list);
 
 }

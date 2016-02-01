@@ -5,14 +5,14 @@
     
     <h:head></h:head>
 	<ui:composition>
-  	<rich:column>
+  	<rich:column style="width:10px;" sortable="false" >
 		<f:facet name="header">
 		<h:selectBooleanCheckbox value="#{bean.selectAll}" >
 		<f:ajax  event="change" listener="#{bean.selectAllAction()}" render="@form"></f:ajax>
 		</h:selectBooleanCheckbox>
 		</f:facet>
 			<h:selectBooleanCheckbox  value="#{property}"> 
-			<f:ajax ></f:ajax>
+			<f:ajax></f:ajax>
 			</h:selectBooleanCheckbox>
 	</rich:column>
 	</ui:composition>

@@ -2,6 +2,7 @@ package com.softserveinc.booklibrary.action.bean;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ApplicationScoped
@@ -14,7 +15,6 @@ public class NavigationAction {
 	}
 	
 	public void setIncludedURL(String includedURL) {
-		System.out.println("setIncludedURL");
 		this.includedURL = includedURL;
 	}
 	
@@ -57,7 +57,4 @@ public class NavigationAction {
 	public String moveToAuthorDetailPage(){
 		return "authorDetail.xhtml";
 	}
-	
-
-
 }

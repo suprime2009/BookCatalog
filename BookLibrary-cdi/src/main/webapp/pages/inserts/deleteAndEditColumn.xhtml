@@ -10,17 +10,22 @@
 	<h:head>
 	</h:head>
 	<rich:column>
-	<h:link    outcome="#{navigationAction.moveToBookDetailPage()}" >
+	<h:link id="editLink" ajaxSingle="true" outcome="#{navigationAction.moveToBookDetailPage()}" >
 		<f:param name="idBook" value="#{bookWrapper.book.idBook}"></f:param>
 		<f:param name="action" value="edit" />
+		<rich:tooltip value="Edit"   ></rich:tooltip>
 		<h:graphicImage value="/resources/images/edit.png" alt="edit" />
 		</h:link>
-		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this"
+		
+		<a4j:commandLink id="deleteLink" ajaxSingle="true" style="float:right;"   styleClass="no-decor" execute="@this"
 			render="confirmDelete" oncomplete="#{rich:component('confirmDelete')}.show()">
 			<a4j:param value="#{propertyId}" assignTo="#{bean.idEntityToDelete}" />
 			<h:graphicImage value="/resources/images/delete.png" alt="delete" />
+			<rich:tooltip value="Delete"   ></rich:tooltip>
 		</a4j:commandLink>
+
 		
 	</rich:column>
+			
 </ui:composition>
 </html>

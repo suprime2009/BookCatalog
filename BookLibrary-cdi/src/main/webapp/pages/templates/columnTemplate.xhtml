@@ -5,7 +5,7 @@
 <ui:composition>
 <h:head>
 </h:head>
-    <rich:column sortBy="#{columnName}" sortOrder="#{bean.sortOrders[columnName]}" sortType="custom"    >
+    <rich:column sortBy="#{columnName}" sortOrder="#{bean.sortOrders[columnName]}" sortType="custom" style="text-align:center; width:#{columnWidth}"   >
  
         <f:facet name="header">
             <h:outputLabel value="#{columnName.UIView}" />

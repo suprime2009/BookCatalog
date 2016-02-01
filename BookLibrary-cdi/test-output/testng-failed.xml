@@ -5,14 +5,9 @@
     <classes>
       <class name="com.softserveinc.model.persist.home.BookHomeTest">
         <methods>
-          <include name="testCreateBookWithAuthors"/>
-          <include name="testFindAllBooks"/>
           <include name="closeEJBSession"/>
           <include name="testCreateBook"/>
-          <include name="testDeleteBook"/>
-          <include name="testFindByIdBook"/>
           <include name="getRemoteBeans"/>
-          <include name="testUpdateBook"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

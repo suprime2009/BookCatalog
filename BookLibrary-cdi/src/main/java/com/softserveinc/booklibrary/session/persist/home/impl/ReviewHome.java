@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeRemote;
@@ -67,5 +71,16 @@ public class ReviewHome implements ReviewHomeLocal, ReviewHomeRemote {
 		results = query.getResultList();
 		log.info("Method finished. Has been found {} reviews.", results.size());
 		return results;
+	}
+
+	@Override
+	@TransactionAttribute(TransactionAttributeType.MANDATORY)
+	public int bulkRemoveByBook(List<Book> books) {
+		Query query = entityManager.createNamedQuery(Review.BULK_REMOVE_BY_BOOK);
+		query.setParameter("list", books);
+		int count = query.executeUpdate();
+		log.info("The method done. Has been deleted {} reviews", count);
+		return count;
+		
 	}
 }

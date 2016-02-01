@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
+
+
+	<!-- confirm delete author popup -->
+	<rich:popupPanel header="Confirm delete author"
+		id="confirmDeleteAuthor"
+		style="width:300px; height:50px; text-align:center;" autosized="true">
+		<f:facet name="controls">
+			<h:outputLink value="#"
+				onclick="#{rich:component('confirmDeleteAuthor')}.hide(); return false;">X</h:outputLink>
+		</f:facet>
+		<h:form>
+
+			<h:outputText value="Are you sure you want to delete this author" />
+			<rich:panel style="position:absolute; bottom:0; left:60px; border:0;">
+				<a4j:commandButton styleClass="smallBtm" id="deleteAuthorBtm"
+					value="Yes" action="#{manageAuthorsAction.deleteEntity()}"
+					oncomplete="#{rich:component('confirmDeleteAuthor')}.hide(); return false;"
+					execute="@this" render="formManageAuthors"></a4j:commandButton>
+				<a4j:commandButton styleClass="smallBtm" value="No" render="@none"
+					execute="@this"
+					oncomplete="#{rich:component('confirmDeleteAuthor')}.hide(); return false;" />
+			</rich:panel>
+		</h:form>
+	</rich:popupPanel>
+
+	<!-- delete selected authors -->
+	<h:form>
+		<rich:popupPanel id="confirmDeleteAll"
+			style="width:500px; min-height:150px;"
+			header="Confirm delete selected" autosized="true"
+			domElementAttachment="form">
+			<f:facet name="controls">
+				<h:outputLink value="#"
+					onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;">X</h:outputLink>
+			</f:facet>
+
+			<rich:panel>
+				<center>
+					<h:outputText styleClass="label"
+						value="Are you sure you want to delete #{manageAuthorsAction.listEntitiesToDelete.size()} authors"></h:outputText>
+				</center>
+			</rich:panel>
+			<rich:panel style="position:relative;">
+				<h:outputLabel styleClass="label"
+					value="Names of authors to delete: " />
+				<rich:list value="#{bean.listEntitiesToDelete}" var="record">
+					<h:outputLabel
+						value="#{record.author.secondName} #{record.author.firstName}          " />
+					<h:outputText value="  This author has books!" style="color:red"
+						rendered="#{record.countBooks != 0}" />
+				</rich:list>
+			</rich:panel>
+			<rich:panel style=" margin-left:160px; border:0;">
+				<h:commandButton styleClass="smallBtm" value="YES"
+					disabled="#{manageAuthorsAction.checkIfAuthorsToDeleteHaveBooks()}">
+					<f:ajax event="click"
+						listener="#{manageAuthorsAction.deleteListEntities()}"
+						onevent="#{rich:component('confirmDeleteAll')}.hide()"
+						execute="@form" render="formManageAuthors"></f:ajax>
+				</h:commandButton>
+				<a4j:commandButton styleClass="smallBtm" value="NO"
+					onclick="#{rich:component('confirmDeleteAll')}.hide(); return false;" />
+			</rich:panel>
+
+		</rich:popupPanel>
+	</h:form>
+
+
+
+</ui:composition>
+</html>

@@ -1,7 +1,10 @@
 package com.softserveinc.booklibrary.session.persist.home;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
 
 
@@ -14,5 +17,7 @@ import com.softserveinc.booklibrary.model.entity.Review;
  */
 @Local
 public interface ReviewHomeLocal extends IHome<Review> {
+	
+	public int bulkRemoveByBook(List<Book> books);
 
 }

@@ -1,84 +1,83 @@
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\BookServiceImpl.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageAuthorsAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\test\Main.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerReview.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\CreateBookAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\CreateDateConverter.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ValidateISBN.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\AuthorManagerRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\CreateAuthorAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\BookService.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\ReviewFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\ReviewManagerRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\AuthorManager.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ISBNConverter.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ISNBValidator.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\AuthorManagerLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\ReviewManager.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Review.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IAuthorFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\ReviewFieldHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\AuthorDetailAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\AuthorManagerException.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageBookAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\BookConverter.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\BookUIWrapper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\NavigationAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ReviewRatingFieldsEnum.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataTableHelper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\AuthorService.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\QueryBuilderForDataTable.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\AuthorUIWrapper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\BookHome.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\ReviewService.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\PaginationHelper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerBook.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\UIWrapper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\ConnectionFilter.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\AuthorHomeRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\EntityFieldHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\AuthorDTO.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IBookFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\BookHomeRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\BookDTO.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Book.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\EditBookAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\AuthorHomeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\BookManager.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\AuthorHome.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\IHome.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\AuthorServiceImpl.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerAuthor.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\ReviewHome.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\ReviewDTO.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\BookHomeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\client\AuthorClient.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\BookCatalogException.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Author.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\client\AuthorClientRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IReviewFacade.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\SQLCommandConstants.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\BookFieldHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataTableSearchHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\ReviewManagerLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\BookDetailAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\BookManagerException.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\ReviewManagerException.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\BookManagerLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\ReviewSeviceImpl.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\BookManagerRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\AuthorFieldHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\util\JacksonJsonProvider.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\BookFacadeLocal.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\util\JsonFieldsHolder.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeRemote.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageReviewsAction.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataModelHelper.java
-C:\Users\Pavel\Desktop\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\BookFacadeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Book.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\BookFacadeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\AuthorFieldHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\AuthorManagerException.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Review.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\AuthorDetailAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\BookServiceImpl.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\ReviewManagerLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\ReviewManagerException.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\AuthorHomeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\CreateBookAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\BookDetailAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\ReviewFieldHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\SQLCommandConstants.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\BookHome.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\AuthorHome.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\ReviewHome.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\AuthorManager.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\BookService.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataTableSearchHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageReviewsAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\BookManagerRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataModelHelper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\test\Main.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\ReviewService.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerAuthor.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\BookManagerLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\AuthorManagerRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\util\JsonFieldsHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\AuthorManagerLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IAuthorFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\BookManager.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\util\JacksonJsonProvider.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ISBNConverter.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\NavigationAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ISNBValidator.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\BookManagerException.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\PaginationHelper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\IHome.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\model\entity\Author.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\ReviewDTO.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerReview.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\BookConverter.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\UIWrapper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\ReviewSeviceImpl.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\BookUIWrapper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\EntityFieldHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\AuthorHomeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerBook.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\EditBookAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IReviewFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\BookFacadeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\client\AuthorClient.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\AuthorService.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\holders\BookFieldHolder.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\AuthorDTO.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\AuthorUIWrapper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\CreateDateConverter.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\BookHomeLocal.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ReviewRatingFieldsEnum.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IBookFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\ReviewManagerRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageAuthorsAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageBookAction.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\impl\ReviewManager.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\BookHomeRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\AuthorServiceImpl.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\ReviewFacade.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\DataTableHelper.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\QueryBuilderForDataTable.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\util\ValidateISBN.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\client\AuthorClientRemote.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\BookCatalogException.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\ConnectionFilter.java
+C:\Users\pkrav\Desktop\feb clone\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\dto\BookDTO.java

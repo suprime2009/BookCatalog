@@ -65,15 +65,16 @@ public class TestHelper {
 
 	/**
 	 * This method looking for Remote Beans in EJBContainer. 
+	 * @param <I>
 	 * 
 	 * @param Class clazz, which implements remote interface.
 	 * @return Instance of remote bean, if bean has been found.
 	 */
-	public <T> Object getRemoteBean(Class<T> clazz) {
+	public <T, I> Object getRemoteBean(Class<T> clazz, Class<I> inter) {
 		T object = null;
 		try {
 			object = (T) context
-					.lookup("java:global/BookLibrary-cdi/" + clazz.getSimpleName() + "!" + clazz.getName() + "Remote");
+					.lookup("java:global/BookLibrary-cdi/" + clazz.getSimpleName() + "!" + inter.getName());
 			log.debug("Remote bean {} has been successfully found", object.getClass().getSimpleName());
 		} catch (NamingException e) {
 			log.error("Remote bean  could not found",  e);

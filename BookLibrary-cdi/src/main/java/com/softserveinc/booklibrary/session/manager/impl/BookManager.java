@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,7 @@ import com.softserveinc.booklibrary.session.manager.BookManagerRemote;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.home.BookHomeLocal;
+import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 
 
 /**
@@ -117,8 +120,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		bookHome.delete(book);
 		log.info("Method finished. The Book {} has been deleted.", book);
 	}
+	
+	@EJB
+	private ReviewHomeLocal reviewHome;
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void bulkDelete(List<Book> list) throws BookManagerException {
 		String errorMessage = "";
 		if (list == null || list.isEmpty()) {
@@ -126,8 +133,9 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
-
-		bookHome.bulkRemove(list);
+		int countReviews = reviewHome.bulkRemoveByBook(list);
+		int countBooks = bookHome.bulkRemove(list);
+		log.info("The method done. Has been deleted {} books and {} reviews for them.", countBooks, countReviews);
 
 	}
 

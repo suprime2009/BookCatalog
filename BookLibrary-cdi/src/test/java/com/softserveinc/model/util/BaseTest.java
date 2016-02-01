@@ -45,13 +45,12 @@ public abstract class BaseTest {
 	@BeforeSuite
 	public void getRemoteBeans() {
 		testHelper = TestHelper.getInstance();
-		authorHomeRemote = (AuthorHomeRemote) testHelper.getRemoteBean(AuthorHome.class);
-		authorFacadeRemote = (AuthorFacadeRemote) testHelper.getRemoteBean(AuthorFacade.class);
-		bookHomeRemote = (BookHomeRemote) testHelper.getRemoteBean(BookHome.class);
-		bookFacadeRemote = (BookFacadeRemote) testHelper.getRemoteBean(BookFacade.class);
-		reviewHomeRemote = (ReviewHomeRemote) testHelper.getRemoteBean(ReviewHome.class);
-		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class);
-		authorClientRemote = (AuthorClientRemote) testHelper.getRemoteBean(AuthorClient.class);
+		authorHomeRemote = (AuthorHomeRemote) testHelper.getRemoteBean(AuthorHome.class, AuthorHomeRemote.class);
+		authorFacadeRemote = (AuthorFacadeRemote) testHelper.getRemoteBean(AuthorFacade.class, AuthorFacadeRemote.class);
+		bookHomeRemote = (BookHomeRemote) testHelper.getRemoteBean(BookHome.class, BookHomeRemote.class);
+		bookFacadeRemote = (BookFacadeRemote) testHelper.getRemoteBean(BookFacade.class, BookFacadeRemote.class);
+		reviewHomeRemote = (ReviewHomeRemote) testHelper.getRemoteBean(ReviewHome.class, ReviewHomeRemote.class);
+		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class, ReviewFacadeRemote.class);
 	}
 
 	/**

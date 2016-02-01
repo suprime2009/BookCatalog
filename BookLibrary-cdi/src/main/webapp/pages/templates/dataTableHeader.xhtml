@@ -26,8 +26,8 @@
 			
 			<ui:insert name="createButton"></ui:insert>
 
-		<a4j:commandButton  value="Delete selected" actionListener="#{bean.createListEntitiesToDelete()}" styleClass="regularBtm" execute="@this"
-			render="confirmDeleteAll" oncomplete="#{rich:component('confirmDeleteAll')}.show()" >
+		<a4j:commandButton id="DeleteAllBtm"  value="Delete selected" actionListener="#{bean.createListEntitiesToDelete()}" styleClass="regularBtm" execute="@this"
+			render="confirmDeleteAll" oncomplete="#{rich:component('confirmDeleteAll')}.show()"  >
 		</a4j:commandButton>
 
 

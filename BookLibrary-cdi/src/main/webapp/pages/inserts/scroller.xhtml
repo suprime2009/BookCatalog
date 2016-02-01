@@ -26,9 +26,9 @@
 
     <!--The paging links-->
     <ui:repeat value="#{bean.pages}" var="page">
-    	<h:commandLink styleClass="page" value="#{page}" actionListener="#{bean.page}" rendered="#{page != bean.currentPage}">
+    	<h:commandLink styleClass="labelH2" value="#{page}" actionListener="#{bean.page}" rendered="#{page != bean.currentPage}">
     	</h:commandLink>
-        <h:outputText styleClass="page" value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
+        <h:outputText styleClass="labelH2" value="#{page}" escape="false" rendered="#{page == bean.currentPage}" />
     </ui:repeat>
 </ui:composition>
 </html>

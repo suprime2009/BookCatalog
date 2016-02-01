@@ -75,7 +75,7 @@
  <!-- edit book tab -->
  <rich:tab id="editBookTab" header="Edit book" >
  	 <h:form>
-	<rich:panel id="editBookPanel" style="  min-height:200px; ">
+	<rich:panel id="editBookPanel"  styleClass="standartPanel">
 		<f:facet name="header" >
 			<h:outputText value="Edit book" styleClass="labelH2" />
 		</f:facet>
@@ -87,7 +87,8 @@
 				<rich:autocomplete id="autoCompleteAuthor"  mode="ajax" tokens=", " minChars="1" style="width:200px;"  value="#{editBookAction.authorFullName}" autofill="false"
         	    	autocompleteMethod="#{editBookAction.autocomplete}" />
    				<a4j:commandLink id="addAuthorBtm" action="#{editBookAction.checkIfAuthorExist()}" execute="autoCompleteAuthor" render="listAuthors" >
-   					<h:graphicImage value="/resources/images/add.gif" alt="add" />
+   				<rich:tooltip value="Add author for this book"   ></rich:tooltip>
+   					<h:graphicImage value="/resources/images/plus.png" alt="add" />
    				</a4j:commandLink>
 			</ui:define>
 		</ui:decorate>
@@ -102,17 +103,19 @@
 				<f:ajax execute="listAuthors"  render="listAuthors" > </f:ajax>
 				<f:attribute name="secondName" value="#{author.secondName}"></f:attribute>
 				<f:attribute name="firstName" value="#{author.firstName}"></f:attribute>
-				<h:graphicImage value="/resources/images/remove.gif" alt="remove" />
+				<rich:tooltip value="Remove author"   ></rich:tooltip>
+				<h:graphicImage value="/resources/images/minus.png" alt="remove" />
 			</h:commandLink>
 		</rich:list>  
 		</div>
-	</rich:panel>
-	<rich:panel style="margin-left:390px; border:0;" >
+		<rich:panel style="margin-left:390px; float:left; border:0;" >
 		<a4j:commandButton  styleClass="smallBtm" value="Save" action="#{editBookAction.submit()}" 
 				oncomplete="if (!#{facesContext.validationFailed})" execute="editBookPanel"  render="bookDetailsPanel, notifyMessage" >
 		</a4j:commandButton>
     	<a4j:commandButton  styleClass="smallBtm" value="Clean" action="#{editBookAction.reset()}" execute="@this" render="editBookPanel"  />
    </rich:panel>
+	</rich:panel>
+	
    </h:form>
  </rich:tab>
 </rich:tabPanel>
@@ -137,9 +140,11 @@
 <h:outputLabel  value="Sort by create date: " />
 		<a4j:commandLink actionListener="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewsDataTable, reviewToolbar" rendered="#{bookDetailAction.orderStatus == false}"  >
 		<h:graphicImage value="/resources/images/up.gif" alt="ascending" />
+		<rich:tooltip value="ascending order"   ></rich:tooltip>
 		</a4j:commandLink>
 		<a4j:commandLink actionListener="#{bookDetailAction.toogleSortOrder()}" execute="@this" render="reviewsDataTable, reviewToolbar" rendered="#{bookDetailAction.orderStatus}"  >
 		<h:graphicImage value="/resources/images/down.gif" alt="descending" />
+		<rich:tooltip value="descending order"   ></rich:tooltip>
 		</a4j:commandLink>
 
 		<a4j:commandButton actionListener="#{bookDetailAction.reset()}" style="margin-right:50px;" styleClass="regularBtm" id="addrecordBtm" value="Add review"  execute="@this"
@@ -167,10 +172,12 @@
 					render="addReviewPopUp" oncomplete=" #{rich:component('addReviewPopUp')}.show()">
 					 <f:setPropertyActionListener target="#{bookDetailAction.addAction}" value="false" />
 					<h:graphicImage value="/resources/images/edit.png" alt="edit"  />
+					<rich:tooltip value="Edit this review"   ></rich:tooltip>
 					</a4j:commandLink>
    				<a4j:commandLink style="margin-right:50px;" execute="@this"
 					render="@none" oncomplete="#{rich:component('confirmDeleteReview')}.show()"  >
 					<f:setPropertyActionListener target="#{bookDetailAction.selectedIdReview}" value="#{record[idreview]}" />
+					<rich:tooltip value="Remove this review"   ></rich:tooltip>
 					<h:graphicImage value="/resources/images/delete.png" alt="delete" />
 				</a4j:commandLink>
 				</div>
@@ -285,7 +292,7 @@
         
         .standartPanel {
 
-        min-height:200px; 	
+        min-height:220px; 	
         margin-bottom:16px;
         overflow:auto;
         }

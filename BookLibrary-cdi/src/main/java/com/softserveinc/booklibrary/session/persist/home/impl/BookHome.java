@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -69,12 +71,15 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 		return results;
 	}
 
+	
 	@Override
-	public void bulkRemove(List<Book> list) {
+	@TransactionAttribute(TransactionAttributeType.MANDATORY)
+	public int bulkRemove(List<Book> list) {
 		Query query = entityManager.createNamedQuery(Book.BULK_REMOVE);
 		query.setParameter("list", list);
 		int count = query.executeUpdate();
 		log.info("The method finished, {} were books removed.", count);
+		return count;
 	}
 
 }

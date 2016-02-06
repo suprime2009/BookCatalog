@@ -31,7 +31,7 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 
 	private static Logger log = LoggerFactory.getLogger(BookHome.class);
 
-	@PersistenceContext
+	@PersistenceContext(unitName="primary")
 	private EntityManager entityManager;
 
 	public BookHome() {

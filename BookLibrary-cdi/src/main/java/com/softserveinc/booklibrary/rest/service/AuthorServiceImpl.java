@@ -18,10 +18,10 @@ import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.dto.BookDTO;
+import com.softserveinc.booklibrary.rest.util.AuthorRestDTOConverter;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
-
 
 @Stateless
 public class AuthorServiceImpl implements AuthorService {
@@ -36,7 +36,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@EJB
 	private AuthorManagerLocal authorManager;
-	
+
 	@EJB
 	private BookService bookService;
 
@@ -49,26 +49,25 @@ public class AuthorServiceImpl implements AuthorService {
 		if (author == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		AuthorDTO dto = convertToDTO(author);
+		AuthorDTO dto = AuthorRestDTOConverter.convertToDTO(author);
 		return Response.ok(dto).build();
 	}
 
 	@Override
 	public Response findAll() {
 		List<Author> list = authorFacade.findAll();
-		List<AuthorDTO> dto = convertToListDTO(list);
+		List<AuthorDTO> dto = AuthorRestDTOConverter.convertToListDTO(list);
 		return Response.ok(dto).build();
 	}
 
 	@Override
 	public Response create(AuthorDTO authorDTO) {
 		Response.ResponseBuilder builder = null;
-		if (authorDTO == null || authorDTO.getIdAuthor() != null) {
-			System.out.println("BAD REQUEST");
+		if (authorDTO == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
 
-		Author author = convertToEntity(authorDTO);
+		Author author = AuthorRestDTOConverter.convertToEntity(authorDTO);
 		try {
 			authorManager.createAuthor(author);
 			builder = Response.status(Status.CREATED);
@@ -83,10 +82,10 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public Response update(AuthorDTO authorDTO) {
 		Response.ResponseBuilder builder = null;
-		if (authorDTO == null || authorDTO.getIdAuthor() == null) {
+		if (authorDTO == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Author author = convertToEntity(authorDTO);
+		Author author = AuthorRestDTOConverter.convertToEntity(authorDTO);
 		try {
 			authorManager.updateAuthor(author);
 			builder = Response.status(Status.OK);
@@ -106,7 +105,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 		return Response.ok().build();
 	}
-	
+
 	@Override
 	public Response getBooksByAuthor(String idAuthor) {
 		if (idAuthor == null) {
@@ -119,53 +118,4 @@ public class AuthorServiceImpl implements AuthorService {
 		List<BookDTO> dto = bookService.convertToListDTO(bookFacade.findBooksByAuthor(author));
 		return Response.ok(dto).build();
 	}
-
-	@Override
-	public Author convertToEntity(AuthorDTO dto) {
-		Author author = new Author(dto.getFirstName(), dto.getSecondName());
-		author.setIdAuthor(dto.getIdAuthor());
-		List<String> idBooks = new ArrayList<String>();
-		if (dto.getBooks() != null) {
-			for (BookDTO b : dto.getBooks()) {
-				idBooks.add(b.getIdBook());
-			}
-			List<Book> books = bookFacade.findBooksByListId(idBooks);
-			author.setBooks(books);
-		}
-		return author;
-	}
-
-	@Override
-	public AuthorDTO convertToDTO(Author object) {
-		AuthorDTO authorDTO = new AuthorDTO(object.getIdAuthor(), object.getFirstName(), object.getSecondName());
-		List<BookDTO> booksDto = new ArrayList<BookDTO>();
-		for (Book b : object.getBooks()) {
-
-			booksDto.add(
-					new BookDTO(b.getIdBook(), b.getBookName(), b.getIsbn(), b.getPublisher(), b.getYearPublished()));
-		}
-		authorDTO.setBooks(booksDto);
-		return authorDTO;
-	}
-
-	@Override
-	public List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) {
-		List<Author> authors = new ArrayList<Author>();
-		for (AuthorDTO d : listDTO) {
-			authors.add(convertToEntity(d));
-		}
-		return authors;
-	}
-
-	@Override
-	public List<AuthorDTO> convertToListDTO(Collection<Author> list) {
-		List<AuthorDTO> authorsDto = new ArrayList<AuthorDTO>();
-		for (Author a : list) {
-			authorsDto.add(convertToDTO(a));
-		}
-		return authorsDto;
-	}
-
-
-
 }

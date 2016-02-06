@@ -13,40 +13,24 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.softserveinc.booklibrary.rest.util.JsonFieldsHolder;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class AuthorDTO implements Serializable, JsonFieldsHolder{
-	
+public class AuthorDTO implements Serializable, JsonFieldsHolder {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -837523043353366864L;
-	
+
 	private String idAuthor;
 	private String firstName;
 	private String secondName;
-	
-//	@JsonBackReference(value="book-author")
-//	@JsonManagedReference(value="author-book")
-	private List<BookDTO> books;
-	
-	
-
-	public AuthorDTO(String idAuthor, String firstName, String secondName) {
-		super();
-		this.idAuthor = idAuthor;
-		this.firstName = firstName;
-		this.secondName = secondName;
-	}
 
 	@JsonCreator
-	public AuthorDTO(@JsonProperty(AUTHOR_ID) String idAuthor,
-			@JsonProperty(FIRST_NAME) String firstName, 
-			@JsonProperty(SECOND_NAME) String secondName,  
-			@JsonProperty(BOOKS) List<BookDTO> books) {
+	public AuthorDTO(@JsonProperty(AUTHOR_ID) String idAuthor, @JsonProperty(FIRST_NAME) String firstName,
+			@JsonProperty(SECOND_NAME) String secondName) {
 		super();
 		this.idAuthor = idAuthor;
 		this.firstName = firstName;
 		this.secondName = secondName;
-		this.books = books;
 	}
 
 	@JsonGetter(AUTHOR_ID)
@@ -78,17 +62,4 @@ public class AuthorDTO implements Serializable, JsonFieldsHolder{
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
-
-	@JsonGetter(BOOKS)
-	public List<BookDTO> getBooks() {
-		return books;
-	}
-
-	@JsonSetter(BOOKS)
-	public void setBooks(List<BookDTO> books) {
-		this.books = books;
-	}
-
-
-	
 }

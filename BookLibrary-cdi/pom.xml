@@ -56,6 +56,8 @@
 		<!-- maven-compiler-plugin -->
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
+
+		<jboss.home>${project.basedir}/../../${wildfly.build.output.dir}</jboss.home>
 	</properties>
 
 	<dependencyManagement>
@@ -82,7 +84,19 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>1.1.8.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+
+
 		</dependencies>
+
 	</dependencyManagement>
 
 	<dependencies>
@@ -163,12 +177,7 @@
 			<version>2.4.9</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>openejb-core</artifactId>
-			<version>4.7.2</version>
-			<scope>test</scope>
-		</dependency>
+
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -254,16 +263,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.w3c.css</groupId>
-			<artifactId>sac</artifactId>
-			<version>1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.cssparser</groupId>
-			<artifactId>cssparser</artifactId>
-			<version>0.9.18</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
@@ -276,29 +276,16 @@
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 		</dependency>
-		<dependency>
 
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.3.1</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-xc</artifactId>
-			<version>1.9.13</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
@@ -322,26 +309,113 @@
 			<version>1.0.0.Final</version>
 		</dependency>
 
-
-
 		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<version>1.1.5.Final</version>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>10.0.0.Final</version>
+			<type>pom</type>
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-remote-naming</artifactId>
+			<version>2.0.4.Final</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.jboss.jbossas</groupId>
+			<artifactId>jboss-as-ejb3-core</artifactId>
+			<version>0.1.2.Beta1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-embedded</artifactId>
+			<version>7.1.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.microcontainer</groupId>
+			<artifactId>jboss-kernel</artifactId>
+			<version>2.2.0.M2</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss</groupId>
+			<artifactId>jboss-jmx</artifactId>
+			<version>4.2.2.GA</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.arquillian.protocol</groupId>
-			<artifactId>arquillian-protocol-servlet</artifactId>
-			<version>1.1.11.Final</version>
+			<groupId>jboss</groupId>
+			<artifactId>jnp-client</artifactId>
+			<version>4.2.2.GA</version>
+			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-spec-api</artifactId>
+			<type>pom</type>
+			<version>10.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-arquillian-container-managed</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.testng</groupId>
+			<artifactId>arquillian-testng-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-controller-client</artifactId>
+			<version>7.2.0.Final</version>
+		</dependency>
+
+
+
+		<!--Shrinkwrap -->
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+			<scope>test</scope>
+		</dependency>
+<!--  
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+			<version>2.0.0-alpha-5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-api-maven</artifactId>
+			<version>2.0.0-alpha-5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-api</artifactId>
+			<version>2.0.0-alpha-5</version>
+			<scope>test</scope>
+		</dependency>
+-->
+
+
+
+
+
+
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-persistence-dbunit</artifactId>
+			<version>1.0.0.Alpha7</version>
+		</dependency>
 
 
 
@@ -349,83 +423,67 @@
 
 	</dependencies>
 
+
 	<build>
-		<!-- Maven will append the version to the finalName (which is the name 
-			given to the generated war, and hence the context root) -->
-		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${version.war.plugin}</version>
-				<configuration>
-					<!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/jbossas</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>${jboss.home}</directory>
+									<excludes>
+										<exclude>modules/</exclude>
+										<exclude>bundles/</exclude>
+									</excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
-			<!-- The WildFly plugin deploys your war to a local WildFly container -->
-			<!-- To use, run: mvn package wildfly:deploy -->
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>${version.wildfly.maven.plugin}</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<systemProperties>
+						<property>
+							<name>java.util.logging.manager</name>
+							<value>org.jboss.logmanager.LogManager</value>
+						</property>
+						<property>
+							<name>jboss.home</name>
+							<value>${basedir}/target/jbossas</value>
+						</property>
+						<property>
+							<name>module.path</name>
+							<value>${jboss.home}/modules</value>
+						</property>
+					</systemProperties>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-
-			<!-- An optional Arquillian testing profile that executes tests in your 
-				WildFly instance -->
-			<!-- This profile will start a new WildFly instance, and execute the test, 
-				shutting it down when done -->
-			<!-- Run with: mvn clean test -Parq-wildfly-managed -->
-			<id>arq-wildfly-managed</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.wildfly</groupId>
-					<artifactId>wildfly-arquillian-container-managed</artifactId>
-					<version>8.2.1.Final</version>
-				</dependency>
-
-			</dependencies>
-		</profile>
-
-		<profile>
-			<!-- An optional Arquillian testing profile that executes tests in a remote 
-				WildFly instance -->
-			<!-- Run with: mvn clean test -Parq-wildfly-remote -->
-			<id>arq-wildfly-remote</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.wildfly</groupId>
-					<artifactId>wildfly-arquillian-container-remote</artifactId>
-					<version>8.2.1.Final</version>
-				</dependency>
-
-			</dependencies>
-		</profile>
-
-		<profile>
-			<!-- The default profile skips all tests, though you can tune it to run 
-				just unit tests based on a custom pattern -->
-			<!-- Seperate profiles are provided for running all tests, including Arquillian 
-				tests that execute in the specified container -->
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${version.surefire.plugin}</version>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	
+<!-- 
+	 <build> <finalName>${project.artifactId}</finalName> <plugins> <plugin> 
+		<artifactId>maven-war-plugin</artifactId> <version>${version.war.plugin}</version> 
+		<configuration> <failOnMissingWebXml>false</failOnMissingWebXml> </configuration> 
+		</plugin> <plugin> <groupId>org.wildfly.plugins</groupId> <artifactId>wildfly-maven-plugin</artifactId> 
+		<version>${version.wildfly.maven.plugin}</version> </plugin> <plugin> <artifactId>maven-surefire-plugin</artifactId> 
+		<version>${version.surefire.plugin}</version> <configuration> <skip>true</skip> 
+		</configuration> </plugin> </plugins> </build> 
+		
+		 -->
 </project>

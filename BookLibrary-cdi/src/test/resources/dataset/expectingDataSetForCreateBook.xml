@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<author author_id="a30" first_name="Hose" second_name="Lorka" created_date="2015-11-10 11:30:15"/>
+<author author_id="a31" first_name="Brian" second_name="Adams" created_date="2015-12-14 11:55:15"/>
+<author author_id="a32" first_name="Oliver" second_name="Kahn" created_date="2015-09-14 11:22:15"/>
+
+
+<book book_id="b100" book_name="History" year_published='2010' isbn="ISBN-10: 1-111-11411-5" publisher="England" created_date="2015-11-10 11:30:15"/>
+<book book_id="b101" book_name="Geagraphy" year_published="2009" isbn="ISBN-10: 1-478-42336-5" publisher="USA" created_date="2015-12-14 11:55:15"/>
+<book book_id="b102" book_name="Math" year_published="2014" isbn="ISBN-13: 978-1-236-44585-2" publisher="Ukraine" created_date="2015-12-14 11:22:15"/>
+<book book_id="b103" book_name="Space" year_published="2014" isbn="ISBN-13: 978-1-236-57485-9" publisher="SoftServe" created_date="2015-10-29 10:28:15"/>
+<book book_id="b104" book_name="Sport" year_published="2015" isbn="ISBN-13: 978-1-236-54515-7" publisher="England" created_date="2015-10-29 10:28:15"/>
+
+<book book_id="new1" book_name="Create1" year_published="2012" isbn="ISBN-13: 978-1-236-54125-0" publisher="Canada" created_date="2015-10-29 10:28:15"/>
+<book book_id="new2" book_name="Create2" isbn="ISBN-10: 1-871-11411-5" publisher="England" created_date="2015-10-29 10:28:15"/>
+<book book_id="new3" book_name="Create3" year_published="2013" isbn="ISBN-10: 1-873-11411-5" publisher="Canada" created_date="2015-10-29 10:28:15"/>
+
+<book_author book_id="b100" author_id="a30"/>
+<book_author book_id="b100" author_id="a31"/>
+<book_author book_id="b101" author_id="a30"/>
+<book_author book_id="b102" author_id="a30"/>
+
+<book_author book_id="new3" author_id="a32"/>
+<book_author book_id="new3" author_id="a31"/>
+
+
+
+<review review_id="r150" book_id="b100" commenter_name="Masha" comment_="EJB" rating="5" created_date="2015-11-10 11:30:15"/>
+<review review_id="r151" book_id="b100" commenter_name="Roma" comment_="Spring" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r152" book_id="b101" commenter_name="Kyzia" comment_="DataBase MySQL" rating="4" created_date="2015-11-10 11:30:15"/>
+<review review_id="r153" book_id="b103" commenter_name="Funn" comment_="DataBase MySQL helfull!!" rating="5" created_date="2015-11-10 11:30:15"/>
+<review review_id="r154" book_id="b103" commenter_name="Kyzia" comment_="Rush" rating="5" created_date="2015-11-10 11:30:15"/>
+</dataset>

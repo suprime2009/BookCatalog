@@ -73,8 +73,19 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 
 	@Override
 	public void updateAuthor(Author author) throws AuthorManagerException {
-
+		String errorMessage = "";
 		log.debug("The method starts. Author to update ={}", author);
+		if (author.getIdAuthor() == null) {
+			errorMessage = "Passed author has no id number.";
+			log.error(errorMessage);
+			throw new AuthorManagerException(errorMessage);
+		}
+		Author checkAuthor = authorFacadeLocal.findById(author.getIdAuthor());
+		if (checkAuthor == null) {
+			errorMessage = "Author {} hasn't been found in database.";
+			log.error(errorMessage);
+			throw new AuthorManagerException(errorMessage);
+		}
 		validateAuthor(author);
 		authorHome.update(author);
 		log.info("The method finished. Author {} has been successfully updated.", author);
@@ -163,19 +174,21 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 	 *             exception
 	 */
 	private void validateAuthor(Author author) throws AuthorManagerException {
-		String firstName = author.getFirstName().trim();
-		String secondName = author.getSecondName().trim();
+		String firstName = author.getFirstName();
+		String secondName = author.getSecondName();
 		String errorMessage = "";
-		if (firstName == null || firstName.length() < 2 || firstName.length() > 80) {
+		if (firstName == null || firstName.length() < 2 || firstName.length() >= 80) {
 			errorMessage = "Author first name name can't be null. Author first name cannot be less then 2 and more than 80 characters.";
 			log.error(errorMessage);
 			throw new AuthorManagerException(errorMessage);
 		}
-		if (secondName == null || secondName.length() < 2 || secondName.length() > 80) {
+		if (secondName == null || secondName.length() < 2 || secondName.length() >= 80) {
 			errorMessage = "Author second name name can't be null. Author second name cannot be less then 2 and more than 80 characters.";
 			log.error(errorMessage);
 			throw new AuthorManagerException(errorMessage);
 		}
+		firstName = firstName.trim();
+		secondName = secondName.trim();
 		String regex = "([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher firstNameMacher = pattern.matcher(firstName);

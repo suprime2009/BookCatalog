@@ -9,8 +9,9 @@ import java.util.List;
  *            entity class
  */
 public interface IHome<T> {
-
+	
 	public static final String PERSISTANCE_UNIT_PRIMARY = "primary";
+
 
 	/**
 	 * The method creates a record in a database.

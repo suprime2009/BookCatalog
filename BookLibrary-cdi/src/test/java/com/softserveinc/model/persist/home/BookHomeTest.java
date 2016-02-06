@@ -25,34 +25,34 @@ public class BookHomeTest extends BaseTest implements DataBaseConstants{
 	public static final String DELETE_BOOK = "testDeleteBook";
 	
 
-	@Test
-	public void testCreateBook() {
-		Book book = new Book(WINDOWS, ISBN, JAPAN, 2015, null);
-		assertNull(book.getIdBook());
-		bookHomeRemote.create(book);
-		System.out.println(book);
-		System.out.println(book);
-		System.out.println(book);
-		System.out.println(book);
-		System.out.println(book);
-		String id = book.getIdBook();
-		assertNotNull(id);
-		Book bookExpected = bookHomeRemote.findByID(id);
-		assertNotNull(bookExpected);
-		assertEquals(bookExpected.getIdBook(), id);
-		assertEquals(bookExpected.getBookName(), book.getBookName());
-		assertEquals(bookExpected.getIsbn(), book.getIsbn());
-		assertEquals(bookExpected.getPublisher(), book.getPublisher());
-		assertEquals(bookExpected.getYearPublished(), book.getYearPublished());
-	}
-	
-//	@Test(expectedExceptions=Exception.class)
-//	public void testCreateBookWithAlreadyExistISBN() {
-//		Book book = new Book(WINDOWS, EXISTING_ISBN, JAPAN, 2015, null);
+//	@Test
+//	public void testCreateBook() {
+//		Book book = new Book(WINDOWS, ISBN, JAPAN, 2015, null);
+//		assertNull(book.getIdBook());
 //		bookHomeRemote.create(book);
-//		
-//		assertEquals(book.getIdBook(), null);
+//		System.out.println(book);
+//		System.out.println(book);
+//		System.out.println(book);
+//		System.out.println(book);
+//		System.out.println(book);
+//		String id = book.getIdBook();
+//		assertNotNull(id);
+//		Book bookExpected = bookHomeRemote.findByID(id);
+//		assertNotNull(bookExpected);
+//		assertEquals(bookExpected.getIdBook(), id);
+//		assertEquals(bookExpected.getBookName(), book.getBookName());
+//		assertEquals(bookExpected.getIsbn(), book.getIsbn());
+//		assertEquals(bookExpected.getPublisher(), book.getPublisher());
+//		assertEquals(bookExpected.getYearPublished(), book.getYearPublished());
 //	}
+	
+	@Test(expectedExceptions=Exception.class)
+	public void testCreateBookWithAlreadyExistISBN() {
+		Book book = new Book(WINDOWS, EXISTING_ISBN, JAPAN, 2015, null);
+		bookHomeRemote.create(book);
+		
+		assertEquals(book.getIdBook(), null);
+	}
 //	
 //	@Test
 //	public void testCreateBookWithAuthors() {

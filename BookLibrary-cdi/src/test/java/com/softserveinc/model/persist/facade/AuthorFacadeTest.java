@@ -32,14 +32,14 @@ public class AuthorFacadeTest extends BaseTest{
 //		}
 //	}
 	
-	@Test
-	public void testFindAuthorByFullName() {
-		Author author = authorFacadeRemote.findAuthorByFullName("Raul", "Garsia");
-		
-		assertNotNull(author);
-		assertEquals("Raul", author.getFirstName());
-		assertEquals("Raul", author.getFirstName());
-		assertEquals("Garsia", author.getSecondName());
-		assertEquals("a1", author.getIdAuthor());
-	}
+//	@Test
+//	public void testFindAuthorByFullName() {
+//		Author author = authorFacadeRemote.findAuthorByFullName("Raul", "Garsia");
+//		
+//		assertNotNull(author);
+//		assertEquals("Raul", author.getFirstName());
+//		assertEquals("Raul", author.getFirstName());
+//		assertEquals("Garsia", author.getSecondName());
+//		assertEquals("a1", author.getIdAuthor());
+//	}
 }

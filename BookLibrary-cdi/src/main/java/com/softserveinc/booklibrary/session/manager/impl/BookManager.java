@@ -1,6 +1,9 @@
 package com.softserveinc.booklibrary.session.manager.impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,14 +18,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.BookManagerException;
+import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.session.manager.BookManagerLocal;
 import com.softserveinc.booklibrary.session.manager.BookManagerRemote;
+import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.home.BookHomeLocal;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
-
 
 /**
  * The {@code BookManager} class is an implementation of business logic for
@@ -42,6 +46,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	@EJB
 	private ReviewFacadeLocal reviewFacade;
 
+	@EJB
+	private ReviewHomeLocal reviewHome;
+
+	@EJB
+	private AuthorFacadeLocal authorFacade;
+
 	public BookManager() {
 
 	}
@@ -57,13 +67,14 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	}
 
 	@Override
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void createBook(Book book) throws BookManagerException {
 
 		long startMethodTime = System.currentTimeMillis();
 		log.debug("Method starts. Book to create ={}", book);
 		String errorMessage = "";
-		if (book == null) {
-			errorMessage = "Passed book to create is null.";
+		if (book == null || book.getIdBook() != null) {
+			errorMessage = "Passed book to create is null or has present id number.";
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
@@ -120,9 +131,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		bookHome.delete(book);
 		log.info("Method finished. The Book {} has been deleted.", book);
 	}
-	
-	@EJB
-	private ReviewHomeLocal reviewHome;
 
 	@Override
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -151,6 +159,7 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	 * @throws BookManagerException
 	 *             exception
 	 */
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	private void validateBookFields(Book book) throws BookManagerException {
 		String errorMessage = "";
 		if (book.getBookName() == null || book.getIsbn() == null || book.getPublisher() == null) {
@@ -158,12 +167,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
-		if (book.getBookName().length() < 3 || book.getBookName().length() > 80) {
+		if (book.getBookName().length() < 2 || book.getBookName().length() >= 80) {
 			errorMessage = "Book name lenght must be between 3 and 80 characters.";
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
-		if (book.getPublisher().length() < 3 || book.getPublisher().length() > 80) {
+		if (book.getPublisher().length() < 2 || book.getPublisher().length() >= 80) {
 			errorMessage = "Publisher lenght must be between 3 and 80 characters.";
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
@@ -183,6 +192,33 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
+		if (book.getAuthors() != null && !book.getAuthors().isEmpty()) {
+			validateAuthorsField(book);
+		}
+
+	}
+
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	private void validateAuthorsField(Book book) throws BookManagerException {
+		String errorMessage = "";
+		List<String> authorsIds = new ArrayList<String>();
+		for (Author author : book.getAuthors()) {
+			if (author.getIdAuthor() != null) {
+				authorsIds.add(author.getIdAuthor());
+			} else {
+				errorMessage = String.format("Author %s has no id number.", author);
+				log.error(errorMessage);
+				throw new BookManagerException(errorMessage);
+			}
+		}
+
+		Set<Author> presentAuthors = new HashSet<>(authorFacade.findAuthorsByListId(authorsIds));
+		if (!presentAuthors.equals(book.getAuthors())) {
+			errorMessage = "Some author from authors of the book has been modified and is not reflected.";
+			log.error(errorMessage);
+			throw new BookManagerException(errorMessage);
+		}
+
 	}
 
 }

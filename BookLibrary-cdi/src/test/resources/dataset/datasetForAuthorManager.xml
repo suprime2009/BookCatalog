@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+<author author_id="a40" first_name="Raul" second_name="Garsia" created_date="2015-11-10 11:30:15"/>
+<author author_id="a41" first_name="Cristian" second_name="Ronaldo" created_date="2015-12-14 11:55:15"/>
+<author author_id="a42" first_name="Oliver" second_name="Kahn" created_date="2015-09-14 11:22:15"/>
+<author author_id="a43" first_name="Samuel" second_name="Peter" created_date="2015-09-14 11:22:15"/>
+<author author_id="a44" first_name="George" second_name="Peter" created_date="2015-09-14 11:22:15"/>
+
+<book book_id="b91" book_name="Java Core" year_published='2010' isbn="ISBN-10: 1-161-31811-5" publisher="England" created_date="2015-11-10 11:30:15"/>
+<book book_id="b92" book_name="Hibernate" year_published="2009" isbn="ISBN-10: 1-478-51136-5" publisher="USA" created_date="2015-12-14 11:55:15"/>
+<book book_id="b93" book_name="JPA" year_published="2014" isbn="ISBN-13: 978-1-236-59785-2" publisher="Ukraine" created_date="2015-12-14 11:22:15"/>
+<book book_id="b94" book_name="EJB" year_published="2014" isbn="ISBN-13: 978-1-236-1175-9" publisher="SoftServe" created_date="2015-10-29 10:28:15"/>
+<book book_id="b95" book_name="Spring" year_published="2015" isbn="ISBN-13: 978-1-236-96315-7" publisher="England" created_date="2015-10-29 10:28:15"/>
+
+<book_author book_id="b91" author_id="a40"/>
+<book_author book_id="b91" author_id="a41"/>
+<book_author book_id="b92" author_id="a40"/>
+<book_author book_id="b93" author_id="a40"/>
+</dataset>

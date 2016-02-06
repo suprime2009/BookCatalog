@@ -5,8 +5,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-import com.softserveinc.booklibrary.rest.client.AuthorClient;
-import com.softserveinc.booklibrary.rest.client.AuthorClientRemote;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeRemote;
@@ -34,7 +32,6 @@ public abstract class BaseTest {
 	protected static BookFacadeRemote bookFacadeRemote;
 	protected static ReviewHomeRemote reviewHomeRemote;
 	protected static ReviewFacadeRemote reviewFacadeRemote;
-	protected static AuthorClientRemote authorClientRemote;
 	protected static TestHelper testHelper;
 	protected static DBUnitHelper dbUnitHelper = DBUnitHelper.getInstance();
 
@@ -59,7 +56,7 @@ public abstract class BaseTest {
 	 */
 	@AfterSuite
 	public void closeEJBSession() {
-		testHelper.closeSession();
+	//	testHelper.closeSession();
 	}
 
 	/**

@@ -35,32 +35,32 @@ public class BookFacadeTest extends BaseTest {
 //		assertNotNull(list);
 //		assertTrue(list.isEmpty());
 //	}
-
-	@Test
-	public void testFindBookByISNBN() {
-		Book book = bookFacadeRemote.findBookByISNBN("111-111-111-1");
-		assertNotNull(book);
-		assertEquals("111-111-111-1", book.getIsbn());
-		assertEquals("Java Core", book.getBookName());
-		assertEquals(new Integer(2010), book.getYearPublished());
-		assertEquals("England", book.getPublisher());
-		assertEquals("b1", book.getIdBook());
-	}
-	
-	@Test
-	public void testFindBookByName() {
-		List<Book> list = bookFacadeRemote.findBookByName("Java Core");
-		
-		assertNotNull(list);
-		assertEquals(list.size(), 2);
-	}
-	
-	@Test
-	public void testFindCountBooks() {
-		int count = bookFacadeRemote.findCountAllBooks();
-		assertEquals(7, count);
-		
-	}
+//
+//	@Test
+//	public void testFindBookByISNBN() {
+//		Book book = bookFacadeRemote.findBookByISNBN("111-111-111-1");
+//		assertNotNull(book);
+//		assertEquals("111-111-111-1", book.getIsbn());
+//		assertEquals("Java Core", book.getBookName());
+//		assertEquals(new Integer(2010), book.getYearPublished());
+//		assertEquals("England", book.getPublisher());
+//		assertEquals("b1", book.getIdBook());
+//	}
+//	
+//	@Test
+//	public void testFindBookByName() {
+//		List<Book> list = bookFacadeRemote.findBookByName("Java Core");
+//		
+//		assertNotNull(list);
+//		assertEquals(list.size(), 2);
+//	}
+//	
+//	@Test
+//	public void testFindCountBooks() {
+//		int count = bookFacadeRemote.findCountAllBooks();
+//		assertEquals(7, count);
+//		
+//	}
 	
 	
 	

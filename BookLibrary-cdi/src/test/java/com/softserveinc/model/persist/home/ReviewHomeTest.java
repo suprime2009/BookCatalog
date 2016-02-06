@@ -16,32 +16,32 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 	
 	public static final String CREATE_REVIEW = "testCreateReview";
 	
-	@Test
-	public void testCreateReview() {
-		List<Review> listBefore = reviewHomeRemote.findAll();
-		Book book = bookHomeRemote.findByID("b4");
-		Review review = new Review("This book wonderfull!", "Fred12", 5, book);
-		reviewHomeRemote.create(review);
-		List<Review> listAfter = reviewHomeRemote.findAll();
-
-		assertNotNull(review);
-		assertEquals(book, review.getBook());
-		assertEquals("This book wonderfull!", review.getComment());
-		assertEquals("Fred12", review.getCommenterName());
-		assertEquals(Integer.valueOf(5), review.getRating());
-		assertEquals(listBefore.size() + 1, listAfter.size());
-
-		
-		review = new Review("I am agree with Fred!!", "Sara", 4, book);
-		 reviewHomeRemote.create(review);
-		listAfter = reviewHomeRemote.findAll();
-		assertNotNull(review);
-		assertEquals(book, review.getBook());
-		assertEquals("I am agree with Fred!!", review.getComment());
-		assertEquals("Sara", review.getCommenterName());
-		assertEquals(Integer.valueOf(4), review.getRating());
-		assertEquals(listBefore.size() + 2, listAfter.size());
-	}
+//	@Test
+//	public void testCreateReview() {
+//		List<Review> listBefore = reviewHomeRemote.findAll();
+//		Book book = bookHomeRemote.findByID("b4");
+//		Review review = new Review("This book wonderfull!", "Fred12", 5, book);
+//		reviewHomeRemote.create(review);
+//		List<Review> listAfter = reviewHomeRemote.findAll();
+//
+//		assertNotNull(review);
+//		assertEquals(book, review.getBook());
+//		assertEquals("This book wonderfull!", review.getComment());
+//		assertEquals("Fred12", review.getCommenterName());
+//		assertEquals(Integer.valueOf(5), review.getRating());
+//		assertEquals(listBefore.size() + 1, listAfter.size());
+//
+//		
+//		review = new Review("I am agree with Fred!!", "Sara", 4, book);
+//		 reviewHomeRemote.create(review);
+//		listAfter = reviewHomeRemote.findAll();
+//		assertNotNull(review);
+//		assertEquals(book, review.getBook());
+//		assertEquals("I am agree with Fred!!", review.getComment());
+//		assertEquals("Sara", review.getCommenterName());
+//		assertEquals(Integer.valueOf(4), review.getRating());
+//		assertEquals(listBefore.size() + 2, listAfter.size());
+//	}
 	
 //	@Test(expectedExceptions=BookCatalogException.class)
 //	public void negativeCreateCommenterName() {
@@ -74,34 +74,34 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 //		assertEquals(reviewBefore.getIdreview(), reviewAfter.getIdreview());
 	}
 
-	@Test
-	public void testFindByIdreview() {
-		Review review = reviewHomeRemote.findByID("r4");
-		Book book = bookHomeRemote.findByID("b3");
-		
-		assertEquals("Lesia", review.getCommenterName());
-		assertEquals("JPA", review.getComment());
-		assertEquals(Integer.valueOf(4), review.getRating());
-		assertEquals(book, review.getBook());
-
-		
-		review = reviewHomeRemote.findByID("r10");
-		review.getComment();
-	}
-	
-	@Test(expectedExceptions=IllegalArgumentException.class)
-	public void testNegativeFindByIdReview() {
-		Review review = reviewHomeRemote.findByID("2");
-	}
-	
-	@Test
-	public void testDeleteReview() {
-		List<Review> listBefore = reviewHomeRemote.findAll();
-		Review review = reviewHomeRemote.findByID("r2");
-		reviewHomeRemote.delete(review);
-		List<Review> listAfter = reviewHomeRemote.findAll();
-		assertEquals(listBefore.size(), listAfter.size() + 1);
-	}
+//	@Test
+//	public void testFindByIdreview() {
+//		Review review = reviewHomeRemote.findByID("r4");
+//		Book book = bookHomeRemote.findByID("b3");
+//		
+//		assertEquals("Lesia", review.getCommenterName());
+//		assertEquals("JPA", review.getComment());
+//		assertEquals(Integer.valueOf(4), review.getRating());
+//		assertEquals(book, review.getBook());
+//
+//		
+//		review = reviewHomeRemote.findByID("r10");
+//		review.getComment();
+//	}
+//	
+//	@Test(expectedExceptions=IllegalArgumentException.class)
+//	public void testNegativeFindByIdReview() {
+//		Review review = reviewHomeRemote.findByID("2");
+//	}
+//	
+//	@Test
+//	public void testDeleteReview() {
+//		List<Review> listBefore = reviewHomeRemote.findAll();
+//		Review review = reviewHomeRemote.findByID("r2");
+//		reviewHomeRemote.delete(review);
+//		List<Review> listAfter = reviewHomeRemote.findAll();
+//		assertEquals(listBefore.size(), listAfter.size() + 1);
+//	}
 	
 	@Test(dependsOnMethods={CREATE_REVIEW})
 	public void testFindAllReviews() {

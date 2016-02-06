@@ -16,6 +16,7 @@ import com.softserveinc.booklibrary.model.entity.Book;
  */
 @Remote(BookHomeRemote.class)
 public interface BookHomeRemote extends IHome<Book> {
+	
 
 	/**
 	 * The method provides delete operation in a database table for {@code List}

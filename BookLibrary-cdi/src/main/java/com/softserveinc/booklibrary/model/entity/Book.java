@@ -9,6 +9,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,14 +30,6 @@ import java.util.UUID;
 		@NamedQuery(name = Book.FIND_BOOKS_BY_RATING, query = "SELECT b FROM Review r JOIN r.book b  GROUP BY r.book  HAVING FLOOR (AVG(r.rating)) = :rat"),
 		@NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ") })
 public class Book implements Serializable {
-
-	// @SqlResultSetMapping(name="findBooksForDataTable",
-	// entities={
-	// @EntityResult(entityClass=com.softserveinc.model.persist.entity.Book.class,
-	// fields={
-	// @FieldResult(name="rating", column="rat")})},
-	// columns={
-	// @ColumnResult(name="rat")})
 
 	/**
 	 * 
@@ -73,12 +66,12 @@ public class Book implements Serializable {
 	private Integer yearPublished;
 
 	@OrderColumn(name = "author.secondName")
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
 
-	@OneToMany(orphanRemoval=true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "book")
+	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "book")
 	private Set<Review> reviews;
 
 	@Transient
@@ -198,6 +191,16 @@ public class Book implements Serializable {
 		Book book = (Book) obj;
 		return Objects.equal(idBook, book.idBook) && Objects.equal(bookName, book.bookName)
 				&& Objects.equal(createdDate, book.createdDate) && Objects.equal(isbn, book.isbn)
+				&& Objects.equal(publisher, book.publisher) && Objects.equal(yearPublished, book.yearPublished)
+				&& Objects.equal(authors, book.authors);
+	}
+
+	public boolean equalsNotCreatedBook(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		Book book = (Book) obj;
+		return Objects.equal(bookName, book.bookName) && Objects.equal(isbn, book.isbn)
 				&& Objects.equal(publisher, book.publisher) && Objects.equal(yearPublished, book.yearPublished)
 				&& Objects.equal(authors, book.authors);
 	}

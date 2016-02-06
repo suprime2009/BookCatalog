@@ -17,6 +17,8 @@ import com.softserveinc.booklibrary.model.entity.Book;
 @Local
 public interface BookHomeLocal extends IHome<Book> {
 	
+	
+	
 	/**
 	 * The method provides delete operation in a database table for 
 	 * {@code List} of Book. After execution this method all books,

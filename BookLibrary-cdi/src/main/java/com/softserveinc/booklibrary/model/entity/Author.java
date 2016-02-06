@@ -3,7 +3,6 @@ package com.softserveinc.booklibrary.model.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,11 +25,11 @@ import java.util.UUID;
 		@NamedQuery(name = Author.FIND_ALL_AUTHORS_BY_BOOK, query = "SELECT a FROM Author a JOIN a.books b WHERE b = :bk"),
 		@NamedQuery(name = Author.FIND_AUTHOR_RATING, query = "SELECT ROUND(AVG(r.rating),2) FROM Author a LEFT JOIN a.books b LEFT JOIN b.reviews r WHERE a = :author"),
 		@NamedQuery(name = Author.FIND_AUTHORS_BY_LIST_ID, query = "SELECT a FROM Author a WHERE a.idAuthor IN :list "),
-		@NamedQuery(name = Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE, query = "SELECT CONCAT(a.secondName, ' ', a.firstName) FROM Author a WHERE a.secondName LIKE :sn or a.firstName LIKE :sn")})
+		@NamedQuery(name = Author.FIND_AUTHORS_NAMES_FOR_AUTOCOMPLETE, query = "SELECT CONCAT(a.secondName, ' ', a.firstName) FROM Author a WHERE a.secondName LIKE :sn or a.firstName LIKE :sn") })
 public class Author implements Serializable {
 
 	private static final long serialVersionUID = -4647534114628862508L;
-	
+
 	public static final String FIND_ALL_AUTHORS = "Author.findAll";
 	public static final String FIND_AUTHOR_BY_FULL_NAME = "Author.findAuthorByFullName";
 	public static final String FIND_ALL_AUTHORS_BY_BOOK = "Author.findAllAuthorsByBook";
@@ -54,10 +53,9 @@ public class Author implements Serializable {
 	@Column(name = "second_name")
 	private String secondName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, 
-	inverseJoinColumns = {@JoinColumn(name = "book_id") })
-	@JsonBackReference(value="1")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "book_id") })
 	private List<Book> books;
 
 	public Author() {
@@ -68,7 +66,7 @@ public class Author implements Serializable {
 		this.firstName = firstName;
 		this.secondName = secondName;
 	}
-	
+
 	@PrePersist
 	private void generateId() {
 		this.idAuthor = UUID.randomUUID().toString();
@@ -78,7 +76,7 @@ public class Author implements Serializable {
 	public String getIdAuthor() {
 		return this.idAuthor;
 	}
-	
+
 	public void setIdAuthor(String idAuthor) {
 		this.idAuthor = idAuthor;
 	}
@@ -94,7 +92,7 @@ public class Author implements Serializable {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getSecondName() {
 		return secondName;
 	}
@@ -124,6 +122,14 @@ public class Author implements Serializable {
 		Author author = (Author) obj;
 		return Objects.equals(idAuthor, author.idAuthor) && Objects.equals(createdDate, author.createdDate)
 				&& Objects.equals(firstName, author.firstName) && Objects.equals(secondName, author.secondName);
+	}
+
+	public boolean equalsNotCreatedBook(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		Author author = (Author) obj;
+		return Objects.equals(firstName, author.firstName) && Objects.equals(secondName, author.secondName);
 	}
 
 	@Override

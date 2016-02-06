@@ -45,7 +45,7 @@ public class DBUnitHelper {
 	/**
 	 * Private constructor.
 	 */
-	private DBUnitHelper() {
+	public DBUnitHelper() {
 		loadData();
 	}
 

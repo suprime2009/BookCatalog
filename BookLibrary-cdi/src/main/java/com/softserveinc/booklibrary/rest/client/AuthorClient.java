@@ -1,35 +1,25 @@
 package com.softserveinc.booklibrary.rest.client;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import java.util.List;
 
+import com.softserveinc.booklibrary.exception.BookCatalogException;
+import com.softserveinc.booklibrary.model.entity.Author;
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
+import com.softserveinc.booklibrary.rest.dto.BookDTO;
 
-@Stateless
-public class AuthorClient implements AuthorClientRemote {
+public interface AuthorClient {
 
-	public static final String REST_URL = "http://localhost:8080/BookLibrary-cdi/rest/";
+	public AuthorDTO findById(String id) throws BookCatalogException;
 
-	@Override
-	public boolean createAuthor(AuthorDTO dto) {
-		Client client = ClientBuilder.newClient();
-		Response response = client.target(REST_URL + "author").request(MediaType.APPLICATION_JSON)
-				.post(Entity.entity(dto, MediaType.APPLICATION_JSON), Response.class);
+	public List<AuthorDTO> findAll() throws BookCatalogException;
 
-		
-		if (response.getStatus() == Status.CREATED.getStatusCode()) {
-			return true;
-		} else {
-			return false;
-		}
+	public void create(AuthorDTO author) throws BookCatalogException;
 
-	}
+	public void update(AuthorDTO author) throws BookCatalogException;
+
+	public void deleteById(String idAuthor) throws BookCatalogException;
+
+	public List<BookDTO> getBooksByAuthor(String authorId) throws BookCatalogException;
 
 }

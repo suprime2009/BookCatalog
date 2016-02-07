@@ -1,29 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="7" failed="0" total="7" passed="0">
+<testng-results skipped="9" failed="0" total="9" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20" started-at="2016-02-07T19:14:15Z" finished-at="2016-02-07T19:14:15Z">
+  <suite name="Default suite" duration-ms="100" started-at="2016-02-07T21:36:33Z" finished-at="2016-02-07T21:36:34Z">
     <groups>
+      <group name="testNegativeDeleteAuthorWithNoBooks">
+        <method signature="AuthorManagerTest.testNegativeDeleteAuthorWithNoBooks()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeDeleteAuthorWithNoBooks" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+      </group> <!-- testNegativeDeleteAuthorWithNoBooks -->
+      <group name="createAuthor">
+        <method signature="AuthorManagerTest.testCreateAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testCreateAuthor" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+        <method signature="AuthorManagerTest.testNegativeCreateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeCreateAuthor" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+      </group> <!-- createAuthor -->
+      <group name="updateAuthor">
+        <method signature="AuthorManagerTest.testDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testDeleteAuthor" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+        <method signature="AuthorManagerTest.testNegativeDeleteAuthor(java.lang.String)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeDeleteAuthor" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+        <method signature="AuthorManagerTest.testBulkDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testBulkDeleteAuthor" class="com.softserveinc.booklibrary.test.manager.AuthorManagerTest"/>
+      </group> <!-- updateAuthor -->
     </groups>
-    <test name="Default test" duration-ms="20" started-at="2016-02-07T19:14:15Z" finished-at="2016-02-07T19:14:15Z">
-      <class name="com.softserveinc.model.persist.home.BookHomeTest">
-        <test-method status="FAIL" signature="getRemoteBeans()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="getRemoteBeans" is-config="true" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
-          <exception class="javax.ejb.EJBException">
+    <test name="Default test" duration-ms="100" started-at="2016-02-07T21:36:33Z" finished-at="2016-02-07T21:36:34Z">
+      <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
+        <test-method status="FAIL" signature="arquillianBeforeSuite()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianBeforeSuite" is-config="true" duration-ms="0" started-at="2016-02-07T23:35:30Z" finished-at="2016-02-07T23:35:30Z">
+          <exception class="org.jboss.arquillian.container.spi.client.container.LifecycleException">
             <message>
-              <![CDATA[No EJBContainer provider available: no provider names had been found.]]>
+              <![CDATA[Could not start container]]>
             </message>
             <full-stacktrace>
-              <![CDATA[javax.ejb.EJBException: No EJBContainer provider available: no provider names had been found.
-	at javax.ejb.embeddable.EJBContainer.reportError(EJBContainer.java:216)
-	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:146)
-	at com.softserveinc.model.util.TestHelper.getInitialContext(TestHelper.java:63)
-	at com.softserveinc.model.util.TestHelper.<init>(TestHelper.java:33)
-	at com.softserveinc.model.util.TestHelper.getInstance(TestHelper.java:46)
-	at com.softserveinc.model.util.BaseTest.getRemoteBeans(BaseTest.java:44)
+              <![CDATA[org.jboss.arquillian.container.spi.client.container.LifecycleException: Could not start container
+	at org.jboss.as.arquillian.container.managed.ManagedDeployableContainer.startInternal(ManagedDeployableContainer.java:208)
+	at org.jboss.as.arquillian.container.CommonDeployableContainer.start(CommonDeployableContainer.java:112)
+	at org.jboss.arquillian.container.impl.ContainerImpl.start(ContainerImpl.java:199)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController$8.perform(ContainerLifecycleController.java:163)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController$8.perform(ContainerLifecycleController.java:157)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController.forContainer(ContainerLifecycleController.java:255)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController.startContainer(ContainerLifecycleController.java:156)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
+	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
+	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
+	at org.jboss.arquillian.container.impl.client.ContainerDeploymentContextHandler.createContainerContext(ContainerDeploymentContextHandler.java:57)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
+	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
+	at org.jboss.arquillian.core.impl.EventImpl.fire(EventImpl.java:67)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController$2.perform(ContainerLifecycleController.java:77)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController$2.perform(ContainerLifecycleController.java:70)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController.forEachSuiteContainer(ContainerLifecycleController.java:221)
+	at org.jboss.arquillian.container.impl.client.container.ContainerLifecycleController.startSuiteContainers(ContainerLifecycleController.java:69)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
+	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
+	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
+	at org.jboss.arquillian.core.impl.EventImpl.fire(EventImpl.java:67)
+	at org.jboss.arquillian.container.test.impl.client.ContainerEventController.execute(ContainerEventController.java:86)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
+	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
+	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
+	at org.jboss.arquillian.test.impl.TestContextHandler.createSuiteContext(TestContextHandler.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
+	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
+	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
+	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
+	at org.jboss.arquillian.test.impl.EventTestRunnerAdaptor.beforeSuite(EventTestRunnerAdaptor.java:68)
+	at org.jboss.arquillian.testng.Arquillian.arquillianBeforeSuite(Arquillian.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:483)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
 	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:510)
 	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:211)
@@ -38,39 +101,45 @@
 	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+Caused by: java.util.concurrent.TimeoutException: Managed server was not started within [60] s
+	at org.jboss.as.arquillian.container.managed.ManagedDeployableContainer.startInternal(ManagedDeployableContainer.java:204)
+	... 74 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- javax.ejb.EJBException -->
+          </exception> <!-- org.jboss.arquillian.container.spi.client.container.LifecycleException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getRemoteBeans -->
-        <test-method status="SKIP" signature="testCreateBookWithAlreadyExistISBN()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testCreateBookWithAlreadyExistISBN" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- arquillianBeforeSuite -->
+        <test-method status="SKIP" signature="arquillianBeforeClass()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianBeforeClass" is-config="true" duration-ms="0" started-at="2016-02-07T23:36:33Z" finished-at="2016-02-07T23:36:33Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateBookWithAlreadyExistISBN -->
-        <test-method status="SKIP" signature="testUpdateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testUpdateBook" duration-ms="10" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- arquillianBeforeClass -->
+        <test-method status="SKIP" signature="arquillianBeforeTest(java.lang.reflect.Method)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianBeforeTest" is-config="true" duration-ms="0" started-at="2016-02-07T23:36:33Z" finished-at="2016-02-07T23:36:33Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testUpdateBook -->
-        <test-method status="SKIP" signature="setUp()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="setUp" is-config="true" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- arquillianBeforeTest -->
+        <test-method status="SKIP" signature="testCreateAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testCreateAuthor" duration-ms="1" started-at="2016-02-07T23:36:33Z" finished-at="2016-02-07T23:36:33Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method status="SKIP" signature="testCreateBookWithAuthors()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testCreateBookWithAuthors" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- testCreateAuthor -->
+        <test-method status="PASS" signature="arquillianAfterTest(java.lang.reflect.Method)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianAfterTest" is-config="true" duration-ms="2" started-at="2016-02-07T23:36:33Z" finished-at="2016-02-07T23:36:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testCreateAuthor() throws com.softserveinc.booklibrary.exception.AuthorManagerException]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testCreateBookWithAuthors -->
-        <test-method status="SKIP" signature="testCreateBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testCreateBook" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCreateBook -->
-        <test-method status="SKIP" signature="testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testFindByIdBook" duration-ms="0" started-at="2016-02-07T21:14:15Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- arquillianAfterTest -->
+        <test-method status="SKIP" signature="testNegativeCreateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeCreateAuthor" duration-ms="0" started-at="2016-02-07T23:36:33Z" data-provider="negativeCreateAuthorDataProvider" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testCreateAuthor" finished-at="2016-02-07T23:36:33Z">
           <exception class="java.lang.Throwable">
             <message>
-              <![CDATA[Method BookHomeTest.testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods]]>
+              <![CDATA[Method AuthorManagerTest.testNegativeCreateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method BookHomeTest.testFindByIdBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testNegativeCreateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
@@ -93,18 +162,14 @@
           </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testFindByIdBook -->
-        <test-method status="SKIP" signature="tearDown()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method status="SKIP" signature="testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testDeleteBook" duration-ms="0" started-at="2016-02-07T21:14:15Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- testNegativeCreateAuthor -->
+        <test-method status="SKIP" signature="testDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testDeleteAuthor" duration-ms="0" depends-on-groups="createAuthor" started-at="2016-02-07T23:36:33Z" finished-at="2016-02-07T23:36:33Z">
           <exception class="java.lang.Throwable">
             <message>
-              <![CDATA[Method BookHomeTest.testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods]]>
+              <![CDATA[Method AuthorManagerTest.testDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods in group "createAuthor"]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method BookHomeTest.testDeleteBook()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods in group "createAuthor"
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
@@ -127,14 +192,14 @@
           </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testDeleteBook -->
-        <test-method status="SKIP" signature="testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="testFindAllBooks" duration-ms="0" started-at="2016-02-07T21:14:15Z" depends-on-methods="com.softserveinc.model.persist.home.BookHomeTest.testDeleteBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBook, com.softserveinc.model.persist.home.BookHomeTest.testCreateBookWithAuthors" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- testDeleteAuthor -->
+        <test-method status="SKIP" signature="testNegativeDeleteAuthor(java.lang.String)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeDeleteAuthor" duration-ms="1" started-at="2016-02-07T23:36:33Z" data-provider="negativeDeleteAuthorDataProvider" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testDeleteAuthor" finished-at="2016-02-07T23:36:33Z">
           <exception class="java.lang.Throwable">
             <message>
-              <![CDATA[Method BookHomeTest.testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods]]>
+              <![CDATA[Method AuthorManagerTest.testNegativeDeleteAuthor(java.lang.String)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Throwable: Method BookHomeTest.testFindAllBooks()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31] depends on not successfully finished methods
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testNegativeDeleteAuthor(java.lang.String)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
 	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
@@ -157,12 +222,166 @@
           </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testFindAllBooks -->
-        <test-method status="SKIP" signature="closeEJBSession()[pri:0, instance:com.softserveinc.model.persist.home.BookHomeTest@27808f31]" name="closeEJBSession" is-config="true" duration-ms="0" started-at="2016-02-07T21:14:15Z" finished-at="2016-02-07T21:14:15Z">
+        </test-method> <!-- testNegativeDeleteAuthor -->
+        <test-method status="SKIP" signature="testNegativeDeleteAuthorWithNoBooks()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeDeleteAuthorWithNoBooks" duration-ms="0" started-at="2016-02-07T23:36:33Z" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testDeleteAuthor" finished-at="2016-02-07T23:36:33Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method AuthorManagerTest.testNegativeDeleteAuthorWithNoBooks()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testNegativeDeleteAuthorWithNoBooks()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeEJBSession -->
-      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
+        </test-method> <!-- testNegativeDeleteAuthorWithNoBooks -->
+        <test-method status="SKIP" signature="testBulkDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testBulkDeleteAuthor" duration-ms="0" started-at="2016-02-07T23:36:33Z" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testNegativeDeleteAuthorWithNoBooks" finished-at="2016-02-07T23:36:33Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method AuthorManagerTest.testBulkDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testBulkDeleteAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBulkDeleteAuthor -->
+        <test-method status="SKIP" signature="testNegativeBulkDeleteAuthors()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeBulkDeleteAuthors" duration-ms="0" started-at="2016-02-07T23:36:33Z" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testBulkDeleteAuthor" finished-at="2016-02-07T23:36:33Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method AuthorManagerTest.testNegativeBulkDeleteAuthors()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testNegativeBulkDeleteAuthors()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNegativeBulkDeleteAuthors -->
+        <test-method status="SKIP" signature="testUpdateAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testUpdateAuthor" duration-ms="0" depends-on-groups="updateAuthor" started-at="2016-02-07T23:36:34Z" finished-at="2016-02-07T23:36:34Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method AuthorManagerTest.testUpdateAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods in group "updateAuthor"]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testUpdateAuthor()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods in group "updateAuthor"
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateAuthor -->
+        <test-method status="SKIP" signature="testNegativeUpdateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="testNegativeUpdateAuthor" duration-ms="0" started-at="2016-02-07T23:36:34Z" data-provider="negativeUpdateAuthorDataProvider" depends-on-methods="com.softserveinc.booklibrary.test.manager.AuthorManagerTest.testUpdateAuthor" finished-at="2016-02-07T23:36:34Z">
+          <exception class="java.lang.Throwable">
+            <message>
+              <![CDATA[Method AuthorManagerTest.testNegativeUpdateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Throwable: Method AuthorManagerTest.testNegativeUpdateAuthor(com.softserveinc.booklibrary.model.entity.Author)[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1] depends on not successfully finished methods
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1033)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1215)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1140)
+	at org.testng.TestNG.run(TestNG.java:1048)
+	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Throwable -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNegativeUpdateAuthor -->
+        <test-method status="PASS" signature="arquillianAfterClass()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianAfterClass" is-config="true" duration-ms="0" started-at="2016-02-07T23:36:34Z" finished-at="2016-02-07T23:36:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterClass -->
+        <test-method status="PASS" signature="arquillianAfterSuite()[pri:0, instance:com.softserveinc.booklibrary.test.manager.AuthorManagerTest@610694f1]" name="arquillianAfterSuite" is-config="true" duration-ms="0" started-at="2016-02-07T23:36:34Z" finished-at="2016-02-07T23:36:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- arquillianAfterSuite -->
+      </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

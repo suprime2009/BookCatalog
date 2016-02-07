@@ -11,10 +11,12 @@ import org.testng.annotations.DataProvider;
 import com.google.common.collect.Lists;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
-import com.softserveinc.model.util.TestFieldsHolder;
 
 public class ManagerTestUlil {
 
+	private static final String CHRIS = "Chris";
+	private static final String DEVIS = "Devis";
+	
 	private static final String BOOK_NAME_CORRECT = "Some book";
 	private static final String ISBN_CORRECT = "ISBN-13: 978-1-236-04519-4";
 	private static final String PUBLISHER_CORRECT = "Some publisher";
@@ -95,13 +97,13 @@ public class ManagerTestUlil {
 	}
 
 	public static Author[][] negativeAuthorDataProvider() {
-		Author[][] retObjArr = { { new Author(TestFieldsHolder.LESS_TWO_CHARACTERS, TestFieldsHolder.DEVIS) },
-				{ new Author(TestFieldsHolder.MORE_EIGHTY_CHARACTERS, TestFieldsHolder.DEVIS) },
-				{ new Author(TestFieldsHolder.CHRIS, TestFieldsHolder.LESS_TWO_CHARACTERS) },
-				{ new Author(TestFieldsHolder.CHRIS, TestFieldsHolder.MORE_EIGHTY_CHARACTERS) },
-				{ new Author("chris", TestFieldsHolder.DEVIS) }, { new Author("hello world", TestFieldsHolder.DEVIS) },
-				{ new Author(TestFieldsHolder.CHRIS, "chris") }, { new Author(TestFieldsHolder.CHRIS, "hello world") },
-				{ new Author(null, TestFieldsHolder.DEVIS) }, { new Author(TestFieldsHolder.CHRIS, null) } };
+		Author[][] retObjArr = { { new Author(LESS_TWO_CHARACTERS, DEVIS) },
+				{ new Author(MORE_EIGHTY_CHARACTERS, DEVIS) },
+				{ new Author(CHRIS, LESS_TWO_CHARACTERS) },
+				{ new Author(CHRIS, MORE_EIGHTY_CHARACTERS) },
+				{ new Author("chris", DEVIS) }, { new Author("hello world", DEVIS) },
+				{ new Author(CHRIS, "chris") }, { new Author(CHRIS, "hello world") },
+				{ new Author(null, DEVIS) }, { new Author(CHRIS, null) } };
 		return (retObjArr);
 	}
 
@@ -109,7 +111,7 @@ public class ManagerTestUlil {
 	public static Author[][] negativeCreateAuthorDataProvider() {
 		List<Author[]> list = Lists.newArrayList();
 		list.addAll(Arrays.asList(negativeAuthorDataProvider()));
-		Author author = new Author(TestFieldsHolder.CHRIS, TestFieldsHolder.DEVIS);
+		Author author = new Author(CHRIS, DEVIS);
 		author.setIdAuthor("someId");
 		list.add(new Author[] { author });
 		
@@ -124,7 +126,7 @@ public class ManagerTestUlil {
 			Author author = list.get(i)[0];
 			author.setIdAuthor("someID" + i);
 		}
-		Author author = new Author(TestFieldsHolder.CHRIS, TestFieldsHolder.DEVIS);
+		Author author = new Author(CHRIS, DEVIS);
 		author.setIdAuthor(null);
 		list.add(new Author[] { author });
 		

@@ -1,13 +1,6 @@
 <suite name="BookLibrary-cdiTest">
 
-	<!--  <test name="homes">
-	  <classes>
-		
-		<class name="com.softserveinc.model.persist.home.BookHomeTest" />
-		<class name="com.softserveinc.model.persist.home.ReviewHomeTest" />
-		 <class name="com.softserveinc.model.persist.home.AuthorHomeTest" />
-	  </classes>
-	</test>
+
 
 	  <test name="facades">
 	  <classes>
@@ -16,7 +9,7 @@
 		<class name="com.softserveinc.model.persist.facade.ReviewFacadeTest" />
 	  </classes>
 	</test>
-	-->
+
 	
 	 <test name="managers">
 	  <classes>

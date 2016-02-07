@@ -26,9 +26,6 @@ public class BookDTO implements Serializable, JsonFieldsHolder{
 	private String publisher;
 	private Integer yearPublished;
 	
-
-//	@JsonManagedReference(value="book-author")
-//	@JsonBackReference(value="author-book")
 	private List<AuthorDTO> authors;
 	
 	

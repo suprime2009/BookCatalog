@@ -6,13 +6,15 @@
       <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
         <methods>
           <include name="arquillianAfterSuite"/>
+          <include name="testNegativeDeleteBook"/>
           <include name="testNegativeCreateBook"/>
+          <include name="testBulkDelete"/>
           <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
+          <include name="testDeleteBook"/>
+          <include name="testUpdateBook"/>
           <include name="arquillianAfterTest"/>
           <include name="testCreateBook"/>
           <include name="arquillianBeforeSuite"/>
-          <include name="arquillianBeforeTest"/>
         </methods>
       </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
       <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
@@ -24,7 +26,6 @@
           <include name="testNegativeDeleteAuthor"/>
           <include name="testUpdateAuthor"/>
           <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
           <include name="testNegativeCreateAuthor"/>
           <include name="testNegativeBulkDeleteAuthors"/>
           <include name="testCreateAuthor"/>

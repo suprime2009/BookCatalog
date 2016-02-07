@@ -55,6 +55,7 @@ public interface BookService {
 	@Produces("application/json")
 	public Response findAll();
 
+
 	@POST
 	@Consumes("application/json")
 	public Response create(BookDTO bookDTO);

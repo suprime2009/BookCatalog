@@ -58,9 +58,9 @@ public class AuthorFacade implements AuthorFacadeLocal, AuthorFacadeRemote {
 	}
 
 	@Override
-	public Author findAuthorByFullName(String secondName, String firstName) {
+	public Author findAuthorByFullName(String firstName, String secondName) {
 		Author object = null;
-		Query query = entityManager.createNamedQuery(Author.FIND_AUTHOR_BY_FULL_NAME);
+		TypedQuery<Author> query = entityManager.createNamedQuery(Author.FIND_AUTHOR_BY_FULL_NAME, Author.class);
 		query.setParameter("fn", firstName);
 		query.setParameter("sn", secondName);
 		try {

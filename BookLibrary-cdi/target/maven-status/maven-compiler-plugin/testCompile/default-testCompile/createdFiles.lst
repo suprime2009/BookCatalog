@@ -2,7 +2,6 @@ com\softserveinc\model\util\DBUnitHelper.class
 com\softserveinc\booklibrary\test\rest\AuthorRestTest.class
 com\softserveinc\booklibrary\test\manager\ManagerTestUlil.class
 com\softserveinc\model\util\TestHelper.class
-com\softserveinc\model\util\TestFieldsHolder.class
 com\softserveinc\model\persist\facade\ReviewFacadeTest.class
 com\softserveinc\model\persist\facade\BookFacadeTest.class
 com\softserveinc\booklibrary\test\manager\AuthorManagerTest.class

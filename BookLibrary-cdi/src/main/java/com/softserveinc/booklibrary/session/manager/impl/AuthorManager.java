@@ -81,6 +81,7 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 			throw new AuthorManagerException(errorMessage);
 		}
 		Author checkAuthor = authorFacadeLocal.findById(author.getIdAuthor());
+
 		if (checkAuthor == null) {
 			errorMessage = "Author {} hasn't been found in database.";
 			log.error(errorMessage);

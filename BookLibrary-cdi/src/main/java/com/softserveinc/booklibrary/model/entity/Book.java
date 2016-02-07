@@ -66,7 +66,7 @@ public class Book implements Serializable {
 	private Integer yearPublished;
 
 	@OrderColumn(name = "author.secondName")
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;

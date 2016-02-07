@@ -118,4 +118,5 @@ public class AuthorServiceImpl implements AuthorService {
 		List<BookDTO> dto = bookService.convertToListDTO(bookFacade.findBooksByAuthor(author));
 		return Response.ok(dto).build();
 	}
+	
 }

@@ -51,8 +51,8 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 //		review = reviewHomeRemote.create(review);
 //	}
 	
-	@Test
-	public void testUpdateReview() {
+//	@Test
+//	public void testUpdateReview() {
 		
 //		Review reviewBefore = reviewHomeRemote.findByID("r7");
 //		Book otherBook = bookHomeRemote.findByID("b1");
@@ -72,7 +72,7 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 //		assertEquals(otherBook, reviewAfter.getBook());
 //		assertEquals(reviewBefore.getCreatedDate(), reviewAfter.getCreatedDate());
 //		assertEquals(reviewBefore.getIdreview(), reviewAfter.getIdreview());
-	}
+//	}
 
 //	@Test
 //	public void testFindByIdreview() {
@@ -103,8 +103,8 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 //		assertEquals(listBefore.size(), listAfter.size() + 1);
 //	}
 	
-	@Test(dependsOnMethods={CREATE_REVIEW})
-	public void testFindAllReviews() {
+//	@Test(dependsOnMethods={CREATE_REVIEW})
+//	public void testFindAllReviews() {
 //		List<Review> listReview = reviewHomeRemote.findAll();
 //		System.out.println(listReview.size());
 //		System.out.println(listReview.size());
@@ -112,6 +112,6 @@ public class ReviewHomeTest extends BaseTest implements DataBaseConstants{
 //		System.out.println(listReview.size());
 //		assertNotNull(listReview);
 //		assertEquals(11, listReview.size());
-	}
+//	}
 
 }

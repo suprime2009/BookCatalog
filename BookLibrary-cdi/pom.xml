@@ -12,7 +12,7 @@
 	<artifactId>BookLibrary-cdi</artifactId>
 	<version>1</version>
 	<packaging>war</packaging>
-	<name>BookLibrary-cdi</name>
+	<name>WildFly Quickstarts: BookLibrary-cdi</name>
 	<description></description>
 
 	<url>http://wildfly.org</url>
@@ -295,7 +295,7 @@
 		<dependency>
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>openejb-core</artifactId>
-			<version>3.1</version>
+			<version>4.7.2</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -311,7 +311,7 @@
 	</dependencies>
 
 
-	<build>
+  	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -358,11 +358,12 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- <build> <finalName>${project.artifactId}</finalName> <plugins> <plugin> 
+<!-- 
+	 <build> <finalName>${project.artifactId}</finalName> <plugins> <plugin> 
 		<artifactId>maven-war-plugin</artifactId> <version>${version.war.plugin}</version> 
 		<configuration> <failOnMissingWebXml>false</failOnMissingWebXml> </configuration> 
 		</plugin> <plugin> <groupId>org.wildfly.plugins</groupId> <artifactId>wildfly-maven-plugin</artifactId> 
 		<version>${version.wildfly.maven.plugin}</version> </plugin> <plugin> <artifactId>maven-surefire-plugin</artifactId> 
 		<version>${version.surefire.plugin}</version> <configuration> <skip>true</skip> 
-		</configuration> </plugin> </plugins> </build> -->
+		</configuration> </plugin> </plugins> </build>  -->
 </project>

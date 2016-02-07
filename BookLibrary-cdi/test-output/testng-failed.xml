@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [BookLibrary-cdiTest]">
-  <test name="managers(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+      <class name="com.softserveinc.model.persist.home.BookHomeTest">
         <methods>
-          <include name="arquillianAfterSuite"/>
-          <include name="testNegativeCreateBook"/>
-          <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
-          <include name="arquillianAfterTest"/>
+          <include name="testCreateBookWithAuthors"/>
+          <include name="testFindAllBooks"/>
+          <include name="testCreateBookWithAlreadyExistISBN"/>
           <include name="testCreateBook"/>
-          <include name="arquillianBeforeSuite"/>
-          <include name="arquillianBeforeTest"/>
+          <include name="testDeleteBook"/>
+          <include name="testFindByIdBook"/>
+          <include name="getRemoteBeans"/>
+          <include name="testUpdateBook"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
-      <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
-        <methods>
-          <include name="testNegativeUpdateAuthor"/>
-          <include name="testDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthorWithNoBooks"/>
-          <include name="testBulkDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthor"/>
-          <include name="testUpdateAuthor"/>
-          <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
-          <include name="testNegativeCreateAuthor"/>
-          <include name="testNegativeBulkDeleteAuthors"/>
-          <include name="testCreateAuthor"/>
-          <include name="arquillianAfterTest"/>
-        </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
+      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
     </classes>
-  </test> <!-- managers(failed) -->
-</suite> <!-- Failed suite [BookLibrary-cdiTest] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

@@ -3,24 +3,18 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
+      <class name="com.softserveinc.model.persist.home.BookHomeTest">
         <methods>
-          <include name="testNegativeUpdateAuthor" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10"/>
-          <include name="arquillianAfterSuite"/>
-          <include name="testBulkDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthor" invocation-numbers="0 1"/>
-          <include name="testUpdateAuthor"/>
-          <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
-          <include name="testCreateAuthor"/>
-          <include name="arquillianAfterTest"/>
-          <include name="arquillianBeforeSuite"/>
-          <include name="arquillianBeforeTest"/>
-          <include name="testDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthorWithNoBooks"/>
-          <include name="testNegativeCreateAuthor" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10"/>
+          <include name="testCreateBookWithAuthors"/>
+          <include name="testFindAllBooks"/>
+          <include name="testCreateBookWithAlreadyExistISBN"/>
+          <include name="testCreateBook"/>
+          <include name="testDeleteBook"/>
+          <include name="testFindByIdBook"/>
+          <include name="getRemoteBeans"/>
+          <include name="testUpdateBook"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
+      </class> <!-- com.softserveinc.model.persist.home.BookHomeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

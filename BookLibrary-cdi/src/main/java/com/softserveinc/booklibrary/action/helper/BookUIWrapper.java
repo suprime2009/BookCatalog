@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import com.softserveinc.booklibrary.model.entity.Book;
 

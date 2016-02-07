@@ -168,12 +168,10 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 	}
 
-	@JsonGetter("yearPublished")
 	public Integer getYearPublished() {
 		return yearPublished;
 	}
 
-	@JsonSetter("yearPublished")
 	public void setYearPublished(Integer yearPublished) {
 		this.yearPublished = yearPublished;
 	}

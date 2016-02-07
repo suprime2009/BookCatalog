@@ -1,4 +1,3 @@
-test\MainA.class
 com\softserveinc\model\util\DBUnitHelper.class
 com\softserveinc\booklibrary\test\rest\AuthorRestTest.class
 com\softserveinc\booklibrary\test\manager\ManagerTestUlil.class
@@ -6,13 +5,8 @@ com\softserveinc\model\util\TestHelper.class
 com\softserveinc\model\util\TestFieldsHolder.class
 com\softserveinc\model\persist\facade\ReviewFacadeTest.class
 com\softserveinc\model\persist\facade\BookFacadeTest.class
-test\ArquillianTest.class
-com\softserveinc\booklibrary\test\manager\Test.class
-test\BasicTestNGIntegrationTestCase.class
 com\softserveinc\booklibrary\test\manager\AuthorManagerTest.class
 com\softserveinc\model\util\DataBaseConstants.class
-test\BasicTest.class
-com\softserveinc\booklibrary\arquillian\ArquillianDeployerHelper.class
 com\softserveinc\model\persist\home\BookHomeTest.class
 com\softserveinc\booklibrary\test\manager\BookManagerTest.class
 com\softserveinc\model\persist\home\AuthorHomeTest.class
@@ -20,4 +14,3 @@ com\softserveinc\model\persist\home\ReviewHomeTest.class
 com\softserveinc\model\persist\facade\AuthorFacadeTest.class
 com\softserveinc\model\util\BaseTest.class
 com\softserveinc\booklibrary\test\manager\ReviewManagerTest.class
-test\RemoteTest.class

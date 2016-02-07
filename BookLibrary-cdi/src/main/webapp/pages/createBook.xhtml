@@ -19,10 +19,10 @@
    </ui:include>
     </rich:panel>
     <rich:panel style="margin-left:70px; border:0;">
-    <a4j:commandButton styleClass="smallBtm" value="Add book" action="#{manageBookAction.submit()}" 
+    <a4j:commandButton styleClass="smallBtm" value="Add book" action="#{manageBookAction.addBook()}" 
 				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render="formManageBooks" />
     				
-    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"   action="#{manageBookAction.submitAndEdit()}" execute="createBook" 
+    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"   action="#{manageBookAction.addAndEditBook()}" execute="createBook" 
     			oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide(); ">
     	<f:param name="idBook" value="#{manageBookAction.book.idBook}"></f:param>
 		<f:param name="action" value="edit" />

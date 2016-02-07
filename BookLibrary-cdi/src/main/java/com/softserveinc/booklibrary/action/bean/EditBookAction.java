@@ -18,7 +18,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.ValidateISBN;
+import com.softserveinc.booklibrary.action.helper.ValidateISBN;
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.exception.BookManagerException;
 import com.softserveinc.booklibrary.model.entity.Author;

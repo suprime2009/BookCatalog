@@ -14,12 +14,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.BookUIWrapper;
-import com.softserveinc.booklibrary.action.util.DataTableHelper;
-import com.softserveinc.booklibrary.action.util.ValidateISBN;
+import com.softserveinc.booklibrary.action.helper.BookUIWrapper;
+import com.softserveinc.booklibrary.action.helper.DataTableHelper;
+import com.softserveinc.booklibrary.action.helper.ValidateISBN;
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.exception.BookManagerException;
 import com.softserveinc.booklibrary.model.entity.Book;
@@ -33,7 +34,8 @@ import com.softserveinc.booklibrary.session.util.holders.EntityFieldHolder;
  * This class is a action bean for UI page manageBooks. Class extended from
  * DataTableHelper, which provides operations with dataTable: pagination,
  * filtering, sorting. Class used for loading Books for dataTable in according
- * to current UI requirements, removing and bulk removing Books.
+ * to current UI requirements, removing and bulk removing Books. Also class is a
+ * action for create book operation.
  *
  */
 @ManagedBean
@@ -61,29 +63,14 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		book = new Book();
 	}
 
-	@Override
-	public void validateIfExistISBN(FacesContext context, UIComponent comp, Object value) {
-		log.debug("Method start. Passed value to validate equals {}", value.toString());
-		String val = (String) value;
-		Book book = bookFacade.findBookByISNBN(val);
-		if (book != null) {
-			((UIInput) comp).setValid(false);
-			FacesMessage message = new FacesMessage("ISBN already in use");
-			context.addMessage(comp.getClientId(context), message);
-			log.debug("Method finished. Passed value is not valid.");
-		} else {
-			log.debug("Method finished. Passed value is valid.");
-		}
-	}
-
 	/**
-	 * Method runs on add action. Method passed {@link Book} instance to
+	 * Method runs on add action. Method pass {@link Book} instance to
 	 * {@link BookManager} for creation a new Book instance. After method done
 	 * on manager and new instance is created, method shown message on UI about
 	 * it.
 	 * 
 	 */
-	public void submit() {
+	public void addBook() {
 		try {
 			bookManager.createBook(book);
 			showGlobalMessageOnPage("Book has been successfully created.");
@@ -98,29 +85,15 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 	}
 
 	/**
-	 * The method shows the global messages on UI. The method gets the text of
-	 * message through parameter.
-	 * 
-	 * @param message
-	 *            String
-	 */
-	private void showGlobalMessageOnPage(String message) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage facesMessage = new FacesMessage(message);
-		context.addMessage(null, facesMessage);
-	}
-
-	/**
-	 * Method runs on add action. Method passed {@link Book} instance to
+	 * Method runs on add and edit action. Method pass {@link Book} instance to
 	 * {@link BookManager} for creation a new Book instance. After method done
 	 * on manager and new instance is created, method shown message on UI about
 	 * it.
 	 * 
 	 * @return If Book instance has been created return URL for bookDetail page
 	 *         for editing this book.
-	 * @throws BookManagerException
 	 */
-	public String submitAndEdit() {
+	public String addAndEditBook() {
 		try {
 			bookManager.createBook(book);
 			String idBook = book.getIdBook();
@@ -137,18 +110,53 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 
 	}
 
+	@Override
+	public void validateIfExistISBN(FacesContext context, UIComponent comp, Object value) {
+		log.debug("Method start. Passed value to validate equals {}", value.toString());
+		String val = (String) value;
+		Book book = bookFacade.findBookByISNBN(val);
+		if (book != null) {
+			((UIInput) comp).setValid(false);
+			FacesMessage message = new FacesMessage("ISBN already in use");
+			context.addMessage(comp.getClientId(context), message);
+			log.debug("Method finished. Passed value is not valid.");
+		} else {
+			log.debug("Method finished. Passed value is valid.");
+		}
+	}
+
 	/**
 	 * Method runs on action clean. Method cleans all inputed values in form.
 	 */
 	public void reset() {
 		book = new Book();
-		log.debug("Method done.");
 	}
 
+	/**
+	 * The method shows the global messages on UI. The method gets the text of
+	 * message through parameter.
+	 * 
+	 * @param message
+	 *            String
+	 */
+	private void showGlobalMessageOnPage(String message) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		FacesMessage facesMessage = new FacesMessage(message);
+		context.addMessage(null, facesMessage);
+	}
+
+	/**
+	 * The method cleans all filters for data table, sets filter value for
+	 * average rating column (value passed by parameter) and loads books.
+	 * 
+	 * @param rating
+	 *            Integer.
+	 */
 	public void getBooksByRating(Integer rating) {
 		cleanFilters();
 		getFilterValues().put(BookFieldHolder.RATING, String.valueOf(rating));
 		refreshPage();
+		log.debug("The method finished. The filter value {} for rating column has been seted", rating);
 	}
 
 	@Override
@@ -164,7 +172,7 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 			if (entry.getKey().equals(BookFieldHolder.RATING) && entry.getValue().equals("0")) {
 				it.remove();
 			}
-			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
+			if (StringUtils.isBlank(entry.getValue())) {
 				it.remove();
 			}
 		}
@@ -178,29 +186,27 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 			BookUIWrapper wrapp = new BookUIWrapper(b);
 			getEntities().add(wrapp);
 		}
-
-		log.info("Method finished.");
+		log.debug("The Method finished. Has been found {} books.", booksList);
 	}
 
 	@Override
 	public int getCountEntitiesForCurrentRequirements() {
 		int count = bookFacade.findCountBooksForDataTable(getCurrentRequirementsForDataTable());
-		log.info("Method finished.");
+		log.debug("The method finished. Has been found {} books", count);
 		return count;
 	}
 
 	@Override
 	public void deleteEntity() {
-		System.out.println("Method DELETE ROW");
 		Book book = bookFacade.findById(getIdEntityToDelete());
 		try {
 			bookManager.deleteBook(book.getIdBook());
+			load();
+			log.debug("The method finished. Book has been removed.");
 		} catch (BookManagerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 		}
-		load();
-		log.info("done");
 	}
 
 	@Override
@@ -211,12 +217,12 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		}
 		try {
 			bookManager.bulkDelete(list);
+			refreshPage();
+			log.debug("The method finished. Has been removed {} books", list.size());
 		} catch (BookManagerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 		}
-		refreshPage();
-
 	}
 
 	@Override
@@ -224,6 +230,7 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 		return BookFieldHolder.valueOf(column);
 	}
 
+	// getters and setters
 	public Book getBook() {
 		return book;
 	}

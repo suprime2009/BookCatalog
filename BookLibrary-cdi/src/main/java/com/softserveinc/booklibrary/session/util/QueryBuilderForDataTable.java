@@ -3,7 +3,7 @@ package com.softserveinc.booklibrary.session.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 
 /**
  * This abstract class is a common query builder for {@code Book Catalog API}

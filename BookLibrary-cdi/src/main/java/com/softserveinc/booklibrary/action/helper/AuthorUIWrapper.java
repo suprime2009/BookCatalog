@@ -1,7 +1,12 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import com.softserveinc.booklibrary.model.entity.Author;
 
+/**
+ * This class is a UI wrapper class for {@link Author} entity. Class may use in
+ * UI Component.
+ *
+ */
 public class AuthorUIWrapper extends UIWrapper {
 
 	private Author author;
@@ -9,7 +14,7 @@ public class AuthorUIWrapper extends UIWrapper {
 	private int countReviews;
 	private Double averageRating;
 
-	public AuthorUIWrapper(Author author, int countBooks, int countReviews,  Double averageRating) {
+	public AuthorUIWrapper(Author author, int countBooks, int countReviews, Double averageRating) {
 		super();
 		this.author = author;
 		this.averageRating = averageRating;

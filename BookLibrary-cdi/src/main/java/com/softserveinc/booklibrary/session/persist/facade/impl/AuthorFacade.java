@@ -13,7 +13,7 @@ import javax.persistence.TypedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;

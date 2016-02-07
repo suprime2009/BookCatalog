@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -7,49 +7,31 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+/**
+ * This class is a converter for Book ISBN number. The method parsing incoming
+ * String, looking for digits, check on correct contains of digits.
+ *
+ */
 @FacesConverter("ISNBConverter")
 public class ISBNConverter implements Converter {
 
-private final Character SEP = '-';
-	
+	private final Character SEP = '-';
+
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		System.out.println("getAsObject");
-		System.out.println("getAsObject");
-		System.out.println("getAsObject");
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		String val = (String) value;
+
 		StringBuilder isbn = new StringBuilder();
-		String isbnCode = getOnlyDigits(val);
-		
+		String isbnCode = getOnlyDigits((String) value);
 		switch (isbnCode.length()) {
 		case 10:
-			isbn.append("ISBN-10: ");
-			isbn.append(isbnCode.charAt(0));
-			isbn.append(SEP);
-			isbn.append(isbnCode.substring(1, 4));
-			isbn.append(SEP);
-			isbn.append(isbnCode.substring(4, 9));
-			isbn.append(SEP);
-			isbn.append(isbnCode.charAt(9));
-
+			isbn.append("ISBN-10: ").append(isbnCode.charAt(0)).append(SEP).append(isbnCode.substring(1, 4)).append(SEP)
+					.append(isbnCode.substring(4, 9)).append(SEP).append(isbnCode.charAt(9));
 			break;
 		case 13:
-			isbn.append("ISBN-13: ");
-			isbn.append(isbnCode.substring(0, 3));
-			isbn.append(SEP);
-			isbn.append(isbnCode.charAt(3));
-			isbn.append(SEP);
-			isbn.append(isbnCode.substring(4, 7));
-			isbn.append(SEP);
-			isbn.append(isbnCode.substring(7, 12));
-			isbn.append(SEP);
-			isbn.append(isbnCode.charAt(12));
+			isbn.append("ISBN-13: ").append(isbnCode.substring(0, 3)).append(SEP).append(isbnCode.charAt(3)).append(SEP)
+					.append(isbnCode.substring(4, 7)).append(SEP).append(isbnCode.substring(7, 12)).append(SEP)
+					.append(isbnCode.charAt(12));
 			break;
-
 		default:
 			((UIInput) component).setValid(false);
 
@@ -64,8 +46,15 @@ private final Character SEP = '-';
 		return value.toString();
 	}
 
+	/**
+	 * This method parse string and looking for digits. The method used for ISBN
+	 * number, method ignore first entry digits 10 and 13.
+	 * 
+	 * @param value
+	 *            String
+	 * @return String
+	 */
 	private String getOnlyDigits(String value) {
-		System.out.println("in");
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < value.length(); i++) {
 			char ch = value.charAt(i);
@@ -73,17 +62,16 @@ private final Character SEP = '-';
 				sb.append(ch);
 			}
 		}
-		System.out.println("in");
 
 		if (sb.length() > 2) {
-		if (sb.charAt(0) == '1') {
-			System.out.println("1");
-			if (sb.charAt(1) == '0' || sb.charAt(1) == '3') {
-				System.out.println("0 or 3");
-				sb.deleteCharAt(0);
-				sb.deleteCharAt(0);
+			if (sb.charAt(0) == '1') {
+				System.out.println("1");
+				if (sb.charAt(1) == '0' || sb.charAt(1) == '3') {
+					System.out.println("0 or 3");
+					sb.deleteCharAt(0);
+					sb.deleteCharAt(0);
+				}
 			}
-		}
 		}
 
 		return sb.toString();

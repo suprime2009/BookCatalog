@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 /**
  * Class is a common Wrapper for entities.

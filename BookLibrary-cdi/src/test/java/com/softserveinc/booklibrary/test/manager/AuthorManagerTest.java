@@ -27,8 +27,7 @@ import org.jboss.arquillian.persistence.CleanupStrategy;
 import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.TestExecutionPhase;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
-import com.softserveinc.booklibrary.arquillian.ArquillianDeployerHelper;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 import com.softserveinc.booklibrary.exception.AuthorManagerException;
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.exception.BookManagerException;
@@ -66,6 +65,22 @@ import com.softserveinc.model.util.DataBaseConstants;
 
 public class AuthorManagerTest extends Arquillian {
 	
+	private static final String CREATE_GROUP = "createAuthor";
+	private static final String DELETE_GROUP = "updateAuthor";
+	private static final String DELETE_AUTHOR = "testDeleteAuthor";
+
+	@EJB
+	private AuthorManagerLocal authorManager;
+
+	@EJB
+	private AuthorHomeLocal authorHome;
+
+	@EJB
+	private AuthorFacadeLocal authorFacade;
+
+	@EJB
+	private BookFacadeLocal bookFacade;
+	
 	@Deployment
 	public static Archive<?> createTestArchive() throws IOException {
 		File[] files = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()
@@ -89,57 +104,16 @@ public class AuthorManagerTest extends Arquillian {
 		war.addPackages(true, DataTableSearchHolder.class.getPackage());
 		war.addPackages(true, DBUnitHelper.class.getPackage());
 		war.addPackages(true, DataBaseConstants.class.getPackage());
-		war.addPackages(true, ArquillianDeployerHelper.class.getPackage());
 		war.addPackages(true, AuthorManager.class.getPackage());
 		war.addPackages(true, AuthorManagerLocal.class.getPackage());
 		war.addPackages(true, AuthorManagerException.class.getPackage());
-
-		war.addPackages(true, ReviewManager.class.getPackage());
-		war.addPackages(true, ReviewManagerLocal.class.getPackage());
-		war.addPackages(true, ReviewManagerException.class.getPackage());
-		war.addPackages(true, BookManager.class.getPackage());
-		war.addPackages(true, BookManagerLocal.class.getPackage());
-		war.addPackages(true, BookManagerException.class.getPackage());
-		
 		war.addPackages(true, ManagerTestUlil.class.getPackage());
-		
-		war.addPackages(true, AuthorDTO.class.getPackage());
-		war.addPackages(true, AuthorRestDTOConverter.class.getPackage());
-		war.addPackages(true, AuthorClientImpl.class.getPackage());
-		war.addPackages(true, AuthorClient.class.getPackage());
-		war.addPackages(true, AuthorService.class.getPackage());
-		war.addPackages(true, AuthorServiceImpl.class.getPackage());
-		war.addPackages(true, BookCatalogException.class.getPackage());
-		war.addPackages(true, JsonFieldsHolder.class.getPackage());
-		war.addPackages(true, AuthorRestTest.class.getPackage());
 
 		war.addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml");
 		war.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
-		System.out.println("I am deployed");
-		for (int i = 0; i < 20; i++) {
-			System.out.println("I am deployed");
-		}
-
 		return war;
 	}
-
-	private static final String CREATE_GROUP = "createAuthor";
-	private static final String DELETE_GROUP = "updateAuthor";
-
-	private static final String DELETE_AUTHOR = "testDeleteAuthor";
-
-	@EJB
-	private AuthorManagerLocal authorManager;
-
-	@EJB
-	private AuthorHomeLocal authorHome;
-
-	@EJB
-	private AuthorFacadeLocal authorFacade;
-
-	@EJB
-	private BookFacadeLocal bookFacade;
 
 	@Test(groups = CREATE_GROUP)
 	@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.STRICT)

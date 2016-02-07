@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	/**
-	 * Method cleans all filtering values.
+	 * Method cleans all filter values.
 	 */
 	public void cleanFilters() {
 
@@ -141,8 +141,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	 * selected.
 	 */
 	public void selectAllAction() {
-		System.out.println("select all action");
-
 		for (T b : entities) {
 			UIWrapper wrapp = (UIWrapper) b;
 			if (getSelectAll()) {
@@ -155,7 +153,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	public void createListEntitiesToDelete() {
-		System.out.println("createListEntitiesToDelete");
 		listEntitiesToDelete = new ArrayList<T>();
 		for (T b : entities) {
 			UIWrapper wrapp = (UIWrapper) b;
@@ -177,7 +174,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 
 	// getters and setters
 	public List<T> getEntities() {
-		log.error("getEntities");
 		if (entities == null) {
 			entities = new ArrayList<T>();
 			refreshPage();
@@ -198,7 +194,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	public EntityFieldHolder getSortProperty() {
-		log.error("getSortProperty");
 		return sortProperty;
 	}
 
@@ -207,7 +202,6 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	public void setIdEntityToDelete(String idEntityToDelete) {
-		System.out.println("bookIdToDelete SETTER" + idEntityToDelete);
 		this.idEntityToDelete = idEntityToDelete;
 	}
 
@@ -216,12 +210,10 @@ public abstract class DataTableHelper<T> extends PaginationHelper implements Ser
 	}
 
 	public Map<EntityFieldHolder, SortOrder> getSortOrders() {
-		log.error("getSortOrders");
 		return sortOrders;
 	}
 
 	public Map<EntityFieldHolder, String> getFilterValues() {
-		log.info("Current values for filtering = {}", filterValues.size());
 		return filterValues;
 	}
 

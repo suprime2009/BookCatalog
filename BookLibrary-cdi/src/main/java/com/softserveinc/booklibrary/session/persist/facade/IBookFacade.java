@@ -2,7 +2,7 @@ package com.softserveinc.booklibrary.session.persist.facade;
 
 import java.util.List;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 

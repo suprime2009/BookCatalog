@@ -9,7 +9,7 @@ import org.ajax4jsf.model.SequenceRange;
 import org.richfaces.component.SortOrder;
 import org.richfaces.model.ArrangeableState;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 
 /**
  * BookManagerLocal an interface extended from IBookManager interface and describes business operations

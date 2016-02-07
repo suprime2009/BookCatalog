@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +9,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+/**
+ * This class is JSF converter. The class provide converting date to fixed
+ * format.
+ *
+ */
 @FacesConverter("CreateDateConverter")
 public class CreateDateConverter implements Converter {
 

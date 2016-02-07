@@ -12,20 +12,28 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.AuthorUIWrapper;
-import com.softserveinc.booklibrary.action.util.DataTableHelper;
+import com.softserveinc.booklibrary.action.helper.AuthorUIWrapper;
+import com.softserveinc.booklibrary.action.helper.DataTableHelper;
 import com.softserveinc.booklibrary.exception.AuthorManagerException;
-import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.model.entity.Author;
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.util.holders.AuthorFieldHolder;
-import com.softserveinc.booklibrary.session.util.holders.BookFieldHolder;
 import com.softserveinc.booklibrary.session.util.holders.EntityFieldHolder;
 
+/**
+ * This class is a action bean for UI page manageAuthors. Class extended from
+ * DataTableHelper, which provides operations with dataTable: pagination,
+ * filtering, sorting. Class used for loading Authors for dataTable in according
+ * to current UI requirements, removing and bulk removing Authors. Also class is
+ * a action for create author operation.
+ *
+ */
 @ManagedBean
 @SessionScoped
 public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implements Serializable {
@@ -51,20 +59,13 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 	}
 
 	/**
-	 * The method shows the global messages on UI. The method gets the text of
-	 * message through parameter.
+	 * Method runs on add action. Method pass {@link Author} instance to
+	 * {@link AuthorManager} for creation a new Author instance. After method
+	 * done on manager and new instance is created, method shown message on UI
+	 * about it.
 	 * 
-	 * @param message
-	 *            String
 	 */
-	private void showGlobalMessageOnPage(String message) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage facesMessage = new FacesMessage(message);
-		context.addMessage(null, facesMessage);
-	}
-
-	public void submitAddAuthor() {
-		System.out.println("submitAddAuthor" + author);
+	public void addAuthor() {
 		try {
 			authorManager.createAuthor(author);
 			reset();
@@ -78,14 +79,19 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 
 	}
 
-	public void reset() {
-		author = new Author();
-	}
-
-	public String submitAddAndEditAuthor() {
+	/**
+	 * Method runs on add and edit action. Method pass {@link Author} instance
+	 * to {@link AuthorManager} for creation a new Author instance. After method
+	 * done on manager and new instance is created, method shown message on UI
+	 * about it.
+	 * 
+	 * @return If Author instance has been created return URL for authorDetail
+	 *         page for editing this book.
+	 */
+	public String addAndEditAuthor() {
 		try {
 			authorManager.createAuthor(author);
-			String idAuthor = author.getIdAuthor();
+			String idAuthor =  author.getIdAuthor();
 			reset();
 			showGlobalMessageOnPage("Author has been successfully created.");
 			load();
@@ -98,37 +104,56 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 		}
 	}
 
+	/**
+	 * Method runs on action clean. Method cleans all inputed values in form.
+	 */
+	public void reset() {
+		author = new Author();
+	}
+
+	/**
+	 * The method shows the global messages on UI. The method gets the text of
+	 * message through parameter.
+	 * 
+	 * @param message
+	 *            String
+	 */
+	private void showGlobalMessageOnPage(String message) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		FacesMessage facesMessage = new FacesMessage(message);
+		context.addMessage(null, facesMessage);
+	}
+
 	@Override
 	public void deleteEntity() {
 		try {
 			authorManager.deleteAuthorWithNoBooks(getIdEntityToDelete());
 			load();
+			log.debug("The method done. Author has been removed.");
 		} catch (AuthorManagerException e) {
-			System.out.println(e.getMessage());
-
+			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 		}
-
 	}
 
 	@Override
 	public void deleteListEntities() {
-		System.out.println("deleteListEntities");
 		List<Author> list = new ArrayList<Author>();
 		for (AuthorUIWrapper w : getListEntitiesToDelete()) {
 			list.add(w.getAuthor());
 		}
 		try {
 			authorManager.bulkDeleteAuthorsWithNoBooks(list);
+			refreshPage();
+			log.debug("The method done. Authors have been removed.");
 		} catch (AuthorManagerException e) {
-			System.out.println(e.getMessage());
+			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 		}
-		refreshPage();
-
 	}
 
 	@Override
 	public void getEntitiesForCurrentPage() {
-		System.out.println("Method starts. getEntitiesForCurrentPage");
 		List<Object[]> list = authorFacade.findAuthorsForDataTable(getCurrentRequirementsForDataTable());
 		cleanListEntities();
 		for (Object[] o : list) {
@@ -141,21 +166,30 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 			}
 			AuthorUIWrapper wrapp = new AuthorUIWrapper(author, countBooks, countReviews, aveRating);
 			getEntities().add(wrapp);
-
 		}
-		System.out.println("Method done. getEntitiesForCurrentPage");
-
+		log.debug("The method done. Has been found {} authors.", list.get(0).length);
 	}
 
 	@Override
 	public int getCountEntitiesForCurrentRequirements() {
-		System.out.println("Method start getCountEntitiesForCurrentRequirements");
 		int count = authorFacade.findCountAuthorsForDataTable(getCurrentRequirementsForDataTable());
-		System.out.println(count);
-		System.out.println(count);
-
-		System.out.println("Method done getCountEntitiesForCurrentRequirements");
+		log.debug("The method done. Has been found {} authors", count);
 		return count;
+	}
+
+	@Override
+	public void deleteEmptyFilterValues() {
+		for (Iterator<Map.Entry<EntityFieldHolder, String>> it = getFilterValues().entrySet().iterator(); it
+				.hasNext();) {
+			Map.Entry<EntityFieldHolder, String> entry = it.next();
+			if (entry.getKey().equals(AuthorFieldHolder.AVE_RATING) && entry.getValue().equals("0")) {
+				it.remove();
+			}
+			if (StringUtils.isBlank(entry.getValue())) {
+				it.remove();
+			}
+		}
+
 	}
 
 	@Override
@@ -167,39 +201,32 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 	public EntityFieldHolder[] getEntityConstantInstances() {
 		return AuthorFieldHolder.values();
 	}
-	
+
+	/**
+	 * This method used for disable status submit button for delete selected
+	 * action. If one or more authors from selected have book, method will
+	 * return true, and button will be disable.
+	 * 
+	 * @return boolean
+	 */
 	public boolean checkIfAuthorsToDeleteHaveBooks() {
 		if (getListEntitiesToDelete() != null) {
-		for (AuthorUIWrapper a: getListEntitiesToDelete()) {
-			if (a.getCountBooks() > 0) {
-				return true;
+			for (AuthorUIWrapper a : getListEntitiesToDelete()) {
+				if (a.getCountBooks() > 0) {
+					return true;
+				}
 			}
-		}
 		}
 		return false;
 	}
 
+	// getters and setters
 	public Author getAuthor() {
 		return author;
 	}
 
 	public void setAuthor(Author author) {
 		this.author = author;
-	}
-
-	@Override
-	public void deleteEmptyFilterValues() {
-		for (Iterator<Map.Entry<EntityFieldHolder, String>> it = getFilterValues().entrySet().iterator(); it
-				.hasNext();) {
-			Map.Entry<EntityFieldHolder, String> entry = it.next();
-			if (entry.getKey().equals(AuthorFieldHolder.AVE_RATING) && entry.getValue().equals("0")) {
-				it.remove();
-			}
-			if (entry.getValue().equals("") || entry.getValue().startsWith(" ")) {
-				it.remove();
-			}
-		}
-
 	}
 
 }

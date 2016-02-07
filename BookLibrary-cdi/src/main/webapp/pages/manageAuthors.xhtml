@@ -98,14 +98,16 @@
 
     <!-- DEL / EDIT -->
 <rich:column style="width:50px;">
-		<h:link outcome="authorDetail.xhtml" >
+		<h:link id="editLink" ajaxSingle="true" outcome="authorDetail.xhtml"  >
 	 			<f:param name="id" value="#{authorWrapper.author.idAuthor}"></f:param>
+	 			<rich:tooltip  value="Edit"   ></rich:tooltip>
 	 			<h:graphicImage value="/resources/images/edit.png" alt="edit" />
 		</h:link>
 		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
 			 oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
 			<a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
 			<h:graphicImage value="/resources/images/delete.png" alt="delete" />
+			<rich:tooltip value="Delete"   ></rich:tooltip>
 		</a4j:commandLink>
 </rich:column>
      
@@ -123,7 +125,7 @@
 </ui:include>
 
   <h:form>
- <rich:popupPanel id="createAuthor"  autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Create new author" >
+ <rich:popupPanel id="createAuthor" autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Create new author" >
  
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('createAuthor')}.hide(); return false;">X</h:outputLink>
@@ -145,10 +147,10 @@
     </h:panelGrid>
     </rich:panel>
     <rich:panel style="position:absolute; bottom:0; left:70px; border:0;">
-    <a4j:commandButton styleClass="smallBtm" value="Add author" action="#{manageAuthorsAction.submitAddAuthor()}" 
+    <a4j:commandButton styleClass="smallBtm" value="Add author" action="#{manageAuthorsAction.addAuthor()}" 
 				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createAuthor')}.hide();" execute="@form" render="manageAuthorsDataTable, inputPanel" />
     				
-    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"  action="#{manageAuthorsAction.submitAddAndEditAuthor()}" render="manageAuthorsDataTable," execute="@form" 
+    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"  action="#{manageAuthorsAction.addAndEditAuthor()}" render="@none" execute="createAuthor" 
     			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createAuthor')}.hide(); ">
     </a4j:commandButton>
     

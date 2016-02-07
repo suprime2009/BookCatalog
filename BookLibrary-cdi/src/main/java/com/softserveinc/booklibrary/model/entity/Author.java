@@ -40,7 +40,6 @@ public class Author implements Serializable {
 
 	@Id
 	@Column(name = "author_id")
-	@JsonIgnore
 	private String idAuthor;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -53,7 +52,7 @@ public class Author implements Serializable {
 	@Column(name = "second_name")
 	private String secondName;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "author_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "book_id") })
 	private List<Book> books;

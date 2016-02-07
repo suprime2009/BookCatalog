@@ -70,7 +70,7 @@
 			<div style="float: left; width: 50%;">
 	 			<h:panelGrid columns="3" >
 					<h:outputLabel for="firstNameInput" value="First name: " />
-					<h:inputText id="firstNameInput" value="#{authorDetailAction.authorForEdit.firstName}" required="true" validatorMessage="Not valid!" requiredMessage="Author first name is required!" >
+					<h:inputText id="firstNameInput" value="#{authorDetailAction.author.firstName}" required="true" validatorMessage="Not valid!" requiredMessage="Author first name is required!" >
     					<f:validateLength minimum="2" maximum="80" />
     					<f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"  />
     				</h:inputText>
@@ -80,7 +80,7 @@
 			<div style="float: right; width: 50%;">
  				<h:panelGrid columns="3" >
     				<h:outputLabel for="secondNameInput" value="Second name: " />
-					<h:inputText id="secondNameInput" value="#{authorDetailAction.authorForEdit.secondName}" required="true" validatorMessage="Not valid!" requiredMessage="Author second name is required!" >
+					<h:inputText id="secondNameInput" value="#{authorDetailAction.author.secondName}" required="true" validatorMessage="Not valid!" requiredMessage="Author second name is required!" >
     					<f:validateLength minimum="2" maximum="80" />
     					<f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"></f:validateRegex>
     				</h:inputText>
@@ -98,9 +98,8 @@
 		<rich:messages globalOnly="true" />
 		</div>
 		<div style="float:right; width: 70%;">
-<rich:pickList id="pickListBooks" value="#{authorDetailAction.authorForEdit.books}" converter="#{bookConverter}"  var="book"   sourceCaption="Avaible books:" targetCaption="Books chosen: " listWidth="280px" listHeight="200px"  >
+<rich:pickList id="pickListBooks" value="#{authorDetailAction.author.books}" converter="#{bookConverter}"  var="book"   sourceCaption="Avaible books:" targetCaption="Books chosen: " listWidth="280px" listHeight="200px"  >
                 <f:selectItems value="#{authorDetailAction.avaibleBooks}"  />
-                <f:selectItems value="#{authorDetailAction.authorForEdit.books}"  />
                 <f:ajax event="change"> </f:ajax>
  				<rich:column>
                     <f:facet name="header">Book name</f:facet>
@@ -110,11 +109,7 @@
                     <f:facet name="header">ISBN</f:facet>
                     <h:outputText value="#{book.isbn}" />
                 </rich:column>
-                 <rich:column>
-                    <f:facet name="header">Publisher</f:facet>
-                    <h:outputText value="#{book.publisher}" />
-                </rich:column>
-                             
+                          
 </rich:pickList>
 </div>
         
@@ -124,9 +119,9 @@
 </rich:panel>
 <rich:panel style="position:absolute; bottom:0; left:410px; border:0;">
  <a4j:commandButton styleClass="smallBtm" value="Save" action="#{authorDetailAction.submitEdit()}" 
-				execute="@form" render="editAuthorForm, authorDetailPanel" />   
+				execute="editAuthorForm" render="@form authorDetailPanel" />   
 <a4j:commandButton styleClass="smallBtm" value="Reset" action="#{authorDetailAction.reset()}" 
-				execute="@this" render="editAuthorForm, inputPanel" />  
+				execute="@this" render="editAuthorForm, inputAutocomplete, inputPanel" />  
 </rich:panel>
 </h:form>
 </rich:panel>

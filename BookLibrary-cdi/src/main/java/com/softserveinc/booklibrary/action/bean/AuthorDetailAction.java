@@ -2,7 +2,9 @@ package com.softserveinc.booklibrary.action.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -12,15 +14,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.collections.ListUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Lists;
 import com.softserveinc.booklibrary.exception.AuthorManagerException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
-
 
 @ManagedBean(name = "authorDetailAction")
 @ViewScoped
@@ -31,6 +33,13 @@ public class AuthorDetailAction implements Serializable {
 	 */
 	private static final long serialVersionUID = -8458126858022646610L;
 
+	private static Logger log = LoggerFactory.getLogger(AuthorDetailAction.class);
+
+	private String selectedId;
+	private Author author;
+	private String autocompleteBooks;
+	private List<Book> avaibleBooks;
+
 	@EJB
 	private AuthorFacadeLocal authorFacade;
 
@@ -40,49 +49,44 @@ public class AuthorDetailAction implements Serializable {
 	@EJB
 	private BookFacadeLocal bookFacade;
 
-	private String selectedId;
-	private Author author;
-	private Author authorForEdit;
-	private String autocompleteBooks;
-	private List<Book> avaibleBooks;
-
 	public AuthorDetailAction() {
 
 	}
 
 	public void lookUpForBooks(ValueChangeEvent event) {
 		List<Book> autocompleteList = bookFacade.findBooksByBookNameForAutocomplete((String) event.getNewValue());
-		avaibleBooks = ListUtils.subtract(autocompleteList, authorForEdit.getBooks());
-	}
-
-	public Double getAverageRating() {
-		return authorFacade.findAuthorAvegareRating(author);
+		Set<Book> set = new HashSet<Book>(ListUtils.sum(autocompleteList, author.getBooks()));
+		avaibleBooks = new ArrayList<Book>(set);
+		log.debug("The method finished. Has beed found {} books", autocompleteList.size());
 	}
 
 	public void loadAuthor() {
 		author = authorFacade.findById(selectedId);
-		authorForEdit = author;
-		avaibleBooks = new ArrayList<Book>();
+		autocompleteBooks = null;
+		avaibleBooks = new ArrayList<Book>(author.getBooks());
+		log.debug("By id={} has been loaded author={}", selectedId, author);
 	}
 
 	public void submitEdit() {
-		System.out.println("submitEdit");
 		try {
-			authorManager.updateAuthor(authorForEdit);
+			authorManager.updateAuthor(author);
+			loadAuthor();
+			log.debug("The method done. Author has been updated.");
 		} catch (AuthorManagerException e) {
 			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 		}
-		loadAuthor();
+
 	}
 
 	public String deleteAuthor() {
-		System.out.println("deleteAuthor starts");
 		try {
 			authorManager.deleteAuthor(author.getIdAuthor());
+			log.debug("The method done. Author has been removed.");
 			return "manageAuthors.xhtml?faces-redirect=true&amp;";
 		} catch (AuthorManagerException e) {
-			System.out.println(e.getMessage());
 			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
 			return null;
 		}
 	}
@@ -91,6 +95,17 @@ public class AuthorDetailAction implements Serializable {
 		loadAuthor();
 	}
 
+	public Double getAverageRating() {
+		return authorFacade.findAuthorAvegareRating(author);
+	}
+
+	/**
+	 * The method shows the global messages on UI. The method gets the text of
+	 * message through parameter.
+	 * 
+	 * @param message
+	 *            String
+	 */
 	private void showGlobalMessageOnPage(String message) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage facesMessage = new FacesMessage(message);
@@ -112,14 +127,6 @@ public class AuthorDetailAction implements Serializable {
 
 	public void setAuthor(Author author) {
 		this.author = author;
-	}
-
-	public Author getAuthorForEdit() {
-		return authorForEdit;
-	}
-
-	public void setAuthorForEdit(Author authorForEdit) {
-		this.authorForEdit = authorForEdit;
 	}
 
 	public String getAutocompleteBooks() {

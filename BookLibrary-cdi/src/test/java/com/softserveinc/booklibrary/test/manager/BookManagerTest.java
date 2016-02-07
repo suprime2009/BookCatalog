@@ -1,6 +1,8 @@
 package com.softserveinc.booklibrary.test.manager;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,31 +29,15 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.softserveinc.booklibrary.action.util.DataTableSearchHolder;
-import com.softserveinc.booklibrary.arquillian.ArquillianDeployerHelper;
-import com.softserveinc.booklibrary.exception.AuthorManagerException;
-import com.softserveinc.booklibrary.exception.BookCatalogException;
+import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 import com.softserveinc.booklibrary.exception.BookManagerException;
-import com.softserveinc.booklibrary.exception.ReviewManagerException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
-import com.softserveinc.booklibrary.rest.client.AuthorClient;
-import com.softserveinc.booklibrary.rest.client.AuthorClientImpl;
-import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
-import com.softserveinc.booklibrary.rest.service.AuthorService;
-import com.softserveinc.booklibrary.rest.service.AuthorServiceImpl;
-import com.softserveinc.booklibrary.rest.util.AuthorRestDTOConverter;
-import com.softserveinc.booklibrary.rest.util.JsonFieldsHolder;
-import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.manager.BookManagerLocal;
-import com.softserveinc.booklibrary.session.manager.ReviewManagerLocal;
-import com.softserveinc.booklibrary.session.manager.impl.AuthorManager;
 import com.softserveinc.booklibrary.session.manager.impl.BookManager;
-import com.softserveinc.booklibrary.session.manager.impl.ReviewManager;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.IBookFacade;
@@ -62,11 +48,22 @@ import com.softserveinc.booklibrary.session.persist.home.impl.BookHome;
 import com.softserveinc.booklibrary.session.persist.home.impl.ReviewHome;
 import com.softserveinc.booklibrary.session.util.QueryBuilderForDataTable;
 import com.softserveinc.booklibrary.session.util.SQLCommandConstants;
-import com.softserveinc.booklibrary.test.rest.AuthorRestTest;
 import com.softserveinc.model.util.DBUnitHelper;
 import com.softserveinc.model.util.DataBaseConstants;
 
 public class BookManagerTest extends Arquillian  {
+	
+
+	private static Logger log = LoggerFactory.getLogger(BookManagerTest.class);
+
+	@EJB
+	private BookFacadeLocal bookFacade;
+
+	@EJB
+	private BookManagerLocal bookManager;
+
+	@EJB
+	private AuthorFacadeLocal authorFacade;
 	
 	@Deployment
 	public static Archive<?> createTestArchive() throws IOException {
@@ -91,51 +88,16 @@ public class BookManagerTest extends Arquillian  {
 		war.addPackages(true, DataTableSearchHolder.class.getPackage());
 		war.addPackages(true, DBUnitHelper.class.getPackage());
 		war.addPackages(true, DataBaseConstants.class.getPackage());
-		war.addPackages(true, ArquillianDeployerHelper.class.getPackage());
-		war.addPackages(true, AuthorManager.class.getPackage());
-		war.addPackages(true, AuthorManagerLocal.class.getPackage());
-		war.addPackages(true, AuthorManagerException.class.getPackage());
-
-		war.addPackages(true, ReviewManager.class.getPackage());
-		war.addPackages(true, ReviewManagerLocal.class.getPackage());
-		war.addPackages(true, ReviewManagerException.class.getPackage());
 		war.addPackages(true, BookManager.class.getPackage());
 		war.addPackages(true, BookManagerLocal.class.getPackage());
 		war.addPackages(true, BookManagerException.class.getPackage());
-		
 		war.addPackages(true, ManagerTestUlil.class.getPackage());
 		
-		war.addPackages(true, AuthorDTO.class.getPackage());
-		war.addPackages(true, AuthorRestDTOConverter.class.getPackage());
-		war.addPackages(true, AuthorClientImpl.class.getPackage());
-		war.addPackages(true, AuthorClient.class.getPackage());
-		war.addPackages(true, AuthorService.class.getPackage());
-		war.addPackages(true, AuthorServiceImpl.class.getPackage());
-		war.addPackages(true, BookCatalogException.class.getPackage());
-		war.addPackages(true, JsonFieldsHolder.class.getPackage());
-		war.addPackages(true, AuthorRestTest.class.getPackage());
-
 		war.addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml");
 		war.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
-		System.out.println("I am deployed");
-		for (int i = 0; i < 20; i++) {
-			System.out.println("I am deployed");
-		}
-
 		return war;
 	}
-
-	private static Logger log = LoggerFactory.getLogger(BookManagerTest.class);
-
-	@EJB
-	private BookFacadeLocal bookFacade;
-
-	@EJB
-	private BookManagerLocal bookManager;
-
-	@EJB
-	private AuthorFacadeLocal authorFacade;
 
 	@Transactional
 	@Test

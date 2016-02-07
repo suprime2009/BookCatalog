@@ -198,6 +198,15 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 
 	}
 
+	/**
+	 * The method checks authors for passed by parameter {@link Book} instance.
+	 * If some from authors in null or id number for this author is null method
+	 * will throw {@link BookManagerException}.
+	 * 
+	 * @param book
+	 *            Entity to validation
+	 * @throws BookManagerException
+	 */
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	private void validateAuthorsField(Book book) throws BookManagerException {
 		String errorMessage = "";

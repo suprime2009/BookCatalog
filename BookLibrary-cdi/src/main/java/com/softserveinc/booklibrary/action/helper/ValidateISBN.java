@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.action.util;
+package com.softserveinc.booklibrary.action.helper;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

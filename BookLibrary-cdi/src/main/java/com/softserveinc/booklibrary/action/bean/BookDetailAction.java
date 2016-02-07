@@ -18,7 +18,7 @@ import org.richfaces.component.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.util.DataModelHelper;
+import com.softserveinc.booklibrary.action.helper.DataModelHelper;
 import com.softserveinc.booklibrary.exception.ReviewManagerException;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;

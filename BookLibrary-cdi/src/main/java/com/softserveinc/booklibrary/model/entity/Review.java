@@ -10,24 +10,20 @@ import com.google.common.base.Objects;
 import java.util.Date;
 import java.util.UUID;
 
-
 /**
  * The persistent class for the review database table.
  * 
  */
 @Entity
 @Table(name = "review")
-@NamedQueries({
-@NamedQuery(name = Review.FIND_ALL_REVIEWS, query="SELECT r FROM Review r"),
-@NamedQuery(name = Review.FIND_ALL_REVIEWS_BY_COMMENTER_NAME, query="SELECT r FROM Review r WHERE r.commenterName like :par"),
-@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query="SELECT ROUND(AVG(r.rating),2) FROM Review r WHERE r.book.idBook LIKE :par"),
-@NamedQuery(name = Review.BULK_REMOVE_BY_BOOK, query = "DELETE FROM Review r WHERE r.book IN :list"),
-@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_DESC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate DESC"),
-@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_ASC, query="SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate ASC"),
-@NamedQuery(name = Review.FIND_COUNT_REVIEWS_FOR_BOOK, query="SELECT  COUNT(DISTINCT r) FROM Review r WHERE r.book.idBook LIKE :par"),
-})
+@NamedQueries({ @NamedQuery(name = Review.FIND_ALL_REVIEWS, query = "SELECT r FROM Review r"),
+		@NamedQuery(name = Review.FIND_ALL_REVIEWS_BY_COMMENTER_NAME, query = "SELECT r FROM Review r WHERE r.commenterName like :par"),
+		@NamedQuery(name = Review.FIND_AVERAGE_RATING_FOR_BOOK, query = "SELECT ROUND(AVG(r.rating),2) FROM Review r WHERE r.book.idBook LIKE :par"),
+		@NamedQuery(name = Review.BULK_REMOVE_BY_BOOK, query = "DELETE FROM Review r WHERE r.book IN :list"),
+		@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_DESC, query = "SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate DESC"),
+		@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_ASC, query = "SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate ASC"),
+		@NamedQuery(name = Review.FIND_COUNT_REVIEWS_FOR_BOOK, query = "SELECT  COUNT(DISTINCT r) FROM Review r WHERE r.book.idBook LIKE :par"), })
 public class Review implements Serializable {
-	
 
 	/**
 	 * 
@@ -42,28 +38,28 @@ public class Review implements Serializable {
 	public static final String BULK_REMOVE_BY_BOOK = "Review.bulkRemoveByBook";
 
 	@Id
-	@Column(name="review_id")
+	@Column(name = "review_id")
 	private String idreview;
 
-	@Column(name="comment_")
+	@Column(name = "comment_")
 	private String comment;
 
-	@Column(name="commenter_name")
+	@Column(name = "commenter_name")
 	private String commenterName;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
+	@Column(name = "created_date")
 	private Date createdDate;
 
 	private Integer rating;
 
-	@ManyToOne(optional=false)
-	@JoinColumn(name="book_id")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "book_id")
 	private Book book;
 
 	public Review() {
 	}
-	
+
 	public Review(String comment, String commenterName, Integer rating, Book book) {
 		super();
 		this.comment = comment;
@@ -71,7 +67,7 @@ public class Review implements Serializable {
 		this.rating = rating;
 		this.book = book;
 	}
-	
+
 	@PrePersist
 	private void generateId() {
 		this.idreview = UUID.randomUUID().toString();
@@ -81,7 +77,7 @@ public class Review implements Serializable {
 	public String getIdreview() {
 		return this.idreview;
 	}
-	
+
 	public void setIdReview(String idReview) {
 		this.idreview = idReview;
 	}
@@ -121,7 +117,7 @@ public class Review implements Serializable {
 	public void setBook(Book book) {
 		this.book = book;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(idreview, comment, commenterName, createdDate, rating, book);
@@ -133,23 +129,15 @@ public class Review implements Serializable {
 			return false;
 		}
 		Review review = (Review) obj;
-		return Objects.equal(idreview, review.idreview) 
-				&& Objects.equal(comment, review.comment)
-				&& Objects.equal(commenterName, review.commenterName) 
-				&& Objects.equal(createdDate, review.createdDate)
-				&& Objects.equal(rating, review.rating) 
-				&& Objects.equal(book, review.book);
+		return Objects.equal(idreview, review.idreview) && Objects.equal(comment, review.comment)
+				&& Objects.equal(commenterName, review.commenterName) && Objects.equal(createdDate, review.createdDate)
+				&& Objects.equal(rating, review.rating) && Objects.equal(book, review.book);
 	}
 
 	@Override
 	public String toString() {
-		return MoreObjects.toStringHelper(this).omitNullValues()
-				.add("idreview", idreview)
-				.add("comment", comment)
-				.add("commenterName", commenterName)
-				.add("createdDate", createdDate)
-				.add("rating", rating)
-				.add("book", book)
-				.toString();
+		return MoreObjects.toStringHelper(this).omitNullValues().add("idreview", idreview).add("comment", comment)
+				.add("commenterName", commenterName).add("createdDate", createdDate).add("rating", rating)
+				.add("book", book).toString();
 	}
 }

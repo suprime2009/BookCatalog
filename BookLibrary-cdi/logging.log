@@ -1751,3 +1751,9 @@ java.sql.SQLException: Access denied for user 'root'@'localhost' (using password
 00:16:56 08.02.2016 INFO  xnio  <clinit>:93 - XNIO version 3.3.4.Final
 00:16:57 08.02.2016 INFO  nio  <clinit>:55 - XNIO NIO Implementation Version 3.3.4.Final
 00:16:59 08.02.2016 INFO  remoting  <clinit>:73 - JBoss Remoting version 4.0.18.Final
+01:03:25 08.02.2016 INFO  xnio  <clinit>:93 - XNIO version 3.3.4.Final
+01:03:26 08.02.2016 INFO  nio  <clinit>:55 - XNIO NIO Implementation Version 3.3.4.Final
+01:03:27 08.02.2016 INFO  remoting  <clinit>:73 - JBoss Remoting version 4.0.18.Final
+01:14:46 08.02.2016 INFO  xnio  <clinit>:93 - XNIO version 3.3.4.Final
+01:14:46 08.02.2016 INFO  nio  <clinit>:55 - XNIO NIO Implementation Version 3.3.4.Final
+01:14:47 08.02.2016 INFO  remoting  <clinit>:73 - JBoss Remoting version 4.0.18.Final

@@ -1,6 +1,7 @@
 package com.softserveinc.booklibrary.rest.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -19,7 +20,6 @@ import com.softserveinc.booklibrary.rest.dto.ReviewDTO;
 import com.softserveinc.booklibrary.session.manager.ReviewManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
-
 
 @Stateless
 public class ReviewSeviceImpl implements ReviewService {
@@ -56,7 +56,7 @@ public class ReviewSeviceImpl implements ReviewService {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
 
-		Review review = convertToEntity(reviewDTO);		
+		Review review = convertToEntity(reviewDTO);
 		try {
 			reviewManager.createReview(review);
 			builder = Response.status(Status.CREATED);
@@ -69,7 +69,6 @@ public class ReviewSeviceImpl implements ReviewService {
 		return builder.build();
 	}
 
-
 	@Override
 	public Response findAll() {
 		List<Review> list = reviewFacade.findAll();
@@ -79,7 +78,7 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public Response update(ReviewDTO reviewDTO) {
-		Response.ResponseBuilder builder = null;		
+		Response.ResponseBuilder builder = null;
 		if (reviewDTO == null || reviewDTO.getIdReview() == null) {
 			System.out.println("BAD REQUEST");
 			return Response.status(Status.BAD_REQUEST).build();
@@ -89,8 +88,8 @@ public class ReviewSeviceImpl implements ReviewService {
 			review = reviewFacade.findById(reviewDTO.getIdReview());
 			reviewDTO.setIdBook(review.getBook().getIdBook());
 		}
-		
-		review = convertToEntity(reviewDTO);	
+
+		review = convertToEntity(reviewDTO);
 		try {
 			reviewManager.updateReview(review);
 			builder = Response.status(Status.OK);
@@ -111,7 +110,7 @@ public class ReviewSeviceImpl implements ReviewService {
 
 		return Response.ok().build();
 	}
-	
+
 	@Override
 	public Response getReviewsByBook(String idBook) {
 		if (idBook == null) {
@@ -128,13 +127,19 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public Review convertToEntity(ReviewDTO dto) {
-		String idReview = dto.getIdReview();
-		String comment = dto.getComment();
-		String commenterName = dto.getCommenterName();
+
 		Book book = bookFacade.findById(dto.getIdBook());
-		Integer rating = dto.getRating();
-		Review review = new Review(comment, commenterName, rating, book);
-		review.setIdReview(idReview);
+		Review review = null;
+		if (dto.getIdReview() != null) {
+			review = reviewFacade.findById(dto.getIdReview());
+		} else {
+			review = new Review();
+		}
+		review.setComment(dto.getComment());
+		review.setCommenterName(dto.getCommenterName());
+		review.setRating(dto.getRating());
+		review.setBook(book);
+
 		log.info("The method done. Convertation from DTO to Review successful.");
 
 		return review;
@@ -142,12 +147,8 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public ReviewDTO convertToDTO(Review object) {
-		String idReview = object.getIdreview();
-		String comment = object.getComment();
-		String commenterName = object.getCommenterName();
-		String idBook = object.getBook().getIdBook();
-		Integer rating = object.getRating();
-		ReviewDTO dto = new ReviewDTO(idReview, comment, commenterName, idBook, rating);
+		ReviewDTO dto = new ReviewDTO(object.getIdreview(), object.getComment(), object.getCommenterName(),
+				object.getBook().getIdBook(), object.getRating());
 		log.info("The method done. Convertation from Review to ReviewDTO successful.");
 		return dto;
 
@@ -170,7 +171,5 @@ public class ReviewSeviceImpl implements ReviewService {
 		}
 		return listDTO;
 	}
-
-
 
 }

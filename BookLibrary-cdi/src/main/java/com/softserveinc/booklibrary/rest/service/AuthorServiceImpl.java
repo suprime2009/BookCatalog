@@ -23,6 +23,12 @@ import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 
+/**
+ * This class is a implementation methods used JAX-RS web service for Authors entity.
+ * These methods are available to web service clients and using them can perform
+ * CRUD operations on {@code BookCatalog API}. 
+ *
+ */
 @Stateless
 public class AuthorServiceImpl implements AuthorService {
 
@@ -49,14 +55,14 @@ public class AuthorServiceImpl implements AuthorService {
 		if (author == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		AuthorDTO dto = AuthorRestDTOConverter.convertToDTO(author);
+		AuthorDTO dto = convertToDTO(author);
 		return Response.ok(dto).build();
 	}
 
 	@Override
 	public Response findAll() {
 		List<Author> list = authorFacade.findAll();
-		List<AuthorDTO> dto = AuthorRestDTOConverter.convertToListDTO(list);
+		List<AuthorDTO> dto = convertToListDTO(list);
 		return Response.ok(dto).build();
 	}
 
@@ -67,14 +73,12 @@ public class AuthorServiceImpl implements AuthorService {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
 
-		Author author = AuthorRestDTOConverter.convertToEntity(authorDTO);
+		Author author = convertToEntity(authorDTO);
 		try {
 			authorManager.createAuthor(author);
 			builder = Response.status(Status.CREATED);
 		} catch (AuthorManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (BookCatalogException e) {
-			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(e.getMessage());
 		}
 		return builder.build();
 	}
@@ -85,7 +89,7 @@ public class AuthorServiceImpl implements AuthorService {
 		if (authorDTO == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Author author = AuthorRestDTOConverter.convertToEntity(authorDTO);
+		Author author = convertToEntity(authorDTO);
 		try {
 			authorManager.updateAuthor(author);
 			builder = Response.status(Status.OK);
@@ -117,6 +121,41 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 		List<BookDTO> dto = bookService.convertToListDTO(bookFacade.findBooksByAuthor(author));
 		return Response.ok(dto).build();
+	}
+	
+	public Author convertToEntity(AuthorDTO dto) {
+		Author author = null;
+		if (dto.getIdAuthor() == null) {
+			author = new Author(dto.getFirstName(), dto.getSecondName());
+		} else {
+			author = authorFacade.findById(dto.getIdAuthor());
+			if (author != null) {
+				author.setFirstName(dto.getFirstName());
+				author.setSecondName(dto.getSecondName());
+			}
+		}
+		return author;
+	}
+
+	public  AuthorDTO convertToDTO(Author object) {
+		AuthorDTO authorDTO = new AuthorDTO(object.getIdAuthor(), object.getFirstName(), object.getSecondName());
+		return authorDTO;
+	}
+
+	public  List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) {
+		List<Author> authors = new ArrayList<Author>();
+		for (AuthorDTO d : listDTO) {
+			authors.add(convertToEntity(d));
+		}
+		return authors;
+	}
+
+	public  List<AuthorDTO> convertToListDTO(Collection<Author> list) {
+		List<AuthorDTO> authorsDto = new ArrayList<AuthorDTO>();
+		for (Author a : list) {
+			authorsDto.add(convertToDTO(a));
+		}
+		return authorsDto;
 	}
 	
 }

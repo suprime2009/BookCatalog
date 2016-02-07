@@ -1,0 +1,2200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="0.2.0" author="basic">
+		<insert tableName="BOOK">
+			<column name="book_id" value="b1" />
+			<column name="book_name" value="Java Core" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b2" />
+			<column name="book_name" value="JPA" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-3" />
+			<column name="publisher" value="USA" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b3" />
+			<column name="book_name" value="MySQL" />
+			<column name="year_published" value="2014" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-4" />
+			<column name="publisher" value="Ukraine" />
+			<column name="created_date" value="2015-12-11 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b4" />
+			<column name="book_name" value="Hibernate" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b5" />
+			<column name="book_name" value="EJB" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b6" />
+			<column name="book_name" value="Spring" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b7" />
+			<column name="book_name" value="DataBase MySQL" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b8" />
+			<column name="book_name" value="Java Core" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41385-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b9" />
+			<column name="book_name" value=".NET Basix" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b10" />
+			<column name="book_name" value="Basic" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b11" />
+			<column name="book_name" value="Shalom" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b12" />
+			<column name="book_name" value="Bokk for kids" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b13" />
+			<column name="book_name" value="Brtian history" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b14" />
+			<column name="book_name" value="PostgreSQL" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b16" />
+			<column name="book_name" value="Java Core Validol" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b17" />
+			<column name="book_name" value="Java Enterprise" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b18" />
+			<column name="book_name" value="JPA PRO" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b19" />
+			<column name="book_name" value="ENGLISH ELEMENTARY" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41381-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b20" />
+			<column name="book_name" value="ENGLISH PRE_INTERMEDIATE" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b21" />
+			<column name="book_name" value="English Intemediate" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b22" />
+			<column name="book_name" value="MySQL instalation" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b23" />
+			<column name="book_name" value="Java SE" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b24" />
+			<column name="book_name" value="Java for kids" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b25" />
+			<column name="book_name" value="English upper-intermediate" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b26" />
+			<column name="book_name" value="Hello World" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b27" />
+			<column name="book_name" value="Spring start" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b28" />
+			<column name="book_name" value="Spring advanced" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b29" />
+			<column name="book_name" value="DataBase Oracle" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41382-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b30" />
+			<column name="book_name" value="Basic" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b31" />
+			<column name="book_name" value="Mistery" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b32" />
+			<column name="book_name" value="Ukrainian histoty" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b33" />
+			<column name="book_name" value="Westen ukrainians" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b34" />
+			<column name="book_name" value="Box" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b35" />
+			<column name="book_name" value="GITHUB" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b36" />
+			<column name="book_name" value="Good News" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b37" />
+			<column name="book_name" value="German" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b38" />
+			<column name="book_name" value="Espanol" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b39" />
+			<column name="book_name" value="Polish" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41383-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b40" />
+			<column name="book_name" value="Russian" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b41" />
+			<column name="book_name" value="Engennering" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b42" />
+			<column name="book_name" value="Simple the best" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b43" />
+			<column name="book_name" value="I dont know any more books" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b44" />
+			<column name="book_name" value="My fantasy is sick" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b45" />
+			<column name="book_name" value="Histoty of histoty" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b46" />
+			<column name="book_name" value="Crimea" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b47" />
+			<column name="book_name" value="Good news" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b48" />
+			<column name="book_name" value="CNN" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b49" />
+			<column name="book_name" value="BBC" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41384-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b50" />
+			<column name="book_name" value="1+1" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-11385-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b51" />
+			<column name="book_name" value="Collections" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-11385-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b52" />
+			<column name="book_name" value="Threads" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51385-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b53" />
+			<column name="book_name" value="OOP" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51385-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b54" />
+			<column name="book_name" value="Java best" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51385-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b55" />
+			<column name="book_name" value="Java Rule" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51585-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b56" />
+			<column name="book_name" value="Gogo" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-61385-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b57" />
+			<column name="book_name" value="Books" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-71385-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b58" />
+			<column name="book_name" value="This is Last" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51385-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b59" />
+			<column name="book_name" value="Skype" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-51385-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b60" />
+			<column name="book_name" value="Whats up" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b61" />
+			<column name="book_name" value="New York" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b62" />
+			<column name="book_name" value="Kiyv" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b63" />
+			<column name="book_name" value="Lviv" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b64" />
+			<column name="book_name" value="Warshaw" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b65" />
+			<column name="book_name" value="Stambul" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b66" />
+			<column name="book_name" value="Computers" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b67" />
+			<column name="book_name" value="Geography" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b68" />
+			<column name="book_name" value="Communicators" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b69" />
+			<column name="book_name" value="Internet" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41386-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b70" />
+			<column name="book_name" value="HTTP" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b71" />
+			<column name="book_name" value="Servlet" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b72" />
+			<column name="book_name" value="JSF" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b73" />
+			<column name="book_name" value="JSP" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b74" />
+			<column name="book_name" value="CSS" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b75" />
+			<column name="book_name" value="HTML" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b76" />
+			<column name="book_name" value="Transactions" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b77" />
+			<column name="book_name" value="Not supported" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b78" />
+			<column name="book_name" value="Book catalog" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b79" />
+			<column name="book_name" value="Libarry" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41387-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b80" />
+			<column name="book_name" value="Seven" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b81" />
+			<column name="book_name" value="Zero" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b82" />
+			<column name="book_name" value="Eleven" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b83" />
+			<column name="book_name" value="Elmwood park" />
+			<column name="year_published" value="2010" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b84" />
+			<column name="book_name" value="Garphild" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b85" />
+			<column name="book_name" value="Clifton" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-366-41388-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b86" />
+			<column name="book_name" value="Hoboken" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b87" />
+			<column name="book_name" value="Miuloki" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b88" />
+			<column name="book_name" value="Mayo" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b89" />
+			<column name="book_name" value="Energy" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41388-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b90" />
+			<column name="book_name" value="Meet" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b91" />
+			<column name="book_name" value="Bread" />
+			<column name="year_published" value="2012" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b92" />
+			<column name="book_name" value="Fine book" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b93" />
+			<column name="book_name" value="York town" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b94" />
+			<column name="book_name" value="Separator" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-4" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b95" />
+			<column name="book_name" value="Salo" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-5" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b96" />
+			<column name="book_name" value="Vareniki" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-6" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b97" />
+			<column name="book_name" value="Boshch" />
+			<column name="year_published" value="2015" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-7" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b98" />
+			<column name="book_name" value="Bosh" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-8" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b99" />
+			<column name="book_name" value="Mackita" />
+			<column name="year_published" value="2009" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41389-9" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b100" />
+			<column name="book_name" value="Audi" />
+			<column name="year_published" value="2008" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41300-0" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b101" />
+			<column name="book_name" value="BMW" />
+			<column name="year_published" value="2013" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41300-1" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b102" />
+			<column name="book_name" value="FORD" />
+			<column name="year_published" value="2016" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41300-2" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+		<insert tableName="BOOK">
+			<column name="book_id" value="b103" />
+			<column name="book_name" value="Harricane" />
+			<column name="year_published" value="2011" />
+			<column name="isbn" value="ISBN-13: 978-1-966-41300-3" />
+			<column name="publisher" value="Habrahabr" />
+			<column name="created_date" value="2015-12-10 11:30:15" />
+		</insert>
+
+
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a1" />
+			<column name="first_name" value="Brian" />
+			<column name="second_name" value="Adams" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a2" />
+			<column name="first_name" value="Samuel" />
+			<column name="second_name" value="Peter" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a3" />
+			<column name="first_name" value="Geaorge" />
+			<column name="second_name" value="Steven" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a4" />
+			<column name="first_name" value="Stefan" />
+			<column name="second_name" value="Covach" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a5" />
+			<column name="first_name" value="Steve" />
+			<column name="second_name" value="Dony" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a6" />
+			<column name="first_name" value="Ophra" />
+			<column name="second_name" value="Oniel" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a7" />
+			<column name="first_name" value="Mirco" />
+			<column name="second_name" value="Novak" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a8" />
+			<column name="first_name" value="Koel" />
+			<column name="second_name" value="Adams" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a9" />
+			<column name="first_name" value="Sam" />
+			<column name="second_name" value="White" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a10" />
+			<column name="first_name" value="Garsia" />
+			<column name="second_name" value="Lorka" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a11" />
+			<column name="first_name" value="Garsia" />
+			<column name="second_name" value="Moore" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a12" />
+			<column name="first_name" value="Brian" />
+			<column name="second_name" value="Ute" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a13" />
+			<column name="first_name" value="Olga" />
+			<column name="second_name" value="Laskava" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a14" />
+			<column name="first_name" value="Moe" />
+			<column name="second_name" value="Sefan" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a15" />
+			<column name="first_name" value="Ronaldo" />
+			<column name="second_name" value="Christian" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a16" />
+			<column name="first_name" value="Ehslie" />
+			<column name="second_name" value="Cole" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a17" />
+			<column name="first_name" value="Andy" />
+			<column name="second_name" value="Cole" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a18" />
+			<column name="first_name" value="Loran" />
+			<column name="second_name" value="Fabian" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a19" />
+			<column name="first_name" value="Peter" />
+			<column name="second_name" value="Jok" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a20" />
+			<column name="first_name" value="Sara" />
+			<column name="second_name" value="Simon" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a21" />
+			<column name="first_name" value="Kate" />
+			<column name="second_name" value="Lacky" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a22" />
+			<column name="first_name" value="Nora" />
+			<column name="second_name" value="Green" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a23" />
+			<column name="first_name" value="Novie" />
+			<column name="second_name" value="Apple" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a24" />
+			<column name="first_name" value="Greg" />
+			<column name="second_name" value="Simpson" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a25" />
+			<column name="first_name" value="Ophra" />
+			<column name="second_name" value="Nova" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		<insert tableName="AUTHOR">
+			<column name="author_id" value="a26" />
+			<column name="first_name" value="Bengamin" />
+			<column name="second_name" value="Brendon" />
+			<column name="created_date" value="2015-11-10 11:30:15" />
+		</insert>
+		
+		
+		
+		  <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b1"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b1"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b1"/>
+            <column name="author_id" value="a3"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b1"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b2"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b2"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b2"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b2"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b3"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b4"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b5"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b6"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b6"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b6"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b7"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b7"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b8"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b8"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b8"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b9"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a12"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b10"/>
+            <column name="author_id" value="a3"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b11"/>
+            <column name="author_id" value="a12"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b11"/>
+            <column name="author_id" value="a5"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b11"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b12"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b13"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b13"/>
+            <column name="author_id" value="a5"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b14"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b14"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b16"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b16"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b16"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b17"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b18"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b19"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b20"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b20"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b21"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b22"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b23"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b24"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b25"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b26"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b26"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b27"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b28"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b29"/>
+            <column name="author_id" value="a12"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b30"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b31"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b32"/>
+            <column name="author_id" value="a3"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b33"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b35"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b36"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b37"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b37"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b37"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b37"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b38"/>
+            <column name="author_id" value="a12"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b39"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b40"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b42"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b43"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b44"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b45"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a12"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b46"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b47"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b48"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b49"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b50"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b52"/>
+            <column name="author_id" value="a2"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b53"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b55"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b56"/>
+            <column name="author_id" value="a7"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b56"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b57"/>
+            <column name="author_id" value="a8"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b59"/>
+            <column name="author_id" value="a9"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b60"/>
+            <column name="author_id" value="a1"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b61"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b61"/>
+            <column name="author_id" value="a5"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b62"/>
+            <column name="author_id" value="a3"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b63"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b64"/>
+            <column name="author_id" value="a4"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b64"/>
+            <column name="author_id" value="a5"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b64"/>
+            <column name="author_id" value="a6"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b65"/>
+            <column name="author_id" value="a10"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b66"/>
+            <column name="author_id" value="a11"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b67"/>
+            <column name="author_id" value="a13"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b67"/>
+            <column name="author_id" value="a14"/>
+        </insert>
+        <insert tableName="BOOK_AUTHOR">
+            <column name="book_id" value="b67"/>
+            <column name="author_id" value="a15"/>
+        </insert>
+        
+        
+        
+         <insert tableName="REVIEW">
+            <column name="review_id" value="r1"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b1"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r2"/>
+            <column name="commenter_name" value="Novak"/>
+            <column name="comment_" value="good"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b2"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r3"/>
+            <column name="commenter_name" value="Sasha"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b2"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r4"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b2"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r5"/>
+            <column name="commenter_name" value="Sasha"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b3"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r6"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b4"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r7"/>
+            <column name="commenter_name" value="Masha"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b5"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r8"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b6"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r9"/>
+            <column name="commenter_name" value="Kyzia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b7"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r10"/>
+            <column name="commenter_name" value="Funn"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b7"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r11"/>
+            <column name="commenter_name" value="Kyzia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b7"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r12"/>
+            <column name="commenter_name" value="Sasha"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b8"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r13"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b8"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r14"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b8"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r15"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b8"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r16"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b17"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r18"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b9"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r19"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b20"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r21"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b9"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r22"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b9"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r23"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b9"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r24"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b10"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r25"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b10"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r26"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b10"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r27"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b10"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r28"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b11"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r29"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b11"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r30"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b11"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r31"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b11"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r32"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b12"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r33"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b12"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r34"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b12"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r35"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b13"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r36"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b13"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r111"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b14"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r110"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b14"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r37"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b14"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r38"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b1"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r39"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b14"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r40"/>
+            <column name="commenter_name" value="Lesia"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b80"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r41"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b81"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r42"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b16"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r43"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b16"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r44"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b16"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r45"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b17"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r46"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b18"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r47"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b18"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r48"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b19"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r49"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b19"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r50"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b19"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r51"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b20"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r52"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b21"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r53"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b21"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r54"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b21"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r55"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b21"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r56"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b21"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r57"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b22"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r58"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b22"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r59"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b23"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r60"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b24"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r61"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b25"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r62"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b26"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r63"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b27"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r64"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b28"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r65"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b29"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r66"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b30"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r67"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b31"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r68"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b31"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r69"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b31"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r107"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b32"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r71"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b33"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r72"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b34"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r73"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b35"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r74"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b92"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r75"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b93"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r76"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b91"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r77"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b41"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r78"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b1"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r79"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b41"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r80"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b1"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r81"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b43"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r82"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b44"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r83"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b45"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r84"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b46"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r85"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b47"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r86"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b48"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r87"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b49"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r88"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b50"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r89"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b51"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r90"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b51"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r91"/>
+            <column name="commenter_name" value="Roma"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b51"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r92"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b51"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r93"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b51"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r94"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b70"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r95"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="1"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b71"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r96"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b71"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r97"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="2"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b71"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r98"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="3"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b72"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r99"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b73"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r100"/>
+            <column name="commenter_name" value="Huan"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="5"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b74"/>
+        </insert>
+        <insert tableName="REVIEW">
+            <column name="review_id" value="r101"/>
+            <column name="commenter_name" value="BobiBoBa"/>
+            <column name="comment_" value="Nice book!"/>
+            <column name="rating" value="4"/>
+            <column name="created_date" value="2015-12-01 11:30:15"/>
+            <column name="book_id" value="b75"/>
+        </insert>
+	</changeSet>
+</databaseChangeLog>

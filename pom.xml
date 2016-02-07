@@ -8,7 +8,10 @@
   <name>BookLibrary</name>
   <modules>
     <module>BookLibrary-cdi</module>
+
+
+
     
-    <module>DatabaseUpdate</module>
+    <module>BookLibrary-DatabaseUpdate</module>
   </modules>
 </project>

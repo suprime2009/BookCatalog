@@ -20,7 +20,6 @@ import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 
-
 /**
  * The {@code ReviewFacade} class is an implementation facade (read) operations
  * for {@link Review} entity. This class is @Stateless.
@@ -129,6 +128,23 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
 			log.info("The method done. For book {} no one review found.", book);
 			return 0;
 		}
+	}
+
+	@Override
+	public Review findLatestReviewForBook(Book book) {
+		log.info("The method start. Inconing book {}", book);
+		Query query = entityManager.createQuery(
+				"SELECT r FROM Review r WHERE r.book = :bok1 AND r.createdDate = (SELECT MAX(r.createdDate) FROM Review r  WHERE r.book = :bok2 )");
+		query.setParameter("bok1", book);
+		query.setParameter("bok2", book);
+		try {
+			Review review = (Review) query.getSingleResult();
+			log.info("The method finished. Finded review", review);
+			return review;
+		} catch (NoResultException e) {
+			return null;
+		}
+
 	}
 
 }

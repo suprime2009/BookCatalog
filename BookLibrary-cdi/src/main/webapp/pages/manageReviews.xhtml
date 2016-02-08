@@ -15,33 +15,148 @@ Manage Reviews
 
 <ui:define name="content">  
 
+<h:outputStylesheet>
+.headerLabel {
+height:30px;
+font-weight: bold;
+font-size: 13pt;
+margin-left:70px;
+
+}
+.column {
+text-align:center;
+}
+</h:outputStylesheet>
 
 
 
 
 
-<f:metadata>
-    <f:viewAction action="#{manageReviewsAction.load()}" />
-</f:metadata>
 
+<rich:toolbar style="margin-top:90px;"    itemSeparator="disc"   >
+<h:outputLabel value="Count books by rating" styleClass="headerLabel" />
+</rich:toolbar>
 
-<rich:dataTable value="#{manageReviewsAction.countBooksByRating.entrySet().toArray()}" var="entry" style="width:100%;">
-<rich:column  >
+<rich:dataTable value="#{manageReviewsAction.ratingEnum}" var="enum" style="width:100%;">
+
+<rich:column styleClass="column" >
 <f:facet name="header"><h:outputText value="Rating"></h:outputText></f:facet>
-#{entry.key}
+#{enum.ratingName}
 </rich:column >
-<rich:column >
+<rich:column styleClass="column" >
 <f:facet name="header"><h:outputText value="Stars"></h:outputText></f:facet>
-
-#{entry.key}
+#{enum.ratingValue}
 </rich:column>
-<rich:column >
+<rich:column styleClass="column" >
 <f:facet name="header"><h:outputText value="Count Books"></h:outputText></f:facet>
 <h:form>
-<h:commandLink  value="books [#{entry.value}]" action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.getBooksByRating(entry.key)}" />
+<h:commandLink  value="books [#{manageReviewsAction.getCountBooksByrating(enum.ratingValue)}]" 
+				action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.getBooksByRating(enum.ratingValue)}" />
 </h:form>
 </rich:column>
 </rich:dataTable>
+
+<rich:toolbar style="margin-top:30px;"    itemSeparator="disc"   >
+<h:outputLabel value="Most popular books" styleClass="headerLabel" />
+</rich:toolbar>
+<rich:dataTable value="#{manageReviewsAction.topRatedBooks}" var="topratedBooks" style="width:100%;"   >
+ <f:facet name="header">
+            <rich:columnGroup>
+                <rich:column rowspan="2" style="width:150px;">
+                	<h:outputLabel value="Book name" />
+                </rich:column>
+                <rich:column rowspan="2" style="width:70px;">
+                	<h:outputLabel value="Average rating" />
+                </rich:column>
+                <rich:column rowspan="2" style="width:70px;">
+                	<h:outputLabel value="Reviews:" />
+                </rich:column>
+                <rich:column colspan="4">
+                    <h:outputText value="Latest reviews" />
+                </rich:column>
+                <rich:column breakRowBefore="true" style="width:100px;">
+                    <h:outputText value="Commenter"  />
+                </rich:column>
+                <rich:column style="width:70px;">
+                    <h:outputText value="Rating"  />
+                </rich:column>
+                <rich:column style="width:300px;">
+                    <h:outputText value="Comment"  />
+                </rich:column>
+                <rich:column style="width:70px;">
+                    <h:outputText value="Date" />
+                </rich:column>
+            </rich:columnGroup>
+        </f:facet>
+        
+        <rich:column colspan="7">
+            <h:outputText  value="TOP RATED LATELY ADDED BOOKS:"  />
+        </rich:column>
+        
+              <rich:collapsibleSubTable var="topBook" value="#{topratedBooks}">
+            <rich:column>
+                <h:outputText value="#{topBook.book.bookName}" />
+            </rich:column>
+            <rich:column>
+                <h:outputText value="#{topBook.averagerating}" />
+            </rich:column>
+            <rich:column>
+                <h:outputText value="#{topBook.countReviews}" />
+            </rich:column>
+ 
+            <rich:column>
+                <h:outputText value="#{topBook.latestReview.commenterName}" />
+            </rich:column>
+            <rich:column>
+ 				<h:outputText value="#{topBook.latestReview.rating}" />
+            </rich:column>
+             <rich:column>
+ 				<h:outputText value="#{topBook.latestReview.comment}" />
+            </rich:column>
+             <rich:column>
+ 				<h:outputText value="#{topBook.latestReview.createdDate}" >
+ 					<f:converter converterId="CreateDateConverter" ></f:converter>
+ 				</h:outputText>
+            </rich:column>
+
+
+		</rich:collapsibleSubTable>
+</rich:dataTable>
+
+
+
+
+
+
+
+
+
+
+
+<h:outputText id="jRate" value="4"  />
+<h:outputScript>
+$(function () {
+
+			var value = document.getElementById('jRate').innerHTML;
+			var that = this;
+			var toolitup = $("#jRate").jRate({
+				rating: 1,
+				strokeColor: 'black',
+				precision: 1,
+				minSelected: 1,
+				onChange: function(rating) {
+					//console.log("OnChange: Rating: "+rating);
+				},
+				onSet: function(rating) {
+					console.log("OnSet: Rating: "+rating);
+				}
+			});
+			
+			
+		});
+		
+</h:outputScript>
+<h:outputScript library="js"  name="jRate.js" />
 
 
 

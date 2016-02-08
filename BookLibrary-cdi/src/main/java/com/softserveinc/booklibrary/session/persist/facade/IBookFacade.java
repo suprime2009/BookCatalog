@@ -6,7 +6,6 @@ import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 
-
 /**
  * IBookFacade is an interface that describes all facade (read) operations for
  * {@link Book} entity.
@@ -67,10 +66,10 @@ public interface IBookFacade {
 	int findCountAllBooks();
 
 	/**
-	 * Method returns {@code List<Book>} from database based on current dataTable
-	 * requirements. DataTable requirements are a: number of first row in DB,
-	 * count rows in result, name of Book field for sorting and Sort order,
-	 * names Book fields and values for filtering. All that requirement
+	 * Method returns {@code List<Book>} from database based on current
+	 * dataTable requirements. DataTable requirements are a: number of first row
+	 * in DB, count rows in result, name of Book field for sorting and Sort
+	 * order, names Book fields and values for filtering. All that requirement
 	 * described in {@link DataTableSearchHolder} instance. Based on this data
 	 * method returns List of {@link Book}.
 	 * 
@@ -96,9 +95,9 @@ public interface IBookFacade {
 	int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder);
 
 	/**
-	 * This method returns Books from database by {@link Book} property book name,
-	 * that starts with value passed by parameter. Method looking for books,
-	 * which name starts with {@code value}.
+	 * This method returns Books from database by {@link Book} property book
+	 * name, that starts with value passed by parameter. Method looking for
+	 * books, which name starts with {@code value}.
 	 * 
 	 * @param value
 	 *            String
@@ -141,5 +140,16 @@ public interface IBookFacade {
 	 *             if rating not in range between 1 and 5.
 	 */
 	Integer findCountBooksByRating(Integer rating);
+
+	/**
+	 * The method returns List of books with highest average rating, method
+	 * looking for book, that had been added more than 10 days ago.
+	 * 
+	 * @param limit Integer max acxpected count rows
+	 * @return
+	 */
+	List<Book> findMostPopularBooks(Integer limit);
+
+	List<Book> findMostPopularLatelyAddedBooks(Integer limit);
 
 }

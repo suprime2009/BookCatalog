@@ -47,21 +47,27 @@
 				<h:outputLabel value="Author first name: : " />
 					<h:outputText value="#{authorDetailAction.author.firstName}"></h:outputText>
 				<h:outputLabel value="Author second name:  " />
-					<h:outputText value="#{authorDetailAction.author.secondName}"></h:outputText>
+					<h:outputText value="#{authorDetailAction.author.secondName}" ></h:outputText>
 			</h:panelGrid>
 </div>
 <div class="labelH1" style="float: right; width: 30%; ">			
 			<h:outputLabel value="Books: " />
 			<rich:list value="#{authorDetailAction.author.books}" var="book"  >
-			<h:link value="#{book.bookName}"  outcome="#{navigationAction.moveToBookDetailPage()}">
+			<a4j:commandLink value=""></a4j:commandLink>
+			<h:link id="editLink" ajaxSingle="true" value="#{book.bookName}"  outcome="#{navigationAction.moveToBookDetailPage()}">
 				<f:param name="idBook" value="#{book.idBook}"></f:param>
+				<rich:tooltip  value="Book"   ></rich:tooltip>
+
 			</h:link>
 			</rich:list>	
 </div>
 </rich:panel>
 
+
+
+
 <!-- EDIT PANEL -->
-<rich:panel id="authorEditPanel"  style="height:370px; position:relative;" >
+<rich:panel id="authorEditPanel"  style="height:375px; position:relative;" >
 <f:facet name="header">
 <h:outputLabel value="Edit author" styleClass="labelH2" />
 </f:facet>
@@ -118,8 +124,8 @@
             
 </rich:panel>
 <rich:panel style="position:absolute; bottom:0; left:410px; border:0;">
- <a4j:commandButton styleClass="smallBtm" value="Save" action="#{authorDetailAction.submitEdit()}" 
-				execute="editAuthorForm" render="@form authorDetailPanel" />   
+ <a4j:commandButton styleClass="smallBtm" value="Save" action="#{authorDetailAction.submitEdit()}"   
+				execute="@form" render="editAuthorForm, inputAutocomplete, inputPanel, authorDetailPanel" />   
 <a4j:commandButton styleClass="smallBtm" value="Reset" action="#{authorDetailAction.reset()}" 
 				execute="@this" render="editAuthorForm, inputAutocomplete, inputPanel" />  
 </rich:panel>

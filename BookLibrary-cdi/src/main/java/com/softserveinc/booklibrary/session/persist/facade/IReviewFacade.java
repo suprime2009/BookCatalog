@@ -94,5 +94,7 @@ public interface IReviewFacade {
 	 * @return int count of reviews
 	 */
 	int findCountReviewForBook(Book book);
+	
+	Review findLatestReviewForBook(Book book);
 
 }

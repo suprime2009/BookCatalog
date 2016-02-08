@@ -91,7 +91,7 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 	public String addAndEditAuthor() {
 		try {
 			authorManager.createAuthor(author);
-			String idAuthor =  author.getIdAuthor();
+			String idAuthor = author.getIdAuthor();
 			reset();
 			showGlobalMessageOnPage("Author has been successfully created.");
 			load();

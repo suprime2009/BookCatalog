@@ -39,6 +39,8 @@ public class AuthorDetailAction implements Serializable {
 	private Author author;
 	private String autocompleteBooks;
 	private List<Book> avaibleBooks;
+	
+	private List<Book> books;
 
 	@EJB
 	private AuthorFacadeLocal authorFacade;
@@ -50,27 +52,47 @@ public class AuthorDetailAction implements Serializable {
 	private BookFacadeLocal bookFacade;
 
 	public AuthorDetailAction() {
-
+		avaibleBooks = new ArrayList<Book>();
+		books = new ArrayList<Book>();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void lookUpForBooks(ValueChangeEvent event) {
 		List<Book> autocompleteList = bookFacade.findBooksByBookNameForAutocomplete((String) event.getNewValue());
-		Set<Book> set = new HashSet<Book>(ListUtils.sum(autocompleteList, author.getBooks()));
-		avaibleBooks = new ArrayList<Book>(set);
+		System.out.println(avaibleBooks.size());
+		System.out.println("authocomplete list:");
+		for (Book b : autocompleteList) {
+			System.out.println(b);
+		}
+
+		avaibleBooks = ListUtils.sum(author.getBooks(), autocompleteList);
+
+		System.out.println("author books:");
+		for (Book b : author.getBooks()) {
+			System.out.println(b);
+		}
+		System.out.println();
+		System.out.println("avaible books:");
+		for (Book b : avaibleBooks) {
+			System.out.println(b);
+		}
 		log.debug("The method finished. Has beed found {} books", autocompleteList.size());
 	}
 
 	public void loadAuthor() {
 		author = authorFacade.findById(selectedId);
 		autocompleteBooks = null;
-		avaibleBooks = new ArrayList<Book>(author.getBooks());
+		avaibleBooks.clear();
+		avaibleBooks.addAll(author.getBooks());
 		log.debug("By id={} has been loaded author={}", selectedId, author);
 	}
 
 	public void submitEdit() {
+		System.out.println("submit edit");
 		try {
 			authorManager.updateAuthor(author);
 			loadAuthor();
+			
 			log.debug("The method done. Author has been updated.");
 		} catch (AuthorManagerException e) {
 			showGlobalMessageOnPage(e.getMessage());

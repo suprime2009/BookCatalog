@@ -67,7 +67,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	}
 
 	@Override
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void createBook(Book book) throws BookManagerException {
 
 		long startMethodTime = System.currentTimeMillis();

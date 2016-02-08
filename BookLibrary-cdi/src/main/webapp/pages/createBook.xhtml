@@ -13,14 +13,14 @@
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('createBook')}.hide(); return false;">X</h:outputLink>
 	</f:facet>
-	<rich:panel>
+
    <ui:include src="inserts/inputsBookCreate.xhtml" >
    <ui:param name="bean" value="#{manageBookAction}" />
    </ui:include>
-    </rich:panel>
+
     <rich:panel style="margin-left:70px; border:0;">
     <a4j:commandButton styleClass="smallBtm" value="Add book" action="#{manageBookAction.addBook()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="@form" render="manageBookDataTable" />
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="@form" render="manageBookDataTable, inputPanel" />
     				
     <a4j:commandButton styleClass="smallBtm"  value="Add and edit"   action="#{manageBookAction.addAndEditBook()}" execute="createBook" 
     			oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide(); ">
@@ -28,10 +28,11 @@
 		<f:param name="action" value="edit" />
     </a4j:commandButton>
     
-    <a4j:commandButton styleClass="smallBtm" value="Clear" action="#{manageBookAction.reset}" execute="@this" render="inputPanel" />
+    <a4j:commandButton styleClass="smallBtm" value="Clear" actionListener="#{manageBookAction.reset}" execute="@this" render="inputPanel" />
 
     <a4j:commandButton styleClass="smallBtm" value="Cancel"  onclick="#{rich:component('createBook')}.hide(); return false;" />
 	</rich:panel>
+
 </rich:popupPanel>
 </h:form> 
 

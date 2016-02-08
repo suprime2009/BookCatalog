@@ -20,6 +20,8 @@
    
 <ui:define name="content">
 
+
+
  <!--The sortable datatable-->
 <h:form id="formManageAuthors" prependId="false">
 <!-- dataTableHeader -->
@@ -125,7 +127,7 @@
 </ui:include>
 
   <h:form>
- <rich:popupPanel id="createAuthor" autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Create new author" >
+ <rich:popupPanel id="createAuthor" autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Create new author"  >
  
 	<f:facet name="controls">
 	 <h:outputLink value="#" onclick="#{rich:component('createAuthor')}.hide(); return false;">X</h:outputLink>
@@ -150,9 +152,8 @@
     <a4j:commandButton styleClass="smallBtm" value="Add author" action="#{manageAuthorsAction.addAuthor()}" 
 				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createAuthor')}.hide();" execute="@form" render="manageAuthorsDataTable, inputPanel" />
     				
-    <a4j:commandButton styleClass="smallBtm"  value="Add and edit"  action="#{manageAuthorsAction.addAndEditAuthor()}" render="@none" execute="createAuthor" 
-    			oncomplete="if (!#{facesContext.validationFailed}) {#{rich:component('createAuthor')}.hide(); ">
-    </a4j:commandButton>
+    <a4j:commandButton styleClass="smallBtm" value="Add and edit" action="#{manageAuthorsAction.addAndEditAuthor()}" 
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createAuthor')}.hide();" execute="@form" render="manageAuthorsDataTable, inputPanel" />
     
     <a4j:commandButton styleClass="smallBtm" value="Clear" action="#{manageAuthorsAction.reset}" execute="@this" render="inputPanel" />
 

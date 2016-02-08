@@ -35,7 +35,7 @@
 				<h:outputLabel value="MANAGE BOOKS DATA TABLE" />
 		</ui:define>
 		<ui:define name="createButton">
-			<a4j:commandButton styleClass="regularBtm"  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this"></a4j:commandButton>
+			<a4j:commandButton styleClass="regularBtm"  value="Create Book"  oncomplete="#{rich:component('createBook')}.show();" execute="@this" ></a4j:commandButton>
 		</ui:define>
 </ui:decorate>	
 <rich:dataTable id="manageBookDataTable" value="#{manageBookAction.entities}" var="bookWrapper" rows="#{manageBookAction.rowsPerPage}" 
@@ -128,7 +128,7 @@
 
 <ui:include src="createBook.xhtml" />
 
-<ui:include src="editBook.xhtml" />
+
 
 
 

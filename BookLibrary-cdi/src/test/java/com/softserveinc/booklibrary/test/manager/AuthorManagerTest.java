@@ -40,7 +40,6 @@ import com.softserveinc.booklibrary.rest.client.AuthorClientImpl;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.service.AuthorService;
 import com.softserveinc.booklibrary.rest.service.AuthorServiceImpl;
-import com.softserveinc.booklibrary.rest.util.AuthorRestDTOConverter;
 import com.softserveinc.booklibrary.rest.util.JsonFieldsHolder;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.manager.BookManagerLocal;

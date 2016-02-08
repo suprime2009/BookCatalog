@@ -1,6 +1,9 @@
 package com.softserveinc.booklibrary.session.persist.facade.impl;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -235,6 +238,32 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 
 		return books;
 	}
+	
+	@Override
+	public List<Book> findMostPopularBooks(Integer limit) {
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_TOP_RATED_BOOKS_LATELY_ADDED, Book.class);
+		query.setParameter("date", new Date((System.currentTimeMillis() - 10*24*60*60*1000)));
+		if (limit != null) {
+			query.setMaxResults(limit);
+		}
+		List<Book> books = query.getResultList();
+		log.info("The method done. Has been found {} books.", books.size());
+		return books;
+	}
+
+	@Override
+	public List<Book> findMostPopularLatelyAddedBooks(Integer limit) {
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_TOP_RATED_BOOKS_LATELY_ADDED, Book.class);
+
+		query.setParameter("date", new Date((System.currentTimeMillis() - 10*24*60*60*1000)));
+
+		if (limit != null) {
+			query.setMaxResults(limit);
+		}
+		List<Book> books = query.getResultList();
+		log.info("The method done. Has been found {} books.", books.size());
+		return books;
+	}
 
 	/**
 	 * This class is a implementation of {@link QueryBuilderForDataTable} class
@@ -353,5 +382,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 					.append(DESC);
 		}
 	}
+
+
 
 }

@@ -73,9 +73,9 @@ public class ManageBookAction extends DataTableHelper<BookUIWrapper> implements 
 	public void addBook() {
 		try {
 			bookManager.createBook(book);
-			showGlobalMessageOnPage("Book has been successfully created.");
-			reset();
 			load();
+			reset();
+			showGlobalMessageOnPage("Book has been successfully created.");
 			log.debug("Book instance has been created.");
 		} catch (BookManagerException e) {
 			showGlobalMessageOnPage(e.getMessage());

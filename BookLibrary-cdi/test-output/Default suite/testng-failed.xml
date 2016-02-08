@@ -3,23 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
+      <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
         <methods>
-          <include name="testNegativeUpdateAuthor"/>
-          <include name="arquillianAfterSuite"/>
-          <include name="testBulkDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthor"/>
-          <include name="testUpdateAuthor"/>
-          <include name="arquillianAfterClass"/>
-          <include name="testCreateAuthor"/>
-          <include name="arquillianAfterTest"/>
-          <include name="arquillianBeforeSuite"/>
-          <include name="testDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthorWithNoBooks"/>
-          <include name="testNegativeCreateAuthor"/>
-          <include name="testNegativeBulkDeleteAuthors"/>
+          <include name="getRemoteBeans"/>
+          <include name="testFindAllAuthorsByBook"/>
+          <include name="setUp"/>
+          <include name="testFindAuthorByFullName"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
+      </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

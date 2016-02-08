@@ -22,6 +22,7 @@ com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeLocal.class
 com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade$BookQueryBuilderForDataTable.class
 com\softserveinc\booklibrary\session\persist\home\ReviewHomeRemote.class
 com\softserveinc\booklibrary\action\helper\AuthorUIWrapper.class
+com\softserveinc\booklibrary\action\helper\MostPopularBooksDTO.class
 com\softserveinc\booklibrary\action\bean\BookDetailAction$ReviewDataModel.class
 com\softserveinc\booklibrary\action\helper\PaginationHelper.class
 com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeRemote.class

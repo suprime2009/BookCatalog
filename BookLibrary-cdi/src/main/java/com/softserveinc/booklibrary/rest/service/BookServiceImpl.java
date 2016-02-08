@@ -37,6 +37,9 @@ public class BookServiceImpl implements BookService {
 	@EJB
 	private AuthorFacadeLocal authorFacade;
 
+	@EJB
+	private AuthorService authorService;
+
 	@Override
 	public Response findById(String id) {
 		if (id == null) {
@@ -132,16 +135,21 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book convertToEntity(BookDTO dto) {
-		Book book = new Book(dto.getIdBook(), dto.getBookName(), dto.getIsbn(), dto.getPublisher(),
-				dto.getYearPublished());
-		List<String> idAuthors = new ArrayList<String>();
-		if (dto.getAuthors() != null) {
-			for (AuthorDTO d : dto.getAuthors()) {
-				idAuthors.add(d.getIdAuthor());
+		Book book = null;
+		if (dto.getIdBook() == null) {
+			book = new Book(null, dto.getBookName(), dto.getIsbn(), dto.getPublisher(), dto.getYearPublished());
+		} else {
+			book = bookFacade.findById(dto.getIdBook());
+			if (book != null) {
+				book.setBookName(dto.getBookName());
+				book.setIsbn(dto.getIsbn());
+				book.setPublisher(dto.getPublisher());
+				book.setYearPublished(dto.getYearPublished());
 			}
-			Set<Author> authors = new HashSet<Author>(authorFacade.findAuthorsByListId(idAuthors));
-			book.setAuthors(authors);
-
+		}
+		List<Author> authors = authorService.convertToListEntities(dto.getAuthors());
+		if (book != null) {
+			book.setAuthors(new HashSet<Author>(authors));
 		}
 		return book;
 	}

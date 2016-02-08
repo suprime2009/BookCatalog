@@ -19,7 +19,6 @@ C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softse
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\NavigationAction.java
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\BookHomeLocal.java
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\AuthorDetailAction.java
-C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\util\AuthorRestDTOConverter.java
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\ReviewManagerLocal.java
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\IBookFacade.java
 C:\Users\Pavel\Desktop\last\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeLocal.java

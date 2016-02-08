@@ -18,7 +18,6 @@ import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.dto.BookDTO;
-import com.softserveinc.booklibrary.rest.util.AuthorRestDTOConverter;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;

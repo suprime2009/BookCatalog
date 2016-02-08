@@ -75,7 +75,7 @@ public class EditBookAction implements ValidateISBN {
 			}
 			String secondName = authorFullName.substring(0, index);
 			String firstName = authorFullName.substring(index + 1);
-			author = authorFacade.findAuthorByFullName(secondName, firstName);
+			author = authorFacade.findAuthorByFullName(firstName, secondName);
 			if (author == null) {
 				message = "Author has not been found.";
 				context.addMessage(comp.getClientId(context), new FacesMessage(message));

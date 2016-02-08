@@ -83,5 +83,13 @@ public interface AuthorService {
 	@Path("/{author_id}/books")
 	@Produces("application/json")
 	public Response getBooksByAuthor(@PathParam("author_id") String idAuthor);
+	
+	public Author convertToEntity(AuthorDTO dto);
+	
+	public  AuthorDTO convertToDTO(Author object);
+	
+	public  List<Author> convertToListEntities(Collection<AuthorDTO> listDTO);
+	
+	public  List<AuthorDTO> convertToListDTO(Collection<Author> list);
 
 }

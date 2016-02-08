@@ -20,7 +20,7 @@
     </rich:panel>
     <rich:panel style="margin-left:70px; border:0;">
     <a4j:commandButton styleClass="smallBtm" value="Add book" action="#{manageBookAction.addBook()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="createBook" render="formManageBooks" />
+				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide();" execute="@form" render="manageBookDataTable" />
     				
     <a4j:commandButton styleClass="smallBtm"  value="Add and edit"   action="#{manageBookAction.addAndEditBook()}" execute="createBook" 
     			oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createBook')}.hide(); ">

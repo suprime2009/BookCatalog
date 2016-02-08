@@ -167,7 +167,7 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 			AuthorUIWrapper wrapp = new AuthorUIWrapper(author, countBooks, countReviews, aveRating);
 			getEntities().add(wrapp);
 		}
-		log.debug("The method done. Has been found {} authors.", list.get(0).length);
+		log.debug("The method done.");
 	}
 
 	@Override

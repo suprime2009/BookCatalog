@@ -39,8 +39,18 @@ public class AuthorDetailAction implements Serializable {
 	private Author author;
 	private String autocompleteBooks;
 	private List<Book> avaibleBooks;
-	
+
 	private List<Book> books;
+	
+	public List<Book> getBooks() {
+		return books;
+	}
+	
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	private Book mostPopularBook;
 
 	@EJB
 	private AuthorFacadeLocal authorFacade;
@@ -59,23 +69,7 @@ public class AuthorDetailAction implements Serializable {
 	@SuppressWarnings("unchecked")
 	public void lookUpForBooks(ValueChangeEvent event) {
 		List<Book> autocompleteList = bookFacade.findBooksByBookNameForAutocomplete((String) event.getNewValue());
-		System.out.println(avaibleBooks.size());
-		System.out.println("authocomplete list:");
-		for (Book b : autocompleteList) {
-			System.out.println(b);
-		}
-
-		avaibleBooks = ListUtils.sum(author.getBooks(), autocompleteList);
-
-		System.out.println("author books:");
-		for (Book b : author.getBooks()) {
-			System.out.println(b);
-		}
-		System.out.println();
-		System.out.println("avaible books:");
-		for (Book b : avaibleBooks) {
-			System.out.println(b);
-		}
+		avaibleBooks = ListUtils.sum(books, autocompleteList);
 		log.debug("The method finished. Has beed found {} books", autocompleteList.size());
 	}
 
@@ -83,16 +77,23 @@ public class AuthorDetailAction implements Serializable {
 		author = authorFacade.findById(selectedId);
 		autocompleteBooks = null;
 		avaibleBooks.clear();
-		avaibleBooks.addAll(author.getBooks());
+		getAuthorBooks();
+		avaibleBooks.addAll(books);
+		
+
 		log.debug("By id={} has been loaded author={}", selectedId, author);
+	}
+	
+	public List<Book> getAuthorBooks() {
+		books = bookFacade.findBooksByAuthor(author);
+		return books;
 	}
 
 	public void submitEdit() {
-		System.out.println("submit edit");
 		try {
+			author.setBooks(books);
 			authorManager.updateAuthor(author);
 			loadAuthor();
-			
 			log.debug("The method done. Author has been updated.");
 		} catch (AuthorManagerException e) {
 			showGlobalMessageOnPage(e.getMessage());
@@ -165,6 +166,10 @@ public class AuthorDetailAction implements Serializable {
 
 	public void setAvaibleBooks(List<Book> avaibleBooks) {
 		this.avaibleBooks = avaibleBooks;
+	}
+
+	public Book getMostPopularBook() {
+		return bookFacade.findMostPopularBookForAuthor(author);
 	}
 
 }

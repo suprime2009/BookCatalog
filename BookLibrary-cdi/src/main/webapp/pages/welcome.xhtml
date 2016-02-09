@@ -10,14 +10,160 @@
 <ui:composition template="templates/commonLayout.xhtml">
 
 <ui:define name="title">
+<h:outputStylesheet  name="manageBooks.css" library="css" />
+<h:outputStylesheet  name="common.css" library="css" />
 Book Catalog
 </ui:define>
-<ui:define name="content">       
-    <h:link value="Books page" outcome="manageBooks" />
-    <p> </p>
-    <h:link value="Author page" outcome="manageAuthors" />
-     <p> </p>
-    <h:link value="Reviews page" outcome="#{navigationAction.moveToManageReviews()}" />
+<ui:define name="content">
+
+<rich:panel style="margin-top:80px;">
+	<f:facet name="header"><h:outputText value="BOOK CATALOG " styleClass="headerLabel" style="margin-top:100px;" ></h:outputText></f:facet>
+	<div style=" font-size: 10pt;">
+	   RichFaces is a component library for JSF and an advanced framework for
+        easily integrating AJAX capabilities into business applications.
+        <ul>
+            <li>100+ AJAX enabled components in two libraries</li>
+            <li>a4j: page centric AJAX controls</li>
+            <li>rich: self contained, ready to use components</li>
+            <li>Whole set of JSF benefits while working with AJAX</li>
+            <li>Skinnability mechanism</li>
+            <li>Component Development Kit (CDK)</li>
+            <li>Dynamic resources handling</li>
+            <li>Testing facilities for components, actions, listeners, and pages</li>
+            <li>Broad cross-browser support</li>
+            <li>Large and active community</li>
+        </ul>
+	</div>
+	<!-- links -->
+<h:panelGrid columns="3" style="width:1000px; text-align:center; " >
+ 	<h:link id="manageBooksLink" outcome="manageBooks" >
+    	<h:graphicImage value="/resources/images/book.png" alt="books" />
+    	<rich:tooltip value="move to namage books page"   ></rich:tooltip>
+    </h:link>
+    <h:link id="manageAuthorsLink" outcome="manageAuthors" >
+    	<h:graphicImage value="/resources/images/author.png" alt="authors" />
+    	<rich:tooltip value="move to namage authors page"   ></rich:tooltip>
+    </h:link>
+    <h:link id="manageReviewsLink" outcome="#{navigationAction.moveToManageReviews()}" >
+   		<h:graphicImage value="/resources/images/review.png" alt="reviews" />
+   		<rich:tooltip value="move to namage reviews page"   ></rich:tooltip>
+    </h:link>
+</h:panelGrid>   
+
+</rich:panel>
+
+   
+
+<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
+<h:outputLabel value="Latest added books" styleClass="headerLabel" />
+</rich:toolbar>
+<rich:dataTable value="#{manageReviewsAction.latestAddedBooks}" var="book" style="width:100%;" rowClasses="odd-row, even-row">
+	<rich:column styleClass="column" style="width:200px;" >
+		<f:facet name="header">Book name</f:facet>
+		<h:link value="#{book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
+				<f:param name="idBook" value="#{book.idBook}"></f:param>
+			</h:link>
+	</rich:column>
+	<rich:column styleClass="column" style="width:150px;">
+		<f:facet name="header" > Publisher</f:facet>
+		<h:outputText value="#{book.publisher}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:150px;">
+		<f:facet name="header" >ISBN number</f:facet>
+		<h:outputText value="#{book.isbn}" />
+	</rich:column>
+	<rich:column styleClass="column"  style="width:100px;">
+		<f:facet name="header">Year published</f:facet>
+		<h:outputText value="#{book.yearPublished}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:150px;">
+		<f:facet name="header" >Authors</f:facet>
+			<rich:list  value="#{book.authors}"  var="author" >
+        		<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
+        			<f:param name="id" value="#{author.idAuthor}"></f:param>
+				</h:link>
+    		</rich:list>
+	</rich:column>
+		<rich:column styleClass="column" style="width:100px;" >
+		<f:facet name="header">Created</f:facet>
+			<h:outputText value="#{book.createdDate}" >
+				<f:convertDateTime dateStyle="short" timeStyle="short" type="both"  />
+			</h:outputText>
+	</rich:column>
+</rich:dataTable>
+
+
+<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
+<h:outputLabel value="latest added reviews" styleClass="headerLabel" />
+</rich:toolbar>
+<rich:dataTable value="#{manageReviewsAction.latestAddedReviews}" var="review" style="width:100%;" rowClasses="odd-row, even-row">
+	<rich:column styleClass="column" style="width:200px;" >
+		<f:facet name="header">Book</f:facet>
+		<h:link value="#{review.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
+				<f:param name="idBook" value="#{review.book.idBook}"></f:param>
+			</h:link>
+		
+	</rich:column>
+	<rich:column styleClass="column" style="width:70px;"  >
+		<f:facet name="header">Rating</f:facet>
+		<h:outputText value="#{review.rating}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:150px;" >
+		<f:facet name="header">Commenter name</f:facet>
+		<h:outputText value="#{review.commenterName}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:400px;" >
+		<f:facet name="header">Comment</f:facet>
+		<h:outputText value="#{review.comment}" />
+	</rich:column>
+		<rich:column styleClass="column"  style="width:100px;" >
+		<f:facet name="header">Created</f:facet>
+		<h:outputText value="#{review.createdDate}" >
+				<f:convertDateTime dateStyle="short" timeStyle="short" type="both"  />
+			</h:outputText>
+	</rich:column>
+</rich:dataTable>
+
+
+
+<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
+<h:outputLabel value="Latest added authors" styleClass="headerLabel" />
+</rich:toolbar>
+<rich:dataTable value="#{manageReviewsAction.latestAddedAuthors}" var="author" style="width:100%;" rowClasses="odd-row, even-row">
+	<rich:column styleClass="column" style="width:300px;" >
+		<f:facet name="header">Authors:</f:facet>
+		<h:link value="#{author.secondName} #{author.firstName}" outcome="authorDetail">
+        	<f:param name="id" value="#{author.idAuthor}"></f:param>
+		</h:link>
+	</rich:column>
+	<rich:column styleClass="column" style=" width:600px;">
+		<f:facet name="header">Books</f:facet>
+		<ui:repeat var="book" value="#{author.books}" varStatus="status"  >
+			<h:link value="#{book.bookName} " outcome="#{navigationAction.moveToBookDetailPage()}">
+				<f:param name="idBook" value="#{book.idBook}"></f:param>
+			</h:link>#{status.last ? '' : ',        '}
+		</ui:repeat>
+	</rich:column>
+	<rich:column styleClass="column"  style="width:100px;" >
+		<f:facet name="header">Created</f:facet>
+				<h:outputText value="#{author.createdDate}" >
+				<f:convertDateTime dateStyle="short" timeStyle="short" type="both"  />
+			</h:outputText>
+	</rich:column>
+</rich:dataTable>
+
+<h:outputStylesheet>
+.column {
+text-align:center;
+font-size: 9pt;
+}
+.headerLabel {
+font-weight: bold;
+font-size: 13pt;
+margin-left:70px;
+}
+</h:outputStylesheet>
+   
 </ui:define>
 </ui:composition>
 

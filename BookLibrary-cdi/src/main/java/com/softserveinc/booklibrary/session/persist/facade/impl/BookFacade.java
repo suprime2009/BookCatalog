@@ -1,7 +1,5 @@
 package com.softserveinc.booklibrary.session.persist.facade.impl;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,14 +24,10 @@ import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.facade.IBookFacade;
 import com.softserveinc.booklibrary.session.persist.home.BookHomeLocal;
-import com.softserveinc.booklibrary.session.util.QueryBuilderForDataTable;
-import com.softserveinc.booklibrary.session.util.SQLCommandConstants;
 import com.softserveinc.booklibrary.session.util.holders.AuthorFieldHolder;
 import com.softserveinc.booklibrary.session.util.holders.BookFieldHolder;
 import com.softserveinc.booklibrary.session.util.holders.EntityFieldHolder;
 import com.softserveinc.booklibrary.session.util.holders.ReviewFieldHolder;
-
-
 
 /**
  * The {@code BookFacade} class is an implementation facade (read) operations
@@ -191,6 +185,21 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 	}
 
 	@Override
+	public Book findMostPopularBookForAuthor(Author author) {
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_MOST_POPULAR_BOOK_BY_AUTHOR, Book.class);
+		query.setParameter("author", author);
+		Book book = null;
+		try {
+			book = query.getSingleResult();
+			log.info("The method done. For author {} most popular book is {}.", author, book);
+		} catch (NoResultException e) {
+			log.error("The method done. Author doesn't have any books.");
+
+		}
+		return book;
+	}
+
+	@Override
 	public int findCountBooksForDataTable(DataTableSearchHolder dataTableSearchHolder) {
 		long start = System.currentTimeMillis();
 
@@ -238,11 +247,11 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 
 		return books;
 	}
-	
+
 	@Override
 	public List<Book> findMostPopularBooks(Integer limit) {
-		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_TOP_RATED_BOOKS_LATELY_ADDED, Book.class);
-		query.setParameter("date", new Date((System.currentTimeMillis() - 10*24*60*60*1000)));
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_TOP_RATED_BOOKS, Book.class);
+		query.setParameter("date", new Date((System.currentTimeMillis() - 10 * 24 * 60 * 60 * 1000)));
 		if (limit != null) {
 			query.setMaxResults(limit);
 		}
@@ -255,7 +264,7 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 	public List<Book> findMostPopularLatelyAddedBooks(Integer limit) {
 		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_TOP_RATED_BOOKS_LATELY_ADDED, Book.class);
 
-		query.setParameter("date", new Date((System.currentTimeMillis() - 10*24*60*60*1000)));
+		query.setParameter("date", new Date((System.currentTimeMillis() - 10 * 24 * 60 * 60 * 1000)));
 
 		if (limit != null) {
 			query.setMaxResults(limit);
@@ -265,124 +274,152 @@ public class BookFacade implements BookFacadeLocal, BookFacadeRemote {
 		return books;
 	}
 
+	@Override
+	public List<Book> findLatestAddedBooks(int limit) {
+		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_ALL_BOOKS_SORTED_BY_DATE, Book.class);
+		query.setMaxResults(limit);
+		List<Book> books = query.getResultList();
+		log.info("The method done. Has been found {} books.", books.size());
+		return books;
+	}
+
 	/**
-	 * This class is a implementation of {@link QueryBuilderForDataTable} class
-	 * and class is a query builder for {@code ManageBooks} DataTables (table
-	 * for managing {@link Book} instances).
+	 * This class is a implementation of {@link QueryBuilder} class and class is
+	 * a query builder for {@code ManageBooks} DataTables (table for managing
+	 * {@link Book} instances).
 	 */
-	class BookQueryBuilderForDataTable extends QueryBuilderForDataTable implements SQLCommandConstants {
+	class BookQueryBuilderForDataTable extends QueryBuilder {
 
 		@Override
 		protected void appendQueryPartSelectCountObjects() {
-			sbForDataTable.append(SELECT)
-					.append(String.format(AGREGATE_FUNC_TEMPLATE, COUNT, B, BookFieldHolder.ID.getBusinessView()))
-					.append(FROM).append(Book.class.getName()).append(B).append(WHERE)
-					.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.ID.getBusinessView())).append(IN)
-					.append('(').append(SELECT)
-					.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.ID.getBusinessView()));
+			sbForDataTable.append(SqlConstantsHolder.SELECT)
+					.append(String.format(SqlConstantsHolder.AGREGATE_FUNC_TEMPLATE, SqlConstantsHolder.COUNT,
+							SqlConstantsHolder.B, BookFieldHolder.ID.getBusinessView()))
+					.append(SqlConstantsHolder.FROM).append(Book.class.getName()).append(SqlConstantsHolder.B)
+					.append(SqlConstantsHolder.WHERE)
+					.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.B,
+							BookFieldHolder.ID.getBusinessView()))
+					.append(SqlConstantsHolder.IN).append('(').append(SqlConstantsHolder.SELECT)
+					.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.B,
+							BookFieldHolder.ID.getBusinessView()));
 		}
 
 		@Override
 		protected void appendQueryPartSelectObjects() {
-			sbForDataTable.append(SELECT).append(B).append(COMMA).append(
-					String.format(ROUND_AVG_TEMPLATE_TO_TWO_DIGITS, R, BookFieldHolder.RATING.getBusinessView()))
-					.append(AS).append(RAT);
+			sbForDataTable.append(SqlConstantsHolder.SELECT).append(SqlConstantsHolder.B)
+					.append(SqlConstantsHolder.COMMA)
+					.append(String.format(SqlConstantsHolder.ROUND_AVG_TEMPLATE_TO_TWO_DIGITS, SqlConstantsHolder.R,
+							BookFieldHolder.RATING.getBusinessView()))
+					.append(SqlConstantsHolder.AS).append(SqlConstantsHolder.RAT);
 		}
 
 		@Override
 		protected void appendQueryPartFrom() {
-			sbForDataTable.append(FROM).append(Review.class.getName()).append(R).append(RIGHT_JOIN)
-					.append((String.format(FIELD_TEMPLATE, R, ReviewFieldHolder.BOOK.getBusinessView()))).append(B);
+			sbForDataTable.append(SqlConstantsHolder.FROM).append(Review.class.getName()).append(SqlConstantsHolder.R)
+					.append(SqlConstantsHolder.RIGHT_JOIN).append((String.format(SqlConstantsHolder.FIELD_TEMPLATE,
+							SqlConstantsHolder.R, ReviewFieldHolder.BOOK.getBusinessView())))
+					.append(SqlConstantsHolder.B);
 			if ((dataTableSearchHolder.getSortColumn() != null)
 					&& (dataTableSearchHolder.getSortColumn().equals(BookFieldHolder.AUTHORS))
 					|| (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.AUTHORS))) {
-				sbForDataTable.append(LEFT_JOIN)
-						.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.AUTHORS.getBusinessView())).append(A);
+				sbForDataTable
+						.append(SqlConstantsHolder.LEFT_JOIN).append(String.format(SqlConstantsHolder.FIELD_TEMPLATE,
+								SqlConstantsHolder.B, BookFieldHolder.AUTHORS.getBusinessView()))
+						.append(SqlConstantsHolder.A);
 			}
 		}
 
 		@Override
 		protected void appendQueryPartWhere() {
 			Map<EntityFieldHolder, String> map = dataTableSearchHolder.getFilterValues();
-			if (!dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)
-					|| dataTableSearchHolder.getFilterValues().size() > 1) {
-				sbForDataTable.append(WHERE);
+			boolean isRating = false;
+			String ratingValue = null;
+			if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
+				isRating = true;
+				ratingValue = dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING);
+				dataTableSearchHolder.getFilterValues().remove(BookFieldHolder.RATING);
+			}
+			if (!dataTableSearchHolder.getFilterValues().isEmpty()) {
+				sbForDataTable.append(SqlConstantsHolder.WHERE);
 			}
 			int count = 1;
-			boolean isRating = false;
 			for (Map.Entry<EntityFieldHolder, String> pair : map.entrySet()) {
-				if (count > 1 && isRating == false) {
-					if (!pair.getKey().equals(BookFieldHolder.RATING)) {
-						sbForDataTable.append(AND);
-					}
+				if (count > 1) {
+					sbForDataTable.append(SqlConstantsHolder.AND);
 				}
 				++count;
-				isRating = false;
 				switch ((BookFieldHolder) pair.getKey()) {
 				case AUTHORS:
 					sbForDataTable.append('(')
-							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.SECOND_NAME.getBusinessView()))
-							.append(String.format(LIKE_TEMPLATE, pair.getValue())).append(OR)
-							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.FIRST_NAME.getBusinessView()))
-							.append(String.format(LIKE_TEMPLATE, pair.getValue())).append(')');
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.A,
+									AuthorFieldHolder.SECOND_NAME.getBusinessView()))
+							.append(String.format(SqlConstantsHolder.LIKE_TEMPLATE, pair.getValue()))
+							.append(SqlConstantsHolder.OR)
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.A,
+									AuthorFieldHolder.FIRST_NAME.getBusinessView()))
+							.append(String.format(SqlConstantsHolder.LIKE_TEMPLATE, pair.getValue())).append(')');
 					break;
-				case RATING:
-					isRating = true;
-					break;
-
 				default:
-					sbForDataTable.append(String.format(FIELD_TEMPLATE, B, pair.getKey().getBusinessView()))
-							.append(String.format(LIKE_TEMPLATE, pair.getValue()));
+					sbForDataTable
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.B,
+									pair.getKey().getBusinessView()))
+							.append(String.format(SqlConstantsHolder.LIKE_TEMPLATE, pair.getValue()));
 				}
+			}
+			if (isRating) {
+				dataTableSearchHolder.getFilterValues().put(BookFieldHolder.RATING, ratingValue);
 			}
 		}
 
 		@Override
 		protected void appendQueryPartGroupBy() {
-			sbForDataTable.append(GROUP_BY).append(B);
+			sbForDataTable.append(SqlConstantsHolder.GROUP_BY).append(SqlConstantsHolder.B);
 		}
 
 		@Override
 		protected void appendQueryPartHaving() {
 			if (dataTableSearchHolder.getFilterValues().containsKey(BookFieldHolder.RATING)) {
 				int value = Integer.valueOf(dataTableSearchHolder.getFilterValues().get(BookFieldHolder.RATING));
-				sbForDataTable.append(HAVING)
-						.append(String.format(FLOOR_TEMPLATE, R, BookFieldHolder.RATING.getBusinessView()))
-						.append(EQUAL).append(value);
+				sbForDataTable.append(SqlConstantsHolder.HAVING)
+						.append(String.format(SqlConstantsHolder.FLOOR_TEMPLATE, SqlConstantsHolder.R,
+								BookFieldHolder.RATING.getBusinessView()))
+						.append(SqlConstantsHolder.EQUAL).append(value);
 			}
 		}
 
 		@Override
 		protected void appendQueryPartOrderBy() {
-			sbForDataTable.append(ORDER_BY);
+			sbForDataTable.append(SqlConstantsHolder.ORDER_BY);
 
 			if (dataTableSearchHolder.getSortColumn() == null) {
-				sbForDataTable.append(RAT).append(DESC).append(COMMA);
+				sbForDataTable.append(SqlConstantsHolder.RAT).append(SqlConstantsHolder.DESC)
+						.append(SqlConstantsHolder.COMMA);
 			} else {
 				switch ((BookFieldHolder) dataTableSearchHolder.getSortColumn()) {
 				case RATING:
-					sbForDataTable.append(RAT).append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+					sbForDataTable.append(SqlConstantsHolder.RAT).append(dataTableSearchHolder.getSortOrder())
+							.append(SqlConstantsHolder.COMMA);
 					break;
 				case AUTHORS:
 					sbForDataTable
-							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.SECOND_NAME.getBusinessView()))
-							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.A,
+									AuthorFieldHolder.SECOND_NAME.getBusinessView()))
+							.append(dataTableSearchHolder.getSortOrder()).append(SqlConstantsHolder.COMMA);
 					sbForDataTable
-							.append(String.format(FIELD_TEMPLATE, A, AuthorFieldHolder.FIRST_NAME.getBusinessView()))
-							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.A,
+									AuthorFieldHolder.FIRST_NAME.getBusinessView()))
+							.append(dataTableSearchHolder.getSortOrder()).append(SqlConstantsHolder.COMMA);
 					break;
 				default:
 					sbForDataTable
-							.append(String.format(FIELD_TEMPLATE, B,
+							.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.B,
 									dataTableSearchHolder.getSortColumn().getBusinessView()))
-							.append(dataTableSearchHolder.getSortOrder()).append(COMMA);
+							.append(dataTableSearchHolder.getSortOrder()).append(SqlConstantsHolder.COMMA);
 				}
 			}
-			sbForDataTable.append(String.format(FIELD_TEMPLATE, B, BookFieldHolder.CREATED_DATE.getBusinessView()))
-					.append(DESC);
+			sbForDataTable.append(String.format(SqlConstantsHolder.FIELD_TEMPLATE, SqlConstantsHolder.B,
+					BookFieldHolder.CREATED_DATE.getBusinessView())).append(SqlConstantsHolder.DESC);
 		}
 	}
-
-
 
 }

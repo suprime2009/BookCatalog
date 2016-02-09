@@ -1,4 +1,4 @@
-package com.softserveinc.booklibrary.session.util;
+package com.softserveinc.booklibrary.session.persist.facade.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +12,9 @@ import com.softserveinc.booklibrary.action.helper.DataTableSearchHolder;
  * all needed data for dataTable and query for getting count of found objects.
  *
  */
-public abstract class QueryBuilderForDataTable {
+public abstract class QueryBuilder {
 
-	private static Logger log = LoggerFactory.getLogger(QueryBuilderForDataTable.class);
+	private static Logger log = LoggerFactory.getLogger(QueryBuilder.class);
 
 	protected StringBuilder sbForDataTable;
 	protected DataTableSearchHolder dataTableSearchHolder;
@@ -119,5 +119,46 @@ public abstract class QueryBuilderForDataTable {
 	 * and Orders for sorting.
 	 */
 	protected abstract void appendQueryPartOrderBy();
+	
+	static class SqlConstantsHolder {
+		public static final String SELECT ="SELECT ";
+		public static final String FROM =" FROM ";
+		public static final String WHERE =" WHERE ";
+		public static final String JOIN =" JOIN ";
+		public static final String LEFT_JOIN =" LEFT JOIN ";
+		public static final String RIGHT_JOIN =" RIGHT JOIN ";
+		public static final String AS ="AS";
+		public static final String GROUP_BY =" GROUP BY ";
+		public static final String ORDER_BY =" ORDER BY ";
+		public static final String AND =" AND ";
+		public static final String OR =" OR ";
+		public static final String IN =" IN ";
+		public static final String LIKE =" LIKE ";
+		public static final String DESC =" DESC ";
+		public static final String ASC =" ASC ";
+		public static final String AVG =" AVG";
+		public static final String COUNT =" COUNT";
+		public static final String HAVING =" HAVING ";
+		public static final String FLOOR =" FLOOR";
+		public static final String FORMAT =" FORMAT";
+		public static final String DISTINCT =" DISTINCT ";
+		public static final String ROUND =" ROUND ";
+		
+		//Personal alias for Book, Author, Review and rating
+		public static final String B =" b";
+		public static final String A =" a";
+		public static final String R =" r";
+		public static final String RAT =" rat ";
+		public static final String COMMA = ", ";
+		public static final String EQUAL = " = ";
+		
+		//String templates
+		public static final String LIKE_TEMPLATE = " LIKE '%s%%' ";
+		public static final String AGREGATE_FUNC_TEMPLATE = " %s(%s.%s) ";
+		public static final String AGREGATE_FUNC_DISTINCT_TEMPLATE = " %s( DISTINCT %s) ";
+		public static final String FIELD_TEMPLATE = " %s.%s ";
+		public static final String FLOOR_TEMPLATE = " FLOOR(AVG(%s.%s)) ";
+		public static final String ROUND_AVG_TEMPLATE_TO_TWO_DIGITS = " ROUND(AVG(%s.%s), 2) ";
+	}
 
 }

@@ -1,11 +1,13 @@
     #page {
 	margin: 0 auto;
 	width:1000px;
+	
     }
     
     #content{
     margin-bottom:16px;
    	width:100%;
+   	
     }
     
     #header{
@@ -15,6 +17,8 @@
 	
 	 top:0px;
 	}
+	
+
 	
 	.headerText {
 	font-size: 13pt;

@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -134,17 +135,31 @@ public class ReviewFacade implements ReviewFacadeLocal, ReviewFacadeRemote {
 	public Review findLatestReviewForBook(Book book) {
 		log.info("The method start. Inconing book {}", book);
 		Query query = entityManager.createQuery(
-				"SELECT r FROM Review r WHERE r.book = :bok1 AND r.createdDate = (SELECT MAX(r.createdDate) FROM Review r  WHERE r.book = :bok2 )");
-		query.setParameter("bok1", book);
-		query.setParameter("bok2", book);
+				"SELECT r FROM Review r WHERE r.book = :bok AND r.createdDate = (SELECT MAX(r.createdDate) FROM Review r  WHERE r.book = :bok )");
+		query.setParameter("bok", book);
+
 		try {
 			Review review = (Review) query.getSingleResult();
-			log.info("The method finished. Finded review", review);
+			log.info("The method finished. For book={} has been found review = {}", book, review);
 			return review;
 		} catch (NoResultException e) {
+			log.error("The book= {} hasn't reviews.", book);
 			return null;
+		} catch (NonUniqueResultException e) {
+			log.error("The book {} has more than one reviews, created at same time. The method returned one of them.", book);
+			List<Review> list = query.getResultList();
+			return list.get(0);
 		}
 
+	}
+
+	@Override
+	public List<Review> findLatestAddedReviews(int limit) {
+		TypedQuery<Review> query = entityManager.createNamedQuery(Review.FIND_ALL_REVIEWS_SORTED_BY_DATE, Review.class);
+		query.setMaxResults(limit);
+		List<Review> review = query.getResultList();
+		log.info("The method done. Has been found {} reviews.", review.size());
+		return review;
 	}
 
 }

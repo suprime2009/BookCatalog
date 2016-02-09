@@ -165,7 +165,9 @@
   			<rich:panel bodyClass="panel_body"  >
   			<f:facet name="header" >
   			<h:outputLabel value="Created: " for="createdDate" styleClass="labelH3" />
-   				<h:outputText id="createdDate" value="#{record[created]}" styleClass="labelH3" converter="CreateDateConverter"  />
+   				<h:outputText id="createdDate" value="#{record[created]}" styleClass="labelH3"  >
+   					<f:convertDateTime pattern="MMM dd yyyy h:mm a" />
+   				</h:outputText>
    				<div style="float:right;">
    				<a4j:commandLink id="updateReviewBtm" style="margin-right:30px;" limitRender="true" execute="@this" 
    					actionListener="#{bookDetailAction.loadReviewForUpdate(record[idreview])}"

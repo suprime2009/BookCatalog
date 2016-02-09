@@ -51,19 +51,18 @@ import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.IBookFacade;
 import com.softserveinc.booklibrary.session.persist.facade.impl.BookFacade;
+import com.softserveinc.booklibrary.session.persist.facade.impl.QueryBuilder;
 import com.softserveinc.booklibrary.session.persist.home.AuthorHomeLocal;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 import com.softserveinc.booklibrary.session.persist.home.impl.AuthorHome;
 import com.softserveinc.booklibrary.session.persist.home.impl.BookHome;
 import com.softserveinc.booklibrary.session.persist.home.impl.ReviewHome;
-import com.softserveinc.booklibrary.session.util.QueryBuilderForDataTable;
-import com.softserveinc.booklibrary.session.util.SQLCommandConstants;
 import com.softserveinc.booklibrary.test.rest.AuthorRestTest;
 import com.softserveinc.model.util.DBUnitHelper;
 import com.softserveinc.model.util.DataBaseConstants;
 
 public class AuthorManagerTest extends Arquillian {
-	
+
 	private static final String CREATE_GROUP = "createAuthor";
 	private static final String DELETE_GROUP = "updateAuthor";
 	private static final String DELETE_AUTHOR = "testDeleteAuthor";
@@ -79,7 +78,7 @@ public class AuthorManagerTest extends Arquillian {
 
 	@EJB
 	private BookFacadeLocal bookFacade;
-	
+
 	@Deployment
 	public static Archive<?> createTestArchive() throws IOException {
 		File[] files = Maven.resolver().loadPomFromFile("pom.xml").importRuntimeDependencies().resolve()
@@ -98,8 +97,7 @@ public class AuthorManagerTest extends Arquillian {
 		war.addPackages(true, BookFacadeLocal.class.getPackage());
 		war.addPackages(true, BookFacade.class.getPackage());
 		war.addPackages(true, IBookFacade.class.getPackage());
-		war.addPackages(true, SQLCommandConstants.class.getPackage());
-		war.addPackages(true, QueryBuilderForDataTable.class.getPackage());
+		war.addPackages(true, QueryBuilder.class.getPackage());
 		war.addPackages(true, DataTableSearchHolder.class.getPackage());
 		war.addPackages(true, DBUnitHelper.class.getPackage());
 		war.addPackages(true, DataBaseConstants.class.getPackage());

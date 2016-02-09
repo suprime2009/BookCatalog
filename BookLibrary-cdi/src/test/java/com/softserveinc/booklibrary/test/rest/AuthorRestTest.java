@@ -16,6 +16,11 @@ import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 
 public class AuthorRestTest  {
+	
+	@Test
+	public void test() {
+		assertEquals(2, 2);
+	}
 
 
 

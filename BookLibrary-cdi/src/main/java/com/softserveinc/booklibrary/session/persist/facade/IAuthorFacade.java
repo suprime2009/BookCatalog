@@ -121,5 +121,9 @@ public interface IAuthorFacade {
 	 * @return List.
 	 */
 	List<Author> findAllAuthorsByBook(Book book);
+	
+	List<Author> findLatestAddedAuthors(int limit);
+	
+
 
 }

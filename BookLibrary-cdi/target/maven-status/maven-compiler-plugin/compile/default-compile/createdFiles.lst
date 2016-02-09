@@ -16,13 +16,13 @@ com\softserveinc\booklibrary\action\bean\ManageBookAction.class
 com\softserveinc\booklibrary\session\persist\facade\IReviewFacade.class
 com\softserveinc\booklibrary\rest\service\ReviewService.class
 com\softserveinc\booklibrary\rest\service\ReviewSeviceImpl.class
+com\softserveinc\booklibrary\session\persist\facade\impl\QueryBuilder$SqlConstantsHolder.class
 com\softserveinc\booklibrary\session\manager\BookManagerLocal.class
 com\softserveinc\booklibrary\action\bean\ManageReviewsAction.class
 com\softserveinc\booklibrary\session\persist\facade\AuthorFacadeLocal.class
 com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade$BookQueryBuilderForDataTable.class
 com\softserveinc\booklibrary\session\persist\home\ReviewHomeRemote.class
 com\softserveinc\booklibrary\action\helper\AuthorUIWrapper.class
-com\softserveinc\booklibrary\action\helper\MostPopularBooksDTO.class
 com\softserveinc\booklibrary\action\bean\BookDetailAction$ReviewDataModel.class
 com\softserveinc\booklibrary\action\helper\PaginationHelper.class
 com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeRemote.class
@@ -56,7 +56,6 @@ com\softserveinc\booklibrary\exception\BookCatalogException.class
 com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade$AuthorQueryBuilderForDataTable.class
 com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade$1.class
 com\softserveinc\booklibrary\session\manager\BookManagerRemote.class
-com\softserveinc\booklibrary\session\util\QueryBuilderForDataTable.class
 com\softserveinc\booklibrary\model\entity\Author.class
 com\softserveinc\booklibrary\session\persist\home\IHome.class
 com\softserveinc\booklibrary\action\helper\ValidateISBN.class
@@ -65,11 +64,11 @@ com\softserveinc\booklibrary\rest\dto\BookDTO.class
 com\softserveinc\booklibrary\rest\util\JsonFieldsHolder.class
 com\softserveinc\booklibrary\rest\dto\AuthorDTO.class
 com\softserveinc\booklibrary\session\manager\IManagerAuthor.class
-com\softserveinc\booklibrary\session\util\SQLCommandConstants.class
 com\softserveinc\booklibrary\action\helper\BookConverter.class
 com\softserveinc\booklibrary\action\bean\NavigationAction.class
 com\softserveinc\booklibrary\session\manager\ReviewManagerRemote.class
 com\softserveinc\booklibrary\rest\service\AuthorService.class
+com\softserveinc\booklibrary\session\persist\facade\impl\QueryBuilder.class
 com\softserveinc\booklibrary\session\manager\IManagerReview.class
 com\softserveinc\booklibrary\exception\BookManagerException.class
 com\softserveinc\booklibrary\rest\service\BookService.class
@@ -77,7 +76,6 @@ com\softserveinc\booklibrary\session\manager\impl\BookManager.class
 com\softserveinc\booklibrary\rest\util\JacksonJsonProvider.class
 com\softserveinc\booklibrary\session\util\holders\BookFieldHolder.class
 com\softserveinc\booklibrary\session\persist\home\BookHomeRemote.class
-com\softserveinc\booklibrary\action\helper\CreateDateConverter.class
 com\softserveinc\booklibrary\action\helper\ReviewRatingFieldsEnum.class
 com\softserveinc\booklibrary\session\persist\facade\BookFacadeLocal.class
 com\softserveinc\booklibrary\session\manager\ReviewManagerLocal.class

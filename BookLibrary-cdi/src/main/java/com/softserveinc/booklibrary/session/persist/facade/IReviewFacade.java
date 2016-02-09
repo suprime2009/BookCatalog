@@ -96,5 +96,7 @@ public interface IReviewFacade {
 	int findCountReviewForBook(Book book);
 	
 	Review findLatestReviewForBook(Book book);
+	
+	List<Review> findLatestAddedReviews(int limit);
 
 }

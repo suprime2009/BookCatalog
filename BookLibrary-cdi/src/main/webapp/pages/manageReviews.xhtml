@@ -10,22 +10,38 @@
 <ui:composition template="templates/commonLayout.xhtml">
 <ui:define name="title">
 Manage Reviews
+<h:outputStylesheet  name="manageBooks.css" library="css" />
+<h:outputStylesheet  name="common.css" library="css" />
 </ui:define>
+
 
 
 <ui:define name="content">  
 
 <h:outputStylesheet>
 .headerLabel {
-height:30px;
 font-weight: bold;
 font-size: 13pt;
 margin-left:70px;
-
 }
 .column {
 text-align:center;
+font-size: 9pt;
 }
+
+.inLinecolumn {
+font-size: 10pt;
+font-weight: bold;
+margin-left:70px;
+}
+
+
+
+
+
+ 
+   
+      
 </h:outputStylesheet>
 
 
@@ -33,11 +49,13 @@ text-align:center;
 
 
 
-<rich:toolbar style="margin-top:90px;"    itemSeparator="disc"   >
+
+
+<rich:toolbar style="margin-top:80px;"    itemSeparator="disc"   >
 <h:outputLabel value="Count books by rating" styleClass="headerLabel" />
 </rich:toolbar>
 
-<rich:dataTable value="#{manageReviewsAction.ratingEnum}" var="enum" style="width:100%;">
+<rich:dataTable value="#{manageReviewsAction.ratingEnum}" var="enum" style="width:100%;" rowClasses="odd-row, even-row">
 
 <rich:column styleClass="column" >
 <f:facet name="header"><h:outputText value="Rating"></h:outputText></f:facet>
@@ -56,10 +74,10 @@ text-align:center;
 </rich:column>
 </rich:dataTable>
 
-<rich:toolbar style="margin-top:30px;"    itemSeparator="disc"   >
+<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
 <h:outputLabel value="Most popular books" styleClass="headerLabel" />
 </rich:toolbar>
-<rich:dataTable value="#{manageReviewsAction.topRatedBooks}" var="topratedBooks" style="width:100%;"   >
+<rich:dataTable value="#{manageReviewsAction.topRatedBooks}" var="topratedBooks" style="width:100%;"  binding="#{index}"   >
  <f:facet name="header">
             <rich:columnGroup>
                 <rich:column rowspan="2" style="width:150px;">
@@ -68,16 +86,16 @@ text-align:center;
                 <rich:column rowspan="2" style="width:70px;">
                 	<h:outputLabel value="Average rating" />
                 </rich:column>
-                <rich:column rowspan="2" style="width:70px;">
+                <rich:column rowspan="2"  style="width:70px;">
                 	<h:outputLabel value="Reviews:" />
                 </rich:column>
-                <rich:column colspan="4">
+                <rich:column  colspan="4">
                     <h:outputText value="Latest reviews" />
                 </rich:column>
                 <rich:column breakRowBefore="true" style="width:100px;">
                     <h:outputText value="Commenter"  />
                 </rich:column>
-                <rich:column style="width:70px;">
+                <rich:column  style="width:70px;">
                     <h:outputText value="Rating"  />
                 </rich:column>
                 <rich:column style="width:300px;">
@@ -89,36 +107,38 @@ text-align:center;
             </rich:columnGroup>
         </f:facet>
         
-        <rich:column colspan="7">
-            <h:outputText  value="TOP RATED LATELY ADDED BOOKS:"  />
+        <rich:column colspan="7" style="background-color: #FFEBDA;">
+            <h:outputText styleClass="inLinecolumn"  value="TOP LATELY ADDED BOOKS:" rendered="#{index.rowIndex == 0}"   />
+            <h:outputText styleClass="inLinecolumn" value="TOP RATED BOOKS:" rendered="#{index.rowIndex == 1}"  />
         </rich:column>
         
-              <rich:collapsibleSubTable var="topBook" value="#{topratedBooks}">
-            <rich:column>
-                <h:outputText value="#{topBook.book.bookName}" />
+              <rich:collapsibleSubTable var="topBook" value="#{topratedBooks}"  rowClass="even" >
+            	<rich:column styleClass="column">
+            		<h:link value="#{topBook.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
+						<f:param name="idBook" value="#{topBook.book.idBook}"></f:param>
+				</h:link>
             </rich:column>
-            <rich:column>
+            <rich:column styleClass="column">
                 <h:outputText value="#{topBook.averagerating}" />
             </rich:column>
-            <rich:column>
+            <rich:column styleClass="column">
                 <h:outputText value="#{topBook.countReviews}" />
             </rich:column>
  
-            <rich:column>
+            <rich:column styleClass="column">
                 <h:outputText value="#{topBook.latestReview.commenterName}" />
             </rich:column>
-            <rich:column>
+            <rich:column styleClass="column">
  				<h:outputText value="#{topBook.latestReview.rating}" />
             </rich:column>
-             <rich:column>
+             <rich:column styleClass="column">
  				<h:outputText value="#{topBook.latestReview.comment}" />
             </rich:column>
-             <rich:column>
- 				<h:outputText value="#{topBook.latestReview.createdDate}" >
- 					<f:converter converterId="CreateDateConverter" ></f:converter>
+             <rich:column styleClass="column">
+ 				<h:outputText value="#{topBook.latestReview.createdDate}" styleClass="DateReview" >
+ 					<f:convertDateTime dateStyle="medium"  timeStyle="short" type="both" />
  				</h:outputText>
             </rich:column>
-
 
 		</rich:collapsibleSubTable>
 </rich:dataTable>

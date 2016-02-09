@@ -15,7 +15,7 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter("ISNBConverter")
 public class ISBNConverter implements Converter {
 
-	private final Character SEP = '-';
+	private final Character SEPARATOT = '-';
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -24,12 +24,12 @@ public class ISBNConverter implements Converter {
 		String isbnCode = getOnlyDigits((String) value);
 		switch (isbnCode.length()) {
 		case 10:
-			isbn.append("ISBN-10: ").append(isbnCode.charAt(0)).append(SEP).append(isbnCode.substring(1, 4)).append(SEP)
-					.append(isbnCode.substring(4, 9)).append(SEP).append(isbnCode.charAt(9));
+			isbn.append("ISBN-10: ").append(isbnCode.charAt(0)).append(SEPARATOT).append(isbnCode.substring(1, 4)).append(SEPARATOT)
+					.append(isbnCode.substring(4, 9)).append(SEPARATOT).append(isbnCode.charAt(9));
 			break;
 		case 13:
-			isbn.append("ISBN-13: ").append(isbnCode.substring(0, 3)).append(SEP).append(isbnCode.charAt(3)).append(SEP)
-					.append(isbnCode.substring(4, 7)).append(SEP).append(isbnCode.substring(7, 12)).append(SEP)
+			isbn.append("ISBN-13: ").append(isbnCode.substring(0, 3)).append(SEPARATOT).append(isbnCode.charAt(3)).append(SEPARATOT)
+					.append(isbnCode.substring(4, 7)).append(SEPARATOT).append(isbnCode.substring(7, 12)).append(SEPARATOT)
 					.append(isbnCode.charAt(12));
 			break;
 		default:
@@ -67,7 +67,6 @@ public class ISBNConverter implements Converter {
 			if (sb.charAt(0) == '1') {
 				System.out.println("1");
 				if (sb.charAt(1) == '0' || sb.charAt(1) == '3') {
-					System.out.println("0 or 3");
 					sb.deleteCharAt(0);
 					sb.deleteCharAt(0);
 				}

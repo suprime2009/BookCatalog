@@ -2,19 +2,20 @@
 
 
 
-	  <test name="facades">
+<!-- 
+	   <test name="facades">
 	  <classes>
 		<class name="com.softserveinc.model.persist.facade.AuthorFacadeTest" />
 		<class name="com.softserveinc.model.persist.facade.BookFacadeTest" />
 		<class name="com.softserveinc.model.persist.facade.ReviewFacadeTest" />
 	  </classes>
 	</test>
-
-	
+		<class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest" />
+ -->
 	 <test name="managers">
 	  <classes>
 		<class name="com.softserveinc.booklibrary.test.manager.BookManagerTest" />
-		<class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest" />
+
 	  </classes>
 	</test>
 </suite>

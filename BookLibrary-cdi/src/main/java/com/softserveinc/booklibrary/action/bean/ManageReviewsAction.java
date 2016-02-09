@@ -13,9 +13,12 @@ import javax.faces.bean.ViewScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.action.helper.MostPopularBooksDTO;
+import com.softserveinc.booklibrary.action.helper.BookUIWrapper;
 import com.softserveinc.booklibrary.action.helper.ReviewRatingFieldsEnum;
+import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
+import com.softserveinc.booklibrary.model.entity.Review;
+import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.util.holders.BookFieldHolder;
@@ -32,7 +35,7 @@ public class ManageReviewsAction implements Serializable {
 
 	private static Logger log = LoggerFactory.getLogger(ManageReviewsAction.class);
 
-	private List<List<MostPopularBooksDTO>> topRatedBooks;
+	private List<List<BookUIWrapper>> topRatedBooks;
 
 	public ManageReviewsAction() {
 
@@ -44,9 +47,12 @@ public class ManageReviewsAction implements Serializable {
 	@EJB
 	private BookFacadeLocal bookFacade;
 
-	public List<List<MostPopularBooksDTO>> getTopRatedBooks() {
+	@EJB
+	private AuthorFacadeLocal authorFacade;
+
+	public List<List<BookUIWrapper>> getTopRatedBooks() {
 		if (topRatedBooks == null) {
-			topRatedBooks = new ArrayList<List<MostPopularBooksDTO>>();
+			topRatedBooks = new ArrayList<List<BookUIWrapper>>();
 			topRatedBooks.add(getDataForLatestBooks());
 			topRatedBooks.add(getDataForTopRatedBooks());
 
@@ -54,24 +60,24 @@ public class ManageReviewsAction implements Serializable {
 		return topRatedBooks;
 	}
 
-	public List<MostPopularBooksDTO> getDataForLatestBooks() {
+	public List<BookUIWrapper> getDataForLatestBooks() {
 		List<Book> books = bookFacade.findMostPopularLatelyAddedBooks(10);
-		List<MostPopularBooksDTO> listDto = new ArrayList<MostPopularBooksDTO>();
+		List<BookUIWrapper> listDto = new ArrayList<BookUIWrapper>();
 		for (Book b : books) {
-			MostPopularBooksDTO dto = new MostPopularBooksDTO(b, reviewFacade.findAverageRatingForBook(b),
+			BookUIWrapper wrap = new BookUIWrapper(b, reviewFacade.findAverageRatingForBook(b),
 					reviewFacade.findCountReviewForBook(b), reviewFacade.findLatestReviewForBook(b));
-			listDto.add(dto);
+			listDto.add(wrap);
 		}
 		return listDto;
 	}
 
-	public List<MostPopularBooksDTO> getDataForTopRatedBooks() {
+	public List<BookUIWrapper> getDataForTopRatedBooks() {
 		List<Book> books = bookFacade.findMostPopularBooks(10);
-		List<MostPopularBooksDTO> listDto = new ArrayList<MostPopularBooksDTO>();
+		List<BookUIWrapper> listDto = new ArrayList<BookUIWrapper>();
 		for (Book b : books) {
-			MostPopularBooksDTO dto = new MostPopularBooksDTO(b, reviewFacade.findAverageRatingForBook(b),
+			BookUIWrapper wrap = new BookUIWrapper(b, reviewFacade.findAverageRatingForBook(b),
 					reviewFacade.findCountReviewForBook(b), reviewFacade.findLatestReviewForBook(b));
-			listDto.add(dto);
+			listDto.add(wrap);
 		}
 		return listDto;
 	}
@@ -83,4 +89,17 @@ public class ManageReviewsAction implements Serializable {
 	public ReviewRatingFieldsEnum[] getRatingEnum() {
 		return ReviewRatingFieldsEnum.values();
 	}
+
+	public List<Author> getLatestAddedAuthors() {
+		return authorFacade.findLatestAddedAuthors(5);
+	}
+
+	public List<Book> getLatestAddedBooks() {
+		return bookFacade.findLatestAddedBooks(5);
+	}
+
+	public List<Review> getLatestAddedReviews() {
+		return reviewFacade.findLatestAddedReviews(5);
+	}
+
 }

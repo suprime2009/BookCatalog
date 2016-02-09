@@ -35,17 +35,17 @@ public class ManagerTestUlil {
 		book.setIdBook("someID");
 		list.add(new Object[] { book });
 		/* Book with already present ISBN id DB */
-		// book = new Book(BOOK_NAME_CORRECT, "ISBN-10: 1-478-42336-5",
-		// PUBLISHER_CORRECT, YEAR_CORRECT,
-		// new HashSet<Author>());
-		// list.add(new Object[] { book });
+//		 book = new Book(BOOK_NAME_CORRECT, "ISBN-13: 978-1-236-54515-7",
+//		 PUBLISHER_CORRECT, YEAR_CORRECT,
+//		 new HashSet<Author>());
+//		 list.add(new Object[] { book });
 
 		return list.toArray(new Object[list.size()][]);
 	}
 
 	@DataProvider(name = "negativeUpdateBookDataProvider")
-	public static Object[][] negativeUpdateBookDataProvider() {
-		List<Object[]> list = Lists.newArrayList();
+	public static Book[][] negativeUpdateBookDataProvider() {
+		List<Book[]> list = Lists.newArrayList();
 		list.addAll(Arrays.asList(negativeBookDataProvider()));
 
 		/* Book with present id number */
@@ -59,7 +59,7 @@ public class ManagerTestUlil {
 		// new HashSet<Author>());
 		// list.add(new Object[] { book });
 
-		return list.toArray(new Object[list.size()][]);
+		return list.toArray(new Book[list.size()][]);
 	}
 
 	@DataProvider(name = "negativeDeleteBookDataProvider")
@@ -72,8 +72,8 @@ public class ManagerTestUlil {
 		return new Object[][] { { null }, { NOT_PRESENT_ID } };
 	}
 
-	public static Object[][] negativeBookDataProvider() {
-		Object[][] retObjArr = {
+	public static Book[][] negativeBookDataProvider() {
+		Book[][] retObjArr = {
 				{ new Book(null, ISBN_CORRECT, PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>()) },
 				{ new Book(null, ISBN_CORRECT, PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>()) },
 				{ new Book(BOOK_NAME_CORRECT, null, PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>()) },

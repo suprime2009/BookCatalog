@@ -151,5 +151,9 @@ public interface IBookFacade {
 	List<Book> findMostPopularBooks(Integer limit);
 
 	List<Book> findMostPopularLatelyAddedBooks(Integer limit);
+	
+	List<Book> findLatestAddedBooks(int limit);
+	
+	Book findMostPopularBookForAuthor(Author author);
 
 }

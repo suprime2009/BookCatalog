@@ -30,6 +30,9 @@ import java.util.UUID;
 		@NamedQuery(name = Book.FIND_TOP_RATED_BOOKS_LATELY_ADDED, query = "SELECT b FROM Review r JOIN r.book b WHERE b.createdDate > :date GROUP BY b ORDER BY AVG(r.rating) DESC"),
 		@NamedQuery(name = Book.FIND_TOP_RATED_BOOKS, query = "SELECT b FROM Review r JOIN r.book b WHERE b.createdDate < :date GROUP BY b ORDER BY AVG(r.rating) DESC"),
 		@NamedQuery(name = Book.FIND_BOOKS_BY_RATING, query = "SELECT b FROM Review r JOIN r.book b  GROUP BY r.book  HAVING FLOOR (AVG(r.rating)) = :rat"),
+		@NamedQuery(name = Book.FIND_ALL_BOOKS_SORTED_BY_DATE, query = "SELECT b FROM Book b ORDER BY b.createdDate DESC"),
+		@NamedQuery(name = Book.FIND_MOST_POPULAR_BOOK_BY_AUTHOR, query = "SELECT b FROM Review r RIGHT JOIN r.book b LEFT JOIN b.authors a WHERE a = :author "
+				+ "GROUP BY b  HAVING FLOOR (AVG(r.rating)) = (SELECT MAX(r.rating) FROM Review r RIGHT JOIN r.book b LEFT JOIN b.authors a WHERE a = :author )"),
 		@NamedQuery(name = Book.FIND_COUNT_BOOKS, query = "SELECT COUNT(b) FROM Book b ") })
 public class Book implements Serializable {
 
@@ -48,6 +51,8 @@ public class Book implements Serializable {
 	public static final String FIND_TOP_RATED_BOOKS_LATELY_ADDED = "Book.findMostPopularLatelyAddedBooks";
 	public static final String FIND_TOP_RATED_BOOKS = "Book.findMostPopularBooks";
 	public static final String BULK_REMOVE = "Book.bulkRemove";
+	public static final String FIND_ALL_BOOKS_SORTED_BY_DATE = "Book.findLatestAddedBooks";
+	public static final String FIND_MOST_POPULAR_BOOK_BY_AUTHOR = "Book.findMostPopularBookForAuthor";
 
 	@Id
 	@Column(name = "book_id")

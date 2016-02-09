@@ -22,6 +22,7 @@ import java.util.UUID;
 		@NamedQuery(name = Review.BULK_REMOVE_BY_BOOK, query = "DELETE FROM Review r WHERE r.book IN :list"),
 		@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_DESC, query = "SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate DESC"),
 		@NamedQuery(name = Review.FIND_REVIEWS_BY_BOOK_ORDER_ASC, query = "SELECT DISTINCT r FROM Review r WHERE  r.book.idBook LIKE :book ORDER BY r.createdDate ASC"),
+		@NamedQuery(name = Review.FIND_ALL_REVIEWS_SORTED_BY_DATE, query = "SELECT r FROM Review r ORDER BY r.createdDate DESC"),
 		@NamedQuery(name = Review.FIND_COUNT_REVIEWS_FOR_BOOK, query = "SELECT  COUNT(DISTINCT r) FROM Review r WHERE r.book.idBook LIKE :par"), })
 public class Review implements Serializable {
 
@@ -36,6 +37,7 @@ public class Review implements Serializable {
 	public static final String FIND_REVIEWS_BY_BOOK_ORDER_DESC = "Review.findReviewsForBookOrderDesc";
 	public static final String FIND_COUNT_REVIEWS_FOR_BOOK = "Review.findCountReviewForBook";
 	public static final String BULK_REMOVE_BY_BOOK = "Review.bulkRemoveByBook";
+	public static final String FIND_ALL_REVIEWS_SORTED_BY_DATE = "Review.findLatestAddedReviews";
 
 	@Id
 	@Column(name = "review_id")

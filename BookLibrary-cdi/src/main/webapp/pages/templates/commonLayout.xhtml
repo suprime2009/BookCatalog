@@ -13,14 +13,15 @@
 <h:outputStylesheet  name="css/layot.css"  />
 </h:head>
 
-<h:body>
+<h:body style="background:	#f2f2f2;">
 
 
 
-	<div id="page">
+	<div id="page"  >
 
 <rich:toolbar  style="width:1000px; height:70px;  position: absolute; top:0px; "  itemSeparator="disc"   >
 <rich:toolbarGroup >
+
 <h:outputLabel value="BOOK CATALOG" styleClass="headerText" />
 </rich:toolbarGroup>
 
@@ -39,7 +40,29 @@
 		<div id="content">
 			<ui:insert name="content"></ui:insert>
 		</div>
-		
+	
+	
+
 	</div>
+	
+
+
+
+
+<h:outputStylesheet>
+#footer {
+  position:relative;
+
+    clear: both;
+
+
+
+
+
+    height: 15px;
+}
+</h:outputStylesheet>
+	
+
 </h:body>
 </html>

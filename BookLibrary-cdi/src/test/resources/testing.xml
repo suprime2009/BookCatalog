@@ -1,8 +1,8 @@
 <suite name="BookLibrary-cdiTest">
 
 
+<!--
 
-<!-- 
 	   <test name="facades">
 	  <classes>
 		<class name="com.softserveinc.model.persist.facade.AuthorFacadeTest" />
@@ -10,12 +10,16 @@
 		<class name="com.softserveinc.model.persist.facade.ReviewFacadeTest" />
 	  </classes>
 	</test>
-		<class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest" />
- -->
+		-->
+
+
 	 <test name="managers">
 	  <classes>
 		<class name="com.softserveinc.booklibrary.test.manager.BookManagerTest" />
 
 	  </classes>
 	</test>
+
+
+
 </suite>

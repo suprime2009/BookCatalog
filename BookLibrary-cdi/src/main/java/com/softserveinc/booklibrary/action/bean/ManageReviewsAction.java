@@ -81,7 +81,10 @@ public class ManageReviewsAction implements Serializable {
 		}
 		return listDto;
 	}
-
+	
+	public List<Book> booksForAuthor(Author author) {
+		return bookFacade.findBooksByAuthor(author);
+	}
 	public Integer getCountBooksByrating(Integer rating) {
 		return bookFacade.findCountBooksByRating(rating);
 	}

@@ -110,6 +110,10 @@ public class Author implements Serializable {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+	
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
 
 	@Override
 	public int hashCode() {

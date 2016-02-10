@@ -33,6 +33,7 @@ D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\s
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\ReviewService.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\manager\IManagerBook.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\rest\service\BookServiceImpl.java
+D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\exception\RestDTOConvertException.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\helper\DataTableSearchHolder.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\impl\ReviewHome.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\NavigationAction.java
@@ -73,7 +74,6 @@ D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\sessio
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\home\ReviewHomeLocal.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\helper\BookUIWrapper.java
-D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\util\ConnectionFilter.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\bean\ManageReviewsAction.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\action\helper\BookConverter.java
 D:\BookCatalog\BookLibrary-cdi\src\main\java\com\softserveinc\booklibrary\session\persist\facade\impl\ReviewFacade.java

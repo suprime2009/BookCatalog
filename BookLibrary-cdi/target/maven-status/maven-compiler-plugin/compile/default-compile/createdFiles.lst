@@ -2,8 +2,8 @@ com\softserveinc\booklibrary\action\bean\EditBookAction.class
 com\softserveinc\booklibrary\action\helper\DataTableHelper.class
 com\softserveinc\booklibrary\session\persist\home\impl\ReviewHome.class
 com\softserveinc\booklibrary\session\persist\facade\impl\AuthorFacade$1.class
-com\softserveinc\booklibrary\session\util\ConnectionFilter.class
 com\softserveinc\booklibrary\action\helper\ISBNConverter.class
+com\softserveinc\booklibrary\exception\RestDTOConvertException.class
 com\softserveinc\booklibrary\session\persist\facade\impl\BookFacade.class
 com\softserveinc\booklibrary\rest\client\AuthorClientImpl.class
 com\softserveinc\booklibrary\exception\AuthorManagerException.class

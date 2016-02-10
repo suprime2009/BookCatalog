@@ -101,12 +101,16 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		log.debug("The method starts. Book to update ={}", book);
 		String errorMessage = "";
 		validateBookFields(book);
+		System.out.println("after validate");
 		Book checkISBN = bookFacade.findBookByISNBN(book.getIsbn());
+		System.out.println(book.getIdBook());
+		System.out.println(checkISBN.getIdBook());
 		if (checkISBN != null && !checkISBN.getIdBook().equals(book.getIdBook())) {
 			errorMessage = String.format("Passed ISBN number %s already in use.", book.getIsbn());
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
+		System.out.println("before home");
 		bookHome.update(book);
 		log.info("The method finished. Book {} has been successfully updated.", book);
 
@@ -158,7 +162,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	 * @throws BookManagerException
 	 *             exception
 	 */
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	private void validateBookFields(Book book) throws BookManagerException {
 		String errorMessage = "";
 		if (book.getBookName() == null || book.getIsbn() == null || book.getPublisher() == null) {
@@ -206,12 +209,11 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 	 *            Entity to validation
 	 * @throws BookManagerException
 	 */
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	private void validateAuthorsField(Book book) throws BookManagerException {
+	public void validateAuthorsField(Book book) throws BookManagerException {
 		String errorMessage = "";
 		List<String> authorsIds = new ArrayList<String>();
 		for (Author author : book.getAuthors()) {
-			if (author.getIdAuthor() != null) {
+			if (author != null && author.getIdAuthor() != null) {
 				authorsIds.add(author.getIdAuthor());
 			} else {
 				errorMessage = String.format("Author %s has no id number.", author);
@@ -219,9 +221,10 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 				throw new BookManagerException(errorMessage);
 			}
 		}
-
-		Set<Author> presentAuthors = new HashSet<>(authorFacade.findAuthorsByListId(authorsIds));
-		if (!presentAuthors.equals(book.getAuthors())) {
+		List<Author> authors = new ArrayList<Author>(book.getAuthors());
+		List<Author> authorsFromBase = authorFacade.findAuthorsByListId(authorsIds);
+		if (!authorsFromBase.containsAll(authors)) {
+			System.out.println("before  in ! presentAuthors");
 			errorMessage = "Some author from authors of the book has been modified and is not reflected.";
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);

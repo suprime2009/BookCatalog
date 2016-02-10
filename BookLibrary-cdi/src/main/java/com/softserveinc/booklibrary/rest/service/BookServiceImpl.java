@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -15,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.exception.BookManagerException;
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
@@ -62,21 +65,22 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Response create(BookDTO bookDTO) {
+
 		Response.ResponseBuilder builder = null;
+
 		if (bookDTO == null || bookDTO.getIdBook() != null) {
-			System.out.println("BAD REQUEST");
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Book book = convertToEntity(bookDTO);
+		Book book = null;
 		try {
+			book = convertToEntity(bookDTO);
 			bookManager.createBook(book);
 			builder = Response.status(Status.CREATED);
 		} catch (BookManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (BookCatalogException e) {
-			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
-
 		return builder.build();
 	}
 
@@ -86,11 +90,14 @@ public class BookServiceImpl implements BookService {
 		if (bookDTO == null || bookDTO.getIdBook() == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Book book = convertToEntity(bookDTO);
+		Book book = null;
 		try {
+			book = convertToEntity(bookDTO);
 			bookManager.updateBook(book);
 			builder = Response.status(Status.OK);
 		} catch (BookManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
@@ -134,24 +141,51 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book convertToEntity(BookDTO dto) {
-		Book book = null;
-		if (dto.getIdBook() == null) {
-			book = new Book(null, dto.getBookName(), dto.getIsbn(), dto.getPublisher(), dto.getYearPublished());
-		} else {
-			book = bookFacade.findById(dto.getIdBook());
-			if (book != null) {
-				book.setBookName(dto.getBookName());
-				book.setIsbn(dto.getIsbn());
-				book.setPublisher(dto.getPublisher());
-				book.setYearPublished(dto.getYearPublished());
+	public Book convertToEntity(BookDTO dto) throws RestDTOConvertException {
+		String error = "";
+		Book book = new Book(null, dto.getBookName(), dto.getIsbn(), dto.getPublisher(), dto.getYearPublished());
+		if (dto.getIdBook() != null) {
+			Book checkBook = bookFacade.findById(dto.getIdBook());
+			if (checkBook == null) {
+				error = String.format("By id %s no one book has been found.", dto.getIdBook());
+				log.error(error);
+				throw new RestDTOConvertException(error);
+			} else {
+				book.setCreatedDate(checkBook.getCreatedDate());
+				book.setIdBook(dto.getIdBook());
 			}
 		}
-		List<Author> authors = authorService.convertToListEntities(dto.getAuthors());
-		if (book != null) {
-			book.setAuthors(new HashSet<Author>(authors));
+		if (dto.getAuthors() != null) {
+			book.setAuthors(new HashSet<Author>(convertAuthors(dto.getAuthors())));
 		}
+		log.debug("The method done. DTO has been converted to book = {}", book);
 		return book;
+	}
+
+	private List<Author> convertAuthors(List<AuthorDTO> dto) throws RestDTOConvertException {
+		String error = "";
+		List<Author> authors = new ArrayList<Author>();
+		Author author = null;
+		for (AuthorDTO a : dto) {
+			if (a == null || a.getIdAuthor() == null) {
+				error = String.format("The author %s is null or missed id.", a);
+				log.error(error);
+				throw new RestDTOConvertException();
+			}
+			author = authorFacade.findById(a.getIdAuthor());
+			if (author == null) {
+				error = String.format("By id %s no one author has been found.", a.getIdAuthor());
+				log.error(error);
+				throw new RestDTOConvertException();
+			}
+			if (!author.getFirstName().equals(a.getFirstName()) || !author.getSecondName().equals(a.getSecondName())) {
+				error = String.format("The author %s doesn't match current author in db.", a);
+				log.error(error);
+				throw new RestDTOConvertException();
+			}
+			authors.add(author);
+		}
+		return authors;
 	}
 
 	@Override
@@ -168,7 +202,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> convertToListEntities(List<BookDTO> listDTO) {
+	public List<Book> convertToListEntities(List<BookDTO> listDTO) throws RestDTOConvertException {
 		List<Book> books = new ArrayList<Book>();
 		for (BookDTO d : listDTO) {
 			books.add(convertToEntity(d));

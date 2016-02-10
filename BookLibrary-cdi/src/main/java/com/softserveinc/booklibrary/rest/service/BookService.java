@@ -3,6 +3,8 @@ package com.softserveinc.booklibrary.rest.service;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.BookDTO;
 
@@ -58,6 +61,7 @@ public interface BookService {
 
 	@POST
 	@Consumes("application/json")
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Response create(BookDTO bookDTO);
 
 	@PUT
@@ -78,11 +82,12 @@ public interface BookService {
 	@Produces("application/json")
 	public Response getReviewsByRating(@QueryParam("value") Integer rating);
 
-	public Book convertToEntity(BookDTO dto);
+
+	public Book convertToEntity(BookDTO dto) throws RestDTOConvertException;
 
 	public BookDTO convertToDTO(Book object);
 
-	public List<Book> convertToListEntities(List<BookDTO> listDTO);
+	public List<Book> convertToListEntities(List<BookDTO> listDTO) throws RestDTOConvertException;
 
 	public List<BookDTO> convertToListDTO(List<Book> list);
 

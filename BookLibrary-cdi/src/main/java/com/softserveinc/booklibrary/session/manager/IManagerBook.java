@@ -87,5 +87,7 @@ public interface IManagerBook {
 	 *             exception
 	 */
 	void bulkDelete(List<Book> list) throws BookManagerException;
+	
+	public void validateAuthorsField(Book book) throws BookManagerException;
 
 }

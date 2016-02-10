@@ -15,7 +15,6 @@ import com.softserveinc.booklibrary.session.manager.ReviewManagerRemote;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 
-
 /**
  * The {@code ReviewManager} class is an implementation of business logic for
  * write operations for {@link Review} entity
@@ -30,7 +29,7 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 
 	@EJB
 	private ReviewHomeLocal reviewHome;
-	
+
 	@PostConstruct
 	private void postConstruct() {
 		log.debug("Bean has been created.");
@@ -95,6 +94,11 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 		log.debug("The method starts. Review to update ={}", review);
 		validateReviewFields(review);
 		String errorMessage = "";
+		if (review.getBook() == null || review.getIdreview() == null) {
+			errorMessage = String.format("The book must be present for review.", review.getBook());
+			log.error(errorMessage);
+			throw new ReviewManagerException(errorMessage);
+		}
 		Review reviewCheck = reviewFacade.findById(review.getIdreview());
 		if (!reviewCheck.getBook().getIdBook().equals(review.getBook().getIdBook())) {
 			errorMessage = String.format(
@@ -103,6 +107,7 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 			log.error(errorMessage);
 			throw new ReviewManagerException(errorMessage);
 		}
+		review.setCreatedDate(reviewCheck.getCreatedDate());
 		reviewHome.update(review);
 		log.info("The method finished. Review {} has been successfully updated.", review);
 

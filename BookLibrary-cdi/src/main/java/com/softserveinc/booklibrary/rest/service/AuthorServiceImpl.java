@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.AuthorManagerException;
 import com.softserveinc.booklibrary.exception.BookCatalogException;
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
@@ -23,9 +26,9 @@ import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 
 /**
- * This class is a implementation methods used JAX-RS web service for Authors entity.
- * These methods are available to web service clients and using them can perform
- * CRUD operations on {@code BookCatalog API}. 
+ * This class is a implementation methods used JAX-RS web service for Authors
+ * entity. These methods are available to web service clients and using them can
+ * perform CRUD operations on {@code BookCatalog API}.
  *
  */
 @Stateless
@@ -71,12 +74,14 @@ public class AuthorServiceImpl implements AuthorService {
 		if (authorDTO == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-
-		Author author = convertToEntity(authorDTO);
+		Author author;
 		try {
+			author = convertToEntity(authorDTO);
 			authorManager.createAuthor(author);
 			builder = Response.status(Status.CREATED);
 		} catch (AuthorManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
@@ -85,14 +90,17 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public Response update(AuthorDTO authorDTO) {
 		Response.ResponseBuilder builder = null;
-		if (authorDTO == null) {
+		if (authorDTO == null || authorDTO.getFirstName() == null || authorDTO.getSecondName() == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Author author = convertToEntity(authorDTO);
+		Author author = null;
 		try {
+			author = convertToEntity(authorDTO);
 			authorManager.updateAuthor(author);
 			builder = Response.status(Status.OK);
 		} catch (AuthorManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
@@ -101,7 +109,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public Response deleteById(String id) {
 		try {
-			authorManager.deleteAuthor(id);
+			authorManager.deleteAuthorWithNoBooks(id);;
 		} catch (AuthorManagerException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
@@ -121,40 +129,50 @@ public class AuthorServiceImpl implements AuthorService {
 		List<BookDTO> dto = bookService.convertToListDTO(bookFacade.findBooksByAuthor(author));
 		return Response.ok(dto).build();
 	}
-	
-	public Author convertToEntity(AuthorDTO dto) {
-		Author author = null;
-		if (dto.getIdAuthor() == null) {
-			author = new Author(dto.getFirstName(), dto.getSecondName());
-		} else {
-			author = authorFacade.findById(dto.getIdAuthor());
-			if (author != null) {
-				author.setFirstName(dto.getFirstName());
-				author.setSecondName(dto.getSecondName());
+
+
+	public Author convertToEntity(AuthorDTO dto) throws RestDTOConvertException {
+		String error = "";
+		Author author = new Author(dto.getFirstName(), dto.getSecondName());
+		if (dto.getIdAuthor() != null) {
+			Author check = authorFacade.findById(dto.getIdAuthor());
+			if (check == null) {
+				error = String.format("By id = %s no one author has been found.", dto.getIdAuthor());
+				log.error(error);
+				throw new RestDTOConvertException(error);
 			}
+			author.setCreatedDate(check.getCreatedDate());
+			author.setIdAuthor(dto.getIdAuthor());
 		}
 		return author;
 	}
+	
 
-	public  AuthorDTO convertToDTO(Author object) {
+
+	public AuthorDTO convertToDTO(Author object) {
 		AuthorDTO authorDTO = new AuthorDTO(object.getIdAuthor(), object.getFirstName(), object.getSecondName());
 		return authorDTO;
 	}
 
-	public  List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) {
+
+	public List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) throws RestDTOConvertException {
 		List<Author> authors = new ArrayList<Author>();
+		if (listDTO == null) {
+			return authors;
+		}
 		for (AuthorDTO d : listDTO) {
 			authors.add(convertToEntity(d));
 		}
 		return authors;
 	}
 
-	public  List<AuthorDTO> convertToListDTO(Collection<Author> list) {
+
+	public List<AuthorDTO> convertToListDTO(Collection<Author> list) {
 		List<AuthorDTO> authorsDto = new ArrayList<AuthorDTO>();
 		for (Author a : list) {
 			authorsDto.add(convertToDTO(a));
 		}
 		return authorsDto;
 	}
-	
+
 }

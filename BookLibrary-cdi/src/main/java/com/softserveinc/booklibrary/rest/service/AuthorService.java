@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,6 +17,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 
@@ -84,11 +87,11 @@ public interface AuthorService {
 	@Produces("application/json")
 	public Response getBooksByAuthor(@PathParam("author_id") String idAuthor);
 	
-	public Author convertToEntity(AuthorDTO dto);
+	public Author convertToEntity(AuthorDTO dto) throws RestDTOConvertException;
 	
 	public  AuthorDTO convertToDTO(Author object);
 	
-	public  List<Author> convertToListEntities(Collection<AuthorDTO> listDTO);
+	public  List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) throws RestDTOConvertException;
 	
 	public  List<AuthorDTO> convertToListDTO(Collection<Author> list);
 

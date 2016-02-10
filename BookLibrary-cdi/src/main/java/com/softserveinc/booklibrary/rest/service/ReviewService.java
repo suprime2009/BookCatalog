@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Review;
 import com.softserveinc.booklibrary.rest.dto.ReviewDTO;
 
@@ -72,11 +73,11 @@ public interface ReviewService {
 	@Produces("application/json")
 	public Response getReviewsByBook(@QueryParam("id") String idBook);
 
-	public Review convertToEntity(ReviewDTO dto);
+	public Review convertToEntity(ReviewDTO dto) throws RestDTOConvertException;
 
 	public ReviewDTO convertToDTO(Review object);
 
-	public List<Review> convertToListEntities(List<ReviewDTO> listDTO);
+	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) throws RestDTOConvertException;
 
 	public List<ReviewDTO> convertToListDTO(List<Review> list);
 

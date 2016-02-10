@@ -80,7 +80,7 @@ public class Book implements Serializable {
 			@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
 
-	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "book")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "book")
 	private Set<Review> reviews;
 
 	@Transient

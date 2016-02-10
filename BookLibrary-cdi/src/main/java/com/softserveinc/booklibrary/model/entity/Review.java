@@ -104,6 +104,10 @@ public class Review implements Serializable {
 		return this.createdDate;
 	}
 
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	public Integer getRating() {
 		return this.rating;
 	}

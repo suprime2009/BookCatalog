@@ -138,7 +138,7 @@ Book Catalog
 	</rich:column>
 	<rich:column styleClass="column" style=" width:600px;">
 		<f:facet name="header">Books</f:facet>
-		<ui:repeat var="book" value="#{author.books}" varStatus="status"  >
+		<ui:repeat var="book" value="#{manageReviewsAction.booksForAuthor(author)}" varStatus="status"  >
 			<h:link value="#{book.bookName} " outcome="#{navigationAction.moveToBookDetailPage()}">
 				<f:param name="idBook" value="#{book.idBook}"></f:param>
 			</h:link>#{status.last ? '' : ',        '}

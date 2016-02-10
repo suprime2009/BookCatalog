@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.BookCatalogException;
+import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.exception.ReviewManagerException;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
@@ -52,19 +53,16 @@ public class ReviewSeviceImpl implements ReviewService {
 	public Response create(ReviewDTO reviewDTO) {
 		Response.ResponseBuilder builder = null;
 		if (reviewDTO == null || reviewDTO.getIdReview() != null) {
-			System.out.println("BAD REQUEST");
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-
-		Review review = convertToEntity(reviewDTO);
 		try {
+			Review review = convertToEntity(reviewDTO);
 			reviewManager.createReview(review);
 			builder = Response.status(Status.CREATED);
 		} catch (ReviewManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-
-		} catch (BookCatalogException e) {
-			builder = Response.status(Response.Status.NOT_IMPLEMENTED).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
 	}
@@ -78,22 +76,18 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public Response update(ReviewDTO reviewDTO) {
+		
 		Response.ResponseBuilder builder = null;
 		if (reviewDTO == null || reviewDTO.getIdReview() == null) {
-			System.out.println("BAD REQUEST");
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		Review review = null;
-		if (reviewDTO.getIdBook() == null) {
-			review = reviewFacade.findById(reviewDTO.getIdReview());
-			reviewDTO.setIdBook(review.getBook().getIdBook());
-		}
-
-		review = convertToEntity(reviewDTO);
 		try {
+			Review review = convertToEntity(reviewDTO);
 			reviewManager.updateReview(review);
 			builder = Response.status(Status.OK);
 		} catch (ReviewManagerException e) {
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
+		} catch (RestDTOConvertException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
@@ -101,7 +95,6 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public Response deleteById(String id) {
-
 		try {
 			reviewManager.deleteReview(id);
 		} catch (ReviewManagerException e) {
@@ -126,22 +119,19 @@ public class ReviewSeviceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review convertToEntity(ReviewDTO dto) {
+	public Review convertToEntity(ReviewDTO dto) throws RestDTOConvertException {
 
-		Book book = bookFacade.findById(dto.getIdBook());
-		Review review = null;
-		if (dto.getIdReview() != null) {
-			review = reviewFacade.findById(dto.getIdReview());
+		Book book = null;
+		if (dto.getIdBook() != null) {
+			book = bookFacade.findById(dto.getIdBook());
 		} else {
-			review = new Review();
+			String error = "The review must have book id.";
+			log.error(error);
+			throw new RestDTOConvertException(error);
 		}
-		review.setComment(dto.getComment());
-		review.setCommenterName(dto.getCommenterName());
-		review.setRating(dto.getRating());
-		review.setBook(book);
-
+		Review review = new Review(dto.getComment(), dto.getCommenterName(), dto.getRating(), book);
+		review.setIdReview(dto.getIdReview());
 		log.info("The method done. Convertation from DTO to Review successful.");
-
 		return review;
 	}
 
@@ -155,7 +145,7 @@ public class ReviewSeviceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) {
+	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) throws RestDTOConvertException {
 		List<Review> list = new ArrayList<Review>();
 		for (ReviewDTO revD : listDTO) {
 			list.add(convertToEntity(revD));

@@ -53,9 +53,40 @@ Book Catalog
 </rich:panel>
 
    
+<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
+<h:outputLabel value="Lately added reviews" styleClass="headerLabel" />
+</rich:toolbar>
+<rich:dataTable value="#{manageReviewsAction.latestAddedReviews}" var="review" style="width:100%;" rowClasses="odd-row, even-row">
+	<rich:column styleClass="column" style="width:200px;" >
+		<f:facet name="header">Book</f:facet>
+		<h:link value="#{review.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
+				<f:param name="idBook" value="#{review.book.idBook}"></f:param>
+			</h:link>
+		
+	</rich:column>
+	<rich:column styleClass="column" style="width:70px;"  >
+		<f:facet name="header">Rating</f:facet>
+		<h:outputText value="#{review.rating}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:150px;" >
+		<f:facet name="header">Commenter name</f:facet>
+		<h:outputText value="#{review.commenterName}" />
+	</rich:column>
+	<rich:column styleClass="column" style="width:400px;" >
+		<f:facet name="header">Comment</f:facet>
+		<h:outputText value="#{review.comment}" />
+	</rich:column>
+		<rich:column styleClass="column"  style="width:100px;" >
+		<f:facet name="header">Created</f:facet>
+		<h:outputText value="#{review.createdDate}" >
+				<f:convertDateTime dateStyle="short" timeStyle="short" type="both"  />
+			</h:outputText>
+	</rich:column>
+</rich:dataTable>
+
 
 <rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
-<h:outputLabel value="Latest added books" styleClass="headerLabel" />
+<h:outputLabel value="Lately added books" styleClass="headerLabel" />
 </rich:toolbar>
 <rich:dataTable value="#{manageReviewsAction.latestAddedBooks}" var="book" style="width:100%;" rowClasses="odd-row, even-row">
 	<rich:column styleClass="column" style="width:200px;" >
@@ -93,41 +124,9 @@ Book Catalog
 </rich:dataTable>
 
 
-<rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
-<h:outputLabel value="latest added reviews" styleClass="headerLabel" />
-</rich:toolbar>
-<rich:dataTable value="#{manageReviewsAction.latestAddedReviews}" var="review" style="width:100%;" rowClasses="odd-row, even-row">
-	<rich:column styleClass="column" style="width:200px;" >
-		<f:facet name="header">Book</f:facet>
-		<h:link value="#{review.book.bookName}" outcome="#{navigationAction.moveToBookDetailPage()}">
-				<f:param name="idBook" value="#{review.book.idBook}"></f:param>
-			</h:link>
-		
-	</rich:column>
-	<rich:column styleClass="column" style="width:70px;"  >
-		<f:facet name="header">Rating</f:facet>
-		<h:outputText value="#{review.rating}" />
-	</rich:column>
-	<rich:column styleClass="column" style="width:150px;" >
-		<f:facet name="header">Commenter name</f:facet>
-		<h:outputText value="#{review.commenterName}" />
-	</rich:column>
-	<rich:column styleClass="column" style="width:400px;" >
-		<f:facet name="header">Comment</f:facet>
-		<h:outputText value="#{review.comment}" />
-	</rich:column>
-		<rich:column styleClass="column"  style="width:100px;" >
-		<f:facet name="header">Created</f:facet>
-		<h:outputText value="#{review.createdDate}" >
-				<f:convertDateTime dateStyle="short" timeStyle="short" type="both"  />
-			</h:outputText>
-	</rich:column>
-</rich:dataTable>
-
-
 
 <rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
-<h:outputLabel value="Latest added authors" styleClass="headerLabel" />
+<h:outputLabel value="Lately added authors" styleClass="headerLabel" />
 </rich:toolbar>
 <rich:dataTable value="#{manageReviewsAction.latestAddedAuthors}" var="author" style="width:100%;" rowClasses="odd-row, even-row">
 	<rich:column styleClass="column" style="width:300px;" >

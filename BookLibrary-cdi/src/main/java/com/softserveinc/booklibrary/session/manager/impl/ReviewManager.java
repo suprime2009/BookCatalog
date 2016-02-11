@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.ReviewManagerException;
+import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
 import com.softserveinc.booklibrary.session.manager.ReviewManagerLocal;
 import com.softserveinc.booklibrary.session.manager.ReviewManagerRemote;
+import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 
@@ -29,6 +31,9 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 
 	@EJB
 	private ReviewHomeLocal reviewHome;
+	
+	@EJB
+	private BookFacadeLocal bookFacade;
 
 	@PostConstruct
 	private void postConstruct() {
@@ -46,13 +51,19 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 		long startMethodTime = System.currentTimeMillis();
 		log.debug("Method starts. Review to create ={}", review);
 		String errorMessage = "";
-		if (review == null) {
-			errorMessage = "Passed review to create is null.";
+		if (review == null || review.getBook() == null) {
+			errorMessage = "Passed review to create is null or book field is null.";
 			log.error(errorMessage);
 			throw new ReviewManagerException(errorMessage);
 		}
 		if (review.getIdreview() != null) {
 			errorMessage = "Passed review to create has id number and can't be created.";
+			log.error(errorMessage);
+			throw new ReviewManagerException(errorMessage);
+		}
+		Book checkBook = bookFacade.findById(review.getBook().getIdBook());
+		if (checkBook == null) {
+			errorMessage = String.format("The book %s hasn't been found.", checkBook);
 			log.error(errorMessage);
 			throw new ReviewManagerException(errorMessage);
 		}
@@ -94,6 +105,7 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 		log.debug("The method starts. Review to update ={}", review);
 		validateReviewFields(review);
 		String errorMessage = "";
+		System.out.println(review.getBook());
 		if (review.getBook() == null || review.getIdreview() == null) {
 			errorMessage = String.format("The book must be present for review.", review.getBook());
 			log.error(errorMessage);
@@ -107,7 +119,6 @@ public class ReviewManager implements ReviewManagerLocal, ReviewManagerRemote {
 			log.error(errorMessage);
 			throw new ReviewManagerException(errorMessage);
 		}
-		review.setCreatedDate(reviewCheck.getCreatedDate());
 		reviewHome.update(review);
 		log.info("The method finished. Review {} has been successfully updated.", review);
 

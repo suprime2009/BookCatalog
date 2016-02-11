@@ -3,18 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+      <class name="com.softserveinc.booklibrary.test.rest.AuthorRestTest">
         <methods>
-          <include name="arquillianAfterSuite"/>
-          <include name="testNegativeCreateBook" invocation-numbers="0 1 2 3 4 5 6 7 8 9 10 11 12 13"/>
-          <include name="arquillianAfterClass"/>
-          <include name="arquillianBeforeClass"/>
-          <include name="arquillianAfterTest"/>
-          <include name="testCreateBook"/>
-          <include name="arquillianBeforeSuite"/>
-          <include name="arquillianBeforeTest"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="getRemoteBeans"/>
+          <include name="closeEJBSession"/>
+          <include name="test"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
+      </class> <!-- com.softserveinc.booklibrary.test.rest.AuthorRestTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

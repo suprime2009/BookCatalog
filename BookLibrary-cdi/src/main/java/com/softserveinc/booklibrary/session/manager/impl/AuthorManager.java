@@ -88,6 +88,7 @@ public class AuthorManager implements AuthorManagerLocal, AuthorManagerRemote {
 			throw new AuthorManagerException(errorMessage);
 		}
 		validateAuthor(author);
+		author.setCreatedDate(checkAuthor.getCreatedDate());
 		authorHome.update(author);
 		log.info("The method finished. Author {} has been successfully updated.", author);
 	}

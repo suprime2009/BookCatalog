@@ -103,14 +103,11 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		validateBookFields(book);
 		System.out.println("after validate");
 		Book checkISBN = bookFacade.findBookByISNBN(book.getIsbn());
-		System.out.println(book.getIdBook());
-		System.out.println(checkISBN.getIdBook());
 		if (checkISBN != null && !checkISBN.getIdBook().equals(book.getIdBook())) {
 			errorMessage = String.format("Passed ISBN number %s already in use.", book.getIsbn());
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
-		System.out.println("before home");
 		bookHome.update(book);
 		log.info("The method finished. Book {} has been successfully updated.", book);
 
@@ -197,7 +194,6 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 		if (book.getAuthors() != null && !book.getAuthors().isEmpty()) {
 			validateAuthorsField(book);
 		}
-
 	}
 
 	/**
@@ -221,15 +217,12 @@ public class BookManager implements BookManagerLocal, BookManagerRemote {
 				throw new BookManagerException(errorMessage);
 			}
 		}
-		List<Author> authors = new ArrayList<Author>(book.getAuthors());
-		List<Author> authorsFromBase = authorFacade.findAuthorsByListId(authorsIds);
-		if (!authorsFromBase.containsAll(authors)) {
-			System.out.println("before  in ! presentAuthors");
+		Set<Author> authorFromBase = new HashSet<Author>(authorFacade.findAuthorsByListId(authorsIds));
+		if (!authorFromBase.containsAll(book.getAuthors())) {
 			errorMessage = "Some author from authors of the book has been modified and is not reflected.";
 			log.error(errorMessage);
 			throw new BookManagerException(errorMessage);
 		}
-
 	}
 
 }

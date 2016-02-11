@@ -2,12 +2,15 @@ package com.softserveinc.booklibrary.rest.client;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.dto.BookDTO;
 
+@Remote(AuthorClient.class)
 public interface AuthorClient {
 
 	public AuthorDTO findById(String id) throws BookCatalogException;

@@ -5,6 +5,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
+import com.softserveinc.booklibrary.rest.client.AuthorClient;
+import com.softserveinc.booklibrary.rest.client.AuthorClientImpl;
 import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeRemote;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeRemote;
@@ -32,6 +34,7 @@ public abstract class BaseTest {
 	protected static BookFacadeRemote bookFacadeRemote;
 	protected static ReviewHomeRemote reviewHomeRemote;
 	protected static ReviewFacadeRemote reviewFacadeRemote;
+	protected static AuthorClient authorClient;
 	protected static TestHelper testHelper;
 	protected static DBUnitHelper dbUnitHelper = DBUnitHelper.getInstance();
 
@@ -43,11 +46,14 @@ public abstract class BaseTest {
 	public void getRemoteBeans() {
 		testHelper = TestHelper.getInstance();
 		authorHomeRemote = (AuthorHomeRemote) testHelper.getRemoteBean(AuthorHome.class, AuthorHomeRemote.class);
-		authorFacadeRemote = (AuthorFacadeRemote) testHelper.getRemoteBean(AuthorFacade.class, AuthorFacadeRemote.class);
+		authorFacadeRemote = (AuthorFacadeRemote) testHelper.getRemoteBean(AuthorFacade.class,
+				AuthorFacadeRemote.class);
 		bookHomeRemote = (BookHomeRemote) testHelper.getRemoteBean(BookHome.class, BookHomeRemote.class);
 		bookFacadeRemote = (BookFacadeRemote) testHelper.getRemoteBean(BookFacade.class, BookFacadeRemote.class);
 		reviewHomeRemote = (ReviewHomeRemote) testHelper.getRemoteBean(ReviewHome.class, ReviewHomeRemote.class);
-		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class, ReviewFacadeRemote.class);
+		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class,
+				ReviewFacadeRemote.class);
+		authorClient = (AuthorClient) testHelper.getRemoteBean(AuthorClientImpl.class, AuthorClient.class);
 	}
 
 	/**
@@ -56,7 +62,7 @@ public abstract class BaseTest {
 	 */
 	@AfterSuite
 	public void closeEJBSession() {
-	//	testHelper.closeSession();
+		testHelper.closeSession();
 	}
 
 	/**

@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -15,10 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.softserveinc.booklibrary.exception.AuthorManagerException;
-import com.softserveinc.booklibrary.exception.BookCatalogException;
-import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.model.entity.Author;
-import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.dto.BookDTO;
 import com.softserveinc.booklibrary.session.manager.AuthorManagerLocal;
@@ -81,8 +76,6 @@ public class AuthorServiceImpl implements AuthorService {
 			builder = Response.status(Status.CREATED);
 		} catch (AuthorManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (RestDTOConvertException e) {
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
 	}
@@ -100,8 +93,6 @@ public class AuthorServiceImpl implements AuthorService {
 			builder = Response.status(Status.OK);
 		} catch (AuthorManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (RestDTOConvertException e) {
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
 	}
@@ -109,7 +100,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public Response deleteById(String id) {
 		try {
-			authorManager.deleteAuthorWithNoBooks(id);;
+			authorManager.deleteAuthorWithNoBooks(id);
 		} catch (AuthorManagerException e) {
 			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
@@ -130,32 +121,27 @@ public class AuthorServiceImpl implements AuthorService {
 		return Response.ok(dto).build();
 	}
 
-
-	public Author convertToEntity(AuthorDTO dto) throws RestDTOConvertException {
-		String error = "";
+	@Override
+	public Author convertToEntity(AuthorDTO dto) {
 		Author author = new Author(dto.getFirstName(), dto.getSecondName());
 		if (dto.getIdAuthor() != null) {
-			Author check = authorFacade.findById(dto.getIdAuthor());
-			if (check == null) {
-				error = String.format("By id = %s no one author has been found.", dto.getIdAuthor());
-				log.error(error);
-				throw new RestDTOConvertException(error);
-			}
-			author.setCreatedDate(check.getCreatedDate());
 			author.setIdAuthor(dto.getIdAuthor());
+			Author authorForCreateDate = authorFacade.findById(dto.getIdAuthor());
+			if (authorForCreateDate != null) {
+				author.setCreatedDate(authorForCreateDate.getCreatedDate());
+			}
 		}
 		return author;
 	}
-	
 
-
+	@Override
 	public AuthorDTO convertToDTO(Author object) {
 		AuthorDTO authorDTO = new AuthorDTO(object.getIdAuthor(), object.getFirstName(), object.getSecondName());
 		return authorDTO;
 	}
 
-
-	public List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) throws RestDTOConvertException {
+	@Override
+	public List<Author> convertToListEntities(Collection<AuthorDTO> listDTO) {
 		List<Author> authors = new ArrayList<Author>();
 		if (listDTO == null) {
 			return authors;
@@ -166,7 +152,7 @@ public class AuthorServiceImpl implements AuthorService {
 		return authors;
 	}
 
-
+	@Override
 	public List<AuthorDTO> convertToListDTO(Collection<Author> list) {
 		List<AuthorDTO> authorsDto = new ArrayList<AuthorDTO>();
 		for (Author a : list) {

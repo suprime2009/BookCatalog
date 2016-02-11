@@ -2,24 +2,27 @@ package com.softserveinc.booklibrary.test.rest;
 
 import static org.junit.Assert.*;
 
-import javax.ejb.EJB;
 
-import org.jboss.arquillian.persistence.Cleanup;
-import org.jboss.arquillian.persistence.CleanupStrategy;
-import org.jboss.arquillian.persistence.TestExecutionPhase;
-import org.jboss.arquillian.persistence.UsingDataSet;
 import org.testng.annotations.Test;
+
 import com.softserveinc.booklibrary.exception.BookCatalogException;
 import com.softserveinc.booklibrary.model.entity.Author;
-import com.softserveinc.booklibrary.rest.client.AuthorClientImpl;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
-import com.softserveinc.booklibrary.session.persist.facade.AuthorFacadeLocal;
+import com.softserveinc.model.util.BaseTest;
 
-public class AuthorRestTest  {
+public class AuthorRestTest extends BaseTest {
 	
 	@Test
 	public void test() {
-		assertEquals(2, 2);
+		try {
+			AuthorDTO author = authorClient.findById("a1");
+			assertEquals(author.getFirstName(), "Raul");
+			assertEquals(author.getSecondName(), "Garsia");
+			assertEquals(author.getIdAuthor(),"a1");
+
+		} catch (BookCatalogException e) {
+			e.printStackTrace();
+		}
 	}
 
 

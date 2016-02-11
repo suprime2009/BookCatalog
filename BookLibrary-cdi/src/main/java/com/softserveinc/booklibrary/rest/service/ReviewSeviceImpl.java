@@ -1,7 +1,6 @@
 package com.softserveinc.booklibrary.rest.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -12,8 +11,6 @@ import javax.ws.rs.core.Response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.softserveinc.booklibrary.exception.BookCatalogException;
-import com.softserveinc.booklibrary.exception.RestDTOConvertException;
 import com.softserveinc.booklibrary.exception.ReviewManagerException;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
@@ -22,6 +19,12 @@ import com.softserveinc.booklibrary.session.manager.ReviewManagerLocal;
 import com.softserveinc.booklibrary.session.persist.facade.BookFacadeLocal;
 import com.softserveinc.booklibrary.session.persist.facade.ReviewFacadeLocal;
 
+/**
+ * This class is a implementation methods used JAX-RS web service for Review
+ * entity. These methods are available to web service clients and using them can
+ * perform CRUD operations on {@code BookCatalog API}.
+ *
+ */
 @Stateless
 public class ReviewSeviceImpl implements ReviewService {
 
@@ -61,8 +64,6 @@ public class ReviewSeviceImpl implements ReviewService {
 			builder = Response.status(Status.CREATED);
 		} catch (ReviewManagerException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (RestDTOConvertException e) {
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
 	}
@@ -76,7 +77,7 @@ public class ReviewSeviceImpl implements ReviewService {
 
 	@Override
 	public Response update(ReviewDTO reviewDTO) {
-		
+
 		Response.ResponseBuilder builder = null;
 		if (reviewDTO == null || reviewDTO.getIdReview() == null) {
 			return Response.status(Status.BAD_REQUEST).build();
@@ -86,8 +87,6 @@ public class ReviewSeviceImpl implements ReviewService {
 			reviewManager.updateReview(review);
 			builder = Response.status(Status.OK);
 		} catch (ReviewManagerException e) {
-			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
-		} catch (RestDTOConvertException e) {
 			builder = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage());
 		}
 		return builder.build();
@@ -119,18 +118,20 @@ public class ReviewSeviceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review convertToEntity(ReviewDTO dto) throws RestDTOConvertException {
+	public Review convertToEntity(ReviewDTO dto) {
 
 		Book book = null;
-		if (dto.getIdBook() != null) {
-			book = bookFacade.findById(dto.getIdBook());
-		} else {
-			String error = "The review must have book id.";
-			log.error(error);
-			throw new RestDTOConvertException(error);
-		}
 		Review review = new Review(dto.getComment(), dto.getCommenterName(), dto.getRating(), book);
-		review.setIdReview(dto.getIdReview());
+		if (dto.getIdReview() != null) {
+			review.setIdReview(dto.getIdReview());
+			Review reviewFromBase = reviewFacade.findById(dto.getIdReview());
+			if (reviewFromBase != null) {
+				review.setCreatedDate(reviewFromBase.getCreatedDate());
+				review.setBook(bookFacade.findById(dto.getIdBook()));
+			}
+		} else {
+			review.setBook(bookFacade.findById(dto.getIdBook()));
+		}
 		log.info("The method done. Convertation from DTO to Review successful.");
 		return review;
 	}
@@ -145,7 +146,7 @@ public class ReviewSeviceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) throws RestDTOConvertException {
+	public List<Review> convertToListEntities(List<ReviewDTO> listDTO) {
 		List<Review> list = new ArrayList<Review>();
 		for (ReviewDTO revD : listDTO) {
 			list.add(convertToEntity(revD));

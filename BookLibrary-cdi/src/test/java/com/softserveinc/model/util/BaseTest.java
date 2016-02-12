@@ -34,7 +34,6 @@ public abstract class BaseTest {
 	protected static BookFacadeRemote bookFacadeRemote;
 	protected static ReviewHomeRemote reviewHomeRemote;
 	protected static ReviewFacadeRemote reviewFacadeRemote;
-	protected static AuthorClient authorClient;
 	protected static TestHelper testHelper;
 	protected static DBUnitHelper dbUnitHelper = DBUnitHelper.getInstance();
 
@@ -53,7 +52,6 @@ public abstract class BaseTest {
 		reviewHomeRemote = (ReviewHomeRemote) testHelper.getRemoteBean(ReviewHome.class, ReviewHomeRemote.class);
 		reviewFacadeRemote = (ReviewFacadeRemote) testHelper.getRemoteBean(ReviewFacade.class,
 				ReviewFacadeRemote.class);
-		authorClient = (AuthorClient) testHelper.getRemoteBean(AuthorClientImpl.class, AuthorClient.class);
 	}
 
 	/**

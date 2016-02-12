@@ -3,20 +3,18 @@
 <suite name="Failed suite [BookLibrary-cdiTest]">
   <test name="managers(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+      <class name="com.softserveinc.model.persist.facade.BookFacadeTest">
         <methods>
-          <include name="arquillianAfterSuite"/>
-          <include name="testNegativeDeleteBook"/>
-          <include name="testNegativeCreateBook"/>
-          <include name="testBulkDelete"/>
-          <include name="arquillianAfterClass"/>
-          <include name="testDeleteBook"/>
-          <include name="testUpdateBook"/>
-          <include name="arquillianAfterTest"/>
-          <include name="testCreateBook"/>
-          <include name="arquillianBeforeSuite"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
+      </class> <!-- com.softserveinc.model.persist.facade.BookFacadeTest -->
+      <class name="com.softserveinc.model.persist.facade.ReviewFacadeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.ReviewFacadeTest -->
       <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
         <methods>
           <include name="testNegativeUpdateAuthor"/>
@@ -32,6 +30,24 @@
           <include name="arquillianAfterTest"/>
         </methods>
       </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
+      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+        <methods>
+          <include name="arquillianAfterSuite"/>
+          <include name="arquillianAfterClass"/>
+          <include name="arquillianBeforeClass"/>
+          <include name="arquillianAfterTest"/>
+          <include name="testCreateBook"/>
+          <include name="arquillianBeforeSuite"/>
+        </methods>
+      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
+      <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
+        <methods>
+          <include name="closeEJBSession"/>
+          <include name="getRemoteBeans"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
     </classes>
   </test> <!-- managers(failed) -->
 </suite> <!-- Failed suite [BookLibrary-cdiTest] -->

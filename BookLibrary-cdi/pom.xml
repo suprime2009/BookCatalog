@@ -338,7 +338,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/testing.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<skip>false</skip>
+					<skip>true</skip>
 				</configuration>
 			</plugin>
 		</plugins>

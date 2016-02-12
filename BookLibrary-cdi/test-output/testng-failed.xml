@@ -3,15 +3,24 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.rest.AuthorRestTest">
+      <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="getRemoteBeans"/>
-          <include name="closeEJBSession"/>
-          <include name="test"/>
+          <include name="testNegativeUpdateAuthor"/>
+          <include name="arquillianAfterSuite"/>
+          <include name="testBulkDeleteAuthor"/>
+          <include name="testNegativeDeleteAuthor"/>
+          <include name="testUpdateAuthor"/>
+          <include name="arquillianAfterClass"/>
+          <include name="arquillianBeforeClass"/>
+          <include name="testCreateAuthor"/>
+          <include name="arquillianAfterTest"/>
+          <include name="arquillianBeforeSuite"/>
+          <include name="testDeleteAuthor"/>
+          <include name="testNegativeDeleteAuthorWithNoBooks"/>
+          <include name="testNegativeCreateAuthor"/>
+          <include name="testNegativeBulkDeleteAuthors"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.rest.AuthorRestTest -->
+      </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

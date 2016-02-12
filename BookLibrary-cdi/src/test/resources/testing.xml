@@ -1,7 +1,7 @@
 <suite name="BookLibrary-cdiTest">
 
 
-	   <test name="facades">
+	   <test name="facades" >
 	  <classes>
 		<class name="com.softserveinc.model.persist.facade.AuthorFacadeTest" />
 		<class name="com.softserveinc.model.persist.facade.BookFacadeTest" />

@@ -346,7 +346,11 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/testing.xml</suiteXmlFile>
 					</suiteXmlFiles>
+
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+
+					<skip>false</skip>
+
 				</configuration>
 			</plugin>
 		</plugins>

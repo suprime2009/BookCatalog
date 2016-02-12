@@ -18,67 +18,34 @@ Manage Reviews
 
 <ui:define name="content">  
 
-<h:outputStylesheet>
-.headerLabel {
-font-weight: bold;
-font-size: 13pt;
-margin-left:70px;
-}
-.column {
-text-align:center;
-font-size: 9pt;
-}
-
-.inLinecolumn {
-font-size: 10pt;
-font-weight: bold;
-margin-left:70px;
-}
-
-
-
-
-
- 
-   
-      
-</h:outputStylesheet>
-
-
-
-
-
-
-
-
 <rich:toolbar style="margin-top:80px;"    itemSeparator="disc"   >
 <h:outputLabel value="Count books by rating" styleClass="headerLabel" />
 </rich:toolbar>
 
 <rich:dataTable value="#{manageReviewsAction.ratingEnum}" var="enum" style="width:100%;" rowClasses="odd-row, even-row">
 
-<rich:column styleClass="column" >
-<f:facet name="header"><h:outputText value="Rating"></h:outputText></f:facet>
-#{enum.ratingName}
-</rich:column >
-<rich:column styleClass="column" >
-<f:facet name="header"><h:outputText value="Stars"></h:outputText></f:facet>
-#{enum.ratingValue}
-</rich:column>
-<rich:column styleClass="column" >
-<f:facet name="header"><h:outputText value="Count Books"></h:outputText></f:facet>
-<h:form>
-<h:commandLink  value="books [#{manageReviewsAction.getCountBooksByrating(enum.ratingValue)}]" 
-				action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.getBooksByRating(enum.ratingValue)}" />
-</h:form>
-</rich:column>
+	<rich:column styleClass="column" >
+		<f:facet name="header"><h:outputText value="Rating"></h:outputText></f:facet>
+			#{enum.ratingName}
+		</rich:column >
+	<rich:column styleClass="column" >
+		<f:facet name="header"><h:outputText value="Stars"></h:outputText></f:facet>
+			#{enum.ratingValue}
+	</rich:column>
+	<rich:column styleClass="column" >
+		<f:facet name="header"><h:outputText value="Count Books"></h:outputText></f:facet>
+			<h:form>
+				<h:commandLink  value="books [#{manageReviewsAction.getCountBooksByrating(enum.ratingValue)}]" 
+						action="#{navigationAction.moveToManageBooks()}" actionListener="#{manageBookAction.getBooksByRating(enum.ratingValue)}" />
+				</h:form>
+	</rich:column>
 </rich:dataTable>
 
 <rich:toolbar style="margin-top:20px;"    itemSeparator="disc"   >
-<h:outputLabel value="Most popular books" styleClass="headerLabel" />
+	<h:outputLabel value="Most popular books" styleClass="headerLabel" />
 </rich:toolbar>
 <rich:dataTable value="#{manageReviewsAction.topRatedBooks}" var="topratedBooks" style="width:100%;"  binding="#{index}"   >
- <f:facet name="header">
+ 		<f:facet name="header">
             <rich:columnGroup>
                 <rich:column rowspan="2" style="width:150px;">
                 	<h:outputLabel value="Book name" />
@@ -145,41 +112,23 @@ margin-left:70px;
 
 
 
+<h:outputStylesheet>
+.headerLabel {
+font-weight: bold;
+font-size: 13pt;
+margin-left:70px;
+}
+.column {
+text-align:center;
+font-size: 9pt;
+}
 
-
-
-
-
-
-
-
-<h:outputScript>
-$(function () {
-
-			var value = document.getElementById('jRate').innerHTML;
-			var that = this;
-			var toolitup = $("#jRate").jRate({
-				rating: 1,
-				strokeColor: 'black',
-				precision: 1,
-				minSelected: 1,
-				onChange: function(rating) {
-					//console.log("OnChange: Rating: "+rating);
-				},
-				onSet: function(rating) {
-					console.log("OnSet: Rating: "+rating);
-				}
-			});
-			
-			
-		});
-		
-</h:outputScript>
-<h:outputScript library="js"  name="jRate.js" />
-
-
-
-
+.inLinecolumn {
+font-size: 10pt;
+font-weight: bold;
+margin-left:70px;
+}
+</h:outputStylesheet>
 </ui:define>
 </ui:composition>
 </html>

@@ -4,11 +4,9 @@ com\softserveinc\booklibrary\rest\dto\AuthorDTO.class
 com\softserveinc\booklibrary\action\helper\ISNBValidator.class
 com\softserveinc\booklibrary\session\persist\home\impl\AuthorHome.class
 com\softserveinc\booklibrary\session\persist\facade\ReviewFacadeRemote.class
-com\softserveinc\booklibrary\rest\client\AuthorClientImpl.class
 com\softserveinc\booklibrary\rest\service\ReviewSeviceImpl.class
 com\softserveinc\booklibrary\action\bean\ManageBookAction.class
 com\softserveinc\booklibrary\action\helper\DataModelHelper.class
-com\softserveinc\booklibrary\rest\client\AuthorClient.class
 com\softserveinc\booklibrary\session\manager\BookManagerLocal.class
 com\softserveinc\booklibrary\action\bean\ManageAuthorsAction.class
 com\softserveinc\booklibrary\model\entity\Book.class

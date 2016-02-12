@@ -72,50 +72,51 @@
 	</rich:panel>
  </rich:tab>
  
- <!-- edit book tab -->
+<!-- edit book tab -->
  <rich:tab id="editBookTab" header="Edit book" >
- 	 <h:form>
-	<rich:panel id="editBookPanel"  styleClass="standartPanel">
-		<f:facet name="header" >
-			<h:outputText value="Edit book" styleClass="labelH2" />
-		</f:facet>
-	<div class="basicAttributesStyle" style="float: left; width: 70%;">
- 		<ui:decorate template="inserts/inputsBookCreate.xhtml">
-			<ui:param name="bean" value="#{editBookAction}" />
- 			<ui:define name="addAuthor">
-				<h:outputLabel value="Author: " />
-				<rich:autocomplete id="autoCompleteAuthor"  mode="ajax" tokens=", " minChars="1" style="width:200px;"  value="#{editBookAction.authorFullName}" autofill="false"
-        	    	autocompleteMethod="#{editBookAction.autocomplete}" />
-   				<a4j:commandLink id="addAuthorBtm" action="#{editBookAction.checkIfAuthorExist()}" execute="autoCompleteAuthor" render="listAuthors" >
-   				<rich:tooltip value="Add author for this book"   ></rich:tooltip>
-   					<h:graphicImage value="/resources/images/plus.png" alt="add" />
-   				</a4j:commandLink>
-			</ui:define>
-		</ui:decorate>
+   <h:form>
+ <rich:panel id="editBookPanel"  styleClass="standartPanel">
+  <f:facet name="header" >
+   <h:outputText value="Edit book" styleClass="labelH2" />
+  </f:facet>
+ <div class="basicAttributesStyle" style="float: left; width: 70%;">
+   <ui:decorate template="inserts/inputsBookCreate.xhtml">
+   <ui:param name="bean" value="#{editBookAction}" />
+    <ui:define name="addAuthor">
+    <h:outputLabel value="Author: " />
+    <rich:autocomplete id="autoCompleteAuthor"  mode="ajax" tokens=", " minChars="1" style="width:200px;"  value="#{editBookAction.authorFullName}" autofill="false"
+              autocompleteMethod="#{editBookAction.autocomplete}" />
+       <a4j:commandLink id="addAuthorBtm" action="#{editBookAction.checkIfAuthorExist()}" execute="autoCompleteAuthor" render="listAuthors" >
+       <rich:tooltip value="Add author for this book"   ></rich:tooltip>
+        <h:graphicImage value="/resources/images/plus.png" alt="add" />
+       </a4j:commandLink>
+       <a4j:commandButton styleClass="smallBtm"  value="Create Author"  oncomplete="#{rich:component('createAuthor')}.show();" execute="@this"></a4j:commandButton>
+   </ui:define>
+  </ui:decorate>
     <rich:message for="addAuthorBtm" ajaxRendered="true" showSummary="true" showDetail="false" />
-	</div>
-		
-	<div class="labelH1" style="float: right; width: 30%; ">
-	<h:outputLabel value="Authors: "  />
-		<rich:list type="ordered" id="listAuthors"  value="#{editBookAction.authors}" var="author" >
-			<h:outputText value="#{author.firstName} #{author.secondName}  " />
-			<h:commandLink   actionListener="#{editBookAction.removeAuthor}">
-				<f:ajax execute="listAuthors"  render="listAuthors" > </f:ajax>
-				<f:attribute name="secondName" value="#{author.secondName}"></f:attribute>
-				<f:attribute name="firstName" value="#{author.firstName}"></f:attribute>
-				<rich:tooltip value="Remove author"   ></rich:tooltip>
-				<h:graphicImage value="/resources/images/minus.png" alt="remove" />
-			</h:commandLink>
-		</rich:list>  
-		</div>
-		<rich:panel style="margin-left:390px; float:left; border:0;" >
-		<a4j:commandButton  styleClass="smallBtm" value="Save" action="#{editBookAction.submit()}" 
-				oncomplete="if (!#{facesContext.validationFailed})" execute="editBookPanel"  render="bookDetailsPanel, notifyMessage" >
-		</a4j:commandButton>
-    	<a4j:commandButton  styleClass="smallBtm" value="Clean" action="#{editBookAction.reset()}" execute="@this" render="editBookPanel"  />
+ </div>
+  
+ <div class="labelH1" style="float: right; width: 30%; ">
+ <h:outputLabel value="Authors: "  />
+  <rich:list type="ordered" id="listAuthors"  value="#{editBookAction.authors}" var="author" >
+   <h:outputText value="#{author.firstName} #{author.secondName}  " />
+   <h:commandLink   actionListener="#{editBookAction.removeAuthor}">
+    <f:ajax execute="listAuthors"  render="listAuthors" > </f:ajax>
+    <f:attribute name="secondName" value="#{author.secondName}"></f:attribute>
+    <f:attribute name="firstName" value="#{author.firstName}"></f:attribute>
+    <rich:tooltip value="Remove author"   ></rich:tooltip>
+    <h:graphicImage value="/resources/images/minus.png" alt="remove" />
+   </h:commandLink>
+  </rich:list>  
+  </div>
+  <rich:panel style="margin-left:390px; float:left; border:0;" >
+  <a4j:commandButton  styleClass="smallBtm" value="Save" action="#{bookDetailAction.refresh()}" actionListener="#{editBookAction.submit()}" 
+    oncomplete="if (!#{facesContext.validationFailed})" execute="editBookPanel"  render="bookDetailsPanel" >
+  </a4j:commandButton>
+     <a4j:commandButton  styleClass="smallBtm" value="Clean" action="#{editBookAction.reset()}" execute="@this" render="editBookPanel"  />
    </rich:panel>
-	</rich:panel>
-	
+ </rich:panel>
+ 
    </h:form>
  </rich:tab>
 </rich:tabPanel>
@@ -275,7 +276,7 @@
 		</h:form>
 	</rich:popupPanel>
 	
-
+<ui:include src="createAuthor.xhtml" />
 
 
 <h:outputStylesheet>

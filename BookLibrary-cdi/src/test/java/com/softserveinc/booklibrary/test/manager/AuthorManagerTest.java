@@ -35,8 +35,6 @@ import com.softserveinc.booklibrary.exception.ReviewManagerException;
 import com.softserveinc.booklibrary.model.entity.Author;
 import com.softserveinc.booklibrary.model.entity.Book;
 import com.softserveinc.booklibrary.model.entity.Review;
-import com.softserveinc.booklibrary.rest.client.AuthorClient;
-import com.softserveinc.booklibrary.rest.client.AuthorClientImpl;
 import com.softserveinc.booklibrary.rest.dto.AuthorDTO;
 import com.softserveinc.booklibrary.rest.service.AuthorService;
 import com.softserveinc.booklibrary.rest.service.AuthorServiceImpl;
@@ -57,7 +55,6 @@ import com.softserveinc.booklibrary.session.persist.home.ReviewHomeLocal;
 import com.softserveinc.booklibrary.session.persist.home.impl.AuthorHome;
 import com.softserveinc.booklibrary.session.persist.home.impl.BookHome;
 import com.softserveinc.booklibrary.session.persist.home.impl.ReviewHome;
-import com.softserveinc.booklibrary.test.rest.AuthorRestTest;
 import com.softserveinc.model.util.DBUnitHelper;
 import com.softserveinc.model.util.DataBaseConstants;
 

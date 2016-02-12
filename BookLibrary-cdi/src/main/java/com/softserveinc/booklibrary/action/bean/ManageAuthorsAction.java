@@ -48,6 +48,8 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 	// author to create
 	private Author author;
 
+	private Author authorToEdit;
+
 	@EJB
 	private AuthorManagerLocal authorManager;
 
@@ -202,6 +204,21 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 		return AuthorFieldHolder.values();
 	}
 
+	public void loadAuthorToEdit(String idAuthor) {
+		authorToEdit = authorFacade.findById(idAuthor);
+	}
+
+	public void submitEditAuthor() {
+		try {
+			authorManager.updateAuthor(authorToEdit);
+			load();
+			log.debug("The method done. Author has been updated.");
+		} catch (AuthorManagerException e) {
+			showGlobalMessageOnPage(e.getMessage());
+			log.error(e.getMessage());
+		}
+	}
+
 	/**
 	 * This method used for disable status submit button for delete selected
 	 * action. If one or more authors from selected have book, method will
@@ -228,5 +245,15 @@ public class ManageAuthorsAction extends DataTableHelper<AuthorUIWrapper> implem
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
+
+	public Author getAuthorToEdit() {
+		return authorToEdit;
+	}
+
+	public void setAuthorToEdit(Author authorToEdit) {
+		this.authorToEdit = authorToEdit;
+	}
+	
+	
 
 }

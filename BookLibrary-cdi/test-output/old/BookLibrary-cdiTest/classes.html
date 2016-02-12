@@ -4,53 +4,81 @@
 <th>Method name</th>
 <th>Groups</th>
 </tr><tr>
-<td>com.softserveinc.booklibrary.test.manager.AuthorManagerTest</td>
+<td>com.softserveinc.model.persist.facade.BookFacadeTest</td>
 <td>&nbsp;</td><td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@Test</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>testNegativeBulkDeleteAuthors</td>
+<td>testFindBooksByAuthor</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>testNegativeDeleteAuthorWithNoBooks</td>
-<td>testNegativeDeleteAuthorWithNoBooks </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>testUpdateAuthor</td>
+<td>testFindBookByISNBN</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>testNegativeCreateAuthor</td>
-<td>createAuthor </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>testBulkDeleteAuthor</td>
-<td>updateAuthor </td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>testNegativeUpdateAuthor</td>
+<td>testFindBookByName</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>testDeleteAuthor</td>
-<td>updateAuthor </td>
+<td>testFindCountBooks</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@BeforeClass</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>testNegativeDeleteAuthor</td>
-<td>updateAuthor </td>
+<td>setUp</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@BeforeMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterClass</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>testCreateAuthor</td>
-<td>createAuthor </td>
+<td>tearDown</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>com.softserveinc.booklibrary.test.manager.BookManagerTest</td>
+<td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@Test</td>
 </tr>
+<tr>
+<td>&nbsp;</td>
+<td>testDeleteBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testBulkDelete</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testCreateBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeDeleteBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeCreateBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testUpdateBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeUpdateBook</td>
+<td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>
 </tr>
@@ -83,82 +111,6 @@
 <td>arquillianAfterClass</td>
 <td>arquillian </td>
 </tr>
-<tr>
-<td>com.softserveinc.model.persist.facade.BookFacadeTest</td>
-<td>&nbsp;</td><td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@Test</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindBookByName</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindCountBooks</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindBooksByAuthor</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindBookByISNBN</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@BeforeClass</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>setUp</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@BeforeMethod</td>
-</tr>
-<tr>
-<td align='center' colspan='3'>@AfterMethod</td>
-</tr>
-<tr>
-<td align='center' colspan='3'>@AfterClass</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>tearDown</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>com.softserveinc.model.persist.facade.ReviewFacadeTest</td>
-<td>&nbsp;</td><td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@Test</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindAllReviewsByCommenter</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td>&nbsp;</td>
-<td>testFindAverageRatingForBook</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@BeforeClass</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>setUp</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td align='center' colspan='3'>@BeforeMethod</td>
-</tr>
-<tr>
-<td align='center' colspan='3'>@AfterMethod</td>
-</tr>
-<tr>
-<td align='center' colspan='3'>@AfterClass</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>tearDown</td>
-<td>&nbsp;</td></tr>
 <tr>
 <td>com.softserveinc.model.persist.facade.AuthorFacadeTest</td>
 <td>&nbsp;</td><td>&nbsp;</td></tr>
@@ -194,14 +146,52 @@
 <td>tearDown</td>
 <td>&nbsp;</td></tr>
 <tr>
-<td>com.softserveinc.booklibrary.test.manager.BookManagerTest</td>
+<td>com.softserveinc.booklibrary.test.manager.AuthorManagerTest</td>
 <td>&nbsp;</td><td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@Test</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>testCreateBook</td>
+<td>testNegativeDeleteAuthor</td>
+<td>updateAuthor </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeDeleteAuthorWithNoBooks</td>
+<td>testNegativeDeleteAuthorWithNoBooks </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeUpdateAuthor</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeCreateAuthor</td>
+<td>createAuthor </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testBulkDeleteAuthor</td>
+<td>updateAuthor </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testCreateAuthor</td>
+<td>createAuthor </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testDeleteAuthor</td>
+<td>updateAuthor </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testNegativeBulkDeleteAuthors</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testUpdateAuthor</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>
@@ -235,4 +225,38 @@
 <td>arquillianAfterClass</td>
 <td>arquillian </td>
 </tr>
+<tr>
+<td>com.softserveinc.model.persist.facade.ReviewFacadeTest</td>
+<td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@Test</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>testFindAllReviewsByCommenter</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>testFindAverageRatingForBook</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@BeforeClass</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>setUp</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@BeforeMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterMethod</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@AfterClass</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>tearDown</td>
+<td>&nbsp;</td></tr>
 </table>

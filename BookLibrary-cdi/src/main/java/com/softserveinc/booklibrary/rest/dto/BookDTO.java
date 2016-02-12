@@ -12,8 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.softserveinc.booklibrary.rest.util.JsonFieldsHolder;
 
+/**
+ * This class is DTO for {@link Book} entity. It use to transfer entity in JSON
+ * format.
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class BookDTO implements Serializable, JsonFieldsHolder{
+public class BookDTO implements Serializable, JsonFieldsHolder {
 
 	/**
 	 * 
@@ -25,10 +30,8 @@ public class BookDTO implements Serializable, JsonFieldsHolder{
 	private String isbn;
 	private String publisher;
 	private Integer yearPublished;
-	
+
 	private List<AuthorDTO> authors;
-	
-	
 
 	public BookDTO(String idBook, String bookName, String isbn, String publisher, Integer yearPublished) {
 		super();
@@ -61,7 +64,7 @@ public class BookDTO implements Serializable, JsonFieldsHolder{
 	public void setIdBook(String idBook) {
 		this.idBook = idBook;
 	}
-	
+
 	@JsonGetter(BOOK_NAME)
 	public String getBookName() {
 		return bookName;

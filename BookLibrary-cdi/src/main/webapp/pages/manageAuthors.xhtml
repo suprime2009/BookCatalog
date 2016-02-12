@@ -98,19 +98,20 @@
 </ui:decorate>
 
 
-    <!-- DEL / EDIT -->
+   <!-- DEL / EDIT -->
 <rich:column style="width:50px;">
-		<h:link id="editLink" ajaxSingle="true" outcome="authorDetail.xhtml"  >
-	 			<f:param name="id" value="#{authorWrapper.author.idAuthor}"></f:param>
-	 			<rich:tooltip  value="Edit"   ></rich:tooltip>
-	 			<h:graphicImage value="/resources/images/edit.png" alt="edit" />
-		</h:link>
-		<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
-			 oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
-			<a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
-			<h:graphicImage value="/resources/images/delete.png" alt="delete" />
-			<rich:tooltip value="Delete"   ></rich:tooltip>
-		</a4j:commandLink>
+  <a4j:commandLink actionListener="#{manageAuthorsAction.loadAuthorToEdit(authorWrapper.author.idAuthor)}"  
+    oncomplete="#{rich:component('editAuthorPopUp')}.show();" 
+    execute="@this" render="editAuthorPopUp" >
+    <h:graphicImage value="/resources/images/edit.png" alt="edit" />
+    <rich:tooltip  value="Edit"   ></rich:tooltip>
+  </a4j:commandLink>
+  <a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
+    oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
+   <a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
+   <h:graphicImage value="/resources/images/delete.png" alt="delete" />
+   <rich:tooltip value="Delete"   ></rich:tooltip>
+  </a4j:commandLink>
 </rich:column>
      
     <!-- SCROLLER -->
@@ -126,39 +127,39 @@
 <ui:param name="bean" value="#{manageAuthorsAction}" />
 </ui:include>
 
+<ui:include src="createAuthor.xhtml" />
+
+<!-- Edit author -->
   <h:form>
- <rich:popupPanel id="createAuthor" autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Create new author"  >
+ <rich:popupPanel id="editAuthorPopUp" autosized="true" style="width:500px; height:100px" domElementAttachment="parent" header="Edit author"  >
  
-	<f:facet name="controls">
-	 <h:outputLink value="#" onclick="#{rich:component('createAuthor')}.hide(); return false;">X</h:outputLink>
-	</f:facet>
-	<rich:panel id="inputPanel">
-	 <h:panelGrid columns="3" >
-	<h:outputLabel for="firstNameInput" value="First name: " />
-	<h:inputText id="firstNameInput" value="#{manageAuthorsAction.author.firstName}" required="true" requiredMessage="Author first name is required!" >
-    		<f:validateLength minimum="2" maximum="80" />
-    		<f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"></f:validateRegex>
+ <f:facet name="controls">
+  <h:outputLink value="#" onclick="#{rich:component('editAuthorPopUp')}.hide(); return false;">X</h:outputLink>
+ </f:facet>
+ <rich:panel id="inputPanel">
+  <h:panelGrid columns="3" >
+ <h:outputLabel for="firstNameInputEdit" value="First name: " />
+ <h:inputText id="firstNameInputEdit" value="#{manageAuthorsAction.authorToEdit.firstName}" required="true" requiredMessage="Author first name is required!" >
+      <f:validateLength minimum="2" maximum="80" />
+      <f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"></f:validateRegex>
     </h:inputText>
-    <rich:message for="firstNameInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
-    <h:outputLabel for="secondNameInput" value="Second name: " />
-	<h:inputText id="secondNameInput" value="#{manageAuthorsAction.author.secondName}" required="true" requiredMessage="Author second name is required!" >
-    		<f:validateLength minimum="2" maximum="80" />
-    		<f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"></f:validateRegex>
+    <rich:message for="firstNameInputEdit" ajaxRendered="true"  showSummary="true" showDetail="false" />
+    <h:outputLabel for="secondNameInputEdit" value="Second name: " />
+ <h:inputText id="secondNameInputEdit" value="#{manageAuthorsAction.authorToEdit.secondName}" required="true" requiredMessage="Author second name is required!" >
+      <f:validateLength minimum="2" maximum="80" />
+      <f:validateRegex pattern="([A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*"></f:validateRegex>
     </h:inputText>
-    <rich:message for="secondNameInput" ajaxRendered="true"  showSummary="true" showDetail="false" />
+    <rich:message for="secondNameInputEdit" ajaxRendered="true"  showSummary="true" showDetail="false" />
     </h:panelGrid>
     </rich:panel>
-    <rich:panel style="position:absolute; bottom:0; left:70px; border:0;">
-    <a4j:commandButton styleClass="smallBtm" value="Add author" action="#{manageAuthorsAction.addAuthor()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createAuthor')}.hide();" execute="@form" render="manageAuthorsDataTable, inputPanel" />
-    				
-    <a4j:commandButton styleClass="smallBtm" value="Add and edit" action="#{manageAuthorsAction.addAndEditAuthor()}" 
-				oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('createAuthor')}.hide();" execute="@form" render="manageAuthorsDataTable, inputPanel" />
+    <rich:panel style="position:absolute; bottom:0; left:115px; border:0;">
+    <a4j:commandButton styleClass="smallBtm" value="Edit author" action="#{manageAuthorsAction.submitEditAuthor()}" 
+    oncomplete="if (!#{facesContext.validationFailed}) #{rich:component('editAuthorPopUp')}.hide();" execute="@form" render="manageAuthorsDataTable" />
     
-    <a4j:commandButton styleClass="smallBtm" value="Clear" action="#{manageAuthorsAction.reset}" execute="@this" render="inputPanel" />
+    <a4j:commandButton styleClass="smallBtm" value="Clear" action="#{manageAuthorsAction.loadAuthorToEdit(manageAuthorsAction.authorToEdit.idAuthor)}" execute="@this" render="inputPanel" />
 
-    <a4j:commandButton styleClass="smallBtm" value="Cancel"  onclick="#{rich:component('createAuthor')}.hide(); return false;" />
-	</rich:panel>
+    <a4j:commandButton styleClass="smallBtm" value="Cancel"  onclick="#{rich:component('editAuthorPopUp')}.hide(); return false;" />
+ </rich:panel>
 </rich:popupPanel>
 </h:form> 
 

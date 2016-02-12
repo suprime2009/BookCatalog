@@ -17,23 +17,19 @@ Book Catalog
 <ui:define name="content">
 
 <rich:panel style="margin-top:80px;">
-	<f:facet name="header"><h:outputText value="BOOK CATALOG " styleClass="headerLabel" style="margin-top:100px;" ></h:outputText></f:facet>
-	<div style=" font-size: 10pt;">
-	   RichFaces is a component library for JSF and an advanced framework for
-        easily integrating AJAX capabilities into business applications.
+ <f:facet name="header"><h:outputText value="BOOK CATALOG " styleClass="headerLabel" style="margin-top:100px;" ></h:outputText></f:facet>
+ <div style=" font-size: 10pt;">
+    This is Book Catalog. It allows you to control your books and authors. You can: 
         <ul>
-            <li>100+ AJAX enabled components in two libraries</li>
-            <li>a4j: page centric AJAX controls</li>
-            <li>rich: self contained, ready to use components</li>
-            <li>Whole set of JSF benefits while working with AJAX</li>
-            <li>Skinnability mechanism</li>
-            <li>Component Development Kit (CDK)</li>
-            <li>Dynamic resources handling</li>
-            <li>Testing facilities for components, actions, listeners, and pages</li>
-            <li>Broad cross-browser support</li>
-            <li>Large and active community</li>
+            <li>view books and authors</li>
+            <li>create new books and new authors</li>
+            <li>edit books and authors</li>
+            <li>remove book and authors</li>
+            <li>view reviews for the book</li>
+            <li>leave a review for the book</li>
+            <li>edit or remove existing reviews</li>
         </ul>
-	</div>
+ </div>
 	<!-- links -->
 <h:panelGrid columns="3" style="width:1000px; text-align:center; " >
  	<h:link id="manageBooksLink" outcome="manageBooks" >

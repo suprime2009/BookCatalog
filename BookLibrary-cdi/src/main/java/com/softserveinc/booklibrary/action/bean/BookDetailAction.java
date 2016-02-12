@@ -202,6 +202,10 @@ public class BookDetailAction implements Serializable {
 		log.debug("The review for update has been loaded.");
 	}
 
+	public void refresh() {
+		book = bookfacade.findById(book.getIdBook());
+	}
+
 	/**
 	 * The method calls on action {@code clean} on UI. The method will clean all
 	 * input fields for add review form on UI.

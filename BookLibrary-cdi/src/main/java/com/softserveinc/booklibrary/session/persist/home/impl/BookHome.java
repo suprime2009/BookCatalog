@@ -63,6 +63,7 @@ public class BookHome implements BookHomeLocal, BookHomeRemote {
 		return object;
 	}
 
+
 	public List<Book> findAll() {
 		TypedQuery<Book> query = entityManager.createNamedQuery(Book.FIND_ALL_BOOKS, Book.class);
 		List<Book> results = new ArrayList<Book>();

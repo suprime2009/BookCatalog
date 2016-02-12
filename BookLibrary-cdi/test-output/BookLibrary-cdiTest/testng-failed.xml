@@ -3,35 +3,57 @@
 <suite name="Failed suite [BookLibrary-cdiTest]">
   <test name="managers(failed)">
     <classes>
-      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+      <class name="com.softserveinc.model.persist.facade.AuthorFacadeTest">
         <methods>
-          <include name="arquillianAfterSuite"/>
-          <include name="testNegativeDeleteBook"/>
-          <include name="testNegativeCreateBook"/>
-          <include name="testBulkDelete"/>
-          <include name="arquillianAfterClass"/>
-          <include name="testDeleteBook"/>
-          <include name="testUpdateBook"/>
-          <include name="arquillianAfterTest"/>
-          <include name="testCreateBook"/>
-          <include name="arquillianBeforeSuite"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="getRemoteBeans"/>
+          <include name="closeEJBSession"/>
         </methods>
-      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
+      </class> <!-- com.softserveinc.model.persist.facade.AuthorFacadeTest -->
+      <class name="com.softserveinc.model.persist.facade.BookFacadeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.BookFacadeTest -->
+      <class name="com.softserveinc.model.persist.facade.ReviewFacadeTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- com.softserveinc.model.persist.facade.ReviewFacadeTest -->
       <class name="com.softserveinc.booklibrary.test.manager.AuthorManagerTest">
         <methods>
-          <include name="testNegativeUpdateAuthor"/>
-          <include name="testDeleteAuthor"/>
-          <include name="testNegativeDeleteAuthorWithNoBooks"/>
-          <include name="testBulkDeleteAuthor"/>
           <include name="testNegativeDeleteAuthor"/>
+          <include name="testNegativeDeleteAuthorWithNoBooks"/>
+          <include name="arquillianAfterTest"/>
           <include name="testUpdateAuthor"/>
           <include name="arquillianAfterClass"/>
           <include name="testNegativeCreateAuthor"/>
-          <include name="testNegativeBulkDeleteAuthors"/>
           <include name="testCreateAuthor"/>
-          <include name="arquillianAfterTest"/>
+          <include name="testNegativeUpdateAuthor"/>
+          <include name="testBulkDeleteAuthor"/>
+          <include name="testNegativeBulkDeleteAuthors"/>
+          <include name="testDeleteAuthor"/>
         </methods>
       </class> <!-- com.softserveinc.booklibrary.test.manager.AuthorManagerTest -->
+      <class name="com.softserveinc.booklibrary.test.manager.BookManagerTest">
+        <methods>
+          <include name="arquillianBeforeClass"/>
+          <include name="testBulkDelete"/>
+          <include name="testCreateBook"/>
+          <include name="arquillianAfterTest"/>
+          <include name="testUpdateBook"/>
+          <include name="arquillianAfterClass"/>
+          <include name="arquillianAfterSuite"/>
+          <include name="testDeleteBook"/>
+          <include name="arquillianBeforeSuite"/>
+          <include name="testNegativeCreateBook"/>
+          <include name="testNegativeDeleteBook"/>
+          <include name="testNegativeUpdateBook"/>
+        </methods>
+      </class> <!-- com.softserveinc.booklibrary.test.manager.BookManagerTest -->
     </classes>
   </test> <!-- managers(failed) -->
 </suite> <!-- Failed suite [BookLibrary-cdiTest] -->

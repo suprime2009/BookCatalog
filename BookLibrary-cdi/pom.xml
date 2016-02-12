@@ -304,43 +304,52 @@
 		</dependency>
 
 	</dependencies>
-	<!-- <build> <finalName>${project.artifactId}</finalName> <plugins> <plugin> 
-		<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-resources-plugin</artifactId> 
-		<executions> <execution> <id>copy-resources</id> <phase>process-test-classes</phase> 
-		<goals> <goal>copy-resources</goal> </goals> <configuration> <outputDirectory>${basedir}/target/jbossas</outputDirectory> 
-		<overwrite>true</overwrite> <resources> <resource> <directory>${jboss.home}</directory> 
-		<excludes> <exclude>modules/</exclude> <exclude>bundles/</exclude> </excludes> 
-		</resource> </resources> </configuration> </execution> </executions> </plugin> 
-		<plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-		<configuration> <systemProperties> <property> <name>jboss.home</name> <value>${basedir}/target/jbossas</value> 
-		</property> </systemProperties> <suiteXmlFiles> <suiteXmlFile>src/test/resources/testing.xml</suiteXmlFile> 
-		</suiteXmlFiles> <redirectTestOutputToFile>true</redirectTestOutputToFile> 
-		</configuration> </plugin> </plugins> </build> -->
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${version.war.plugin}</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/jbossas</outputDirectory>
+							<overwrite>true</overwrite>
+							<resources>
+								<resource>
+									<directory>${jboss.home}</directory>
+									<excludes>
+										<exclude>modules/</exclude>
+										<exclude>bundles/</exclude>
+									</excludes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>${version.wildfly.maven.plugin}</version>
-			</plugin>
-			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${version.surefire.plugin}</version>
 				<configuration>
+					<systemProperties>
+						<property>
+							<name>jboss.home</name>
+							<value>${basedir}/target/jbossas</value>
+						</property>
+					</systemProperties>
 					<suiteXmlFiles>
 						<suiteXmlFile>src/test/resources/testing.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<skip>false</skip>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

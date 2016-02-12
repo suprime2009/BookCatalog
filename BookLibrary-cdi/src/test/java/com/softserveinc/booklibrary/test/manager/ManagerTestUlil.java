@@ -34,11 +34,7 @@ public class ManagerTestUlil {
 		Book book = new Book(BOOK_NAME_CORRECT, ISBN_CORRECT, PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>());
 		book.setIdBook("someID");
 		list.add(new Object[] { book });
-		/* Book with already present ISBN id DB */
-//		 book = new Book(BOOK_NAME_CORRECT, "ISBN-13: 978-1-236-54515-7",
-//		 PUBLISHER_CORRECT, YEAR_CORRECT,
-//		 new HashSet<Author>());
-//		 list.add(new Object[] { book });
+
 
 		return list.toArray(new Object[list.size()][]);
 	}
@@ -49,15 +45,10 @@ public class ManagerTestUlil {
 		list.addAll(Arrays.asList(negativeBookDataProvider()));
 
 		/* Book with present id number */
-		// Book book = new Book(BOOK_NAME_CORRECT, ISBN_CORRECT,
-		// PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>());
-		// book.setIdBook("someID");
-		// list.add(new Object[] { book });
-		/* Book with already present ISBN id DB */
-		// book = new Book(BOOK_NAME_CORRECT, "ISBN-10: 1-478-42336-5",
-		// PUBLISHER_CORRECT, YEAR_CORRECT,
-		// new HashSet<Author>());
-		// list.add(new Object[] { book });
+		 Book book = new Book(BOOK_NAME_CORRECT, ISBN_CORRECT,
+		 PUBLISHER_CORRECT, YEAR_CORRECT, new HashSet<Author>());
+		 book.setIdBook("someID");
+		 list.add(new Book[] { book });
 
 		return list.toArray(new Book[list.size()][]);
 	}

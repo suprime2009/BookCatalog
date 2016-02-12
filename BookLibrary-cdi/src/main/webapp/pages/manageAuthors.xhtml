@@ -100,18 +100,18 @@
 
    <!-- DEL / EDIT -->
 <rich:column style="width:50px;">
-  <a4j:commandLink actionListener="#{manageAuthorsAction.loadAuthorToEdit(authorWrapper.author.idAuthor)}"  
-    oncomplete="#{rich:component('editAuthorPopUp')}.show();" 
-    execute="@this" render="editAuthorPopUp" >
-    <h:graphicImage value="/resources/images/edit.png" alt="edit" />
-    <rich:tooltip  value="Edit"   ></rich:tooltip>
-  </a4j:commandLink>
-  <a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
-    oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
-   <a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
-   <h:graphicImage value="/resources/images/delete.png" alt="delete" />
-   <rich:tooltip value="Delete"   ></rich:tooltip>
-  </a4j:commandLink>
+  	<a4j:commandLink actionListener="#{manageAuthorsAction.loadAuthorToEdit(authorWrapper.author.idAuthor)}"  
+   		 oncomplete="#{rich:component('editAuthorPopUp')}.show();" 
+    	execute="@this" render="editAuthorPopUp" >
+    	<h:graphicImage value="/resources/images/edit.png" alt="edit" />
+   	 	<rich:tooltip  value="Edit"   ></rich:tooltip>
+ 	 </a4j:commandLink>
+  	<a4j:commandLink style="float:right;"   styleClass="no-decor" execute="@this" rendered="#{authorWrapper.countBooks == 0}"
+   		 oncomplete="#{rich:component('confirmDeleteAuthor')}.show()">
+   		<a4j:param value="#{authorWrapper.author.idAuthor}" assignTo="#{manageAuthorsAction.idEntityToDelete}" />
+   		<h:graphicImage value="/resources/images/delete.png" alt="delete" />
+   		<rich:tooltip value="Delete"   ></rich:tooltip>
+  	</a4j:commandLink>
 </rich:column>
      
     <!-- SCROLLER -->
